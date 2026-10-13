@@ -1,123 +1,52 @@
-# ⚽ Futsal Boys – Officiell Webbplats & Truppportal
+# ⚽ Futsal Boys – Officiell Webbplats
 
-Officiell webbapplikation för **Futsal Boys (Trollhättan)**. Byggd med energifylld sportestetik, interaktiv truppkarusell, matchcenter, Instagram-integration och produktionsklar driftsättning via Vercel Multi-Services.
+Välkommen till den officiella webbplatsen för **Futsal Boys** – hjärtat, passionen och sammanhållningen i Trollhättan.
 
----
-
-## ⚡ Funktioner & Design
-
-- **Hero & Ledartrio**: "LEADERS OF THE CLUB" med klubbledarna (*Raffi Medz*, *Elvis Mesic*, *Marcelo Villa*), optimerad för att alltid ligga snyggt på en rad i mobilen.
-- **Interaktiv Spelartrupp**: Chelsea FC-inspirerad karusell med:
-  - Fri horisontell scroll, drag-to-scroll och touch-swipe.
-  - Center-snapping och dynamisk förstoring med neon-aura (`#10FF60`) på aktiv spelare.
-  - Snabbfiltrering per position (*Forward*, *Mittfält*, *Försvar*, *Målvakt*).
-  - Skärmläge som alltid håller sidans vertikala scroll position i toppen vid laddning.
-- **Oändlig Match-Ticker**: Sömlös löpande textremsa i sportstil med arena-, liga- och klubbinfo som rullar i en jämn loop utan att pausas av hover.
-- **Matchcenter & Nyheter**:
-  - Nästa match mot *Riverdale FC* i Arena Älvhögsborg.
-  - Interaktiv nyhetsläsare med matchrapporter och analys.
-  - Merch-teaser för officiella supportertröjor.
-- **Instagram-Integration**: Profilkort baserat på klubbens officiella konto ([@grabbarna.futsal](https://www.instagram.com/grabbarna.futsal/)) med aktuell bio, följarantal och bildgalleri.
-- **Footer & Varumärke**:
-  - Klickbar Futsal Boys-logga med mjuk scroll-to-top.
-  - Kontakt till `raffi9998@gmail.com`.
-  - Media Magnet-partnerbadge med responsiv skalning och hovring.
+Webbplatsen är byggd med en modern och kraftfull sportdesign som sätter klubben, ledarna och spelarna i centrum.
 
 ---
 
-## 🛠️ Teknisk Arkitektur
+## 🔥 Om Webbplatsen
 
-### Frontend
-- **Framework**: React 18 + TypeScript + Vite
-- **Styling**: Vanilla CSS (`frontend/src/styles/global.css`) med ett skräddarsytt dark-mode färg- och typsnittssystem (*Bebas Neue*, *Teko*, *Montserrat*, *Inter*) och neon-accenter.
-- **Ikoner**: `lucide-react`
-- **Routing**: `react-router-dom`
+Hemsidan samlar allt som rör Futsal Boys på ett och samma ställe:
 
-### Vercel Multi-Services (`vercel.json`)
-Projektet är konfigurerat som ett Vercel-projekt med flera oberoende tjänster:
-- **`frontend`** (Vite SPA): Servar den publika webbplatsen på `/(.*)`.
-- **`api`** (Python Serverless): Publik API-gateway på `/api/(.*)` med rate limiting och stöd för intern service-binding.
-- **`backend`** (FastAPI): Intern mikrotjänst för affärslogik och lead dispatching, ansluten via Vercel binding (`BACKEND_URL`).
-
-```json
-{
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "services": {
-    "api": {
-      "root": "api",
-      "runtime": "python",
-      "entrypoint": "index.py",
-      "bindings": [
-        {
-          "type": "service",
-          "service": "backend",
-          "format": "url",
-          "env": "BACKEND_URL"
-        }
-      ]
-    },
-    "backend": {
-      "root": "backend",
-      "framework": "fastapi",
-      "entrypoint": "main.py"
-    },
-    "frontend": {
-      "root": "frontend",
-      "framework": "vite"
-    }
-  },
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": {
-        "service": "api"
-      }
-    },
-    {
-      "source": "/(.*)",
-      "destination": {
-        "service": "frontend"
-      }
-    }
-  ]
-}
-```
+- **Leaders of the Club (Hero)**: Presentation av klubbens ledartrio – *Raffi Medz*, *Elvis Mesic* och *Marcelo Villa*.
+- **Live Match-Ticker**: En stilren, ständigt rullande textremsa med matchinfo, hemmaarena och klubbstatus.
+- **Möt Spelartruppen**: En interaktiv truppkarusell där besökare kan bläddra bland spelarna, filtrera på positioner (*Forward*, *Mittfält*, *Försvar*, *Målvakt*) och se spelarprofiler med nummer, citat och statistik.
+- **Matchcenter & Klubbnyheter**: Nedräkning till nästa match i Arena Älvhögsborg samt interaktiva artiklar och matchanalyser.
+- **Instagram-sektion**: Direktlänk och koppling till lagets officiella Instagramkonto ([@grabbarna.futsal](https://www.instagram.com/grabbarna.futsal/)) med de senaste matchbilderna och troféerna.
+- **Kontakt**: Snabb kontaktväg till klubben via [raffi9998@gmail.com](mailto:raffi9998@gmail.com).
 
 ---
 
-## 💻 Lokal Utveckling
+## 💻 Starta Hemsidan
 
-### 1. Installera frontend-beroenden
-```bash
-cd frontend
-npm install
-```
+För att starta projektet lokalt på datorn:
 
-### 2. Starta utvecklingsservern
-```bash
-npm run dev
-```
-
-### 3. Bygg för produktion
-```bash
-npm run build
-```
-
----
-
-## 🚀 Driftsättning på Vercel
-
-1. Pusha ändringarna till `main`-branschen:
+1. **Installera**:
    ```bash
-   git push origin main
+   cd frontend
+   npm install
    ```
-2. Vercel bygger och deployar automatiskt alla tre tjänsterna (`frontend`, `api`, `backend`) baserat på [vercel.json](file:///Users/raffimedz/Desktop/Raffi/afterschool/hemsidor/futsalboys/vercel.json).
-3. Vid behov av formulär- och kontaktutskick kan följande miljövariabler sättas i Vercel Dashboard:
-   - `FORM_PROVIDER`: `web3forms` eller `crm`
-   - `WEB3FORMS_ACCESS_KEY`: Din Web3Forms-nyckel
-   - `CRM_API_URL` & `CRM_API_KEY`: Vid integration med externt CRM
+
+2. **Starta**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Bygga för publicering**:
+   ```bash
+   npm run build
+   ```
 
 ---
 
-## 📄 Licens & Upphovsrätt
-© Futsal Boys Trollhättan. Utvecklad i samarbete med [Media Magnet](https://mediamagnet.se).
+## 📍 Kontakt & Länkar
+
+- **Instagram**: [@grabbarna.futsal](https://www.instagram.com/grabbarna.futsal/)
+- **E-post**: [raffi9998@gmail.com](mailto:raffi9998@gmail.com)
+- **Hemmaarena**: Arena Älvhögsborg, Trollhättan
+
+---
+
+© Futsal Boys Trollhättan. Skapad i samarbete med Media Magnet.
