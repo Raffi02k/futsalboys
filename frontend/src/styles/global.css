@@ -491,18 +491,21 @@ button {
 
 .hero__leaders-tag {
   font-family: var(--font-condensed);
-  font-size: 22px;
-  letter-spacing: 0.12em;
+  font-size: clamp(12px, 3.8vw, 22px);
+  letter-spacing: clamp(0.04em, 1.2vw, 0.12em);
   color: var(--silver);
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: clamp(5px, 1.6vw, 12px);
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  max-width: 100%;
 }
 
 .hero__leaders-tag span {
   color: var(--neon-green);
+  white-space: nowrap;
 }
 
 .hero__desc {
