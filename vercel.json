@@ -4,6 +4,7 @@
     "api": {
       "root": "api",
       "runtime": "python",
+      "entrypoint": "index.py",
       "bindings": [
         {
           "type": "service",
@@ -15,7 +16,8 @@
     },
     "backend": {
       "root": "backend",
-      "framework": "fastapi"
+      "framework": "fastapi",
+      "entrypoint": "main.py"
     },
     "frontend": {
       "root": "frontend",
