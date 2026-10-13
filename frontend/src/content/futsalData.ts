@@ -1,0 +1,200 @@
+export interface Player {
+  id: string;
+  name: string;
+  number: number;
+  position: 'MÅLVAKT' | 'FÖRSVAR' | 'MITTFÄLT' | 'FORWARD' | 'LEDARE';
+  roleCategory: 'ALL' | 'PLAYERS' | 'MANAGEMENT';
+  image: string;
+  isLeader?: boolean;
+  nickname?: string;
+  stats?: {
+    matches: number;
+    goals?: number;
+    assists?: number;
+    cleanSheets?: number;
+  };
+  quote?: string;
+}
+
+export const squadData: Player[] = [
+  {
+    id: 'elvis',
+    name: 'Elvis Mesic',
+    number: 10,
+    position: 'FORWARD',
+    roleCategory: 'PLAYERS',
+    image: '/images/players/elvis.jpg',
+    isLeader: true,
+    nickname: 'El Maestro',
+    stats: { matches: 12, goals: 18, assists: 9 },
+    quote: 'Snabbhet på små ytor och stenhård vinnarmentalitet.',
+  },
+  {
+    id: 'raffi',
+    name: 'Raffi Medz',
+    number: 7,
+    position: 'MITTFÄLT',
+    roleCategory: 'PLAYERS',
+    image: '/images/players/raffi.jpg',
+    isLeader: true,
+    nickname: 'Kaptenen',
+    stats: { matches: 14, goals: 11, assists: 15 },
+    quote: 'Leder laget med passion och taktisk blick för spelet.',
+  },
+  {
+    id: 'marcelo',
+    name: 'Marcelo Villa',
+    number: 9,
+    position: 'FORWARD',
+    roleCategory: 'PLAYERS',
+    image: '/images/players/marcelo.jpg',
+    isLeader: true,
+    nickname: 'Sniper',
+    stats: { matches: 10, goals: 14, assists: 6 },
+    quote: 'Kompromisslös avslutare i varje offensiv omställning.',
+  },
+  {
+    id: 'goalkeeper',
+    name: 'Viktor Strand',
+    number: 1,
+    position: 'MÅLVAKT',
+    roleCategory: 'PLAYERS',
+    image: '/images/players/goalkeeper.jpg',
+    isLeader: false,
+    nickname: 'Väggen',
+    stats: { matches: 12, cleanSheets: 5 },
+    quote: 'Blixtsnabba reflexer och trygghet mellan stolparna.',
+  },
+  {
+    id: 'noah',
+    name: 'Noah Lindqvist',
+    number: 4,
+    position: 'FÖRSVAR',
+    roleCategory: 'PLAYERS',
+    image: '/images/players/elvis.jpg',
+    isLeader: false,
+    nickname: 'Klippan',
+    stats: { matches: 11, goals: 3, assists: 7 },
+    quote: 'Stänger ytorna och bryter motståndarnas uppspel.',
+  },
+];
+
+export interface UpcomingMatch {
+  homeTeam: string;
+  awayTeam: string;
+  homeLogo?: string;
+  awayLogo?: string;
+  date: string;
+  time: string;
+  venue: string;
+  competition: string;
+  status: string;
+}
+
+export const upcomingMatch: UpcomingMatch = {
+  homeTeam: 'FUTSAL BOYS',
+  awayTeam: 'RIVERDALE FUTSAL',
+  date: 'LÖRDAG, 25 OKTOBER 2026',
+  time: '19:00',
+  venue: 'ARENA ÄLVHÖGSBORG, TROLLHÄTTAN',
+  competition: 'SERIEPREMIÄR 2026/27',
+  status: 'KOMMANDE MATCH',
+};
+
+export interface ClubNews {
+  id: string;
+  category: string;
+  title: string;
+  summary: string;
+  date: string;
+  readTime: string;
+  image: string;
+  author: string;
+  paragraphs: string[];
+  quote?: string;
+}
+
+export const clubNewsList: ClubNews[] = [
+  {
+    id: '1',
+    category: 'MATCHRAPPORT',
+    title: 'Futsal Boys säkrar dramatisk seger i cupkvartsfinalen',
+    summary: 'En heroisk laginsats med intensiv press och snabba kontringar säkrade avancemang inför en jublande publik.',
+    date: '12 OKT 2026',
+    readTime: '3 MIN LÄSNING',
+    author: 'Raffi Medz & Elvis Mesic',
+    image: '/images/instagram/action-shot.jpg',
+    paragraphs: [
+      'Det var upplagt för en riktig rysare i kvartsfinalen när Futsal Boys klev in på parketten i ett fullsatt Arena Älvhögsborg. Med hög intensitet från första sekunden och en aggressiv press över hela banan visade laget direkt vem som bestämde takten.',
+      'Efter en mållös och taktisk första period klev Elvis Mesic fram och dundrade in ledningsmålet via ribban efter en blixtsnabb kombination med Marcelo Villa. Motståndarna kvitterade visserligen kort därefter, men med blott två minuter kvar på matchklockan avgjordes matchen i en dramatisk kontring där hela laget exploderade i glädje.',
+      'Stämningen i hallen var fullständigt elektrisk och vinsten säkrar nu en välförtjänt plats i semifinalen nästa vecka. Lagets sammanhållning, försvarsdisciplin och fysiska status fällde det slutgiltiga avgörandet.',
+    ],
+    quote: 'Vi visade ett enormt hjärta och höll oss till matchplanen i 40 minuter. Publiken bar oss framåt idag! — Elvis Mesic',
+  },
+  {
+    id: '2',
+    category: 'KLUBBNYTT',
+    title: 'Officiella matchtröjan för säsongen presenterad',
+    summary: 'Designad i exklusivt kolfibersvart med elektriska neongröna accenter. Snart tillgänglig för beställning!',
+    date: '08 OKT 2026',
+    readTime: '2 MIN LÄSNING',
+    author: 'Futsal Boys Media',
+    image: '/images/instagram/team-huddle.jpg',
+    paragraphs: [
+      'Efter veckor av förberedelser och noggrann design är Futsal Boys officiella matchställ äntligen här. Matchstället kombinerar en djup kolfibersvart bas med elektriska neongröna fartlinjer som speglar klubbens fartfyllda och kompromisslösa spelstil på futsalplanen.',
+      'Tröjan är tillverkad i ett ultralätt funktionsmaterial optimerat för det snabba inomhusspelet med maximal ventilation, slitstyrka och rörelsefrihet. Det stilrena klubbemblemet i krom och neon pryder bröstet med stolthet.',
+      'Supportrar och sponsorer kan nu förhandsbeställa tröjan samt den officiella klubbmerchen genom att skicka ett DM till oss direkt på Instagram (@grabbarna.futsal).',
+    ],
+    quote: 'Matchtröjan representerar vår identitet: mod, snabbhet och gemenskap i Trollhättan. — Raffi Medz',
+  },
+];
+
+export interface InstagramProfile {
+  handle: string;
+  displayName: string;
+  postsCount: number;
+  followersCount: string;
+  followingCount: number;
+  bioLines: string[];
+  avatar: string;
+  posts: Array<{
+    id: string;
+    image: string;
+    likes: number;
+    caption: string;
+  }>;
+}
+
+export const instagramData: InstagramProfile = {
+  handle: 'grabbarna.futsal',
+  displayName: 'FutsalBoys',
+  postsCount: 18,
+  followersCount: '1.4k',
+  followingCount: 86,
+  bioLines: [
+    '⚽️ Officiella kontot för Trollhättan Futsal Boys',
+    '🏆 Cuper • Matcher • Content',
+    '📩 Samarbete / Kontakt: DM',
+  ],
+  avatar: '/images/futsalboys-logo.png',
+  posts: [
+    {
+      id: 'p1',
+      image: '/images/instagram/cup-win.jpg',
+      likes: 184,
+      caption: 'MÄSTARE! 🏆 Vilken kväll, vilken turnering. Tack till alla som stöttade oss!',
+    },
+    {
+      id: 'p2',
+      image: '/images/instagram/action-shot.jpg',
+      likes: 142,
+      caption: 'Full fokus i varje touch. Snabbhet och precision på inomhusparketten ⚡️',
+    },
+    {
+      id: 'p3',
+      image: '/images/instagram/team-huddle.jpg',
+      likes: 198,
+      caption: 'Enade från start till slutsignal. Vi gör detta tillsammans! 💚🖤',
+    },
+  ],
+};

@@ -1,0 +1,16 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "framework": null,
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/((?!api/|media/|images/|brand/|favicon|robots|sitemap|llms|assets/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
