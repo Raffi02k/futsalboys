@@ -21,6 +21,7 @@ app.add_middleware(
 
 
 @app.get("/api/health")
+@app.get("/health")
 async def health_check():
     return {
         "status": "ok",
@@ -31,6 +32,7 @@ async def health_check():
 
 
 @app.post("/api/contact")
+@app.post("/contact")
 @limiter.limit("5/minute")
 async def handle_contact(request: Request, body: ContactSchema):
     # Spamkontroll via honeypot

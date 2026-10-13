@@ -20,6 +20,9 @@ class Settings:
     crm_api_key: str = os.getenv("CRM_API_KEY", "").strip()
     project_id: str = os.getenv("PROJECT_ID", "mediamagnet-template").strip()
 
+    # Vercel Service Binding to internal backend
+    backend_url: str = os.getenv("BACKEND_URL", "").strip().rstrip("/")
+
     # SMTP (valfri fallback)
     contact_to_email: str = os.getenv("CONTACT_TO_EMAIL", "").strip()
     smtp_host: str = os.getenv("SMTP_HOST", "").strip()

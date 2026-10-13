@@ -134,13 +134,43 @@ class handler(BaseHTTPRequestHandler):
             self._send_json(422, {"status": "error", "message": "Vänligen fyll i namn, giltig e-post samt telefon eller meddelande."})
             return
 
+        # 4. If internal backend service is bound via Vercel Services, forward the request
+        backend_url = os.getenv("BACKEND_URL", "").strip().rstrip("/")
+        if backend_url:
+            try:
+                req = urllib.request.Request(
+                    f"{backend_url}/api/contact",
+                    data=raw_body.encode("utf-8"),
+                    headers={
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                        "User-Agent": "MediaMagnet-APIGateway/1.0",
+                    },
+                    method="POST",
+                )
+                with urllib.request.urlopen(req, timeout=15) as res:
+                    res_data = json.loads(res.read().decode("utf-8"))
+                    self._send_json(res.status, res_data)
+                    return
+            except urllib.error.HTTPError as err:
+                err_body = err.read().decode("utf-8")
+                try:
+                    err_json = json.loads(err_body)
+                except Exception:
+                    err_json = {"status": "error", "message": err_body}
+                self._send_json(err.code, err_json)
+                return
+            except Exception as exc:
+                self._send_json(502, {"status": "error", "message": f"Kunde inte nå backend-tjänsten: {str(exc)}"})
+                return
+
         provider = os.getenv("FORM_PROVIDER", "").strip().lower()
         web3forms_key = os.getenv("WEB3FORMS_ACCESS_KEY", "").strip()
         crm_url = os.getenv("CRM_API_URL", "").strip()
         crm_key = os.getenv("CRM_API_KEY", "").strip()
         project_id = os.getenv("PROJECT_ID", "mediamagnet-template").strip()
 
-        # 4. Dispatch: Web3Forms
+        # 5. Dispatch: Web3Forms
         if provider == "web3forms" or (not provider and web3forms_key):
             if not web3forms_key:
                 self._send_json(200, {
