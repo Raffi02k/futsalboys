@@ -31,12 +31,19 @@ export const HeroSection: React.FC = () => {
           </div>
 
           <p className="hero__desc">
-            Välkommen till Futsal Boys – hjärtat, passionen och gemenskapen i Trollhättan.
-            Med dedikerat ledarskap, stark sammanhållning och offensiv futsal bygger vi något unikt tillsammans.
+            Välkommen till Futsal Boys – hjärtat och passionen i Trollhättan.
+            Stark sammanhållning och offensiv futsal.
           </p>
 
           <div className="hero__ctas">
-            <a href="#truppen" className="btn btn--neon">
+            <a
+              href="#truppen"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('truppen')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="btn btn--neon"
+            >
               <span>MÖT TRUPPEN</span>
               <ArrowRight size={18} />
             </a>

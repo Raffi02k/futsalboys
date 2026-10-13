@@ -2,22 +2,15 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const ScrollToTop: React.FC = () => {
-  const { pathname, hash } = useLocation();
+  const { pathname } = useLocation();
 
   useEffect(() => {
-    if (hash) {
-      // Allow DOM to settle before scrolling to hash target
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 50);
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
     }
-  }, [pathname, hash]);
+    // Always ensure the page starts at the very top on load/navigation
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [pathname]);
 
   return null;
 };

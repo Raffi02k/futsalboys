@@ -17,14 +17,16 @@ export const PlayerCarousel: React.FC = () => {
 
   const safeActiveIndex = Math.min(activeIndex, Math.max(0, filteredPlayers.length - 1));
 
-  // Center a card by index
-  const scrollToCard = (index: number) => {
+  // Center a card by index inside the horizontal carousel track ONLY
+  const scrollToCard = (index: number, smooth: boolean = true) => {
     const card = cardRefs.current[index];
-    if (card) {
-      card.scrollIntoView({
-        behavior: 'smooth',
-        inline: 'center',
-        block: 'nearest',
+    const track = trackRef.current;
+    if (card && track) {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const trackCenter = track.offsetWidth / 2;
+      track.scrollTo({
+        left: cardCenter - trackCenter,
+        behavior: smooth ? 'smooth' : 'instant',
       });
       setActiveIndex(index);
     }
@@ -90,9 +92,15 @@ export const PlayerCarousel: React.FC = () => {
     isDragging.current = false;
   };
 
+  const isFirstRender = useRef(true);
+
   // Initial center alignment when filter changes
   useEffect(() => {
-    scrollToCard(0);
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+    scrollToCard(0, true);
   }, [filter]);
 
   const activePlayer = filteredPlayers[safeActiveIndex] || squadData[0];
