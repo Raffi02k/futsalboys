@@ -63,38 +63,34 @@ export const LeadersPage: React.FC = () => {
         canonicalPath="/ledarna"
       />
 
-      {/* ==================================================================
-          1. WIDESCREEN HERO - INRAMAD I SIDAN, PASSAR I EN SKÄRM UTAN SCROLL
-         ================================================================== */}
-      <section style={{ width: '100%', maxWidth: '1040px', margin: '0 auto 36px', padding: '0 16px' }}>
-        <div
-          style={{
-            position: 'relative',
-            borderRadius: '18px',
-            overflow: 'hidden',
-            border: '1px solid var(--border-subtle)',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7)',
-            background: 'var(--bg-card)',
-            maxHeight: 'calc(100vh - var(--header-height) - 40px)',
-          }}
-        >
-          <img
-            src="/images/futsalboys-ledare-breden.JPG"
-            alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
+      <div className="container">
+        {/* ==================================================================
+            1. WIDESCREEN HERO - FYLLER HELA SEKTIONEN I SIDAN
+           ================================================================== */}
+        <section style={{ width: '100%', marginBottom: '32px' }}>
+          <div
             style={{
-              width: '100%',
-              height: 'auto',
-              maxHeight: 'calc(100vh - var(--header-height) - 40px)',
-              display: 'block',
-              aspectRatio: '1376 / 768',
-              objectFit: 'contain',
+              position: 'relative',
+              borderRadius: '20px',
+              overflow: 'hidden',
+              border: '1px solid var(--border-subtle)',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7)',
               background: '#07090b',
             }}
-          />
-        </div>
-      </section>
-
-      <div className="container">
+          >
+            <img
+              src="/images/futsalboys-ledare-breden.JPG"
+              alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                aspectRatio: '1376 / 768',
+                objectFit: 'cover',
+              }}
+            />
+          </div>
+        </section>
 
           {/* Quick Leader Badges Strip under Image */}
           <div
@@ -305,11 +301,11 @@ export const LeadersPage: React.FC = () => {
         </section>
 
         {/* ==================================================================
-            3. LEDARPROFILER (Raffi, Elvis, Marcelo) - KOMPAKT GRID I EN SKÄRM
+            3. LEDARPROFILER (Raffi, Elvis, Marcelo) - HORISONTELLA & KOMPAKTA
            ================================================================== */}
-        <section style={{ marginBottom: '48px' }}>
+        <section style={{ marginBottom: '60px' }}>
           <div style={{ marginBottom: '24px' }}>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: '#fff', margin: '0 0 6px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: '#fff', margin: '0 0 6px' }}>
               MÖT <span className="text-neon">LEDARNA</span>
             </h2>
             <p style={{ color: 'var(--silver-dim)', fontSize: '14px', margin: 0 }}>
@@ -317,13 +313,7 @@ export const LeadersPage: React.FC = () => {
             </p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
-              gap: '20px',
-            }}
-          >
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {leadersList.map((leader) => (
               <div
                 key={leader.name}
@@ -332,14 +322,15 @@ export const LeadersPage: React.FC = () => {
                   borderRadius: '16px',
                   border: '1px solid var(--border-subtle)',
                   overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
+                  display: 'grid',
+                  gridTemplateColumns: 'minmax(180px, 240px) 1fr',
+                  alignItems: 'stretch',
                   transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
                 }}
-                className="news-card-hover"
+                className="leader-profile-card news-card-hover"
               >
-                {/* Header Image with Number Badge */}
-                <div style={{ position: 'relative', height: '190px', overflow: 'hidden' }}>
+                {/* Image side */}
+                <div style={{ position: 'relative', minHeight: '180px', overflow: 'hidden' }}>
                   <img
                     src={leader.image}
                     alt={leader.name}
@@ -349,7 +340,7 @@ export const LeadersPage: React.FC = () => {
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      background: 'linear-gradient(180deg, transparent 40%, rgba(10,13,16,0.92) 100%)',
+                      background: 'linear-gradient(90deg, transparent 60%, rgba(18,22,28,0.95) 100%)',
                     }}
                   />
                   <div
@@ -361,8 +352,8 @@ export const LeadersPage: React.FC = () => {
                       fontSize: '24px',
                       color: 'var(--neon-green)',
                       background: 'rgba(7,9,11,0.9)',
-                      padding: '3px 12px',
-                      borderRadius: '8px',
+                      padding: '2px 10px',
+                      borderRadius: '6px',
                       border: '1px solid var(--border-subtle)',
                     }}
                   >
@@ -370,40 +361,42 @@ export const LeadersPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Content Area */}
-                <div style={{ padding: '20px 18px', display: 'flex', flexDirection: 'column', flex: 1 }}>
-                  <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--neon-green)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
-                    {leader.role}
-                  </span>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', color: '#fff', margin: '0 0 14px' }}>
-                    {leader.name}
-                  </h3>
+                {/* Content side */}
+                <div style={{ padding: '18px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                  <div style={{ marginBottom: '8px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--neon-green)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      {leader.role}
+                    </span>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: '2px 0 0' }}>
+                      {leader.name}
+                    </h3>
+                  </div>
+
+                  <div style={{ marginBottom: '8px' }}>
+                    <strong style={{ color: '#fff', fontSize: '11.5px', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: '6px' }}>
+                      Bakgrund:
+                    </strong>
+                    <span style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.45 }}>
+                      {leader.historik}
+                    </span>
+                  </div>
 
                   <div style={{ marginBottom: '12px' }}>
-                    <strong style={{ color: '#fff', fontSize: '11px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '3px' }}>
-                      Bakgrund
+                    <strong style={{ color: 'var(--neon-green)', fontSize: '11.5px', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: '6px' }}>
+                      Ansvar:
                     </strong>
-                    <p style={{ color: 'var(--silver)', fontSize: '13px', lineHeight: 1.5, margin: 0 }}>
-                      {leader.historik}
-                    </p>
-                  </div>
-
-                  <div style={{ marginBottom: '16px' }}>
-                    <strong style={{ color: 'var(--neon-green)', fontSize: '11px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '3px' }}>
-                      Ansvarsområde i klubben
-                    </strong>
-                    <p style={{ color: 'var(--silver)', fontSize: '13px', lineHeight: 1.5, margin: 0 }}>
+                    <span style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.45 }}>
                       {leader.ansvar}
-                    </p>
+                    </span>
                   </div>
 
-                  <div style={{ marginTop: 'auto' }}>
+                  <div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                       {leader.egenskaper.map((prop) => (
                         <span
                           key={prop}
                           style={{
-                            fontSize: '10px',
+                            fontSize: '10.5px',
                             padding: '3px 8px',
                             background: 'rgba(255,255,255,0.04)',
                             borderRadius: '6px',
