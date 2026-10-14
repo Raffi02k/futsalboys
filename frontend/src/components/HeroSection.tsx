@@ -37,11 +37,7 @@ export const HeroSection: React.FC = () => {
 
           <div className="hero__ctas">
             <a
-              href="#truppen"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('truppen')?.scrollIntoView({ behavior: 'smooth' });
-              }}
+              href="/truppen"
               className="btn btn--neon"
             >
               <span>MÖT TRUPPEN</span>

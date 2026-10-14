@@ -4,6 +4,7 @@ import { HeroSection } from '../components/HeroSection';
 import { StatsBar } from '../components/StatsBar';
 import { PlayerCarousel } from '../components/PlayerCarousel';
 import { MatchAndNewsSection } from '../components/MatchAndNewsSection';
+import { GallerySection } from '../components/GallerySection';
 import { InstagramSection } from '../components/InstagramSection';
 import { siteConfig } from '../content/siteContent';
 
@@ -28,7 +29,10 @@ export const HomePage: React.FC = () => {
       {/* 4. UPCOMING MATCH & CLUB NEWS (image_13b2de.png style) */}
       <MatchAndNewsSection />
 
-      {/* 5. INSTAGRAM PROFILE & GRID (IMG_1064.PNG inspired) */}
+      {/* 5. GALLERY & MEDIA HIGHLIGHTS */}
+      <GallerySection />
+
+      {/* 6. INSTAGRAM PROFILE & GRID (IMG_1064.PNG inspired) */}
       <InstagramSection />
     </>
   );

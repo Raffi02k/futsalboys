@@ -100,10 +100,11 @@ export const siteConfig: SiteConfig = {
 
   navLinks: [
     { label: "HEM", path: "/" },
-    { label: "LEDARNA", path: "#ledarna" },
-    { label: "TRUPPEN", path: "#truppen" },
-    { label: "MATCHER", path: "#matcher" },
-    { label: "INSTAGRAM", path: "#instagram" },
+    { label: "LEDARNA", path: "/ledarna" },
+    { label: "TRUPPEN", path: "/truppen" },
+    { label: "MATCHER", path: "/matcher" },
+    { label: "GALLERI", path: "/galleri" },
+    { label: "INSTAGRAM", path: "/instagram" },
   ],
 
   socialLinks: {

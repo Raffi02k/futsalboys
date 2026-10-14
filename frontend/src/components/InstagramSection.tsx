@@ -9,10 +9,6 @@ export const InstagramSection: React.FC = () => {
       <div className="container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 48px' }}>
-          <div className="section-tag">
-            <Instagram size={14} />
-            <span>Officiell Instagram</span>
-          </div>
           <h2 className="section-title">
             FUTSAL BOYS PÅ <span className="text-neon">INSTAGRAM</span>
           </h2>

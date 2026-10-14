@@ -1,0 +1,766 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Calendar, MapPin, Trophy, Clock, ArrowLeft, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { PageMeta } from '../components/PageMeta';
+import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
+import { siteConfig } from '../content/siteContent';
+
+// ============================================================================
+// REDIGERA CUPTRUPPEN HÄR:
+// Lägg till, ändra eller ta bort spelare som ska delta i Färgelanda Futsal Cup
+// ============================================================================
+export interface CupPlayer {
+  id: string;
+  number: number;
+  name: string;
+  position: 'MÅLVAKT' | 'FÖRSVAR' | 'MITTFÄLT' | 'FORWARD';
+  role?: string;
+  status: 'UTTAGEN' | 'RESERV';
+}
+
+export const fargelandaCupSquad: CupPlayer[] = [
+  { id: 'c1', number: 10, name: 'Elvis Mesic', position: 'FORWARD', role: 'Lagkapten', status: 'UTTAGEN' },
+  { id: 'c2', number: 7, name: 'Raffi Medz', position: 'MITTFÄLT', role: 'Ledare & Tränare', status: 'UTTAGEN' },
+  { id: 'c3', number: 9, name: 'Marcelo Villa', position: 'FORWARD', role: 'Sportslig Ledare', status: 'UTTAGEN' },
+  { id: 'c4', number: 1, name: 'Viktor Strand', position: 'MÅLVAKT', status: 'UTTAGEN' },
+  { id: 'c5', number: 4, name: 'Noah Lindqvist', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c6', number: 8, name: 'Kevin Berisha', position: 'MITTFÄLT', status: 'UTTAGEN' },
+  { id: 'c7', number: 11, name: 'Amin Haddad', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c8', number: 5, name: 'Lucas Alm', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c9', number: 12, name: 'Liam Karlsson', position: 'MÅLVAKT', role: 'Reservmålvakt', status: 'RESERV' },
+];
+
+export const MatchesPage: React.FC = () => {
+  const [selectedNews, setSelectedNews] = useState<ClubNews | null>(null);
+
+  // Live Countdown timer to Färgelanda Futsal Cup (18 Dec 2026, 09:00:00)
+  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    // Cup starts 18 December 2026
+    const cupDate = new Date('2026-12-18T09:00:00').getTime();
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const difference = cupDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const pastMatches = [
+    {
+      id: 'm1',
+      opponent: 'FC Vänersborg Futsal',
+      result: '4 - 3',
+      outcome: 'VINST',
+      date: '12 OKT 2026',
+      tournament: 'Höstcupen Kvartsfinal',
+      arena: 'Arena Älvhögsborg',
+      scorers: 'Elvis Mesic (2), Marcelo Villa (1), Raffi Medz (1)',
+    },
+    {
+      id: 'm2',
+      opponent: 'Uddevalla City',
+      result: '6 - 2',
+      outcome: 'VINST',
+      date: '04 OKT 2026',
+      tournament: 'Höstcupen Gruppspel',
+      arena: 'Arena Älvhögsborg',
+      scorers: 'Marcelo Villa (3), Elvis Mesic (2), Noah Lindqvist (1)',
+    },
+    {
+      id: 'm3',
+      opponent: 'Göteborg United',
+      result: '3 - 3',
+      outcome: 'OAVGJORT',
+      date: '27 SEP 2026',
+      tournament: 'Träningsmatch',
+      arena: 'Lundbystrand',
+      scorers: 'Raffi Medz (2), Elvis Mesic (1)',
+    },
+  ];
+
+  return (
+    <div className="matches-page" style={{ paddingTop: 'calc(var(--header-height) + 24px)', paddingBottom: '80px' }}>
+      <PageMeta
+        title={`Matcher & Cuper | ${siteConfig.projectName} - Trollhättan`}
+        description="Se kommande matcher, Färgelanda Futsal Cup 2026, spelschema, cuptrupp och resultat för Futsal Boys."
+        canonicalPath="/matcher"
+      />
+
+      <div className="container">
+        {/* Breadcrumb */}
+        <div style={{ marginBottom: '24px' }}>
+          <Link to="/" className="gallery-back-link">
+            <ArrowLeft size={16} />
+            <span>Tillbaka till start</span>
+          </Link>
+        </div>
+
+        {/* Hero Header */}
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
+          <h1 className="section-title" style={{ fontSize: 'clamp(38px, 6vw, 64px)', marginBottom: '16px' }}>
+            MATCHER & <span className="text-neon">CUPER</span>
+          </h1>
+          <p className="section-desc" style={{ margin: '0 auto', fontSize: '17px' }}>
+            Följ Futsal Boys genom seriespelet och turneringarna. Här hittar du kommande drabbningar, cuptrupp och resultat.
+          </p>
+        </div>
+
+        {/* ==================================================================
+            1. FEATURED UPCOMING CUP: FÄRGELANDA FUTSAL CUP 2026
+           ================================================================== */}
+        <section
+          style={{
+            background: 'linear-gradient(145deg, #0d1217 0%, #151d26 50%, #0d1512 100%)',
+            border: '2px solid var(--neon-green)',
+            borderRadius: '24px',
+            padding: '40px 32px',
+            boxShadow: '0 24px 60px rgba(0,0,0,0.8), 0 0 40px rgba(16, 255, 96, 0.25)',
+            marginBottom: '64px',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          {/* Neon corner glow badge */}
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 16px',
+              borderRadius: '30px',
+              background: 'rgba(16, 255, 96, 0.15)',
+              border: '1px solid var(--neon-green-glow)',
+              color: 'var(--neon-green)',
+              fontSize: '13px',
+              fontWeight: 800,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              marginBottom: '20px',
+            }}
+          >
+            <Trophy size={16} />
+            <span>NÄSTA STORA CUPUTMANING</span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '36px', alignItems: 'center' }}>
+            {/* Cup Info */}
+            <div>
+              <h2
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 'clamp(34px, 4.5vw, 54px)',
+                  color: '#ffffff',
+                  lineHeight: 1,
+                  margin: '0 0 16px',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                FÄRGELANDA <span className="text-neon">FUTSAL CUP 2026</span>
+              </h2>
+
+              <p style={{ color: 'var(--silver)', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>
+                Futsal Boys kliver in i prestigefyllda Färgelanda Futsal Cup. Två intensiva dagar med full fart på parketten, gruppspel, slutspel och jakt på cupguldet!
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
+                  <Calendar size={18} className="text-neon" />
+                  <strong>18 – 19 December 2026</strong>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
+                  <MapPin size={18} className="text-neon" />
+                  <span>Färgelanda Sporthall, Färgelanda</span>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--silver-dim)', fontSize: '14px' }}>
+                  <ShieldCheck size={18} className="text-neon" />
+                  <span>Arrangör: Färgelanda IF • Officiell ProCup-turnering</span>
+                </div>
+              </div>
+
+              {/* Direct ProCup Link Button */}
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <a
+                  href="https://www.procup.se/cup/40774.htm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--neon"
+                  title="Öppna Färgelanda Futsal Cup på ProCup"
+                >
+                  <span>SE CUPEN PÅ PROCUP</span>
+                  <ExternalLink size={16} />
+                </a>
+
+                <a
+                  href={siteConfig.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--outline"
+                >
+                  <span>FÖLJ CUP-UPPDATERINGAR</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Countdown Clock Display */}
+            <div
+              style={{
+                background: 'rgba(7, 9, 11, 0.75)',
+                border: '1px solid var(--border-neon)',
+                borderRadius: '20px',
+                padding: '28px',
+                textAlign: 'center',
+                boxShadow: 'inset 0 0 30px rgba(16, 255, 96, 0.08)',
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '12px',
+                  fontWeight: 800,
+                  color: 'var(--silver-dim)',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  display: 'block',
+                  marginBottom: '18px',
+                }}
+              >
+                NEDRÄKNING TILL CUPSTART
+              </span>
+
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(4, 1fr)',
+                  gap: '10px',
+                  marginBottom: '16px',
+                }}
+              >
+                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: 'var(--neon-green)', lineHeight: 1, display: 'block' }}>
+                    {timeLeft.days}
+                  </span>
+                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Dagar
+                  </span>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: '#ffffff', lineHeight: 1, display: 'block' }}>
+                    {timeLeft.hours}
+                  </span>
+                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Timmar
+                  </span>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: '#ffffff', lineHeight: 1, display: 'block' }}>
+                    {timeLeft.minutes}
+                  </span>
+                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Minuter
+                  </span>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: 'var(--neon-green)', lineHeight: 1, display: 'block' }}>
+                    {timeLeft.seconds}
+                  </span>
+                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                    Sekunder
+                  </span>
+                </div>
+              </div>
+
+              <span style={{ fontSize: '12px', color: 'var(--silver-dim)' }}>
+                Följ med och heja fram Futsal Boys på plats i Färgelanda Sporthall!
+              </span>
+            </div>
+          </div>
+
+          {/* ================================================================
+              CUPTRUPP: UTTAGNA SPELARE TILL FÄRGELANDA CUP
+             ================================================================ */}
+          <div style={{ marginTop: '40px', borderTop: '1px solid var(--border-subtle)', paddingTop: '32px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+              <div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
+                  UTTAGEN <span className="text-neon">CUPTRUPP</span> ({fargelandaCupSquad.filter(p => p.status === 'UTTAGEN').length} SPELARE)
+                </h3>
+                <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                  Spelare som representerar Futsal Boys under Färgelanda Futsal Cup 2026.
+                </span>
+              </div>
+
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 800,
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    background: 'rgba(16,255,96,0.15)',
+                    color: 'var(--neon-green)',
+                    border: '1px solid var(--neon-green-glow)',
+                  }}
+                >
+                  ● {fargelandaCupSquad.filter(p => p.status === 'UTTAGEN').length} UTTAGNA
+                </span>
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 800,
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    background: 'rgba(255,255,255,0.06)',
+                    color: 'var(--silver-dim)',
+                    border: '1px solid var(--border-subtle)',
+                  }}
+                >
+                  {fargelandaCupSquad.filter(p => p.status === 'RESERV').length} RESERV
+                </span>
+              </div>
+            </div>
+
+            {/* Grid of Cup Players */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+                gap: '12px',
+              }}
+            >
+              {fargelandaCupSquad.map((player) => (
+                <div
+                  key={player.id}
+                  style={{
+                    background: player.status === 'UTTAGEN' ? 'rgba(18, 22, 28, 0.85)' : 'rgba(14, 18, 23, 0.5)',
+                    border: player.status === 'UTTAGEN' ? '1px solid rgba(16, 255, 96, 0.3)' : '1px solid var(--border-subtle)',
+                    borderRadius: '12px',
+                    padding: '14px 16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '12px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    <div
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '22px',
+                        color: player.status === 'UTTAGEN' ? 'var(--neon-green)' : 'var(--silver-dim)',
+                        background: 'rgba(7, 9, 11, 0.9)',
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '8px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        border: '1px solid var(--border-subtle)',
+                        lineHeight: 1,
+                      }}
+                    >
+                      #{player.number}
+                    </div>
+
+                    <div>
+                      <strong style={{ color: '#fff', fontSize: '15px', display: 'block', lineHeight: 1.2 }}>
+                        {player.name}
+                      </strong>
+                      <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>
+                        {player.position} {player.role ? `• ${player.role}` : ''}
+                      </span>
+                    </div>
+                  </div>
+
+                  <span
+                    style={{
+                      fontSize: '10px',
+                      fontWeight: 800,
+                      letterSpacing: '0.08em',
+                      padding: '3px 8px',
+                      borderRadius: '4px',
+                      background: player.status === 'UTTAGEN' ? 'rgba(16,255,96,0.15)' : 'rgba(255,255,255,0.06)',
+                      color: player.status === 'UTTAGEN' ? 'var(--neon-green)' : 'var(--silver-dim)',
+                    }}
+                  >
+                    {player.status}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ==================================================================
+            2. UPCOMING MATCH CARD (Seriespel)
+           ================================================================== */}
+        <div
+          style={{
+            background: 'linear-gradient(135deg, #12161c 0%, #1a222c 100%)',
+            border: '1px solid var(--border-neon)',
+            borderRadius: '20px',
+            padding: '36px 32px',
+            boxShadow: '0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(16, 255, 96, 0.15)',
+            marginBottom: '64px',
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
+              padding: '6px 14px',
+              borderRadius: '30px',
+              background: 'rgba(16, 255, 96, 0.15)',
+              color: 'var(--neon-green)',
+              border: '1px solid var(--neon-green-glow)',
+              fontSize: '12px',
+              fontWeight: 700,
+              letterSpacing: '0.08em',
+              marginBottom: '24px',
+            }}
+          >
+            <Clock size={14} />
+            <span>SERIEMATCH • {upcomingMatch.competition}</span>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '32px',
+              alignItems: 'center',
+            }}
+          >
+            {/* Teams Matchup */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+              <div style={{ textAlign: 'center', flex: 1 }}>
+                <img
+                  src={siteConfig.logoUrl}
+                  alt={upcomingMatch.homeTeam}
+                  style={{ width: '80px', height: '80px', objectFit: 'contain', margin: '0 auto 12px' }}
+                />
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: 0 }}>
+                  {upcomingMatch.homeTeam}
+                </h3>
+                <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 700, letterSpacing: '0.1em' }}>
+                  HEMMALAG
+                </span>
+              </div>
+
+              <div style={{ textAlign: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: 'var(--silver-dim)' }}>
+                  VS
+                </span>
+              </div>
+
+              <div style={{ textAlign: 'center', flex: 1 }}>
+                <div
+                  style={{
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid var(--border-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    margin: '0 auto 12px',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '28px',
+                    color: 'var(--silver)',
+                  }}
+                >
+                  RF
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: 0 }}>
+                  {upcomingMatch.awayTeam}
+                </h3>
+                <span style={{ fontSize: '11px', color: 'var(--silver-dim)', fontWeight: 700, letterSpacing: '0.1em' }}>
+                  BORTALAG
+                </span>
+              </div>
+            </div>
+
+            {/* Date, Time & Venue */}
+            <div
+              style={{
+                borderLeft: '1px solid var(--border-subtle)',
+                paddingLeft: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <Calendar size={20} className="text-neon" />
+                <div>
+                  <strong style={{ color: '#fff', display: 'block', fontSize: '16px' }}>{upcomingMatch.date}</strong>
+                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Avspark kl {upcomingMatch.time}</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                <MapPin size={20} className="text-neon" />
+                <div>
+                  <strong style={{ color: '#fff', display: 'block', fontSize: '16px' }}>{upcomingMatch.venue}</strong>
+                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Fri entré • Kom och stötta grabbarna!</span>
+                </div>
+              </div>
+
+              <a
+                href={siteConfig.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--neon btn--sm"
+                style={{ marginTop: '8px', alignSelf: 'flex-start' }}
+              >
+                <span>FÖLJ MATCHUPPDATERINGAR</span>
+                <ChevronRight size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* ==================================================================
+            3. RECENT MATCH RESULTS
+           ================================================================== */}
+        <div style={{ marginBottom: '64px' }}>
+          <div style={{ marginBottom: '28px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: '#fff', margin: 0 }}>
+              SENASTE <span className="text-neon">RESULTAT</span>
+            </h2>
+            <p style={{ color: 'var(--silver-dim)', fontSize: '14px' }}>
+              Resultat och målskyttar från de senaste matcherna.
+            </p>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {pastMatches.map((m) => (
+              <div
+                key={m.id}
+                style={{
+                  background: 'var(--bg-card)',
+                  border: '1px solid var(--border-subtle)',
+                  borderRadius: '14px',
+                  padding: '20px 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  flexWrap: 'wrap',
+                  gap: '16px',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                  <div
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '28px',
+                      color: m.outcome === 'VINST' ? 'var(--neon-green)' : '#fff',
+                      background: 'rgba(0,0,0,0.3)',
+                      padding: '6px 14px',
+                      borderRadius: '8px',
+                      border: '1px solid var(--border-subtle)',
+                      minWidth: '90px',
+                      textAlign: 'center',
+                    }}
+                  >
+                    {m.result}
+                  </div>
+
+                  <div>
+                    <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      {m.tournament} • {m.date}
+                    </span>
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#fff', margin: '2px 0 4px' }}>
+                      Futsal Boys vs {m.opponent}
+                    </h3>
+                    <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                      Målskyttar: {m.scorers}
+                    </span>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    padding: '4px 12px',
+                    borderRadius: '6px',
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    letterSpacing: '0.08em',
+                    background: m.outcome === 'VINST' ? 'rgba(16,255,96,0.15)' : 'rgba(255,255,255,0.08)',
+                    color: m.outcome === 'VINST' ? 'var(--neon-green)' : 'var(--silver)',
+                    border: m.outcome === 'VINST' ? '1px solid var(--neon-green-glow)' : '1px solid var(--border-subtle)',
+                  }}
+                >
+                  {m.outcome}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ==================================================================
+            4. MATCH REPORTS & NEWS
+           ================================================================== */}
+        <div>
+          <div style={{ marginBottom: '28px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: '#fff', margin: 0 }}>
+              MATCHRAPPORTER & <span className="text-neon">NYHETER</span>
+            </h2>
+            <p style={{ color: 'var(--silver-dim)', fontSize: '14px' }}>
+              Läs utförliga rapporter och analyser från lagets matcher.
+            </p>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
+            {clubNewsList.map((news) => (
+              <article
+                key={news.id}
+                style={{
+                  background: 'var(--bg-card)',
+                  borderRadius: '16px',
+                  border: '1px solid var(--border-subtle)',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
+                }}
+                className="news-card-hover"
+                onClick={() => setSelectedNews(news)}
+              >
+                <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                  <img
+                    src={news.image}
+                    alt={news.title}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '14px',
+                      left: '14px',
+                      background: 'rgba(7,9,11,0.85)',
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      color: 'var(--neon-green)',
+                      letterSpacing: '0.08em',
+                    }}
+                  >
+                    {news.category}
+                  </div>
+                </div>
+
+                <div style={{ padding: '22px' }}>
+                  <span style={{ fontSize: '11px', color: 'var(--silver-dim)', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                    {news.date} • {news.readTime}
+                  </span>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#fff', margin: '0 0 10px', lineHeight: 1.2 }}>
+                    {news.title}
+                  </h3>
+                  <p style={{ color: 'var(--silver-dim)', fontSize: '13px', lineHeight: 1.6, margin: '0 0 16px' }}>
+                    {news.summary}
+                  </p>
+                  <span style={{ color: 'var(--neon-green)', fontSize: '13px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                    Läs hela rapporten <ChevronRight size={14} />
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Modal for viewing match report */}
+      {selectedNews && (
+        <div
+          className="gallery-modal-backdrop"
+          onClick={() => setSelectedNews(null)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div
+            className="gallery-modal-content"
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: '800px', maxHeight: '85vh', overflowY: 'auto' }}
+          >
+            <div className="gallery-modal-topbar">
+              <span className="gallery-tag">{selectedNews.category}</span>
+              <button
+                type="button"
+                className="gallery-modal-close"
+                onClick={() => setSelectedNews(null)}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div style={{ padding: '28px' }}>
+              <span style={{ fontSize: '12px', color: 'var(--neon-green)', fontWeight: 700, letterSpacing: '0.08em' }}>
+                {selectedNews.date} • {selectedNews.author}
+              </span>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: '#fff', margin: '8px 0 16px' }}>
+                {selectedNews.title}
+              </h2>
+
+              <img
+                src={selectedNews.image}
+                alt={selectedNews.title}
+                style={{ width: '100%', maxHeight: '340px', objectFit: 'cover', borderRadius: '12px', marginBottom: '24px' }}
+              />
+
+              {selectedNews.paragraphs.map((p, i) => (
+                <p key={i} style={{ color: 'var(--silver)', fontSize: '15px', lineHeight: 1.7, marginBottom: '16px' }}>
+                  {p}
+                </p>
+              ))}
+
+              {selectedNews.quote && (
+                <blockquote
+                  style={{
+                    borderLeft: '3px solid var(--neon-green)',
+                    paddingLeft: '16px',
+                    fontStyle: 'italic',
+                    color: 'var(--silver-bright)',
+                    margin: '20px 0',
+                    background: 'rgba(255,255,255,0.03)',
+                    padding: '14px 18px',
+                    borderRadius: '0 8px 8px 0',
+                  }}
+                >
+                  {selectedNews.quote}
+                </blockquote>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};

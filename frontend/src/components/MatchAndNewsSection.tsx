@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Calendar, Clock, MapPin, Trophy, Flame, ArrowRight, ShoppingBag, X, User } from 'lucide-react';
+import { Calendar, Clock, MapPin, Flame, ArrowRight, ShoppingBag, X, User } from 'lucide-react';
 import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
@@ -35,10 +35,6 @@ export const MatchAndNewsSection: React.FC = () => {
       <div className="container">
         {/* Section Header */}
         <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 48px' }}>
-          <div className="section-tag">
-            <Trophy size={14} />
-            <span>Matcher & Klubbnyheter</span>
-          </div>
           <h2 className="section-title">
             NÄSTA MATCH & <span className="text-neon">KLUBBNYTT</span>
           </h2>
@@ -120,15 +116,24 @@ export const MatchAndNewsSection: React.FC = () => {
                 </div>
               </div>
 
-              <a
-                href={siteConfig.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn--neon"
-                style={{ width: '100%', maxWidth: '380px' }}
-              >
-                HEJA PÅ OSS I ARENAN
-              </a>
+              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', flexWrap: 'wrap' }}>
+                <a
+                  href="/matcher"
+                  className="btn btn--neon"
+                  style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
+                >
+                  SE SPELSCHEMA
+                </a>
+                <a
+                  href={siteConfig.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--outline"
+                  style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
+                >
+                  HEJA PÅ OSS
+                </a>
+              </div>
             </div>
           </div>
 

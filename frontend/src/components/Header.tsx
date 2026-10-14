@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Instagram, Menu, X } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { siteConfig } from '../content/siteContent';
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,12 +22,29 @@ export const Header: React.FC = () => {
     setMobileMenuOpen(false);
     if (path.startsWith('#')) {
       e.preventDefault();
-      const el = document.querySelector(path);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+      if (location.pathname !== '/') {
+        navigate('/');
+        setTimeout(() => {
+          const el = document.querySelector(path);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 120);
+      } else {
+        const el = document.querySelector(path);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     } else if (path === '/') {
       e.preventDefault();
+      if (location.pathname !== '/') {
+        navigate('/');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (path.startsWith('/')) {
+      e.preventDefault();
+      navigate(path);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
@@ -53,16 +73,19 @@ export const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="header__nav" aria-label="Huvudmeny">
-            {siteConfig.navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.path}
-                onClick={(e) => handleNavClick(e, link.path)}
-                className="header__nav-link"
-              >
-                {link.label}
-              </a>
-            ))}
+            {siteConfig.navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <a
+                  key={link.label}
+                  href={link.path}
+                  onClick={(e) => handleNavClick(e, link.path)}
+                  className={`header__nav-link ${isActive ? 'is-active' : ''}`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </nav>
 
           {/* Actions & Mobile Button */}
@@ -91,16 +114,19 @@ export const Header: React.FC = () => {
       {/* Mobile Drawer */}
       <div className={`mobile-nav ${mobileMenuOpen ? 'is-open' : ''}`}>
         <div className="mobile-nav__links">
-          {siteConfig.navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.path}
-              onClick={(e) => handleNavClick(e, link.path)}
-              className="mobile-nav__link"
-            >
-              {link.label}
-            </a>
-          ))}
+          {siteConfig.navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return (
+              <a
+                key={link.label}
+                href={link.path}
+                onClick={(e) => handleNavClick(e, link.path)}
+                className={`mobile-nav__link ${isActive ? 'is-active' : ''}`}
+              >
+                {link.label}
+              </a>
+            );
+          })}
         </div>
 
         <a

@@ -263,6 +263,14 @@ export const PlayerCarousel: React.FC = () => {
             </span>
           </div>
         )}
+
+        {/* Link to full squad page */}
+        <div style={{ textAlign: 'center', marginTop: '36px' }}>
+          <a href="/truppen" className="btn btn--outline">
+            <span>VISA HELA SPELARTRUPPEN & STATISTIK</span>
+            <ChevronRight size={16} />
+          </a>
+        </div>
       </div>
     </section>
   );

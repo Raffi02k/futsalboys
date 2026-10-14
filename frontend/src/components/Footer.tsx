@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Instagram, MapPin, Mail } from 'lucide-react';
 import { siteConfig } from '../content/siteContent';
 
@@ -71,10 +72,12 @@ export const Footer: React.FC = () => {
           <div className="footer__col">
             <h4>NAVIGERING</h4>
             <ul className="footer__links">
-              <li><a href="#ledarna">Ledarna</a></li>
-              <li><a href="#truppen">Spelartruppen</a></li>
-              <li><a href="#matcher">Matcher & Cuper</a></li>
-              <li><a href="#instagram">Instagram Feed</a></li>
+              <li><Link to="/">Hem</Link></li>
+              <li><Link to="/ledarna">Ledarna</Link></li>
+              <li><Link to="/truppen">Spelartruppen</Link></li>
+              <li><Link to="/matcher">Matcher & Cuper</Link></li>
+              <li><Link to="/galleri">Galleri & Video</Link></li>
+              <li><Link to="/instagram">Instagram Feed</Link></li>
             </ul>
           </div>
 
