@@ -507,26 +507,13 @@ export const LeadersPage: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="leader-profile-block">
+                  <div className="leader-profile-block" style={{ marginBottom: 0 }}>
                     <strong className="leader-profile-label text-neon">
                       Ansvar:
                     </strong>
                     <span className="leader-profile-text">
                       {leader.ansvar}
                     </span>
-                  </div>
-
-                  <div>
-                    <div className="leader-profile-tags">
-                      {leader.egenskaper.map((prop) => (
-                        <span
-                          key={prop}
-                          className="leader-profile-tag"
-                        >
-                          {prop}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </div>
               </div>
