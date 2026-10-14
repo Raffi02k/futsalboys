@@ -2323,3 +2323,105 @@ button {
   background: linear-gradient(to top, var(--bg-main) 0%, rgba(10, 13, 16, 0.4) 15%, transparent 40%);
   pointer-events: none;
 }
+
+/* ==========================================================================
+   FEATURED CUP & COUNTDOWN - RESPONSIVE STYLES
+   ========================================================================== */
+.cup-featured-card {
+  background: linear-gradient(145deg, #0d1217 0%, #151d26 50%, #0d1512 100%);
+  border: 2px solid var(--neon-green);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(16, 255, 96, 0.22);
+  margin-bottom: 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cup-countdown-card {
+  background: rgba(7, 9, 11, 0.85);
+  border: 1px solid var(--border-neon);
+  border-radius: 20px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: inset 0 0 30px rgba(16, 255, 96, 0.08);
+}
+
+.cup-countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.cup-countdown-item {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  padding: 14px 6px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cup-countdown-num {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 4vw, 42px);
+  color: var(--neon-green);
+  line-height: 1;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cup-countdown-label {
+  font-size: 10px;
+  color: var(--silver-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .cup-featured-card {
+    padding: 22px 14px;
+    border-radius: 18px;
+    margin-bottom: 40px;
+    border-width: 1.5px;
+  }
+  
+  .cup-countdown-card {
+    padding: 18px 10px;
+    border-radius: 16px;
+  }
+
+  .cup-countdown-grid {
+    gap: 6px;
+  }
+
+  .cup-countdown-item {
+    padding: 10px 2px;
+    border-radius: 10px;
+  }
+
+  .cup-countdown-num {
+    font-size: 26px;
+    margin-bottom: 2px;
+  }
+
+  .cup-countdown-label {
+    font-size: 9px;
+    letter-spacing: 0.02em;
+  }
+
+  .cup-action-btns {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .cup-action-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+

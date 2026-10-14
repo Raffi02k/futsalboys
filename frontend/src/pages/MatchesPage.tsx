@@ -119,25 +119,14 @@ export const MatchesPage: React.FC = () => {
         {/* ==================================================================
             1. FEATURED UPCOMING CUP: FÄRGELANDA FUTSAL CUP 2026
            ================================================================== */}
-        <section
-          style={{
-            background: 'linear-gradient(145deg, #0d1217 0%, #151d26 50%, #0d1512 100%)',
-            border: '2px solid var(--neon-green)',
-            borderRadius: '24px',
-            padding: '40px 32px',
-            boxShadow: '0 24px 60px rgba(0,0,0,0.8), 0 0 40px rgba(16, 255, 96, 0.25)',
-            marginBottom: '64px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '36px', alignItems: 'center' }}>
+        <section className="cup-featured-card">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center' }}>
             {/* Cup Info */}
             <div>
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(34px, 4.5vw, 54px)',
+                  fontSize: 'clamp(32px, 4.5vw, 54px)',
                   color: '#ffffff',
                   lineHeight: 1,
                   margin: '0 0 16px',
@@ -169,7 +158,7 @@ export const MatchesPage: React.FC = () => {
               </div>
 
               {/* Direct ProCup Link Button */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+              <div className="cup-action-btns" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                 <a
                   href="https://www.procup.se/cup/40774.htm"
                   target="_blank"
@@ -193,76 +182,60 @@ export const MatchesPage: React.FC = () => {
             </div>
 
             {/* Countdown Clock Display */}
-            <div
-              style={{
-                background: 'rgba(7, 9, 11, 0.75)',
-                border: '1px solid var(--border-neon)',
-                borderRadius: '20px',
-                padding: '28px',
-                textAlign: 'center',
-                boxShadow: 'inset 0 0 30px rgba(16, 255, 96, 0.08)',
-              }}
-            >
+            <div className="cup-countdown-card">
               <span
                 style={{
-                  fontSize: '12px',
+                  fontSize: '11px',
                   fontWeight: 800,
                   color: 'var(--silver-dim)',
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',
                   display: 'block',
-                  marginBottom: '18px',
+                  marginBottom: '16px',
                 }}
               >
                 NEDRÄKNING TILL CUPSTART
               </span>
 
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(4, 1fr)',
-                  gap: '10px',
-                  marginBottom: '16px',
-                }}
-              >
-                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: 'var(--neon-green)', lineHeight: 1, display: 'block' }}>
+              <div className="cup-countdown-grid">
+                <div className="cup-countdown-item">
+                  <span className="cup-countdown-num">
                     {timeLeft.days}
                   </span>
-                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <span className="cup-countdown-label">
                     Dagar
                   </span>
                 </div>
 
-                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: '#ffffff', lineHeight: 1, display: 'block' }}>
+                <div className="cup-countdown-item">
+                  <span className="cup-countdown-num">
                     {timeLeft.hours}
                   </span>
-                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <span className="cup-countdown-label">
                     Timmar
                   </span>
                 </div>
 
-                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: '#ffffff', lineHeight: 1, display: 'block' }}>
+                <div className="cup-countdown-item">
+                  <span className="cup-countdown-num">
                     {timeLeft.minutes}
                   </span>
-                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <span className="cup-countdown-label">
                     Minuter
                   </span>
                 </div>
 
-                <div style={{ background: 'rgba(255,255,255,0.04)', borderRadius: '12px', padding: '14px 6px', border: '1px solid var(--border-subtle)' }}>
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 4vw, 42px)', color: 'var(--neon-green)', lineHeight: 1, display: 'block' }}>
+                <div className="cup-countdown-item">
+                  <span className="cup-countdown-num">
                     {timeLeft.seconds}
                   </span>
-                  <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                  <span className="cup-countdown-label">
                     Sekunder
                   </span>
                 </div>
               </div>
 
-              <span style={{ fontSize: '12px', color: 'var(--silver-dim)' }}>
+              <span style={{ fontSize: '12px', color: 'var(--silver-dim)', lineHeight: 1.5, display: 'block' }}>
                 Följ med och heja fram Futsal Boys på plats i Färgelanda Sporthall!
               </span>
             </div>
