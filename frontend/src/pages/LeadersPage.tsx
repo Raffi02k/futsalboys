@@ -89,25 +89,8 @@ export const LeadersPage: React.FC = () => {
       <div className="container">
 
           {/* Quick Leader Badges Strip under Image */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '14px',
-              marginBottom: '32px',
-            }}
-          >
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '14px',
-                padding: '16px 20px',
-                borderRadius: '14px',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-subtle)',
-              }}
-            >
+          <div className="leaders-strip-grid">
+            <div className="leaders-strip-card">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
                 #7
               </span>
@@ -117,17 +100,7 @@ export const LeadersPage: React.FC = () => {
               </div>
             </div>
 
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '14px',
-                padding: '16px 20px',
-                borderRadius: '14px',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-subtle)',
-              }}
-            >
+            <div className="leaders-strip-card">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
                 #10
               </span>
@@ -137,17 +110,7 @@ export const LeadersPage: React.FC = () => {
               </div>
             </div>
 
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '14px',
-                padding: '16px 20px',
-                borderRadius: '14px',
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-subtle)',
-              }}
-            >
+            <div className="leaders-strip-card">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
                 #9
               </span>
@@ -159,36 +122,11 @@ export const LeadersPage: React.FC = () => {
           </div>
 
           {/* Vision card & CTA */}
-          <div
-            style={{
-              background: 'var(--bg-card)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: '20px',
-              padding: '36px',
-              textAlign: 'center',
-              marginBottom: '72px',
-            }}
-          >
-            <h2
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 'clamp(28px, 4vw, 40px)',
-                color: '#ffffff',
-                lineHeight: 1.1,
-                margin: '0 0 16px',
-              }}
-            >
+          <div className="leaders-vision-card">
+            <h2>
               TRE LEDARE, EN <span className="text-neon">GEMENSAM VISION</span>
             </h2>
-            <p
-              style={{
-                color: 'var(--silver)',
-                fontSize: '16px',
-                lineHeight: 1.7,
-                maxWidth: '720px',
-                margin: '0 auto 28px',
-              }}
-            >
+            <p>
               Futsal Boys föddes ur en gemensam övertygelse: att Trollhättan förtjänar ett futsallag som spelar med hög intensitet, teknisk skicklighet och fullständigt engagemang. Genom att kombinera Raffis taktiska öga, Elvis ledarskap på parketten och Marcelos fysiska kravbild driver ledarna klubben framåt med vinnarmentalitet.
             </p>
 
@@ -225,26 +163,9 @@ export const LeadersPage: React.FC = () => {
             </p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '20px',
-              marginBottom: '24px',
-            }}
-          >
+          <div className="leaders-qa-grid">
             {/* Fråga 1 */}
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                borderRadius: '16px',
-                border: '1px solid var(--border-subtle)',
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              className="news-card-hover"
-            >
+            <div className="leaders-qa-card news-card-hover">
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <span
                   style={{
@@ -295,17 +216,7 @@ export const LeadersPage: React.FC = () => {
             </div>
 
             {/* Fråga 2 */}
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                borderRadius: '16px',
-                border: '1px solid var(--border-subtle)',
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              className="news-card-hover"
-            >
+            <div className="leaders-qa-card news-card-hover">
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <span
                   style={{
@@ -356,17 +267,7 @@ export const LeadersPage: React.FC = () => {
             </div>
 
             {/* Fråga 3 (tidigare 4) */}
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                borderRadius: '16px',
-                border: '1px solid var(--border-subtle)',
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              className="news-card-hover"
-            >
+            <div className="leaders-qa-card news-card-hover">
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
                 <span
                   style={{
@@ -548,34 +449,24 @@ export const LeadersPage: React.FC = () => {
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             {leadersList.map((leader) => (
               <div
                 key={leader.name}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: '16px',
-                  border: '1px solid var(--border-subtle)',
-                  overflow: 'hidden',
-                  display: 'grid',
-                  gridTemplateColumns: 'minmax(180px, 240px) 1fr',
-                  alignItems: 'stretch',
-                  transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
-                }}
                 className="leader-profile-card news-card-hover"
               >
                 {/* Image side */}
-                <div style={{ position: 'relative', minHeight: '180px', overflow: 'hidden' }}>
+                <div className="leader-profile-img-wrap">
                   <img
                     src={leader.image}
                     alt={leader.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%' }}
+                    className="leader-profile-img"
                   />
                   <div
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      background: 'linear-gradient(90deg, transparent 60%, rgba(18,22,28,0.95) 100%)',
+                      background: 'linear-gradient(to top, rgba(14,18,23,0.85) 0%, transparent 40%)',
                     }}
                   />
                   <div
@@ -597,48 +488,40 @@ export const LeadersPage: React.FC = () => {
                 </div>
 
                 {/* Content side */}
-                <div style={{ padding: '18px 24px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <div style={{ marginBottom: '8px' }}>
-                    <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--neon-green)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                <div className="leader-profile-content">
+                  <div style={{ marginBottom: '10px' }}>
+                    <span className="leader-profile-role">
                       {leader.role}
                     </span>
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: '2px 0 0' }}>
+                    <h3 className="leader-profile-name">
                       {leader.name}
                     </h3>
                   </div>
 
-                  <div style={{ marginBottom: '8px' }}>
-                    <strong style={{ color: '#fff', fontSize: '11.5px', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: '6px' }}>
+                  <div className="leader-profile-block">
+                    <strong className="leader-profile-label">
                       Bakgrund:
                     </strong>
-                    <span style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.45 }}>
+                    <span className="leader-profile-text">
                       {leader.historik}
                     </span>
                   </div>
 
-                  <div style={{ marginBottom: '12px' }}>
-                    <strong style={{ color: 'var(--neon-green)', fontSize: '11.5px', textTransform: 'uppercase', letterSpacing: '0.06em', marginRight: '6px' }}>
+                  <div className="leader-profile-block">
+                    <strong className="leader-profile-label text-neon">
                       Ansvar:
                     </strong>
-                    <span style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.45 }}>
+                    <span className="leader-profile-text">
                       {leader.ansvar}
                     </span>
                   </div>
 
                   <div>
-                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+                    <div className="leader-profile-tags">
                       {leader.egenskaper.map((prop) => (
                         <span
                           key={prop}
-                          style={{
-                            fontSize: '10.5px',
-                            padding: '3px 8px',
-                            background: 'rgba(255,255,255,0.04)',
-                            borderRadius: '6px',
-                            border: '1px solid var(--border-subtle)',
-                            color: 'var(--silver)',
-                            fontWeight: 600,
-                          }}
+                          className="leader-profile-tag"
                         >
                           {prop}
                         </span>

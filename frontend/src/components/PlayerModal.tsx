@@ -81,34 +81,10 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({
           </button>
         </div>
 
-        {/* Modal Body with Prev/Next arrows */}
+        {/* Modal Body */}
         <div style={{ position: 'relative', display: 'flex', flexDirection: 'column' }}>
-          {players.length > 1 && (
-            <button
-              type="button"
-              className="gallery-nav-arrow gallery-nav-arrow--prev"
-              onClick={handlePrev}
-              aria-label="Föregående spelare"
-              style={{ zIndex: 20 }}
-            >
-              <ChevronLeft size={28} />
-            </button>
-          )}
-
-          {players.length > 1 && (
-            <button
-              type="button"
-              className="gallery-nav-arrow gallery-nav-arrow--next"
-              onClick={handleNext}
-              aria-label="Nästa spelare"
-              style={{ zIndex: 20 }}
-            >
-              <ChevronRight size={28} />
-            </button>
-          )}
-
           <div className="player-modal-grid">
-            {/* Player Photo */}
+            {/* Player Photo with Centered Navigation Arrows */}
             <div className="player-modal-photo-wrap">
               <img
                 src={player.image}
@@ -118,6 +94,30 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({
               <div className="player-modal-number">
                 #{player.number}
               </div>
+
+              {players.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    className="gallery-nav-arrow gallery-nav-arrow--prev player-modal-arrow player-modal-arrow--prev"
+                    onClick={handlePrev}
+                    aria-label="Föregående spelare"
+                    style={{ zIndex: 20 }}
+                  >
+                    <ChevronLeft size={26} />
+                  </button>
+
+                  <button
+                    type="button"
+                    className="gallery-nav-arrow gallery-nav-arrow--next player-modal-arrow player-modal-arrow--next"
+                    onClick={handleNext}
+                    aria-label="Nästa spelare"
+                    style={{ zIndex: 20 }}
+                  >
+                    <ChevronRight size={26} />
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Player Info */}
