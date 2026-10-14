@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowLeft, Award, Eye } from 'lucide-react';
+import { Award, Eye } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { PlayerModal } from '../components/PlayerModal';
 import { squadData, Player } from '../content/futsalData';
@@ -31,13 +30,6 @@ export const SquadPage: React.FC = () => {
       />
 
       <div className="container">
-        {/* Breadcrumb */}
-        <div style={{ marginBottom: '24px' }}>
-          <Link to="/" className="gallery-back-link">
-            <ArrowLeft size={16} />
-            <span>Tillbaka till start</span>
-          </Link>
-        </div>
 
         {/* Hero Header without AI badge */}
         <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>

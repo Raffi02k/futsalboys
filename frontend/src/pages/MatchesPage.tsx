@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Clock, ArrowLeft, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Calendar, MapPin, Clock, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
@@ -107,14 +106,6 @@ export const MatchesPage: React.FC = () => {
       />
 
       <div className="container">
-        {/* Breadcrumb */}
-        <div style={{ marginBottom: '24px' }}>
-          <Link to="/" className="gallery-back-link">
-            <ArrowLeft size={16} />
-            <span>Tillbaka till start</span>
-          </Link>
-        </div>
-
         {/* Hero Header */}
         <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
           <h1 className="section-title" style={{ fontSize: 'clamp(38px, 6vw, 64px)', marginBottom: '16px' }}>

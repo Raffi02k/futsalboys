@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Instagram, ArrowLeft } from 'lucide-react';
+import { Mail, Instagram } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { siteConfig } from '../content/siteContent';
 
@@ -65,14 +64,6 @@ export const LeadersPage: React.FC = () => {
       />
 
       <div className="container">
-        {/* Back Link */}
-        <div style={{ marginBottom: '28px' }}>
-          <Link to="/" className="gallery-back-link">
-            <ArrowLeft size={16} />
-            <span>Tillbaka till start</span>
-          </Link>
-        </div>
-
         {/* Clean, authentic Page Header */}
         <div style={{ marginBottom: '40px' }}>
           <h1 className="section-title" style={{ fontSize: 'clamp(40px, 6vw, 68px)', marginBottom: '12px', lineHeight: 0.95 }}>

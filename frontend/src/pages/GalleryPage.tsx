@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Play, Image as ImageIcon, Film, ArrowLeft, Filter } from 'lucide-react';
+import { Play, Image as ImageIcon, Film, Filter } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { GalleryModal } from '../components/GalleryModal';
 import { galleryItems, galleryCategories, GalleryItem } from '../content/galleryData';
@@ -35,13 +34,6 @@ export const GalleryPage: React.FC = () => {
       {/* Header Banner */}
       <section className="gallery-header-section">
         <div className="container">
-          <div className="gallery-breadcrumbs">
-            <Link to="/" className="gallery-back-link">
-              <ArrowLeft size={16} />
-              <span>Tillbaka till start</span>
-            </Link>
-          </div>
-
           <div className="gallery-hero-text">
             <h1 className="gallery-main-title">
               FUTSAL BOYS <span className="text-neon">GALLERI</span>

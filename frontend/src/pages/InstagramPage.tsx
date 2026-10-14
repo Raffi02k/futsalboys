@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Instagram, Heart, MessageCircle, ArrowLeft, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Instagram, Heart, MessageCircle, ExternalLink, ShieldCheck } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { instagramData } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
@@ -15,13 +14,6 @@ export const InstagramPage: React.FC = () => {
       />
 
       <div className="container">
-        {/* Breadcrumb */}
-        <div style={{ marginBottom: '24px' }}>
-          <Link to="/" className="gallery-back-link">
-            <ArrowLeft size={16} />
-            <span>Tillbaka till start</span>
-          </Link>
-        </div>
 
         {/* Hero Header */}
         <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
