@@ -374,7 +374,7 @@ export const LeadersPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Fråga 3 */}
+            {/* Fråga 3 (tidigare 4) */}
             <div
               style={{
                 background: 'var(--bg-card)',
@@ -399,67 +399,6 @@ export const LeadersPage: React.FC = () => {
                   }}
                 >
                   Q3
-                </span>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
-                  VEM SKRIKER HÖGST FRÅN SIDLINJEN?
-                </h3>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid var(--neon-green)' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--neon-green)', display: 'block', marginBottom: '2px' }}>
-                    💬 Elvis
-                  </span>
-                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
-                    "Elvis. (Hörs över hela hallen!)"
-                  </p>
-                </div>
-
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', display: 'block', marginBottom: '2px' }}>
-                    💬 Raffi
-                  </span>
-                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
-                    "Marcelo."
-                  </p>
-                </div>
-
-                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #f59e0b' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#f59e0b', display: 'block', marginBottom: '2px' }}>
-                    💬 Marcelo
-                  </span>
-                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
-                    "Den som precis blev utbytt. Plötsligt vet han exakt hur det ska spelas. 🤫😂"
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Fråga 4 */}
-            <div
-              style={{
-                background: 'var(--bg-card)',
-                borderRadius: '16px',
-                border: '1px solid var(--border-subtle)',
-                padding: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-              }}
-              className="news-card-hover"
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '20px',
-                    color: 'var(--neon-green)',
-                    background: 'rgba(16,255,96,0.1)',
-                    padding: '4px 10px',
-                    borderRadius: '6px',
-                    border: '1px solid rgba(16,255,96,0.25)',
-                  }}
-                >
-                  Q4
                 </span>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
                   VAD SER NI MEST FRAM EMOT MED ÅRETS SÄSONG?
