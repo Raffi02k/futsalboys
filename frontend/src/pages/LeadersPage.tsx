@@ -56,41 +56,56 @@ export const LeadersPage: React.FC = () => {
   ];
 
   return (
-    <div className="leaders-page" style={{ paddingTop: 'calc(var(--header-height) + 16px)', paddingBottom: '90px' }}>
+    <div className="leaders-page" style={{ paddingTop: 'var(--header-height)', paddingBottom: '90px' }}>
       <PageMeta
         title={`Ledarna | ${siteConfig.projectName} - Trollhättan`}
         description="Möt ledarstaben bakom Futsal Boys Trollhättan: Raffi Medz, Elvis Mesic och Marcelo Villa. Historik, roller och framtida mål."
         canonicalPath="/ledarna"
       />
 
-      <div className="container">
-        {/* ==================================================================
-            1. WIDESCREEN HERO - FYLLER HELA SEKTIONEN I SIDAN
-           ================================================================== */}
-        <section style={{ width: '100%', marginBottom: '32px' }}>
-          <div
+      {/* ==================================================================
+          1. FULLSCREEN HERO - TAR HELA SKÄRMENS PLATS PRECIS SOM HEMSIDAN
+         ================================================================== */}
+      <section
+        style={{
+          position: 'relative',
+          width: '100%',
+          minHeight: 'calc(100vh - var(--header-height))',
+          display: 'flex',
+          alignItems: 'flex-end',
+          overflow: 'hidden',
+          marginBottom: '48px',
+          background: 'var(--bg-black)',
+        }}
+      >
+        {/* Full Image Background */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+          <img
+            src="/images/futsalboys-ledare-breden.JPG"
+            alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
             style={{
-              position: 'relative',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              border: '1px solid var(--border-subtle)',
-              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7)',
-              background: '#07090b',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'center 35%',
+              display: 'block',
             }}
-          >
-            <img
-              src="/images/futsalboys-ledare-breden.JPG"
-              alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
-                aspectRatio: '1376 / 768',
-                objectFit: 'cover',
-              }}
-            />
-          </div>
-        </section>
+          />
+        </div>
+
+        {/* Subtle Dark Gradient Overlay at the bottom for smooth blend */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 2,
+            background: 'linear-gradient(to top, var(--bg-main) 0%, rgba(10, 13, 16, 0.4) 15%, transparent 40%)',
+            pointerEvents: 'none',
+          }}
+        />
+      </section>
+
+      <div className="container">
 
           {/* Quick Leader Badges Strip under Image */}
           <div
