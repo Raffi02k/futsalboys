@@ -64,17 +64,18 @@ export const LeadersPage: React.FC = () => {
       />
 
       {/* ==================================================================
-          1. WIDESCREEN HERO - BILDEN SYNS FÖRST I HEL BREDD
+          1. WIDESCREEN HERO - INRAMAD I SIDAN, PASSAR I EN SKÄRM UTAN SCROLL
          ================================================================== */}
-      <section style={{ width: '100%', maxWidth: '1440px', margin: '0 auto 40px', padding: '0 16px' }}>
+      <section style={{ width: '100%', maxWidth: '1040px', margin: '0 auto 36px', padding: '0 16px' }}>
         <div
           style={{
             position: 'relative',
-            borderRadius: '24px',
+            borderRadius: '18px',
             overflow: 'hidden',
-            border: '1px solid rgba(16, 255, 96, 0.35)',
-            boxShadow: '0 30px 90px rgba(0, 0, 0, 0.95), 0 0 60px rgba(16, 255, 96, 0.2)',
-            background: '#0a0f0c',
+            border: '1px solid var(--border-subtle)',
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.7)',
+            background: 'var(--bg-card)',
+            maxHeight: 'calc(100vh - var(--header-height) - 40px)',
           }}
         >
           <img
@@ -83,9 +84,11 @@ export const LeadersPage: React.FC = () => {
             style={{
               width: '100%',
               height: 'auto',
+              maxHeight: 'calc(100vh - var(--header-height) - 40px)',
               display: 'block',
               aspectRatio: '1376 / 768',
-              objectFit: 'cover',
+              objectFit: 'contain',
+              background: '#07090b',
             }}
           />
         </div>
@@ -302,34 +305,41 @@ export const LeadersPage: React.FC = () => {
         </section>
 
         {/* ==================================================================
-            3. LEDARPROFILER (Raffi, Elvis, Marcelo)
+            3. LEDARPROFILER (Raffi, Elvis, Marcelo) - KOMPAKT GRID I EN SKÄRM
            ================================================================== */}
-        <section>
-          <div style={{ marginBottom: '32px' }}>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '38px', color: '#fff', margin: '0 0 8px' }}>
+        <section style={{ marginBottom: '48px' }}>
+          <div style={{ marginBottom: '24px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: '#fff', margin: '0 0 6px' }}>
               MÖT <span className="text-neon">LEDARNA</span>
             </h2>
-            <p style={{ color: 'var(--silver-dim)', fontSize: '15px' }}>
+            <p style={{ color: 'var(--silver-dim)', fontSize: '14px', margin: 0 }}>
               En närmare presentation av varje ledares bakgrund och ansvarsområde.
             </p>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '28px' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(290px, 1fr))',
+              gap: '20px',
+            }}
+          >
             {leadersList.map((leader) => (
               <div
                 key={leader.name}
                 style={{
                   background: 'var(--bg-card)',
-                  borderRadius: '20px',
+                  borderRadius: '16px',
                   border: '1px solid var(--border-subtle)',
                   overflow: 'hidden',
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-                  alignItems: 'stretch',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
                 }}
-                className="leader-profile-card"
+                className="news-card-hover"
               >
-                <div style={{ position: 'relative', minHeight: '300px', overflow: 'hidden' }}>
+                {/* Header Image with Number Badge */}
+                <div style={{ position: 'relative', height: '190px', overflow: 'hidden' }}>
                   <img
                     src={leader.image}
                     alt={leader.name}
@@ -339,65 +349,66 @@ export const LeadersPage: React.FC = () => {
                     style={{
                       position: 'absolute',
                       inset: 0,
-                      background: 'linear-gradient(180deg, transparent 40%, rgba(10,13,16,0.95) 100%)',
+                      background: 'linear-gradient(180deg, transparent 40%, rgba(10,13,16,0.92) 100%)',
                     }}
                   />
                   <div
                     style={{
                       position: 'absolute',
-                      top: '18px',
-                      left: '18px',
+                      top: '12px',
+                      left: '12px',
                       fontFamily: 'var(--font-display)',
-                      fontSize: '32px',
+                      fontSize: '24px',
                       color: 'var(--neon-green)',
-                      background: 'rgba(7,9,11,0.88)',
-                      padding: '4px 14px',
+                      background: 'rgba(7,9,11,0.9)',
+                      padding: '3px 12px',
                       borderRadius: '8px',
-                      border: '1px solid var(--neon-green-glow)',
+                      border: '1px solid var(--border-subtle)',
                     }}
                   >
                     #{leader.number}
                   </div>
                 </div>
 
-                <div style={{ padding: '32px 28px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                  <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--neon-green)', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+                {/* Content Area */}
+                <div style={{ padding: '20px 18px', display: 'flex', flexDirection: 'column', flex: 1 }}>
+                  <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--neon-green)', letterSpacing: '0.08em', textTransform: 'uppercase', marginBottom: '4px' }}>
                     {leader.role}
                   </span>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '30px', color: '#fff', margin: '4px 0 16px' }}>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '24px', color: '#fff', margin: '0 0 14px' }}>
                     {leader.name}
                   </h3>
 
-                  <div style={{ marginBottom: '16px' }}>
-                    <strong style={{ color: '#fff', fontSize: '13px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                      Bakgrund:
+                  <div style={{ marginBottom: '12px' }}>
+                    <strong style={{ color: '#fff', fontSize: '11px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '3px' }}>
+                      Bakgrund
                     </strong>
-                    <p style={{ color: 'var(--silver)', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
+                    <p style={{ color: 'var(--silver)', fontSize: '13px', lineHeight: 1.5, margin: 0 }}>
                       {leader.historik}
                     </p>
                   </div>
 
-                  <div style={{ marginBottom: '20px' }}>
-                    <strong style={{ color: 'var(--neon-green)', fontSize: '13px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                      Ansvarsområde i klubben:
+                  <div style={{ marginBottom: '16px' }}>
+                    <strong style={{ color: 'var(--neon-green)', fontSize: '11px', display: 'block', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '3px' }}>
+                      Ansvarsområde i klubben
                     </strong>
-                    <p style={{ color: 'var(--silver)', fontSize: '14px', lineHeight: 1.6, margin: 0 }}>
+                    <p style={{ color: 'var(--silver)', fontSize: '13px', lineHeight: 1.5, margin: 0 }}>
                       {leader.ansvar}
                     </p>
                   </div>
 
-                  <div>
+                  <div style={{ marginTop: 'auto' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                       {leader.egenskaper.map((prop) => (
                         <span
                           key={prop}
                           style={{
-                            fontSize: '11px',
-                            padding: '4px 10px',
-                            background: 'rgba(255,255,255,0.05)',
+                            fontSize: '10px',
+                            padding: '3px 8px',
+                            background: 'rgba(255,255,255,0.04)',
                             borderRadius: '6px',
                             border: '1px solid var(--border-subtle)',
-                            color: '#fff',
+                            color: 'var(--silver)',
                             fontWeight: 600,
                           }}
                         >
