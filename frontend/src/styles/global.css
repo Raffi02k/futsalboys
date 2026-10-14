@@ -2260,5 +2260,66 @@ button {
   transform: translateX(4px);
 }
 
+/* ==========================================================================
+   LEADERS PAGE HERO - RESPONSIVE PICTURE RATIO
+   ========================================================================== */
+.leaders-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--bg-black);
+}
 
+.leaders-hero__picture {
+  width: 100%;
+  display: block;
+}
 
+.leaders-hero__img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* Mobil: Stående bild med perfekt ratio (928x1152) så att alla tre ledare syns helt */
+@media (max-width: 767px) {
+  .leaders-hero {
+    min-height: auto;
+    margin-bottom: 28px;
+  }
+  .leaders-hero__img {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - var(--header-height) - 30px);
+    aspect-ratio: 928 / 1152;
+    object-position: center top;
+  }
+}
+
+/* Desktop: Liggande widescreen som fyller hela skärmen som hemsidans hero */
+@media (min-width: 768px) {
+  .leaders-hero {
+    min-height: calc(100vh - var(--header-height));
+    max-height: 880px;
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 48px;
+  }
+  .leaders-hero__picture {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+  .leaders-hero__img {
+    height: 100%;
+    object-position: center 35%;
+  }
+}
+
+.leaders-hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(to top, var(--bg-main) 0%, rgba(10, 13, 16, 0.4) 15%, transparent 40%);
+  pointer-events: none;
+}

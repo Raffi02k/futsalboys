@@ -64,45 +64,26 @@ export const LeadersPage: React.FC = () => {
       />
 
       {/* ==================================================================
-          1. FULLSCREEN HERO - TAR HELA SKÄRMENS PLATS PRECIS SOM HEMSIDAN
+          1. RESPONSIVE HERO - MOBIL ANVÄNDER STÅENDE FORMAT (futsalboys-ledare.JPG)
+             DESKTOP ANVÄNDER BRED WIDESCREEN (futsalboys-ledare-breden.JPG)
          ================================================================== */}
-      <section
-        style={{
-          position: 'relative',
-          width: '100%',
-          minHeight: 'calc(100vh - var(--header-height))',
-          display: 'flex',
-          alignItems: 'flex-end',
-          overflow: 'hidden',
-          marginBottom: '48px',
-          background: 'var(--bg-black)',
-        }}
-      >
-        {/* Full Image Background */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
+      <section className="leaders-hero">
+        <picture className="leaders-hero__picture">
+          {/* Mobil: Stående 928x1152 bild så att hela trion syns i bild utan beskärning */}
+          <source
+            media="(max-width: 767px)"
+            srcSet="/images/futsalboys-ledare.JPG"
+          />
+          {/* Desktop/Tablet: Liggande widescreen 1376x768 bild */}
           <img
             src="/images/futsalboys-ledare-breden.JPG"
             alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
-            style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center 35%',
-              display: 'block',
-            }}
+            className="leaders-hero__img"
           />
-        </div>
+        </picture>
 
-        {/* Subtle Dark Gradient Overlay at the bottom for smooth blend */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            zIndex: 2,
-            background: 'linear-gradient(to top, var(--bg-main) 0%, rgba(10, 13, 16, 0.4) 15%, transparent 40%)',
-            pointerEvents: 'none',
-          }}
-        />
+        {/* Mjuk övergång till nästa sektion */}
+        <div className="leaders-hero__overlay" aria-hidden="true" />
       </section>
 
       <div className="container">
