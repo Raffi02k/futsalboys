@@ -65,168 +65,164 @@ export const LeadersPage: React.FC = () => {
 
       <div className="container">
         {/* Clean, authentic Page Header */}
-        <div style={{ marginBottom: '40px' }}>
-          <h1 className="section-title" style={{ fontSize: 'clamp(40px, 6vw, 68px)', marginBottom: '12px', lineHeight: 0.95 }}>
+        <div style={{ textAlign: 'center', maxWidth: '860px', margin: '0 auto 40px' }}>
+          <h1 className="section-title" style={{ fontSize: 'clamp(42px, 6.5vw, 72px)', marginBottom: '14px', lineHeight: 0.95 }}>
             LEDARNA • <span className="text-neon">FUTSAL BOYS</span>
           </h1>
-          <p style={{ color: 'var(--silver)', fontSize: '17px', maxWidth: '780px', lineHeight: 1.6 }}>
+          <p style={{ color: 'var(--silver)', fontSize: '18px', lineHeight: 1.6, margin: '0 auto' }}>
             Klubbens grundare och tränarstab. Här möter du trion bakom lagets spelsystem, gemenskap och sportsliga satsning i Trollhättan.
           </p>
         </div>
 
         {/* ==================================================================
-            1. FULL POSTER SHOWCASE (Ingen beskärning av bilden!)
+            1. FULL HERO SHOWCASE (Hel bild i full skala som sticker ut)
            ================================================================== */}
-        <div
-          style={{
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-neon)',
-            borderRadius: '24px',
-            padding: '36px',
-            boxShadow: '0 24px 60px rgba(0,0,0,0.85), 0 0 35px rgba(16, 255, 96, 0.15)',
-            marginBottom: '72px',
-          }}
-        >
+        <div style={{ maxWidth: '860px', margin: '0 auto 64px' }}>
+          {/* Framed Big Poster */}
+          <div
+            style={{
+              position: 'relative',
+              borderRadius: '24px',
+              padding: '10px',
+              background: 'linear-gradient(145deg, rgba(16, 255, 96, 0.25) 0%, rgba(20, 26, 22, 0.8) 50%, rgba(16, 255, 96, 0.1) 100%)',
+              border: '1px solid rgba(16, 255, 96, 0.35)',
+              boxShadow: '0 30px 90px rgba(0, 0, 0, 0.95), 0 0 60px rgba(16, 255, 96, 0.22)',
+              marginBottom: '28px',
+            }}
+          >
+            <img
+              src="/images/futsalboys-ledare.JPG"
+              alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
+              style={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                borderRadius: '16px',
+                filter: 'contrast(1.02)',
+              }}
+            />
+          </div>
+
+          {/* Quick Leader Badges Strip under Image */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '40px',
-              alignItems: 'center',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '14px',
+              marginBottom: '32px',
             }}
           >
-            {/* The Full, Uncropped Poster */}
-            <div style={{ textAlign: 'center' }}>
-              <img
-                src="/images/futsalboys-ledare.JPG"
-                alt="Ledarstaben Futsal Boys - Raffi Medz, Elvis Mesic, Marcelo Villa"
-                style={{
-                  width: '100%',
-                  maxWidth: '460px',
-                  height: 'auto',
-                  display: 'block',
-                  margin: '0 auto',
-                  borderRadius: '16px',
-                  border: '1px solid var(--border-subtle)',
-                  boxShadow: '0 16px 40px rgba(0,0,0,0.7)',
-                }}
-              />
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '14px',
+                padding: '16px 20px',
+                borderRadius: '14px',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
+                #7
+              </span>
+              <div>
+                <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Raffi Medz</strong>
+                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Huvudtränare & Klubbansvarig</span>
+              </div>
             </div>
 
-            {/* Explanatory text & Leadership details */}
-            <div>
-              <span
-                style={{
-                  fontSize: '12px',
-                  fontWeight: 800,
-                  letterSpacing: '0.14em',
-                  color: 'var(--neon-green)',
-                  textTransform: 'uppercase',
-                  display: 'block',
-                  marginBottom: '10px',
-                }}
-              >
-                GRUNDARNA AV FUTSAL BOYS
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '14px',
+                padding: '16px 20px',
+                borderRadius: '14px',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
+                #10
               </span>
+              <div>
+                <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Elvis Mesic</strong>
+                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Lagkapten & Spelande Ledare</span>
+              </div>
+            </div>
 
-              <h2
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(32px, 3.8vw, 44px)',
-                  color: '#ffffff',
-                  lineHeight: 1.05,
-                  margin: '0 0 16px',
-                }}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '14px',
+                padding: '16px 20px',
+                borderRadius: '14px',
+                background: 'var(--bg-card)',
+                border: '1px solid var(--border-subtle)',
+              }}
+            >
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
+                #9
+              </span>
+              <div>
+                <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Marcelo Villa</strong>
+                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Sportchef & Fysansvarig</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Vision card & CTA */}
+          <div
+            style={{
+              background: 'var(--bg-card)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '20px',
+              padding: '36px',
+              textAlign: 'center',
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(28px, 4vw, 40px)',
+                color: '#ffffff',
+                lineHeight: 1.1,
+                margin: '0 0 16px',
+              }}
+            >
+              TRE LEDARE, EN <span className="text-neon">GEMENSAM VISION</span>
+            </h2>
+            <p
+              style={{
+                color: 'var(--silver)',
+                fontSize: '16px',
+                lineHeight: 1.7,
+                maxWidth: '720px',
+                margin: '0 auto 28px',
+              }}
+            >
+              Futsal Boys föddes ur en gemensam övertygelse: att Trollhättan förtjänar ett futsallag som spelar med hög intensitet, teknisk skicklighet och fullständigt engagemang. Genom att kombinera Raffis taktiska öga, Elvis ledarskap på parketten och Marcelos fysiska kravbild driver ledarna klubben framåt med vinnarmentalitet.
+            </p>
+
+            <div style={{ display: 'flex', gap: '14px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a
+                href={siteConfig.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--neon btn--sm"
               >
-                TRE LEDARE, EN <span className="text-neon">GEMENSAM VISION</span>
-              </h2>
-
-              <p style={{ color: 'var(--silver)', fontSize: '15px', lineHeight: 1.7, marginBottom: '24px' }}>
-                Futsal Boys föddes ur en gemensam övertygelse: att Trollhättan förtjänar ett futsallag som spelar med hög intensitet, teknisk skicklighet och fullständigt engagemang. Genom att kombinera Raffis taktiska öga, Elvis ledarskap på parketten och Marcelos fysiska kravbild driver ledarna klubben framåt med vinnarmentalitet.
-              </p>
-
-              {/* Leader trio pills */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '28px' }}>
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '14px',
-                    padding: '10px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid var(--border-subtle)',
-                  }}
-                >
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: 'var(--neon-green)', minWidth: '34px' }}>
-                    #7
-                  </span>
-                  <div>
-                    <strong style={{ color: '#fff', fontSize: '15px', display: 'block' }}>Raffi Medz</strong>
-                    <span style={{ color: 'var(--silver-dim)', fontSize: '12px' }}>Huvudtränare & Klubbansvarig</span>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '14px',
-                    padding: '10px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid var(--border-subtle)',
-                  }}
-                >
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: 'var(--neon-green)', minWidth: '34px' }}>
-                    #10
-                  </span>
-                  <div>
-                    <strong style={{ color: '#fff', fontSize: '15px', display: 'block' }}>Elvis Mesic</strong>
-                    <span style={{ color: 'var(--silver-dim)', fontSize: '12px' }}>Lagkapten & Spelande Ledare</span>
-                  </div>
-                </div>
-
-                <div
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '14px',
-                    padding: '10px 16px',
-                    borderRadius: '10px',
-                    background: 'rgba(255,255,255,0.03)',
-                    border: '1px solid var(--border-subtle)',
-                  }}
-                >
-                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: 'var(--neon-green)', minWidth: '34px' }}>
-                    #9
-                  </span>
-                  <div>
-                    <strong style={{ color: '#fff', fontSize: '15px', display: 'block' }}>Marcelo Villa</strong>
-                    <span style={{ color: 'var(--silver-dim)', fontSize: '12px' }}>Sportchef & Fysansvarig</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Action Buttons */}
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <a
-                  href={siteConfig.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--neon btn--sm"
-                >
-                  <Instagram size={15} />
-                  <span>FÖLJ RESAN PÅ INSTAGRAM</span>
-                </a>
-                <a
-                  href={`mailto:${siteConfig.email}`}
-                  className="btn btn--outline btn--sm"
-                >
-                  <Mail size={15} />
-                  <span>KONTAKTA LEDARNA</span>
-                </a>
-              </div>
+                <Instagram size={16} />
+                <span>FÖLJ RESAN PÅ INSTAGRAM</span>
+              </a>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                className="btn btn--outline btn--sm"
+              >
+                <Mail size={16} />
+                <span>KONTAKTA LEDARNA</span>
+              </a>
             </div>
           </div>
         </div>
