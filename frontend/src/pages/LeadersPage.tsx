@@ -56,52 +56,42 @@ export const LeadersPage: React.FC = () => {
   ];
 
   return (
-    <div className="leaders-page" style={{ paddingTop: 'calc(var(--header-height) + 32px)', paddingBottom: '90px' }}>
+    <div className="leaders-page" style={{ paddingTop: 'calc(var(--header-height) + 16px)', paddingBottom: '90px' }}>
       <PageMeta
         title={`Ledarna | ${siteConfig.projectName} - Trollhättan`}
         description="Möt ledarstaben bakom Futsal Boys Trollhättan: Raffi Medz, Elvis Mesic och Marcelo Villa. Historik, roller och framtida mål."
         canonicalPath="/ledarna"
       />
 
-      <div className="container">
-        {/* Clean, authentic Page Header */}
-        <div style={{ textAlign: 'center', maxWidth: '860px', margin: '0 auto 40px' }}>
-          <h1 className="section-title" style={{ fontSize: 'clamp(42px, 6.5vw, 72px)', marginBottom: '14px', lineHeight: 0.95 }}>
-            LEDARNA • <span className="text-neon">FUTSAL BOYS</span>
-          </h1>
-          <p style={{ color: 'var(--silver)', fontSize: '18px', lineHeight: 1.6, margin: '0 auto' }}>
-            Klubbens grundare och tränarstab. Här möter du trion bakom lagets spelsystem, gemenskap och sportsliga satsning i Trollhättan.
-          </p>
-        </div>
-
-        {/* ==================================================================
-            1. FULL HERO SHOWCASE (Hel bild i full skala som sticker ut)
-           ================================================================== */}
-        <div style={{ maxWidth: '860px', margin: '0 auto 64px' }}>
-          {/* Framed Big Poster */}
-          <div
+      {/* ==================================================================
+          1. WIDESCREEN HERO - BILDEN SYNS FÖRST I HEL BREDD
+         ================================================================== */}
+      <section style={{ width: '100%', maxWidth: '1440px', margin: '0 auto 40px', padding: '0 16px' }}>
+        <div
+          style={{
+            position: 'relative',
+            borderRadius: '24px',
+            overflow: 'hidden',
+            border: '1px solid rgba(16, 255, 96, 0.35)',
+            boxShadow: '0 30px 90px rgba(0, 0, 0, 0.95), 0 0 60px rgba(16, 255, 96, 0.2)',
+            background: '#0a0f0c',
+          }}
+        >
+          <img
+            src="/images/futsalboys-ledare-breden.JPG"
+            alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
             style={{
-              position: 'relative',
-              borderRadius: '24px',
-              padding: '10px',
-              background: 'linear-gradient(145deg, rgba(16, 255, 96, 0.25) 0%, rgba(20, 26, 22, 0.8) 50%, rgba(16, 255, 96, 0.1) 100%)',
-              border: '1px solid rgba(16, 255, 96, 0.35)',
-              boxShadow: '0 30px 90px rgba(0, 0, 0, 0.95), 0 0 60px rgba(16, 255, 96, 0.22)',
-              marginBottom: '28px',
+              width: '100%',
+              height: 'auto',
+              display: 'block',
+              aspectRatio: '1376 / 768',
+              objectFit: 'cover',
             }}
-          >
-            <img
-              src="/images/futsalboys-ledare.JPG"
-              alt="Ledarstaben Futsal Boys Trollhättan - Raffi Medz, Elvis Mesic, Marcelo Villa"
-              style={{
-                width: '100%',
-                height: 'auto',
-                display: 'block',
-                borderRadius: '16px',
-                filter: 'contrast(1.02)',
-              }}
-            />
-          </div>
+          />
+        </div>
+      </section>
+
+      <div className="container">
 
           {/* Quick Leader Badges Strip under Image */}
           <div
@@ -181,6 +171,7 @@ export const LeadersPage: React.FC = () => {
               borderRadius: '20px',
               padding: '36px',
               textAlign: 'center',
+              marginBottom: '72px',
             }}
           >
             <h2
@@ -225,7 +216,6 @@ export const LeadersPage: React.FC = () => {
               </a>
             </div>
           </div>
-        </div>
 
         {/* ==================================================================
             2. FRAMTIDSPLANER & STRATEGISK PLAN (Proffsig, sportig layout)
