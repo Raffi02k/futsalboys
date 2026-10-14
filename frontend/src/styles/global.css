@@ -2224,4 +2224,41 @@ button {
   transform: scale(1.05);
 }
 
+/* Match News Card Hover */
+.news-card-hover {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.news-card-hover:hover,
+.news-card-hover:focus-visible {
+  transform: translateY(-6px);
+  border-color: var(--border-neon);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.75), 0 0 24px rgba(16, 255, 96, 0.22);
+}
+
+.news-card-hover img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.news-card-hover:hover img {
+  transform: scale(1.06);
+}
+
+.news-card-hover:hover .news-read-more {
+  color: #ffffff !important;
+}
+
+.news-card-hover:hover .news-read-more svg {
+  transform: translateX(4px);
+}
+
+
 

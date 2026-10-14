@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Trophy, Clock, ArrowLeft, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Calendar, MapPin, Clock, ArrowLeft, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
@@ -140,28 +140,6 @@ export const MatchesPage: React.FC = () => {
             overflow: 'hidden',
           }}
         >
-          {/* Neon corner glow badge */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '30px',
-              background: 'rgba(16, 255, 96, 0.15)',
-              border: '1px solid var(--neon-green-glow)',
-              color: 'var(--neon-green)',
-              fontSize: '13px',
-              fontWeight: 800,
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              marginBottom: '20px',
-            }}
-          >
-            <Trophy size={16} />
-            <span>NÄSTA STORA CUPUTMANING</span>
-          </div>
-
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '36px', alignItems: 'center' }}>
             {/* Cup Info */}
             <div>
@@ -642,14 +620,6 @@ export const MatchesPage: React.FC = () => {
             {clubNewsList.map((news) => (
               <article
                 key={news.id}
-                style={{
-                  background: 'var(--bg-card)',
-                  borderRadius: '16px',
-                  border: '1px solid var(--border-subtle)',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  transition: 'transform var(--transition-fast), border-color var(--transition-fast)',
-                }}
                 className="news-card-hover"
                 onClick={() => setSelectedNews(news)}
               >
