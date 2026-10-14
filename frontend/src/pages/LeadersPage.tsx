@@ -7,30 +7,30 @@ export const LeadersPage: React.FC = () => {
   const leadersList = [
     {
       name: 'Raffi Medz',
-      role: 'Huvudtränare & Klubbansvarig',
+      role: 'CEO & Content Manager',
       number: 7,
       image: '/images/players/raffi.jpg',
-      historik: 'Raffi tog initiativet till Futsal Boys för att skapa en strukturerad, ambitiös futsalmiljö i Trollhättan. Med gedigen fotbollsbakgrund och passion för sporten har han satt klubbens struktur, taktiska linjer och organisation från start.',
-      ansvar: 'Huvudansvarig för matchtaktik, speluppbyggnad och träningsupplägg. Raffi leder lagets förberedelser inför seriespel och cuper och driver föreningens administration.',
-      egenskaper: ['Taktik & Speluppbyggnad', 'Matchcoachning', 'Klubborganisation'],
+      historik: 'Raffi tog initiativet till Futsal Boys för att skapa en strukturerad, ambitiös futsalmiljö i Trollhättan. Som CEO och mediachef driver han klubbens varumärke, media och strategiska utveckling.',
+      ansvar: 'Övergripande klubbledning, mediaproduktion, sociala medier och content management samt föreningsadministration.',
+      egenskaper: ['CEO', 'Content Management', 'Klubbledning', 'Varumärkesbyggande'],
     },
     {
       name: 'Elvis Mesic',
-      role: 'Lagkapten & Spelande Ledare',
+      role: 'Sportchefen & Målvakten',
       number: 10,
       image: '/images/players/elvis.jpg',
-      historik: 'Elvis är lagets naturlige pådrivare och offensiva härförare på parketten. Med sin blixtsnabba teknik och starka vinnarskalle sätter han kravbilden i omklädningsrummet och leder laget i matchernas mest avgörande moment.',
-      ansvar: 'Kaptensbindeln och lagets sammanhållning. Elvis ansvarar för energin på planen, peppar medspelare under press och driver lagets offensiva spets.',
-      egenskaper: ['Ledarskap på Planen', 'Offensiv Spets', 'Vinnarmentalitet'],
+      historik: 'Elvis är klubbens sportchef och vaktar kassen med järnhand. Med sin vinnarskalle och engagemang sätter han kravbilden i truppen och styr maskineriet på och utanför planen.',
+      ansvar: 'Sportchef med ansvar för truppbygget, målvaktsspelet, matchförberedelser och lagets sammanhållning.',
+      egenskaper: ['Sportchef', 'Målvakt', 'Truppbygge', 'Vinnarskalle'],
     },
     {
       name: 'Marcelo Villa',
-      role: 'Sportchef & Fysansvarig',
+      role: 'Generalen & Lagkapten',
       number: 9,
       image: '/images/players/marcelo.jpg',
-      historik: 'Marcelo är en kompromisslös avslutare med mångårig futsalerfarenhet. Hans fysik och spelförståelse gör honom till en nyckelfigur i truppbygget och ledarstaben.',
-      ansvar: 'Sportsligt ansvarig för spelartruppens fysiska status, uthållighet och truppbalans. Marcelo ser till att laget orkar pressa intensivt i 40 effektiva minuter under tuffa turneringshelger.',
-      egenskaper: ['Fysik & Uthållighet', 'Avslutsmiljö', 'Truppharmoni'],
+      historik: 'Marcelo är lagets naturliga general och kapten på parketten. Med sin kompromisslösa fysik och spelförståelse leder han grabbarna genom tuffa drabbningar och sätter tonen.',
+      ansvar: 'Kaptensbindeln, lagmoralen, fysisk status och att leda laget med maximal intensitet och hårdhet från första till sista sekund.',
+      egenskaper: ['Generalen', 'Lagkapten', 'Fysik & Skärpa', 'Spelförståelse'],
     },
   ];
 
@@ -117,7 +117,7 @@ export const LeadersPage: React.FC = () => {
               </span>
               <div>
                 <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Raffi Medz</strong>
-                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Huvudtränare & Klubbansvarig</span>
+                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>CEO & Content Manager</span>
               </div>
             </div>
 
@@ -137,7 +137,7 @@ export const LeadersPage: React.FC = () => {
               </span>
               <div>
                 <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Elvis Mesic</strong>
-                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Lagkapten & Spelande Ledare</span>
+                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Sportchefen & Målvakten</span>
               </div>
             </div>
 
@@ -157,7 +157,7 @@ export const LeadersPage: React.FC = () => {
               </span>
               <div>
                 <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Marcelo Villa</strong>
-                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Sportchef & Fysansvarig</span>
+                <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Generalen & Lagkapten</span>
               </div>
             </div>
           </div>
@@ -215,6 +215,306 @@ export const LeadersPage: React.FC = () => {
               </a>
             </div>
           </div>
+
+        {/* ==================================================================
+            SNABB-Q&A: MÖT LEDARNA BAKOM FUTSAL BOYS!
+           ================================================================== */}
+        <section style={{ marginBottom: '64px' }}>
+          <div style={{ marginBottom: '28px' }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: '#fff', margin: '0 0 8px' }}>
+              LEDARNAS TANKAR • <span className="text-neon">SNABB-Q&A 🧠⚽️</span>
+            </h2>
+            <p style={{ color: 'var(--silver)', fontSize: '15px', maxWidth: '820px', lineHeight: 1.6, margin: 0 }}>
+              Det är vi som styr skutan, lägger taktiken och ser till att maskineriet rullar. För att ni ska lära känna oss lite bättre tog vi en snabb Q&A – svaren visar ganska exakt hur olika (och sköna) vi är!
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '20px',
+              marginBottom: '24px',
+            }}
+          >
+            {/* Fråga 1 */}
+            <div
+              style={{
+                background: 'var(--bg-card)',
+                borderRadius: '16px',
+                border: '1px solid var(--border-subtle)',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              className="news-card-hover"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '20px',
+                    color: 'var(--neon-green)',
+                    background: 'rgba(16,255,96,0.1)',
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(16,255,96,0.25)',
+                  }}
+                >
+                  Q1
+                </span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
+                  BESKRIV ÅRETS FUTSAL BOYS MED TRE ORD!
+                </h3>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid var(--neon-green)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--neon-green)', display: 'block', marginBottom: '2px' }}>
+                    💬 Elvis (Sportchefen & Målvakten)
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Helt topp topp!"
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', display: 'block', marginBottom: '2px' }}>
+                    💬 Raffi (CEO & Content Manager)
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Vänskap, show, framtiden."
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #f59e0b' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#f59e0b', display: 'block', marginBottom: '2px' }}>
+                    💬 Marcelo (Generalen & Lagkapten)
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Snabba, Faden, Snygga. 😉"
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Fråga 2 */}
+            <div
+              style={{
+                background: 'var(--bg-card)',
+                borderRadius: '16px',
+                border: '1px solid var(--border-subtle)',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              className="news-card-hover"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '20px',
+                    color: 'var(--neon-green)',
+                    background: 'rgba(16,255,96,0.1)',
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(16,255,96,0.25)',
+                  }}
+                >
+                  Q2
+                </span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
+                  MÅL ELLER ASSIST – VAD VÄLJER DU?
+                </h3>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid var(--neon-green)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--neon-green)', display: 'block', marginBottom: '2px' }}>
+                    💬 Elvis
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Assist. (Lagspelaren!)"
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', display: 'block', marginBottom: '2px' }}>
+                    💬 Raffi
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Mål! ⚽️"
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #f59e0b' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#f59e0b', display: 'block', marginBottom: '2px' }}>
+                    💬 Marcelo
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Mål. Assist är för dem som missar. 🤷‍♂️🔥"
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Fråga 3 */}
+            <div
+              style={{
+                background: 'var(--bg-card)',
+                borderRadius: '16px',
+                border: '1px solid var(--border-subtle)',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              className="news-card-hover"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '20px',
+                    color: 'var(--neon-green)',
+                    background: 'rgba(16,255,96,0.1)',
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(16,255,96,0.25)',
+                  }}
+                >
+                  Q3
+                </span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
+                  VEM SKRIKER HÖGST FRÅN SIDLINJEN?
+                </h3>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid var(--neon-green)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--neon-green)', display: 'block', marginBottom: '2px' }}>
+                    💬 Elvis
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Elvis. (Hörs över hela hallen!)"
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', display: 'block', marginBottom: '2px' }}>
+                    💬 Raffi
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Marcelo."
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #f59e0b' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#f59e0b', display: 'block', marginBottom: '2px' }}>
+                    💬 Marcelo
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Den som precis blev utbytt. Plötsligt vet han exakt hur det ska spelas. 🤫😂"
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Fråga 4 */}
+            <div
+              style={{
+                background: 'var(--bg-card)',
+                borderRadius: '16px',
+                border: '1px solid var(--border-subtle)',
+                padding: '24px',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              className="news-card-hover"
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '20px',
+                    color: 'var(--neon-green)',
+                    background: 'rgba(16,255,96,0.1)',
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    border: '1px solid rgba(16,255,96,0.25)',
+                  }}
+                >
+                  Q4
+                </span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
+                  VAD SER NI MEST FRAM EMOT MED ÅRETS SÄSONG?
+                </h3>
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid var(--neon-green)' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: 'var(--neon-green)', display: 'block', marginBottom: '2px' }}>
+                    💬 Elvis
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Att lyfta bucklan! 🏆"
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #60a5fa' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', display: 'block', marginBottom: '2px' }}>
+                    💬 Raffi
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Att visa hur ett lag kan ledas med tre stabila klassmän."
+                  </p>
+                </div>
+
+                <div style={{ background: 'rgba(255,255,255,0.03)', padding: '10px 14px', borderRadius: '10px', borderLeft: '3px solid #f59e0b' }}>
+                  <span style={{ fontSize: '12px', fontWeight: 800, color: '#f59e0b', display: 'block', marginBottom: '2px' }}>
+                    💬 Marcelo
+                  </span>
+                  <p style={{ color: '#fff', fontSize: '14px', margin: 0, fontStyle: 'italic' }}>
+                    "Att knäna håller hela säsongen... 🙏🩹"
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Social Community Box */}
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(16,255,96,0.08) 0%, var(--bg-card) 100%)',
+              border: '1px solid var(--border-subtle)',
+              borderRadius: '16px',
+              padding: '22px 28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: '20px',
+              flexWrap: 'wrap',
+            }}
+          >
+            <div>
+              <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#fff', margin: '0 0 6px' }}>
+                VILKEN LEDARE KÄNNER DU IGEN DIG MEST I?
+              </h4>
+              <p style={{ color: 'var(--silver)', fontSize: '14px', margin: 0 }}>
+                Vad har ni för frågor till ledarna och vad vill ni se för content? Kommentera och följ oss på Instagram! 💚🖤
+              </p>
+            </div>
+            <a
+              href={siteConfig.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--neon btn--sm"
+            >
+              <Instagram size={15} />
+              <span>KOMMENTERA PÅ INSTAGRAM</span>
+            </a>
+          </div>
+        </section>
 
         {/* ==================================================================
             2. FRAMTIDSPLANER & STRATEGISK PLAN (Proffsig, sportig layout)
