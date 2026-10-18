@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Home, Users, Calendar, Image as ImageIcon, Instagram, ArrowLeft } from 'lucide-react';
+import { Home, Users, Calendar, Instagram, ArrowLeft } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { siteConfig } from '../content/siteContent';
 
@@ -124,15 +124,6 @@ export const NotFoundPage: React.FC = () => {
             >
               <Calendar size={17} />
               <span>SPELSCHEMA</span>
-            </Link>
-
-            <Link
-              to="/galleri"
-              className="btn btn--outline"
-              style={{ justifyContent: 'center' }}
-            >
-              <ImageIcon size={17} />
-              <span>GALLERI</span>
             </Link>
           </div>
 
