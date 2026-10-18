@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Instagram } from 'lucide-react';
 import { siteConfig } from '../content/siteContent';
 
@@ -36,13 +37,13 @@ export const HeroSection: React.FC = () => {
           </p>
 
           <div className="hero__ctas">
-            <a
-              href="/truppen"
+            <Link
+              to="/truppen"
               className="btn btn--neon"
             >
               <span>MÖT TRUPPEN</span>
               <ArrowRight size={18} />
-            </a>
+            </Link>
 
             <a
               href={siteConfig.instagramUrl}

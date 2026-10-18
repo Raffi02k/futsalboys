@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { squadData } from '../content/futsalData';
 
@@ -42,31 +43,44 @@ export const PlayerCarousel: React.FC = () => {
     scrollToCard(newIdx);
   };
 
-  // Scroll listener to update activeIndex to the card closest to the center
+  const scrollRaf = useRef<number | null>(null);
+
+  // High-performance scroll listener to update activeIndex without layout thrashing
   const handleScroll = () => {
-    if (!trackRef.current) return;
-    const track = trackRef.current;
-    const trackRect = track.getBoundingClientRect();
-    const trackCenter = trackRect.left + trackRect.width / 2;
+    if (scrollRaf.current !== null) return;
 
-    let closestIndex = 0;
-    let minDistance = Infinity;
+    scrollRaf.current = requestAnimationFrame(() => {
+      scrollRaf.current = null;
+      if (!trackRef.current) return;
+      const track = trackRef.current;
+      const trackCenter = track.scrollLeft + track.clientWidth / 2;
 
-    cardRefs.current.forEach((card, index) => {
-      if (!card) return;
-      const cardRect = card.getBoundingClientRect();
-      const cardCenter = cardRect.left + cardRect.width / 2;
-      const distance = Math.abs(trackCenter - cardCenter);
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestIndex = index;
+      let closestIndex = 0;
+      let minDistance = Infinity;
+
+      cardRefs.current.forEach((card, index) => {
+        if (!card) return;
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(trackCenter - cardCenter);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      if (closestIndex !== safeActiveIndex) {
+        setActiveIndex(closestIndex);
       }
     });
-
-    if (closestIndex !== safeActiveIndex) {
-      setActiveIndex(closestIndex);
-    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (scrollRaf.current !== null) {
+        cancelAnimationFrame(scrollRaf.current);
+      }
+    };
+  }, []);
 
   // Drag-to-scroll support for desktop mouse
   const isDragging = useRef(false);
@@ -266,10 +280,10 @@ export const PlayerCarousel: React.FC = () => {
 
         {/* Link to full squad page */}
         <div style={{ textAlign: 'center', marginTop: '36px' }}>
-          <a href="/truppen" className="btn btn--outline">
+          <Link to="/truppen" className="btn btn--outline">
             <span>VISA HELA SPELARTRUPPEN & STATISTIK</span>
             <ChevronRight size={16} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

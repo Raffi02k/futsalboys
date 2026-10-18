@@ -11,10 +11,9 @@ export const Footer: React.FC = () => {
           {/* Brand Col */}
           <div className="footer__brand-block">
             {/* Brand Logo Clickable to Scroll to Top */}
-            <a
-              href="/"
-              onClick={(e) => {
-                e.preventDefault();
+            <Link
+              to="/"
+              onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
               className="footer__brand-link"
@@ -49,7 +48,7 @@ export const Footer: React.FC = () => {
                   TROLLHÄTTAN
                 </span>
               </div>
-            </a>
+            </Link>
 
             <p className="footer__desc">
               {siteConfig.description}

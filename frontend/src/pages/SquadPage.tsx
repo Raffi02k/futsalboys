@@ -67,7 +67,7 @@ export const SquadPage: React.FC = () => {
             gap: '24px',
           }}
         >
-          {filteredPlayers.map((player) => (
+          {filteredPlayers.map((player, index) => (
             <article
               key={player.id}
               onClick={() => handleOpenPlayer(player)}
@@ -98,6 +98,8 @@ export const SquadPage: React.FC = () => {
                 <img
                   src={player.image}
                   alt={player.name}
+                  loading={index < 3 ? 'eager' : 'lazy'}
+                  decoding="async"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 20%', transition: 'transform 0.4s ease' }}
                   className="player-card-photo"
                 />

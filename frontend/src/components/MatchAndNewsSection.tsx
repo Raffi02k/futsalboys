@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { Calendar, Clock, MapPin, Flame, ArrowRight, ShoppingBag, X, User } from 'lucide-react';
 import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
@@ -117,13 +118,13 @@ export const MatchAndNewsSection: React.FC = () => {
               </div>
 
               <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', flexWrap: 'wrap' }}>
-                <a
-                  href="/matcher"
+                <Link
+                  to="/matcher"
                   className="btn btn--neon"
                   style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
                 >
                   SE SPELSCHEMA
-                </a>
+                </Link>
                 <a
                   href={siteConfig.instagramUrl}
                   target="_blank"

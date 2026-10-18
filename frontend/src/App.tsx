@@ -20,8 +20,8 @@ export const App: React.FC = () => {
         <Route path="/galleri" element={<GalleryPage />} />
         <Route path="/instagram" element={<InstagramPage />} />
         <Route path="/404" element={<NotFoundPage />} />
-        {/* Fallback to HomePage */}
-        <Route path="*" element={<HomePage />} />
+        {/* Custom 404 page for any unknown routes */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Layout>
   );
