@@ -73,9 +73,9 @@ export const siteConfig: SiteConfig = {
   instagramUrl: "https://www.instagram.com/grabbarna.futsal/",
 
   leaders: [
-    { name: "Raffi Medz", role: "Ledare & Tränare", number: 7 },
-    { name: "Elvis Mesic", role: "Lagkapten & Ledare", number: 10 },
-    { name: "Marcelo Villa", role: "Sportslig Ledare", number: 9 },
+    { name: "Raffi Medz", role: "CEO & Content Manager", number: 7 },
+    { name: "Elvis Mesic", role: "Sportchefen & Målvakten", number: 1 },
+    { name: "Marcelo Villa", role: "Generalen & Lagkapten", number: 3 },
   ],
 
   stats: [

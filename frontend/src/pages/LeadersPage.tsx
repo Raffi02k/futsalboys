@@ -9,7 +9,7 @@ export const LeadersPage: React.FC = () => {
       name: 'Raffi Medz',
       role: 'CEO & Content Manager',
       number: 7,
-      image: '/images/players/raffi.jpg',
+      image: '/images/players/raffi7K.JPG',
       historik: 'Raffi tog initiativet till Futsal Boys för att skapa en strukturerad, ambitiös futsalmiljö i Trollhättan. Som CEO och mediachef driver han klubbens varumärke, media och strategiska utveckling.',
       ansvar: 'Övergripande klubbledning, mediaproduktion, sociala medier och content management samt föreningsadministration.',
       egenskaper: ['CEO', 'Content Management', 'Klubbledning', 'Varumärkesbyggande'],
@@ -17,8 +17,8 @@ export const LeadersPage: React.FC = () => {
     {
       name: 'Elvis Mesic',
       role: 'Sportchefen & Målvakten',
-      number: 10,
-      image: '/images/players/elvis.jpg',
+      number: 1,
+      image: '/images/players/elvis1M.JPG',
       historik: 'Elvis är klubbens sportchef och vaktar kassen med järnhand. Med sin vinnarskalle och engagemang sätter han kravbilden i truppen och styr maskineriet på och utanför planen.',
       ansvar: 'Sportchef med ansvar för truppbygget, målvaktsspelet, matchförberedelser och lagets sammanhållning.',
       egenskaper: ['Sportchef', 'Målvakt', 'Truppbygge', 'Vinnarskalle'],
@@ -26,8 +26,8 @@ export const LeadersPage: React.FC = () => {
     {
       name: 'Marcelo Villa',
       role: 'Generalen & Lagkapten',
-      number: 9,
-      image: '/images/players/marcelo.jpg',
+      number: 3,
+      image: '/images/players/marcelo3B.PNG',
       historik: 'Marcelo är lagets naturliga general och kapten på parketten. Med sin kompromisslösa fysik och spelförståelse leder han grabbarna genom tuffa drabbningar och sätter tonen.',
       ansvar: 'Kaptensbindeln, lagmoralen, fysisk status och att leda laget med maximal intensitet och hårdhet från första till sista sekund.',
       egenskaper: ['Generalen', 'Lagkapten', 'Fysik & Skärpa', 'Spelförståelse'],
@@ -102,7 +102,7 @@ export const LeadersPage: React.FC = () => {
 
             <div className="leaders-strip-card">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
-                #10
+                #1
               </span>
               <div>
                 <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Elvis Mesic</strong>
@@ -112,7 +112,7 @@ export const LeadersPage: React.FC = () => {
 
             <div className="leaders-strip-card">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: 'var(--neon-green)', minWidth: '40px' }}>
-                #9
+                #3
               </span>
               <div>
                 <strong style={{ color: '#fff', fontSize: '16px', display: 'block' }}>Marcelo Villa</strong>

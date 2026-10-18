@@ -18,15 +18,15 @@ export interface CupPlayer {
 }
 
 export const fargelandaCupSquad: CupPlayer[] = [
-  { id: 'c1', number: 10, name: 'Elvis Mesic', position: 'FORWARD', role: 'Lagkapten', status: 'UTTAGEN' },
-  { id: 'c2', number: 7, name: 'Raffi Medz', position: 'MITTFÄLT', role: 'Ledare & Tränare', status: 'UTTAGEN' },
-  { id: 'c3', number: 9, name: 'Marcelo Villa', position: 'FORWARD', role: 'Sportslig Ledare', status: 'UTTAGEN' },
-  { id: 'c4', number: 1, name: 'Viktor Strand', position: 'MÅLVAKT', status: 'UTTAGEN' },
-  { id: 'c5', number: 4, name: 'Noah Lindqvist', position: 'FÖRSVAR', status: 'UTTAGEN' },
-  { id: 'c6', number: 8, name: 'Kevin Berisha', position: 'MITTFÄLT', status: 'UTTAGEN' },
-  { id: 'c7', number: 11, name: 'Amin Haddad', position: 'FORWARD', status: 'UTTAGEN' },
-  { id: 'c8', number: 5, name: 'Lucas Alm', position: 'FÖRSVAR', status: 'UTTAGEN' },
-  { id: 'c9', number: 12, name: 'Liam Karlsson', position: 'MÅLVAKT', role: 'Reservmålvakt', status: 'RESERV' },
+  { id: 'c1', number: 1, name: 'Elvis Mesic', position: 'MÅLVAKT', role: 'Sportchef & Målvakt', status: 'UTTAGEN' },
+  { id: 'c2', number: 3, name: 'Marcelo Villa', position: 'FÖRSVAR', role: 'Generalen & Lagkapten', status: 'UTTAGEN' },
+  { id: 'c3', number: 4, name: 'Hugo', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c4', number: 6, name: 'Wael', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c5', number: 7, name: 'Raffi Medz', position: 'MITTFÄLT', role: 'CEO & Content Manager', status: 'UTTAGEN' },
+  { id: 'c6', number: 9, name: 'Stefan', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c7', number: 11, name: 'Mehdi', position: 'MITTFÄLT', status: 'UTTAGEN' },
+  { id: 'c8', number: 22, name: 'Tro', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c9', number: 24, name: 'Wictor', position: 'FÖRSVAR', status: 'UTTAGEN' },
 ];
 
 export const MatchesPage: React.FC = () => {
