@@ -152,17 +152,17 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({
                     </div>
                   )}
 
-                  {player.stats.assists !== undefined && (
-                    <div className="player-modal-stat-box">
-                      <span>ASSIST</span>
-                      <strong>{player.stats.assists}</strong>
-                    </div>
-                  )}
-
                   {player.stats.cleanSheets !== undefined && (
                     <div className="player-modal-stat-box">
                       <span>NOLLOR</span>
                       <strong className="text-neon">{player.stats.cleanSheets}</strong>
+                    </div>
+                  )}
+
+                  {player.stats.assists !== undefined && (
+                    <div className="player-modal-stat-box">
+                      <span>ASSIST</span>
+                      <strong>{player.stats.assists}</strong>
                     </div>
                   )}
                 </div>

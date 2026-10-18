@@ -218,6 +218,17 @@ export const SquadPage: React.FC = () => {
                       </div>
                     )}
 
+                    {player.stats.cleanSheets !== undefined && (
+                      <div>
+                        <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', display: 'block' }}>
+                          NOLLOR
+                        </span>
+                        <strong style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: 'var(--neon-green)' }}>
+                          {player.stats.cleanSheets}
+                        </strong>
+                      </div>
+                    )}
+
                     {player.stats.assists !== undefined && (
                       <div>
                         <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', display: 'block' }}>
@@ -225,17 +236,6 @@ export const SquadPage: React.FC = () => {
                         </span>
                         <strong style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff' }}>
                           {player.stats.assists}
-                        </strong>
-                      </div>
-                    )}
-
-                    {player.stats.cleanSheets !== undefined && (
-                      <div style={{ gridColumn: 'span 2' }}>
-                        <span style={{ fontSize: '10px', color: 'var(--silver-dim)', textTransform: 'uppercase', display: 'block' }}>
-                          HÅLLNA NOLLOR
-                        </span>
-                        <strong style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: 'var(--neon-green)' }}>
-                          {player.stats.cleanSheets}
                         </strong>
                       </div>
                     )}
