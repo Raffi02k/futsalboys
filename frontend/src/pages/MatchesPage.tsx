@@ -18,11 +18,11 @@ export interface CupPlayer {
 }
 
 export const fargelandaCupSquad: CupPlayer[] = [
-  { id: 'c1', number: 1, name: 'Elvis Mesic', position: 'MÅLVAKT', role: 'Sportchef & Målvakt', status: 'UTTAGEN' },
-  { id: 'c2', number: 3, name: 'Marcelo Villa', position: 'FÖRSVAR', role: 'Generalen & Lagkapten', status: 'UTTAGEN' },
+  { id: 'c1', number: 1, name: 'Elvis Mesic', position: 'MÅLVAKT', status: 'UTTAGEN' },
+  { id: 'c2', number: 3, name: 'Marcelo Villa', position: 'FÖRSVAR', status: 'UTTAGEN' },
   { id: 'c3', number: 4, name: 'Hugo', position: 'FORWARD', status: 'UTTAGEN' },
   { id: 'c4', number: 6, name: 'Wael', position: 'FORWARD', status: 'UTTAGEN' },
-  { id: 'c5', number: 7, name: 'Raffi Medz', position: 'MITTFÄLT', role: 'CEO & Content Manager', status: 'UTTAGEN' },
+  { id: 'c5', number: 7, name: 'Raffi Medz', position: 'MITTFÄLT', status: 'UTTAGEN' },
   { id: 'c6', number: 9, name: 'Stefan', position: 'FORWARD', status: 'UTTAGEN' },
   { id: 'c7', number: 11, name: 'Mehdi', position: 'MITTFÄLT', status: 'UTTAGEN' },
   { id: 'c8', number: 22, name: 'Tro', position: 'FÖRSVAR', status: 'UTTAGEN' },
@@ -332,7 +332,7 @@ export const MatchesPage: React.FC = () => {
                         {player.name}
                       </strong>
                       <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>
-                        {player.position} {player.role ? `• ${player.role}` : ''}
+                        {player.position}
                       </span>
                     </div>
                   </div>
