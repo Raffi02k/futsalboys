@@ -164,6 +164,22 @@ export interface ClubNews {
 
 export const clubNewsList: ClubNews[] = [
   {
+    id: 'intro-video',
+    category: 'OFFICIELL INTRO',
+    title: 'Premiär: Officiell introduktionsvideo för Futsal Boys är här!',
+    summary: 'Se vår allra första officiella introduktionsvideo med ljudet på. Lär känna ledarna, truppen och passionen som driver klubben framåt.',
+    date: '24 OKT 2026',
+    readTime: '3 MIN LÄSNING',
+    author: 'Raffi Medz, Elvis Mesic & Marcelo Villa',
+    image: '/images/futsalboys-ledare.JPG',
+    paragraphs: [
+      'Idag är en stor milstolpe för hela föreningen, vi släpper äntligen vår allra första officiella introduktionsvideo för Futsal Boys Trollhättan! I videon får ni en exklusiv presentation av laget, sammanhållningen och den kompromisslösa energi som präglar varje träning och match.',
+      'Från starten har vår vision varit glasklar: att bygga Trollhättans mest sevärda och sammansvetsade futsallag. Med ledarna Raffi Medz, Elvis Mesic och Marcelo Villa i spetsen samt en trupp full av talang och rutin är vi redo för säsongens alla cupäventyr och seriematcher i Arena Älvhögsborg.',
+      'Se hela videon i full längd med ljudet på direkt här på sajten eller via våra sociala kanaler. Tack till alla supportrar som backar oss från dag ett, vi ses på parketten!',
+    ],
+    quote: 'Detta är bara början på resan. Vi spelar med hjärta, fart och stolthet för Trollhättan.',
+  },
+  {
     id: '1',
     category: 'MATCHRAPPORT',
     title: 'Futsal Boys säkrar dramatisk seger i cupkvartsfinalen',
@@ -171,13 +187,13 @@ export const clubNewsList: ClubNews[] = [
     date: '12 OKT 2026',
     readTime: '3 MIN LÄSNING',
     author: 'Raffi Medz & Elvis Mesic',
-    image: '/images/instagram/action-shot.jpg',
+    image: '/images/players/Lagfoto.JPG',
     paragraphs: [
       'Det var upplagt för en riktig rysare i kvartsfinalen när Futsal Boys klev in på parketten i ett fullsatt Arena Älvhögsborg. Med hög intensitet från första sekunden och en aggressiv press över hela banan visade laget direkt vem som bestämde takten.',
       'Efter en mållös och taktisk första period klev Elvis Mesic fram och dundrade in ledningsmålet via ribban efter en blixtsnabb kombination med Marcelo Villa. Motståndarna kvitterade visserligen kort därefter, men med blott två minuter kvar på matchklockan avgjordes matchen i en dramatisk kontring där hela laget exploderade i glädje.',
       'Stämningen i hallen var fullständigt elektrisk och vinsten säkrar nu en välförtjänt plats i semifinalen nästa vecka. Lagets sammanhållning, försvarsdisciplin och fysiska status fällde det slutgiltiga avgörandet.',
     ],
-    quote: 'Vi visade ett enormt hjärta och höll oss till matchplanen i 40 minuter. Publiken bar oss framåt idag! — Elvis Mesic',
+    quote: 'Vi visade ett enormt hjärta och höll oss till matchplanen i 40 minuter. Publiken bar oss framåt idag!',
   },
   {
     id: '2',
@@ -187,13 +203,13 @@ export const clubNewsList: ClubNews[] = [
     date: '08 OKT 2026',
     readTime: '2 MIN LÄSNING',
     author: 'Futsal Boys Media',
-    image: '/images/instagram/team-huddle.jpg',
+    image: '/images/futsalboys-ledare-breden.JPG',
     paragraphs: [
       'Efter veckor av förberedelser och noggrann design är Futsal Boys officiella matchställ äntligen här. Matchstället kombinerar en djup kolfibersvart bas med elektriska neongröna fartlinjer som speglar klubbens fartfyllda och kompromisslösa spelstil på futsalplanen.',
       'Tröjan är tillverkad i ett ultralätt funktionsmaterial optimerat för det snabba inomhusspelet med maximal ventilation, slitstyrka och rörelsefrihet. Det stilrena klubbemblemet i krom och neon pryder bröstet med stolthet.',
       'Supportrar och sponsorer kan nu förhandsbeställa tröjan samt den officiella klubbmerchen genom att skicka ett DM till oss direkt på Instagram (@grabbarna.futsal).',
     ],
-    quote: 'Matchtröjan representerar vår identitet: mod, snabbhet och gemenskap i Trollhättan. — Raffi Medz',
+    quote: 'Matchtröjan representerar vår identitet: mod, snabbhet och gemenskap i Trollhättan.',
   },
 ];
 
@@ -228,21 +244,21 @@ export const instagramData: InstagramProfile = {
   posts: [
     {
       id: 'p1',
-      image: '/images/instagram/cup-win.jpg',
+      image: '/images/players/Lagfoto.JPG',
       likes: 184,
-      caption: 'MÄSTARE! 🏆 Vilken kväll, vilken turnering. Tack till alla som stöttade oss!',
+      caption: 'MÄSTARE! 🏆 Hela truppen samlad inför säsongens stora utmaningar. Tack till alla supportrar!',
     },
     {
       id: 'p2',
-      image: '/images/instagram/action-shot.jpg',
-      likes: 142,
-      caption: 'Full fokus i varje touch. Snabbhet och precision på inomhusparketten ⚡️',
+      image: '/images/futsalboys-ledare.JPG',
+      likes: 198,
+      caption: 'Ledarstaben: Raffi Medz, Elvis Mesic och Marcelo Villa. 100% passion och ledarskap på och utanför planen! 💚🖤',
     },
     {
       id: 'p3',
-      image: '/images/instagram/team-huddle.jpg',
-      likes: 198,
-      caption: 'Enade från start till slutsignal. Vi gör detta tillsammans! 💚🖤',
+      image: '/images/futsalboys-ledare-breden.JPG',
+      likes: 165,
+      caption: 'Tillsammans mot toppen i Trollhättan. Vi förbereder oss inför cuphelgen med fullt fokus! ⚡️',
     },
   ],
 };

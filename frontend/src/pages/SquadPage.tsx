@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Award, Eye } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { PlayerModal } from '../components/PlayerModal';
+import { SquadIntroVideo } from '../components/SquadIntroVideo';
 import { squadData, Player } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
@@ -25,19 +26,21 @@ export const SquadPage: React.FC = () => {
     <div className="squad-page" style={{ paddingTop: 'calc(var(--header-height) + 24px)', paddingBottom: '80px' }}>
       <PageMeta
         title={`Spelartruppen | ${siteConfig.projectName} - Trollhättan`}
-        description="Möt hela spelartruppen i Futsal Boys Trollhättan. Se spelarprofiler, positioner, nummer och matchstatistik."
+        description="Möt hela spelartruppen i Futsal Boys Trollhättan. Se officiell introduktionsvideo och utforska alla spelarprofiler."
         canonicalPath="/truppen"
       />
 
       <div className="container">
+        {/* 1. Official Intro Video in Full Length with Audio */}
+        <SquadIntroVideo />
 
-        {/* Hero Header without AI badge */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
-          <h1 className="section-title" style={{ fontSize: 'clamp(38px, 6vw, 64px)', marginBottom: '16px' }}>
-            SPELAR<span className="text-neon">TRUPPEN</span>
-          </h1>
-          <p className="section-desc" style={{ margin: '0 auto 32px', fontSize: '17px' }}>
-            Trollhättans mest sammansvetsade futsallag. Klicka på en spelare för att öppna profilen och bläddra igenom truppen.
+        {/* 2. Squad Header & Filters */}
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '56px auto 36px' }}>
+          <h2 className="section-title" style={{ fontSize: 'clamp(32px, 5.5vw, 56px)', marginBottom: '14px' }}>
+            ALLA SPELARE I <span className="text-neon">TRUPPEN</span>
+          </h2>
+          <p className="section-desc" style={{ margin: '0 auto 28px', fontSize: '16px' }}>
+            Trollhättans mest sammansvetsade futsallag. Klicka på en spelare för att öppna profilen och se detaljerad statistik.
           </p>
 
           {/* Position Filter Pills */}

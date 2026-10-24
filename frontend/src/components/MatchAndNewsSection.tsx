@@ -1,36 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { createPortal } from 'react-dom';
-import { Calendar, Clock, MapPin, Flame, ArrowRight, ShoppingBag, X, User } from 'lucide-react';
-import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
+import { Calendar, Clock, MapPin, Flame, ArrowRight, ShoppingBag } from 'lucide-react';
+import { upcomingMatch, clubNewsList } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
 export const MatchAndNewsSection: React.FC = () => {
-  const [selectedArticle, setSelectedArticle] = useState<ClubNews | null>(null);
-
-  // Close modal on Escape key
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && selectedArticle) {
-        setSelectedArticle(null);
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedArticle]);
-
-  // Lock body scroll when article modal is open
-  useEffect(() => {
-    if (selectedArticle) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [selectedArticle]);
-
   return (
     <section className="section section--darker" id="matcher">
       <div className="container">
@@ -148,11 +122,11 @@ export const MatchAndNewsSection: React.FC = () => {
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
               <div>
                 {clubNewsList.map((news) => (
-                  <div
+                  <Link
                     key={news.id}
+                    to={`/blogg/${news.id}`}
                     className="news-item"
-                    onClick={() => setSelectedArticle(news)}
-                    style={{ cursor: 'pointer' }}
+                    style={{ textDecoration: 'none', color: 'inherit', display: 'flex' }}
                     title={`Läs artikel: ${news.title}`}
                   >
                     <img src={news.image} alt={news.title} className="news-thumb" loading="lazy" />
@@ -180,7 +154,7 @@ export const MatchAndNewsSection: React.FC = () => {
                         <ArrowRight size={13} />
                       </span>
                     </div>
-                  </div>
+                  </Link>
                 ))}
               </div>
 
@@ -243,191 +217,6 @@ export const MatchAndNewsSection: React.FC = () => {
           </div>
         </div>
       </div>
-
-      {/* ARTICLE / BLOG POST MODAL READER (RENDERED VIA PORTAL TO BODY) */}
-      {selectedArticle && typeof document !== 'undefined' && createPortal(
-        <div
-          role="dialog"
-          aria-modal="true"
-          aria-label={selectedArticle.title}
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 999999,
-            backgroundColor: 'rgba(5, 7, 9, 0.94)',
-            backdropFilter: 'blur(20px)',
-            WebkitBackdropFilter: 'blur(20px)',
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'center',
-            padding: '24px 16px 80px',
-            overflowY: 'auto',
-          }}
-          onClick={() => setSelectedArticle(null)}
-        >
-          <div
-            style={{
-              position: 'relative',
-              width: '100%',
-              maxWidth: '820px',
-              backgroundColor: '#0e1217',
-              border: '2px solid var(--border-neon)',
-              borderRadius: '20px',
-              overflow: 'hidden',
-              boxShadow: '0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(16, 255, 96, 0.25)',
-              margin: '20px auto',
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Modal Header Bar with Prominent Close Button */}
-            <div
-              style={{
-                position: 'sticky',
-                top: 0,
-                zIndex: 20,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                padding: '16px 24px',
-                borderBottom: '1px solid var(--border-subtle)',
-                backgroundColor: 'rgba(18, 23, 30, 0.98)',
-                backdropFilter: 'blur(10px)',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
-                <span className="section-tag" style={{ margin: 0, padding: '4px 14px', fontSize: '12px' }}>
-                  {selectedArticle.category}
-                </span>
-                <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
-                  {selectedArticle.date} • {selectedArticle.readTime}
-                </span>
-              </div>
-
-              <button
-                onClick={() => setSelectedArticle(null)}
-                aria-label="Stäng artikel"
-                className="btn btn--neon btn--sm"
-                style={{ padding: '6px 14px', fontSize: '13px' }}
-              >
-                <X size={18} />
-                <span>STÄNG</span>
-              </button>
-            </div>
-
-            {/* Modal Article Body */}
-            <div style={{ padding: '32px 28px' }}>
-              {/* Title & Author */}
-              <h2
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(28px, 4.5vw, 42px)',
-                  color: '#ffffff',
-                  lineHeight: 1.15,
-                  letterSpacing: '0.03em',
-                  marginBottom: '16px',
-                  textTransform: 'uppercase',
-                }}
-              >
-                {selectedArticle.title}
-              </h2>
-
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  color: 'var(--neon-green)',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  marginBottom: '24px',
-                  paddingBottom: '16px',
-                  borderBottom: '1px solid var(--border-subtle)',
-                }}
-              >
-                <User size={16} />
-                <span>Av: {selectedArticle.author}</span>
-              </div>
-
-              {/* Article Hero Image */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '340px',
-                  borderRadius: '14px',
-                  overflow: 'hidden',
-                  marginBottom: '28px',
-                  border: '1px solid var(--border-subtle)',
-                  boxShadow: '0 10px 30px rgba(0,0,0,0.5)',
-                }}
-              >
-                <img
-                  src={selectedArticle.image}
-                  alt={selectedArticle.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-
-              {/* Article Paragraphs */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', color: '#cbd5e1', fontSize: '16px', lineHeight: 1.75 }}>
-                {selectedArticle.paragraphs.map((p, idx) => (
-                  <p key={idx}>{p}</p>
-                ))}
-              </div>
-
-              {/* Featured Quote Callout */}
-              {selectedArticle.quote && (
-                <div
-                  style={{
-                    marginTop: '32px',
-                    padding: '22px 26px',
-                    borderRadius: '12px',
-                    background: 'rgba(16, 255, 96, 0.08)',
-                    borderLeft: '4px solid var(--neon-green)',
-                    fontStyle: 'italic',
-                    color: '#ffffff',
-                    fontSize: '16px',
-                    lineHeight: 1.6,
-                  }}
-                >
-                  "{selectedArticle.quote}"
-                </div>
-              )}
-
-              {/* Bottom Actions inside Article */}
-              <div
-                style={{
-                  marginTop: '40px',
-                  paddingTop: '24px',
-                  borderTop: '1px solid var(--border-subtle)',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  gap: '16px',
-                }}
-              >
-                <a
-                  href={siteConfig.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--outline btn--sm"
-                >
-                  <span>FÖLJ RESAN PÅ INSTAGRAM</span>
-                </a>
-
-                <button
-                  onClick={() => setSelectedArticle(null)}
-                  className="btn btn--neon btn--sm"
-                >
-                  <X size={16} />
-                  <span>STÄNG ARTIKEL</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>,
-        document.body
-      )}
     </section>
   );
 };

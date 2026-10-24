@@ -44,6 +44,8 @@ export interface SiteConfig {
   logoUrl: string;
   wordmarkUrl: string;
   heroPosterUrl: string;
+  introVideoUrl: string;
+  introVideoFullUrl: string;
 
   // Navigation links
   navLinks: Array<{
@@ -63,7 +65,7 @@ export const siteConfig: SiteConfig = {
   projectName: "Futsal Boys",
   clubName: "Futsal Boys Trollhättan",
   tagline: "LEADERS OF THE CLUB",
-  subTagline: "Tillsammans mot toppen – Cuper, matcher & passion för futsal i Trollhättan.",
+  subTagline: "Tillsammans mot toppen. Cuper, matcher & passion för futsal i Trollhättan.",
   description: "Officiella hemsidan för Trollhättan Futsal Boys. Följ våra ledare, se truppen, matchresultat och den unika gemenskapen i hallen.",
   city: "Trollhättan",
   region: "Västra Götaland",
@@ -97,6 +99,8 @@ export const siteConfig: SiteConfig = {
   logoUrl: "/images/futsalboys-logo.png",
   wordmarkUrl: "/images/futsalboys-logo.png",
   heroPosterUrl: "/images/futsalboys-ledare.JPG",
+  introVideoUrl: "/media/introvideo.mp4",
+  introVideoFullUrl: "/media/introvideo.mp4",
 
   navLinks: [
     { label: "HEM", path: "/" },
@@ -104,6 +108,7 @@ export const siteConfig: SiteConfig = {
     { label: "TRUPPEN", path: "/truppen" },
     { label: "MATCHER", path: "/matcher" },
     { label: "GALLERI", path: "/galleri" },
+    { label: "BLOGG", path: "/blogg" },
     { label: "INSTAGRAM", path: "/instagram" },
   ],
 

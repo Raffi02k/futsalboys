@@ -268,12 +268,12 @@ export const PlayerCarousel: React.FC = () => {
                 fontFamily: 'var(--font-display)',
                 fontSize: '14px',
                 color: 'var(--neon-green)',
-                letterSpacing: '0.1em',
+                letterSpacing: '0.08em',
                 marginTop: '6px',
                 display: 'block',
               }}
             >
-              — {activePlayer.name} #{activePlayer.number}
+              {activePlayer.name} #{activePlayer.number}
             </span>
           </div>
         )}

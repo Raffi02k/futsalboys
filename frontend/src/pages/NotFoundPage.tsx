@@ -87,7 +87,7 @@ export const NotFoundPage: React.FC = () => {
             }}
           >
             Det ser ut som att länken du följde är felaktig eller att sidan har flyttats.
-            Ingen fara – matchen fortsätter! Välj vart du vill gå:
+            Ingen fara, matchen fortsätter! Välj vart du vill gå:
           </p>
 
           {/* Quick Hub Grid */}

@@ -159,7 +159,7 @@ export const LeadersPage: React.FC = () => {
               LEDARNAS TANKAR • <span className="text-neon">SNABB-Q&A 🧠⚽️</span>
             </h2>
             <p style={{ color: 'var(--silver)', fontSize: '15px', maxWidth: '820px', lineHeight: 1.6, margin: 0 }}>
-              Det är vi som styr skutan, lägger taktiken och ser till att maskineriet rullar. För att ni ska lära känna oss lite bättre tog vi en snabb Q&A – svaren visar ganska exakt hur olika (och sköna) vi är!
+              Det är vi som styr skutan, lägger taktiken och ser till att maskineriet rullar. För att ni ska lära känna oss lite bättre tog vi en snabb Q&A där svaren visar ganska exakt hur olika (och sköna) vi är!
             </p>
           </div>
 
@@ -232,7 +232,7 @@ export const LeadersPage: React.FC = () => {
                   Q2
                 </span>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '20px', color: '#fff', margin: 0, lineHeight: 1.2 }}>
-                  MÅL ELLER ASSIST – VAD VÄLJER DU?
+                  MÅL ELLER ASSIST? VAD VÄLJER DU?
                 </h3>
               </div>
 

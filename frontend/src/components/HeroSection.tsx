@@ -32,7 +32,7 @@ export const HeroSection: React.FC = () => {
           </div>
 
           <p className="hero__desc">
-            Välkommen till Futsal Boys – hjärtat och passionen i Trollhättan.
+            Välkommen till Futsal Boys, hjärtat och passionen i Trollhättan.
             Stark sammanhållning och offensiv futsal.
           </p>
 
@@ -60,3 +60,4 @@ export const HeroSection: React.FC = () => {
     </section>
   );
 };
+

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Calendar, MapPin, Clock, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
-import { upcomingMatch, clubNewsList, ClubNews } from '../content/futsalData';
+import { upcomingMatch, clubNewsList } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
 // ============================================================================
@@ -30,7 +31,6 @@ export const fargelandaCupSquad: CupPlayer[] = [
 ];
 
 export const MatchesPage: React.FC = () => {
-  const [selectedNews, setSelectedNews] = useState<ClubNews | null>(null);
 
   // Live Countdown timer to Färgelanda Futsal Cup (18 Dec 2026, 09:00:00)
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
@@ -143,7 +143,7 @@ export const MatchesPage: React.FC = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
                   <Calendar size={18} className="text-neon" />
-                  <strong>18 – 19 December 2026</strong>
+                  <strong>18-19 December 2026</strong>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
@@ -582,119 +582,41 @@ export const MatchesPage: React.FC = () => {
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '24px' }}>
             {clubNewsList.map((news) => (
-              <article
+              <Link
                 key={news.id}
-                className="news-card-hover"
-                onClick={() => setSelectedNews(news)}
+                to={`/blogg/${news.id}`}
+                className="blog-card"
               >
-                <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                <div className="blog-card-img-wrap">
                   <img
                     src={news.image}
                     alt={news.title}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    className="blog-card-img"
                   />
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '14px',
-                      left: '14px',
-                      background: 'rgba(7,9,11,0.85)',
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      color: 'var(--neon-green)',
-                      letterSpacing: '0.08em',
-                    }}
-                  >
-                    {news.category}
-                  </div>
                 </div>
 
-                <div style={{ padding: '22px' }}>
-                  <span style={{ fontSize: '11px', color: 'var(--silver-dim)', fontWeight: 600, display: 'block', marginBottom: '6px' }}>
-                    {news.date} • {news.readTime}
-                  </span>
-                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#fff', margin: '0 0 10px', lineHeight: 1.2 }}>
-                    {news.title}
-                  </h3>
-                  <p style={{ color: 'var(--silver-dim)', fontSize: '13px', lineHeight: 1.6, margin: '0 0 16px' }}>
-                    {news.summary}
-                  </p>
-                  <span style={{ color: 'var(--neon-green)', fontSize: '13px', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
-                    Läs hela rapporten <ChevronRight size={14} />
-                  </span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                  <span className="blog-tag blog-tag--neon">{news.category}</span>
+                  <span style={{ fontSize: '13px', color: 'var(--silver-dim)', fontWeight: 500 }}>{news.date}</span>
                 </div>
-              </article>
+
+                <h3 className="blog-card-title">
+                  {news.title}
+                </h3>
+
+                <p style={{ color: 'var(--silver-dim)', fontSize: '14px', lineHeight: 1.65, marginBottom: '22px', flex: 1 }}>
+                  {news.summary}
+                </p>
+
+                <div className="blog-card-cta">
+                  <span>LÄS HELA RAPPORTEN</span>
+                  <ChevronRight size={15} className="blog-card-arrow" />
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </div>
-
-      {/* Modal for viewing match report */}
-      {selectedNews && (
-        <div
-          className="gallery-modal-backdrop"
-          onClick={() => setSelectedNews(null)}
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className="gallery-modal-content"
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: '800px', maxHeight: '85vh', overflowY: 'auto' }}
-          >
-            <div className="gallery-modal-topbar">
-              <span className="gallery-tag">{selectedNews.category}</span>
-              <button
-                type="button"
-                className="gallery-modal-close"
-                onClick={() => setSelectedNews(null)}
-              >
-                ✕
-              </button>
-            </div>
-
-            <div style={{ padding: '28px' }}>
-              <span style={{ fontSize: '12px', color: 'var(--neon-green)', fontWeight: 700, letterSpacing: '0.08em' }}>
-                {selectedNews.date} • {selectedNews.author}
-              </span>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: '#fff', margin: '8px 0 16px' }}>
-                {selectedNews.title}
-              </h2>
-
-              <img
-                src={selectedNews.image}
-                alt={selectedNews.title}
-                style={{ width: '100%', maxHeight: '340px', objectFit: 'cover', borderRadius: '12px', marginBottom: '24px' }}
-              />
-
-              {selectedNews.paragraphs.map((p, i) => (
-                <p key={i} style={{ color: 'var(--silver)', fontSize: '15px', lineHeight: 1.7, marginBottom: '16px' }}>
-                  {p}
-                </p>
-              ))}
-
-              {selectedNews.quote && (
-                <blockquote
-                  style={{
-                    borderLeft: '3px solid var(--neon-green)',
-                    paddingLeft: '16px',
-                    fontStyle: 'italic',
-                    color: 'var(--silver-bright)',
-                    margin: '20px 0',
-                    background: 'rgba(255,255,255,0.03)',
-                    padding: '14px 18px',
-                    borderRadius: '0 8px 8px 0',
-                  }}
-                >
-                  {selectedNews.quote}
-                </blockquote>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
