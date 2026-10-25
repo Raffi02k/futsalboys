@@ -315,12 +315,12 @@ export const BlogPostPage: React.FC = () => {
               <div className="squad-intro-video-controls" onClick={(e) => e.stopPropagation()}>
                 <button
                   type="button"
-                  className={`squad-intro-ctrl-btn ${hasAudio ? 'squad-intro-ctrl-btn--active' : 'squad-intro-ctrl-btn--pulse'}`}
+                  className={`squad-intro-ctrl-btn ${hasAudio ? 'squad-intro-ctrl-btn--active' : 'squad-intro-ctrl-btn--muted'}`}
                   onClick={toggleSound}
                   aria-label={hasAudio ? 'Stäng av ljud' : 'Slå på ljud'}
+                  title={hasAudio ? 'Ljud på (klicka för att tysta)' : 'Ljud av (klicka för att slå på)'}
                 >
                   {hasAudio ? <Volume2 size={18} /> : <VolumeX size={18} />}
-                  <span className="squad-intro-btn-label">{hasAudio ? 'Ljud på' : 'Slå på ljud'}</span>
                 </button>
 
                 <button
