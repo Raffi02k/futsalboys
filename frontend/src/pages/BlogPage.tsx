@@ -181,11 +181,11 @@ export const BlogPage: React.FC = () => {
 
       <div className="container">
         {/* Page Header */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
-          <h1 className="section-title" style={{ fontSize: 'clamp(38px, 6vw, 64px)', marginBottom: '16px' }}>
+        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px' }}>
+          <h1 className="section-title" style={{ fontSize: 'clamp(28px, 5.5vw, 56px)', marginBottom: '14px' }}>
             BLOGG & <span className="text-neon">NYHETER</span>
           </h1>
-          <p className="section-desc" style={{ margin: '0 auto', fontSize: '17px' }}>
+          <p className="section-desc" style={{ margin: '0 auto', fontSize: '15px' }}>
             Följ resan bakom kulisserna, läs matchrapporter och ta del av exklusiva videopremiärer från Trollhättan.
           </p>
         </div>
@@ -298,16 +298,13 @@ export const BlogPage: React.FC = () => {
 
               <div className="blog-body-text">
                 {featuredVideoPost.paragraphs.map((p, idx) => (
-                  <p key={idx} style={{ marginBottom: '16px', lineHeight: 1.7, color: '#cbd5e1', fontSize: '16px' }}>
+                  <p key={idx} style={{ marginBottom: '16px', lineHeight: 1.7, color: '#cbd5e1', fontSize: '15.5px' }}>
                     {p}
                   </p>
                 ))}
 
                 {featuredVideoPost.quote && (
-                  <blockquote 
-                    className="blog-quote"
-                    style={{ whiteSpace: 'nowrap', overflowX: 'auto', fontSize: '14px', padding: '10px 16px' }}
-                  >
+                  <blockquote className="blog-quote">
                     "{featuredVideoPost.quote}"
                   </blockquote>
                 )}
@@ -364,16 +361,16 @@ export const BlogPage: React.FC = () => {
 
         {/* OTHER CLUB POSTS */}
         {otherNews.length > 0 && (
-          <div style={{ marginTop: '72px' }}>
-            <h3 className="section-title" style={{ fontSize: '26px', marginBottom: '24px' }}>
+          <div style={{ marginTop: '64px' }}>
+            <h3 className="section-title" style={{ fontSize: '24px', marginBottom: '20px' }}>
               FLER ARTIKLAR & <span className="text-neon">RAPPORTER</span>
             </h3>
 
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-                gap: '24px',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+                gap: '20px',
               }}
             >
               {otherNews.map((article) => (
