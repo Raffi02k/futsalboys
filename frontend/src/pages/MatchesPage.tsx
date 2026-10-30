@@ -26,7 +26,7 @@ export const fargelandaCupSquad: CupPlayer[] = [
   { id: 'c5', number: 6, name: 'Wael', position: 'FORWARD', status: 'UTTAGEN' },
   { id: 'c6', number: 24, name: 'Wictor', position: 'FÖRSVAR', status: 'UTTAGEN' },
   { id: 'c7', number: 4, name: 'Hugo', position: 'FORWARD', status: 'UTTAGEN' },
-  { id: 'c8', number: 8, name: 'Hüsnücan', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c8', number: 9, name: 'Stefan', position: 'FORWARD', status: 'UTTAGEN' },
   { id: 'c9', number: 10, name: 'Kasper', position: 'MITTFÄLT', status: 'UTTAGEN' },
   { id: 'c10', number: 14, name: 'Lucas', position: 'FÖRSVAR', status: 'UTTAGEN' },
   { id: 'c11', number: 18, name: 'Emin', position: 'FORWARD', status: 'UTTAGEN' },

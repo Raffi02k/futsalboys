@@ -393,7 +393,7 @@ export const winterSchedule: ScheduleEvent[] = [
     description: 'Vinterns stora cupäventyr! Heldag med gruppspel, slutspel och jakt på cupguldet.',
     longDescription: [
       'Vintersäsongens absoluta höjdpunkt! Futsal Boys åker till Färgelanda för att delta i prestigefyllda Färgelanda Futsal Cup.',
-      'Laget kliver in med en stark 12-mannatrupp: Elvis, Raffi, Marcelo, Mehdi, Wael, Wictor, Hugo, Hüsnücan, Kasper, Lucas, Emin och Tro.',
+      'Laget kliver in med en stark 12-mannatrupp: Elvis, Raffi, Marcelo, Mehdi, Wael, Wictor, Hugo, Stefan, Kasper, Lucas, Emin och Tro.',
       'Dagen bjuder på flera intensiva gruppspelsmatcher och förhoppningsvis en lång resa genom slutspelet mot cupguldet!',
       'Följ liverapporteringen under hela cupdagen på lagets Instagram (@grabbarna.futsal) och spelschemat på ProCup.',
     ],
