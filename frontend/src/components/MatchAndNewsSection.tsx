@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Calendar, Clock, MapPin, Flame, ArrowRight, ShoppingBag } from 'lucide-react';
-import { upcomingMatch, clubNewsList } from '../content/futsalData';
+import { upcomingMatch, clubNewsList, winterSchedule } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
 export const MatchAndNewsSection: React.FC = () => {
@@ -9,12 +9,12 @@ export const MatchAndNewsSection: React.FC = () => {
     <section className="section section--darker" id="matcher">
       <div className="container">
         {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 48px' }}>
+        <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 48px' }}>
           <h2 className="section-title">
             NÄSTA MATCH & <span className="text-neon">KLUBBNYTT</span>
           </h2>
           <p className="section-desc" style={{ margin: '0 auto' }}>
-            Håll koll på säsongens spelschema, matchdagar och läs de senaste nyheterna och matchrapporterna.
+            Håll koll på säsongens spelschema, träningsmatcher och läs de senaste nyheterna och rapporterna.
           </p>
         </div>
 
@@ -66,10 +66,11 @@ export const MatchAndNewsSection: React.FC = () => {
                       justifyContent: 'center',
                       fontFamily: 'var(--font-display)',
                       fontSize: '22px',
-                      color: 'var(--silver-dim)',
+                      color: 'var(--silver)',
+                      fontWeight: 700,
                     }}
                   >
-                    RFC
+                    FUNK
                   </div>
                   <span className="match-team__name">{upcomingMatch.awayTeam}</span>
                 </div>
@@ -91,7 +92,7 @@ export const MatchAndNewsSection: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', flexWrap: 'wrap', margin: '0 auto' }}>
                 <Link
                   to="/matcher"
                   className="btn btn--neon"
@@ -121,7 +122,7 @@ export const MatchAndNewsSection: React.FC = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
               <div>
-                {clubNewsList.map((news) => (
+                {clubNewsList.slice(0, 2).map((news) => (
                   <Link
                     key={news.id}
                     to={`/blogg/${news.id}`}
@@ -214,6 +215,77 @@ export const MatchAndNewsSection: React.FC = () => {
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* ==================================================================
+            HOMEPAGE WINTER SCHEDULE OVERVIEW (NOV & DEC)
+           ================================================================== */}
+        <div className="winter-schedule-strip">
+          <div className="winter-schedule-strip__header">
+            <div>
+              <span className="winter-schedule-strip__tag">
+                <Calendar size={14} />
+                VINTERPROGRAM 2026
+              </span>
+              <h3 className="winter-schedule-strip__title">
+                SCHEMAT FÖR <span className="text-neon">NOVEMBER & DECEMBER</span>
+              </h3>
+              <p className="winter-schedule-strip__subtitle">
+                Schemat för Futsal Boys sträcker sig över november och december och innehåller tre träningar, två träningsmatcher och en cup.
+              </p>
+            </div>
+
+            <Link to="/matcher" className="btn btn--neon btn--sm">
+              <span>SE FULLSTÄNDIGT SCHEMA</span>
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+
+          <div className="winter-schedule-strip__grid">
+            {winterSchedule.map((item) => {
+              const [dayNum, monthStr] = item.date.split(' ');
+              return (
+                <Link
+                  to={`/schema/${item.slug}`}
+                  key={item.id}
+                  className="winter-schedule-mini-card"
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  <div className="mini-card__date">
+                    <span className="mini-card__day">{dayNum}</span>
+                    <span className="mini-card__month">{monthStr}</span>
+                  </div>
+
+                  <div className="mini-card__info">
+                    <span
+                      className={`mini-card__badge ${
+                        item.type === 'TRÄNING'
+                          ? 'mini-card__badge--traning'
+                          : item.type === 'MATCH'
+                          ? 'mini-card__badge--match'
+                          : 'mini-card__badge--cup'
+                      }`}
+                    >
+                      {item.type === 'TRÄNING' ? 'TRÄNING' : item.type === 'MATCH' ? 'MATCH' : 'CUP • HELDAG'}
+                    </span>
+                    <h4 className="mini-card__title" title={item.title}>
+                      {item.title}
+                    </h4>
+                    <div className="mini-card__meta">
+                      <span className="mini-card__meta-item">
+                        <Clock size={12} className="text-neon" />
+                        {item.time}
+                      </span>
+                      <span className="mini-card__meta-item">
+                        <MapPin size={12} className="text-neon" />
+                        {item.venue}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -1,38 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Clock, ChevronRight, ExternalLink, ShieldCheck } from 'lucide-react';
+import { Calendar, MapPin, Clock, ChevronRight, ExternalLink, ShieldCheck, Flame, Trophy } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
-import { upcomingMatch, clubNewsList } from '../content/futsalData';
+import { upcomingMatch, clubNewsList, winterSchedule } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
 // ============================================================================
-// REDIGERA CUPTRUPPEN HÄR:
-// Lägg till, ändra eller ta bort spelare som ska delta i Färgelanda Futsal Cup
+// CUPTRUPPEN TILL FÄRGELANDA FUTSAL CUP 2026:
+// 12 spelare uttagna (Kasper ersätter Mentor, Hugo ersätter John, Ashraf ersätter Tro)
+// Endast förnamn visas enligt önskemål.
 // ============================================================================
 export interface CupPlayer {
   id: string;
   number: number;
   name: string;
-  position: 'MÅLVAKT' | 'FÖRSVAR' | 'MITTFÄLT' | 'FORWARD';
-  role?: string;
+  position: 'MÅLVAKT' | 'FÖRSVAR' | 'MITTFÄLT' | 'FORWARD' | 'SPELARE';
   status: 'UTTAGEN' | 'RESERV';
 }
 
 export const fargelandaCupSquad: CupPlayer[] = [
-  { id: 'c1', number: 1, name: 'Elvis Mesic', position: 'MÅLVAKT', status: 'UTTAGEN' },
-  { id: 'c2', number: 3, name: 'Marcelo Villa', position: 'FÖRSVAR', status: 'UTTAGEN' },
-  { id: 'c3', number: 4, name: 'Hugo', position: 'FORWARD', status: 'UTTAGEN' },
-  { id: 'c4', number: 6, name: 'Wael', position: 'FORWARD', status: 'UTTAGEN' },
-  { id: 'c5', number: 7, name: 'Raffi Medz', position: 'MITTFÄLT', status: 'UTTAGEN' },
-  { id: 'c6', number: 9, name: 'Stefan', position: 'FORWARD', status: 'UTTAGEN' },
-  { id: 'c7', number: 11, name: 'Mehdi', position: 'MITTFÄLT', status: 'UTTAGEN' },
-  { id: 'c8', number: 22, name: 'Tro', position: 'FÖRSVAR', status: 'UTTAGEN' },
-  { id: 'c9', number: 24, name: 'Wictor', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c1', number: 1, name: 'Elvis', position: 'MÅLVAKT', status: 'UTTAGEN' },
+  { id: 'c2', number: 3, name: 'Marcelo', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c3', number: 7, name: 'Raffi', position: 'MITTFÄLT', status: 'UTTAGEN' },
+  { id: 'c4', number: 11, name: 'Mehdi', position: 'MITTFÄLT', status: 'UTTAGEN' },
+  { id: 'c5', number: 6, name: 'Wael', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c6', number: 24, name: 'Wictor', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c7', number: 4, name: 'Hugo', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c8', number: 8, name: 'Hüsnücan', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c9', number: 10, name: 'Kasper', position: 'MITTFÄLT', status: 'UTTAGEN' },
+  { id: 'c10', number: 14, name: 'Lucas', position: 'FÖRSVAR', status: 'UTTAGEN' },
+  { id: 'c11', number: 18, name: 'Emin', position: 'FORWARD', status: 'UTTAGEN' },
+  { id: 'c12', number: 22, name: 'Tro', position: 'FÖRSVAR', status: 'UTTAGEN' },
 ];
 
 export const MatchesPage: React.FC = () => {
+  const [scheduleFilter, setScheduleFilter] = useState<'ALL' | 'TRÄNING' | 'MATCH' | 'CUP'>('ALL');
 
-  // Live Countdown timer to Färgelanda Futsal Cup (18 Dec 2026, 09:00:00)
+  // Live Countdown timer to Färgelanda Futsal Cup (19 Dec 2026 Heldag, 08:00:00)
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
     days: 0,
     hours: 0,
@@ -41,8 +45,8 @@ export const MatchesPage: React.FC = () => {
   });
 
   useEffect(() => {
-    // Cup starts 18 December 2026
-    const cupDate = new Date('2026-12-18T09:00:00').getTime();
+    // Cup starts 19 December 2026
+    const cupDate = new Date('2026-12-19T08:00:00').getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -63,6 +67,10 @@ export const MatchesPage: React.FC = () => {
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const filteredSchedule = winterSchedule.filter(
+    (item) => scheduleFilter === 'ALL' || item.type === scheduleFilter
+  );
 
   const pastMatches = [
     {
@@ -100,29 +108,50 @@ export const MatchesPage: React.FC = () => {
   return (
     <div className="matches-page" style={{ paddingTop: 'calc(var(--header-height) + 24px)', paddingBottom: '80px' }}>
       <PageMeta
-        title={`Matcher & Cuper | ${siteConfig.projectName} - Trollhättan`}
-        description="Se kommande matcher, Färgelanda Futsal Cup 2026, spelschema, cuptrupp och resultat för Futsal Boys."
+        title={`Vinterschema & Matcher | ${siteConfig.projectName} - Trollhättan`}
+        description="Schemat för Futsal Boys sträcker sig över november och december och innehåller tre träningar, två träningsmatcher och Färgelanda cup."
         canonicalPath="/matcher"
       />
 
       <div className="container">
         {/* Hero Header */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 48px' }}>
+        <div style={{ textAlign: 'center', maxWidth: '840px', margin: '0 auto 48px' }}>
           <h1 className="section-title" style={{ fontSize: 'clamp(38px, 6vw, 64px)', marginBottom: '16px' }}>
-            MATCHER & <span className="text-neon">CUPER</span>
+            SCHEMA & <span className="text-neon">MATCHER</span>
           </h1>
-          <p className="section-desc" style={{ margin: '0 auto', fontSize: '17px' }}>
-            Följ Futsal Boys genom seriespelet och turneringarna. Här hittar du kommande drabbningar, cuptrupp och resultat.
+          <p className="section-desc" style={{ margin: '0 auto', fontSize: '17px', lineHeight: 1.6 }}>
+            Schemat för Futsal Boys sträcker sig över november och december och innehåller tre träningar, två träningsmatcher och en cup. Här hittar du alla datum, tider, arenor och den officiella cuptruppen.
           </p>
         </div>
 
         {/* ==================================================================
-            1. FEATURED UPCOMING CUP: FÄRGELANDA FUTSAL CUP 2026
+            1. FEATURED UPCOMING CUP: FÄRGELANDA FUTSAL CUP 2026 (LÄNGST UPP)
            ================================================================== */}
         <section className="cup-featured-card">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center' }}>
             {/* Cup Info */}
             <div>
+              <div
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '4px 12px',
+                  borderRadius: '30px',
+                  background: 'rgba(255, 215, 0, 0.15)',
+                  color: '#ffd700',
+                  border: '1px solid rgba(255, 215, 0, 0.4)',
+                  fontSize: '11px',
+                  fontWeight: 800,
+                  letterSpacing: '0.1em',
+                  marginBottom: '16px',
+                  textTransform: 'uppercase',
+                }}
+              >
+                <Trophy size={13} />
+                <span>VINTERNS STORA CUPÄVENTYR</span>
+              </div>
+
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
@@ -133,17 +162,17 @@ export const MatchesPage: React.FC = () => {
                   letterSpacing: '0.02em',
                 }}
               >
-                FÄRGELANDA <span className="text-neon">FUTSAL CUP 2026</span>
+                FÄRGELANDA <span className="text-neon">FUTSAL CUP</span>
               </h2>
 
               <p style={{ color: 'var(--silver)', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>
-                Futsal Boys kliver in i prestigefyllda Färgelanda Futsal Cup. Två intensiva dagar med full fart på parketten, gruppspel, slutspel och jakt på cupguldet!
+                Futsal Boys kliver in i prestigefyllda Färgelanda Futsal Cup lördagen den 19 december. En intensiv heldag med full fart på parketten, gruppspel, slutspel och jakt på cupguldet!
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
                   <Calendar size={18} className="text-neon" />
-                  <strong>18-19 December 2026</strong>
+                  <strong>19 December 2026 (Heldag)</strong>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
@@ -157,17 +186,22 @@ export const MatchesPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Direct ProCup Link Button */}
+              {/* Direct ProCup Link Button & Detail Link */}
               <div className="cup-action-btns" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                <Link to="/schema/fargelanda-cup" className="btn btn--neon">
+                  <span>LÄS MER OM CUPEN</span>
+                  <ChevronRight size={16} />
+                </Link>
+
                 <a
                   href="https://www.procup.se/cup/40774.htm"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn--neon"
+                  className="btn btn--outline"
                   title="Öppna Färgelanda Futsal Cup på ProCup"
                 >
-                  <span>SE CUPEN PÅ PROCUP</span>
-                  <ExternalLink size={16} />
+                  <span>SE PÅ PROCUP</span>
+                  <ExternalLink size={15} />
                 </a>
 
                 <a
@@ -176,7 +210,7 @@ export const MatchesPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="btn btn--outline"
                 >
-                  <span>FÖLJ CUP-UPPDATERINGAR</span>
+                  <span>FÖLJ PÅ INSTAGRAM</span>
                 </a>
               </div>
             </div>
@@ -194,64 +228,49 @@ export const MatchesPage: React.FC = () => {
                   marginBottom: '16px',
                 }}
               >
-                NEDRÄKNING TILL CUPSTART
+                NEDRÄKNING TILL CUPSTART (19 DEC)
               </span>
 
               <div className="cup-countdown-grid">
                 <div className="cup-countdown-item">
-                  <span className="cup-countdown-num">
-                    {timeLeft.days}
-                  </span>
-                  <span className="cup-countdown-label">
-                    Dagar
-                  </span>
+                  <span className="cup-countdown-num">{timeLeft.days}</span>
+                  <span className="cup-countdown-label">Dagar</span>
                 </div>
 
                 <div className="cup-countdown-item">
-                  <span className="cup-countdown-num">
-                    {timeLeft.hours}
-                  </span>
-                  <span className="cup-countdown-label">
-                    Timmar
-                  </span>
+                  <span className="cup-countdown-num">{timeLeft.hours}</span>
+                  <span className="cup-countdown-label">Timmar</span>
                 </div>
 
                 <div className="cup-countdown-item">
-                  <span className="cup-countdown-num">
-                    {timeLeft.minutes}
-                  </span>
-                  <span className="cup-countdown-label">
-                    Minuter
-                  </span>
+                  <span className="cup-countdown-num">{timeLeft.minutes}</span>
+                  <span className="cup-countdown-label">Minuter</span>
                 </div>
 
                 <div className="cup-countdown-item">
-                  <span className="cup-countdown-num">
-                    {timeLeft.seconds}
-                  </span>
-                  <span className="cup-countdown-label">
-                    Sekunder
-                  </span>
+                  <span className="cup-countdown-num">{timeLeft.seconds}</span>
+                  <span className="cup-countdown-label">Sekunder</span>
                 </div>
               </div>
 
               <span style={{ fontSize: '12px', color: 'var(--silver-dim)', lineHeight: 1.5, display: 'block' }}>
-                Följ med och heja fram Futsal Boys på plats i Färgelanda Sporthall!
+                Följ med och heja fram Futsal Boys på plats i Färgelanda Sporthall den 19 december!
               </span>
             </div>
           </div>
 
           {/* ================================================================
               CUPTRUPP: UTTAGNA SPELARE TILL FÄRGELANDA CUP
+              Visar endast spelarnas förnamn enligt direktiv.
              ================================================================ */}
           <div style={{ marginTop: '40px', borderTop: '1px solid var(--border-subtle)', paddingTop: '32px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
               <div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
-                  UTTAGEN <span className="text-neon">CUPTRUPP</span> ({fargelandaCupSquad.filter(p => p.status === 'UTTAGEN').length} SPELARE)
+                  UTTAGEN <span className="text-neon">CUPTRUPP</span> ({fargelandaCupSquad.length} SPELARE)
                 </h3>
                 <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
-                  Spelare som representerar Futsal Boys under Färgelanda Futsal Cup 2026.
+                  Officiellt uttagna spelare som representerar Futsal Boys i Färgelanda Futsal Cup.
                 </span>
               </div>
 
@@ -267,29 +286,16 @@ export const MatchesPage: React.FC = () => {
                     border: '1px solid var(--neon-green-glow)',
                   }}
                 >
-                  ● {fargelandaCupSquad.filter(p => p.status === 'UTTAGEN').length} UTTAGNA
-                </span>
-                <span
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 800,
-                    padding: '4px 10px',
-                    borderRadius: '6px',
-                    background: 'rgba(255,255,255,0.06)',
-                    color: 'var(--silver-dim)',
-                    border: '1px solid var(--border-subtle)',
-                  }}
-                >
-                  {fargelandaCupSquad.filter(p => p.status === 'RESERV').length} RESERV
+                  ● {fargelandaCupSquad.length} UTTAGNA
                 </span>
               </div>
             </div>
 
-            {/* Grid of Cup Players */}
+            {/* Grid of Cup Players (Just names as requested) */}
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
                 gap: '12px',
               }}
             >
@@ -297,25 +303,26 @@ export const MatchesPage: React.FC = () => {
                 <div
                   key={player.id}
                   style={{
-                    background: player.status === 'UTTAGEN' ? 'rgba(18, 22, 28, 0.85)' : 'rgba(14, 18, 23, 0.5)',
-                    border: player.status === 'UTTAGEN' ? '1px solid rgba(16, 255, 96, 0.3)' : '1px solid var(--border-subtle)',
+                    background: 'rgba(18, 22, 28, 0.85)',
+                    border: '1px solid rgba(16, 255, 96, 0.3)',
                     borderRadius: '12px',
                     padding: '14px 16px',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
                     gap: '12px',
+                    transition: 'all 0.2s ease',
                   }}
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                     <div
                       style={{
                         fontFamily: 'var(--font-display)',
-                        fontSize: '22px',
-                        color: player.status === 'UTTAGEN' ? 'var(--neon-green)' : 'var(--silver-dim)',
+                        fontSize: '20px',
+                        color: 'var(--neon-green)',
                         background: 'rgba(7, 9, 11, 0.9)',
-                        width: '42px',
-                        height: '42px',
+                        width: '40px',
+                        height: '40px',
                         borderRadius: '8px',
                         display: 'flex',
                         alignItems: 'center',
@@ -328,12 +335,9 @@ export const MatchesPage: React.FC = () => {
                     </div>
 
                     <div>
-                      <strong style={{ color: '#fff', fontSize: '15px', display: 'block', lineHeight: 1.2 }}>
+                      <strong style={{ color: '#fff', fontSize: '16px', display: 'block', lineHeight: 1.2 }}>
                         {player.name}
                       </strong>
-                      <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>
-                        {player.position}
-                      </span>
                     </div>
                   </div>
 
@@ -344,11 +348,11 @@ export const MatchesPage: React.FC = () => {
                       letterSpacing: '0.08em',
                       padding: '3px 8px',
                       borderRadius: '4px',
-                      background: player.status === 'UTTAGEN' ? 'rgba(16,255,96,0.15)' : 'rgba(255,255,255,0.06)',
-                      color: player.status === 'UTTAGEN' ? 'var(--neon-green)' : 'var(--silver-dim)',
+                      background: 'rgba(16,255,96,0.15)',
+                      color: 'var(--neon-green)',
                     }}
                   >
-                    {player.status}
+                    UTTAGEN
                   </span>
                 </div>
               ))}
@@ -357,7 +361,172 @@ export const MatchesPage: React.FC = () => {
         </section>
 
         {/* ==================================================================
-            2. UPCOMING MATCH CARD (Seriespel)
+            2. VINTERSCHEMA: NOVEMBER & DECEMBER 2026
+           ================================================================== */}
+        <section className="schedule-section">
+          <div style={{ marginBottom: '24px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '12px' }}>
+              <div>
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    color: 'var(--neon-green)',
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    marginBottom: '6px',
+                  }}
+                >
+                  <Calendar size={15} />
+                  <span>OFFICIELLT PROGRAM • 6 AKTIVITETER</span>
+                </div>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 44px)', color: '#fff', margin: 0 }}>
+                  VINTERSCHEMA <span className="text-neon">NOV & DEC</span>
+                </h2>
+              </div>
+
+              {/* Filter Tabs */}
+              <div className="schedule-filter-tabs">
+                <button
+                  type="button"
+                  onClick={() => setScheduleFilter('ALL')}
+                  className={`schedule-tab ${scheduleFilter === 'ALL' ? 'is-active' : ''}`}
+                >
+                  Alla ({winterSchedule.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScheduleFilter('TRÄNING')}
+                  className={`schedule-tab ${scheduleFilter === 'TRÄNING' ? 'is-active' : ''}`}
+                >
+                  Träningar ({winterSchedule.filter((e) => e.type === 'TRÄNING').length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScheduleFilter('MATCH')}
+                  className={`schedule-tab ${scheduleFilter === 'MATCH' ? 'is-active' : ''}`}
+                >
+                  Träningsmatcher ({winterSchedule.filter((e) => e.type === 'MATCH').length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setScheduleFilter('CUP')}
+                  className={`schedule-tab ${scheduleFilter === 'CUP' ? 'is-active' : ''}`}
+                >
+                  Cup ({winterSchedule.filter((e) => e.type === 'CUP').length})
+                </button>
+              </div>
+            </div>
+
+            <p style={{ color: 'var(--silver-dim)', fontSize: '15px', margin: '0 0 16px', lineHeight: 1.6 }}>
+              Futsal Boys förbereder sig intensivt inför cupsäsongen med kvalitativa träningspass i Trollhättans hallar och två formstarka träningsmatcher. Klicka på en aktivitet för fullständiga detaljer.
+            </p>
+
+            {/* Quick Summary Pill Bar */}
+            <div className="schedule-summary-bar">
+              <div className="schedule-summary-item">
+                <Flame size={17} className="text-neon" />
+                <span><strong>3 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbohallen), 14 nov (Nevshallen)</span>
+              </div>
+              <div className="schedule-summary-item">
+                <ShieldCheck size={17} className="text-neon" />
+                <span><strong>2 Träningsmatcher:</strong> 20 nov (vs Funk i Torsbohallen), 6 dec (vs TIF Polhem)</span>
+              </div>
+              <div className="schedule-summary-item">
+                <Trophy size={17} style={{ color: '#ffd700' }} />
+                <span><strong>1 Cup:</strong> 19 dec (Färgelanda cup, Heldag)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Schedule Events Cards */}
+          <div className="schedule-grid">
+            {filteredSchedule.map((ev) => {
+              const [dayNum, monthStr] = ev.date.split(' ');
+              return (
+                <Link
+                  to={`/schema/${ev.slug}`}
+                  key={ev.id}
+                  className={`schedule-card schedule-card--clickable schedule-card--${ev.type === 'TRÄNING' ? 'training' : ev.type === 'MATCH' ? 'match' : 'cup'}`}
+                  style={{ textDecoration: 'none', color: 'inherit' }}
+                >
+                  {/* Date badge */}
+                  <div className="schedule-card__date-box">
+                    <span className="schedule-card__day">{dayNum}</span>
+                    <span className="schedule-card__month">{monthStr}</span>
+                    <span className="schedule-card__weekday">{ev.dayOfWeek}</span>
+                  </div>
+
+                  {/* Body content */}
+                  <div className="schedule-card__body">
+                    <div className="schedule-card__header-line">
+                      <span
+                        className={`schedule-badge ${
+                          ev.type === 'TRÄNING'
+                            ? 'schedule-badge--traning'
+                            : ev.type === 'MATCH'
+                            ? 'schedule-badge--match'
+                            : 'schedule-badge--cup'
+                        }`}
+                      >
+                        {ev.type === 'TRÄNING' && <Flame size={12} />}
+                        {ev.type === 'MATCH' && <ShieldCheck size={12} />}
+                        {ev.type === 'CUP' && <Trophy size={12} />}
+                        <span>
+                          {ev.type === 'MATCH' ? 'TRÄNINGSMATCH' : ev.type === 'CUP' ? 'CUP • HELDAG' : 'TRÄNING'}
+                        </span>
+                      </span>
+
+                      <span className="schedule-card__time">
+                        <Clock size={14} />
+                        <span>{ev.time}</span>
+                      </span>
+                    </div>
+
+                    <h3 className="schedule-card__title">{ev.title}</h3>
+
+                    <div className="schedule-card__venue">
+                      <MapPin size={15} className="text-neon" />
+                      <span>{ev.venue}, {ev.city}</span>
+                    </div>
+
+                    <p className="schedule-card__desc">{ev.description}</p>
+                  </div>
+
+                  {/* Side action/status */}
+                  <div className="schedule-card__side">
+                    {ev.type === 'MATCH' && (
+                      <span className="schedule-status-pill schedule-status-pill--match">
+                        MOTSTÅND: {ev.opponent}
+                      </span>
+                    )}
+                    {ev.type === 'TRÄNING' && (
+                      <span className="schedule-status-pill schedule-status-pill--training">
+                        TRÄNINGSPASS
+                      </span>
+                    )}
+                    {ev.type === 'CUP' && (
+                      <span className="schedule-status-pill schedule-status-pill--cup">
+                        PROCUP TURNERING
+                      </span>
+                    )}
+
+                    <div className="schedule-card__readmore">
+                      <span>LÄS MER & DETALJER</span>
+                      <ChevronRight size={14} />
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ==================================================================
+            3. KOMMANDE TRÄNINGSMATCH: FUTSAL BOYS VS FUNK
            ================================================================== */}
         <div
           style={{
@@ -388,7 +557,7 @@ export const MatchesPage: React.FC = () => {
             }}
           >
             <Clock size={14} />
-            <span>SERIEMATCH • {upcomingMatch.competition}</span>
+            <span>KOMMANDE TRÄNINGSMATCH</span>
           </div>
 
           <div
@@ -434,11 +603,12 @@ export const MatchesPage: React.FC = () => {
                     justifyContent: 'center',
                     margin: '0 auto 12px',
                     fontFamily: 'var(--font-display)',
-                    fontSize: '28px',
+                    fontSize: '26px',
                     color: 'var(--silver)',
+                    fontWeight: 700,
                   }}
                 >
-                  RF
+                  FUNK
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: 0 }}>
                   {upcomingMatch.awayTeam}
@@ -463,7 +633,7 @@ export const MatchesPage: React.FC = () => {
                 <Calendar size={20} className="text-neon" />
                 <div>
                   <strong style={{ color: '#fff', display: 'block', fontSize: '16px' }}>{upcomingMatch.date}</strong>
-                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Avspark kl {upcomingMatch.time}</span>
+                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Matchtid: {upcomingMatch.time}</span>
                 </div>
               </div>
 
@@ -471,26 +641,29 @@ export const MatchesPage: React.FC = () => {
                 <MapPin size={20} className="text-neon" />
                 <div>
                   <strong style={{ color: '#fff', display: 'block', fontSize: '16px' }}>{upcomingMatch.venue}</strong>
-                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Fri entré • Kom och stötta grabbarna!</span>
+                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Fri entré • Kom och heja fram Futsal Boys!</span>
                 </div>
               </div>
 
-              <a
-                href={siteConfig.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--silver-dim)', fontSize: '12.5px', marginTop: '2px' }}>
+                <ShieldCheck size={16} className="text-neon" />
+                <span>Nästa träningsmatch: vs TIF Polhem (6 dec, 20:00–22:00)</span>
+              </div>
+
+              <Link
+                to="/schema/match-funk"
                 className="btn btn--neon btn--sm"
-                style={{ marginTop: '8px', alignSelf: 'flex-start' }}
+                style={{ marginTop: '6px', alignSelf: 'flex-start' }}
               >
-                <span>FÖLJ MATCHUPPDATERINGAR</span>
+                <span>MATCHDETALJER & INFO</span>
                 <ChevronRight size={16} />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
 
         {/* ==================================================================
-            3. RECENT MATCH RESULTS
+            4. RECENT MATCH RESULTS
            ================================================================== */}
         <div style={{ marginBottom: '64px' }}>
           <div style={{ marginBottom: '28px' }}>
@@ -568,7 +741,7 @@ export const MatchesPage: React.FC = () => {
         </div>
 
         {/* ==================================================================
-            4. MATCH REPORTS & NEWS
+            5. MATCH REPORTS & NEWS
            ================================================================== */}
         <div>
           <div style={{ marginBottom: '28px' }}>
@@ -576,7 +749,7 @@ export const MatchesPage: React.FC = () => {
               MATCHRAPPORTER & <span className="text-neon">NYHETER</span>
             </h2>
             <p style={{ color: 'var(--silver-dim)', fontSize: '14px' }}>
-              Läs utförliga rapporter och analyser från lagets matcher.
+              Läs utförliga rapporter och analyser från lagets matcher och förberedelser.
             </p>
           </div>
 
@@ -609,7 +782,7 @@ export const MatchesPage: React.FC = () => {
                 </p>
 
                 <div className="blog-card-cta">
-                  <span>LÄS HELA RAPPORTEN</span>
+                  <span>LÄS HELA ARTIKELN</span>
                   <ChevronRight size={15} className="blog-card-arrow" />
                 </div>
               </Link>

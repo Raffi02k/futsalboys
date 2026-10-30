@@ -74,7 +74,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/">Hem</Link></li>
               <li><Link to="/ledarna">Ledarna</Link></li>
               <li><Link to="/truppen">Spelartruppen</Link></li>
-              <li><Link to="/matcher">Matcher & Cuper</Link></li>
+              <li><Link to="/matcher">Schema & Matcher</Link></li>
               <li><Link to="/galleri">Galleri & Video</Link></li>
               <li><Link to="/instagram">Instagram Feed</Link></li>
             </ul>
