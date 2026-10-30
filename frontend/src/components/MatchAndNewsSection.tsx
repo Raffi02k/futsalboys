@@ -92,23 +92,21 @@ export const MatchAndNewsSection: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '380px', flexWrap: 'wrap', margin: '0 auto' }}>
+              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '400px', flexWrap: 'wrap', margin: '0 auto' }}>
+                <Link
+                  to="/matcher/match-funk"
+                  className="btn btn--neon"
+                  style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
+                >
+                  FÖLJ MATCHEN (LIVE)
+                </Link>
                 <Link
                   to="/matcher"
-                  className="btn btn--neon"
+                  className="btn btn--outline"
                   style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
                 >
                   SE SPELSCHEMA
                 </Link>
-                <a
-                  href={siteConfig.instagramUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--outline"
-                  style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
-                >
-                  HEJA PÅ OSS
-                </a>
               </div>
             </div>
           </div>

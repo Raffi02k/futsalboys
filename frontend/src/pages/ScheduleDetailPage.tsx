@@ -141,11 +141,21 @@ export const ScheduleDetailPage: React.FC = () => {
 
           {/* Action Row */}
           <div style={{ display: 'flex', gap: '12px', marginTop: '28px', flexWrap: 'wrap' }}>
+            {event.type === 'MATCH' && (
+              <Link
+                to={`/matcher/${event.slug}`}
+                className="btn btn--neon"
+              >
+                <span>FÖLJ RESULTAT & MATCHRAPPORT</span>
+                <ChevronRight size={16} />
+              </Link>
+            )}
+
             <a
               href={event.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn--neon"
+              className={event.type === 'MATCH' ? 'btn btn--outline' : 'btn btn--neon'}
             >
               <Navigation size={16} />
               <span>HITTA HIT (GOOGLE MAPS)</span>

@@ -176,6 +176,7 @@ export const MatchesPage: React.FC = () => {
   const pastMatches = [
     {
       id: 'm1',
+      slug: 'fc-vanersborg',
       opponent: 'FC Vänersborg Futsal',
       result: '4 - 3',
       outcome: 'VINST',
@@ -186,6 +187,7 @@ export const MatchesPage: React.FC = () => {
     },
     {
       id: 'm2',
+      slug: 'uddevalla-city',
       opponent: 'Uddevalla City',
       result: '6 - 2',
       outcome: 'VINST',
@@ -196,6 +198,7 @@ export const MatchesPage: React.FC = () => {
     },
     {
       id: 'm3',
+      slug: 'goteborg-united',
       opponent: 'Göteborg United',
       result: '3 - 3',
       outcome: 'OAVGJORT',
@@ -789,9 +792,10 @@ export const MatchesPage: React.FC = () => {
           <div className="schedule-grid">
             {filteredSchedule.map((ev) => {
               const [dayNum, monthStr] = ev.date.split(' ');
+              const targetUrl = ev.type === 'MATCH' ? `/matcher/${ev.slug}` : `/schema/${ev.slug}`;
               return (
                 <Link
-                  to={`/schema/${ev.slug}`}
+                  to={targetUrl}
                   key={ev.id}
                   className={`schedule-card schedule-card--clickable schedule-card--${ev.type === 'TRÄNING' ? 'training' : ev.type === 'MATCH' ? 'match' : 'cup'}`}
                   style={{ textDecoration: 'none', color: 'inherit' }}
@@ -858,7 +862,7 @@ export const MatchesPage: React.FC = () => {
                     )}
 
                     <div className="schedule-card__readmore">
-                      <span>LÄS MER & DETALJER</span>
+                      <span>{ev.type === 'MATCH' ? 'FÖLJ RESULTAT & INFO' : 'LÄS MER & DETALJER'}</span>
                       <ChevronRight size={14} />
                     </div>
                   </div>
@@ -993,20 +997,29 @@ export const MatchesPage: React.FC = () => {
                 <span>Nästa träningsmatch: vs TIF Polhem (6 dec, 20:00–22:00)</span>
               </div>
 
-              <Link
-                to="/schema/match-funk"
-                className="btn btn--neon btn--sm"
-                style={{ marginTop: '6px', alignSelf: 'flex-start' }}
-              >
-                <span>MATCHDETALJER & INFO</span>
-                <ChevronRight size={16} />
-              </Link>
+              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '6px' }}>
+                <Link
+                  to="/matcher/match-funk"
+                  className="btn btn--neon btn--sm"
+                >
+                  <span>FÖLJ RESULTAT & LIVE TRACKER</span>
+                  <ChevronRight size={16} />
+                </Link>
+
+                <Link
+                  to="/schema/match-funk"
+                  className="btn btn--outline btn--sm"
+                >
+                  <span>MATCHSCHEMA & TIDER</span>
+                  <ChevronRight size={14} />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
 
         {/* ==================================================================
-            4. RECENT MATCH RESULTS
+            4. RECENT MATCH RESULTS (KLICKBARA FÖR ATT FÖLJA RESULTAT)
            ================================================================== */}
         <div style={{ marginBottom: '64px' }}>
           <div style={{ marginBottom: '28px' }}>
@@ -1014,7 +1027,7 @@ export const MatchesPage: React.FC = () => {
               SENASTE <span className="text-neon">RESULTAT</span>
             </h2>
             <p style={{ color: 'var(--silver-dim)', fontSize: '14px' }}>
-              Resultat och målskyttar från de senaste matcherna.
+              Klicka på valfri match för att följa resultat, se matchhändelser, statistik, målskyttar och matchens lirare.
             </p>
           </div>
 
@@ -1032,6 +1045,7 @@ export const MatchesPage: React.FC = () => {
                   justifyContent: 'space-between',
                   flexWrap: 'wrap',
                   gap: '16px',
+                  transition: 'border-color 0.2s ease',
                 }}
               >
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
@@ -1056,7 +1070,9 @@ export const MatchesPage: React.FC = () => {
                       {m.tournament} • {m.date}
                     </span>
                     <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '22px', color: '#fff', margin: '2px 0 4px' }}>
-                      Futsal Boys vs {m.opponent}
+                      <Link to={`/matcher/${m.slug}`} style={{ color: 'inherit', textDecoration: 'none' }}>
+                        Futsal Boys vs {m.opponent}
+                      </Link>
                     </h3>
                     <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
                       Målskyttar: {m.scorers}
@@ -1064,19 +1080,30 @@ export const MatchesPage: React.FC = () => {
                   </div>
                 </div>
 
-                <div
-                  style={{
-                    padding: '4px 12px',
-                    borderRadius: '6px',
-                    fontSize: '12px',
-                    fontWeight: 800,
-                    letterSpacing: '0.08em',
-                    background: m.outcome === 'VINST' ? 'rgba(16,255,96,0.15)' : 'rgba(255,255,255,0.08)',
-                    color: m.outcome === 'VINST' ? 'var(--neon-green)' : 'var(--silver)',
-                    border: m.outcome === 'VINST' ? '1px solid var(--neon-green-glow)' : '1px solid var(--border-subtle)',
-                  }}
-                >
-                  {m.outcome}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                  <div
+                    style={{
+                      padding: '4px 12px',
+                      borderRadius: '6px',
+                      fontSize: '12px',
+                      fontWeight: 800,
+                      letterSpacing: '0.08em',
+                      background: m.outcome === 'VINST' ? 'rgba(16,255,96,0.15)' : 'rgba(255,255,255,0.08)',
+                      color: m.outcome === 'VINST' ? 'var(--neon-green)' : 'var(--silver)',
+                      border: m.outcome === 'VINST' ? '1px solid var(--neon-green-glow)' : '1px solid var(--border-subtle)',
+                    }}
+                  >
+                    {m.outcome}
+                  </div>
+
+                  <Link
+                    to={`/matcher/${m.slug}`}
+                    className="btn btn--neon btn--sm"
+                    style={{ padding: '8px 14px', fontSize: '12px' }}
+                  >
+                    <span>FÖLJ RESULTAT</span>
+                    <ChevronRight size={14} />
+                  </Link>
                 </div>
               </div>
             ))}
