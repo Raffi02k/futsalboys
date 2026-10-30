@@ -149,6 +149,10 @@ export interface ScheduleEvent {
   leaders: string[];
   spectatorInfo?: string;
   mapsUrl: string;
+  proCupUrl?: string;
+  externalUrl?: string;
+  organizer?: string;
+  classes?: string;
   isUpcoming?: boolean;
 }
 
@@ -421,6 +425,106 @@ export const winterSchedule: ScheduleEvent[] = [
     leaders: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
     spectatorInfo: 'Heldagsturnering med fantastisk futsalstämning, café, kiosk och slutspelsdramatik!',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Färgelanda+Sporthall',
+    proCupUrl: 'https://www.procup.se/cup/40774.htm',
+    organizer: 'Färgelanda IF',
+    classes: 'Herrsenior / Futsal (Heldag lördag 19 dec)',
+    isUpcoming: true,
+  },
+  {
+    id: 'ev-7',
+    slug: 'ytterby-cup',
+    type: 'CUP',
+    title: 'Ytterby Cup – Futsal 2027',
+    dayOfWeek: 'Söndag',
+    date: '3 JAN',
+    fullDate: '2–3 januari 2027 (Senior: 3 jan)',
+    time: 'Heldag',
+    venue: 'Kastellegårdshallen / Ytterby',
+    city: 'Ytterby / Kungälv',
+    address: 'Kastellegårdsvägen, 442 53 Ytterby',
+    gatheringTime: 'Enligt spelschema på ProCup (meddelas inför cuphelgen)',
+    opponent: 'Seniorlag & futsallag via ProCup',
+    description: 'Ytterby IS arrangerar populära Ytterby Cup Futsal 2027. Seniorklassen avgörs söndagen den 3 januari!',
+    longDescription: [
+      'Futsal Boys inleder det nya året 2027 med att delta i Ytterby Cup – Futsal som arrangeras av Ytterby IS.',
+      'Turneringen spelas i Ytterby (Kastellegårdshallen / Ytterbyhallen) den 2–3 januari 2027, där seniorklassen avgörs under söndagen den 3 januari.',
+      'Efter jul- och nyårsledigheten blir detta en perfekt utmaning mot starka lag från Göteborgs- och Bohuslänsområdet.',
+      'Fullständigt spelschema och lottning publiceras via ProCup inför cupstarten.',
+    ],
+    focusAreas: [
+      'Årets första futsalturnering 2027',
+      'Intensivt gruppspel och snabba matcher mot Göteborgsmotstånd',
+      'Högt bolltempo och maximal energi',
+      'Slutspelsavancemang',
+    ],
+    scheduleTimeline: [
+      { time: 'TBA', text: 'Samling och avresa mot Ytterby/Kungälv' },
+      { time: 'TBA', text: 'Registrering och uppvärmning i hallen' },
+      { time: 'Söndag', text: 'Gruppspelsmatcher seniorklass' },
+      { time: 'Eftermiddag', text: 'A- och B-slutspel' },
+      { time: 'Kväll', text: 'Finalspel & prisutdelning' },
+    ],
+    equipment: [
+      'Futsal Boys officiella matchtröjor',
+      'Benskydd & inomhusskor för futsal',
+      'Överdragskläder och klubbmerch',
+      'Energi, mellanmål & vattenflaska',
+    ],
+    leaders: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
+    spectatorInfo: 'Öppet för supportrar med fin stämning och kiosk i hallen. Följ även cupen via ProCup!',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Kastellegårdshallen+Ytterby',
+    proCupUrl: 'https://www.procup.se/cup/40601.htm',
+    externalUrl: 'https://www.ytterbyis.nu/nyheter/?ID=40598&NID=1359459',
+    organizer: 'Ytterby IS',
+    classes: 'Senior: Söndag 3 jan 2027 • Juniorer: Lördag 2 jan 2027',
+    isUpcoming: true,
+  },
+  {
+    id: 'ev-8',
+    slug: 'tossecupen',
+    type: 'CUP',
+    title: 'Tössecupen 2027',
+    dayOfWeek: 'Söndag',
+    date: '31 JAN',
+    fullDate: '30–31 januari 2027 (Herrseniorer: 31 jan)',
+    time: 'Heldag',
+    venue: 'Karlbergs idrottshall',
+    city: 'Åmål',
+    address: 'Karlbergs idrottshall, 662 31 Åmål',
+    gatheringTime: 'Enligt spelschema från Tösse IF (meddelas i januari)',
+    opponent: 'Herrseniorer & futsallag via Tösse IF',
+    description: 'Traditionsenliga Tössecupen i Karlbergs idrottshall i Åmål. Futsal Boys kliver in i herrseniorklassen under cupens avslutande söndag!',
+    longDescription: [
+      'Sista helgen i januari 2027 åker Futsal Boys norrut till Åmål för att spela anrika Tössecupen som arrangeras av Tösse IF i Karlbergs idrottshall.',
+      'Turneringen spelas enligt SvFF:s officiella futsalregler. Lördagen vigs åt juniorer och damer, medan herrseniorerna (uppdelat i divisioner och futsallag) gör upp under söndagen den 31 januari.',
+      'Tössecupen är känd för sin fantastiska stämning, välfyllda läktare och tuffa drabbningar på parketten.',
+      'Följ lottning, spelschema och resultat via Tösse IF:s officiella cupsida.',
+    ],
+    focusAreas: [
+      'SvFF:s officiella futsalregler och hög matchintensitet',
+      'Tuffa fysiska och tekniska matcher mot Dalslands & Värmlands futsalelit',
+      'Taktisk disciplin och snabba avslut',
+      'Cupguld!',
+    ],
+    scheduleTimeline: [
+      { time: 'TBA', text: 'Gemensam samling och avresa till Åmål' },
+      { time: 'TBA', text: 'Samling i Karlbergs idrottshall & taktik' },
+      { time: 'Söndag', text: 'Gruppspelsmatcher för herrseniorer' },
+      { time: 'Eftermiddag', text: 'Slutspelsmatcher och cupslutspel' },
+      { time: 'Kväll', text: 'Final och medaljutdelning' },
+    ],
+    equipment: [
+      'Futsal Boys matchställ (hemma & borta)',
+      'Benskydd & futsalskor',
+      'Överdragskläder & handduk',
+      'Vattenflaska och personlig energi',
+    ],
+    leaders: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
+    spectatorInfo: 'Härlig cupatmosfär i Karlbergs idrottshall med cafeteria, kiosk och engagerad publik.',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Karlbergs+idrottshall+Åmål',
+    externalUrl: 'https://www.tosseif.com/Page/398307',
+    organizer: 'Tösse IF',
+    classes: 'Herrseniorer: Söndag 31 jan 2027 • Juniorer & Damer: Lördag 30 jan',
     isUpcoming: true,
   },
 ];
@@ -461,6 +565,23 @@ export interface ClubNews {
 }
 
 export const clubNewsList: ClubNews[] = [
+  {
+    id: 'nya-cuper-2027',
+    category: 'CUPNYHET',
+    title: 'Klart: Futsal Boys klara för Ytterby Cup och Tössecupen 2027!',
+    summary: 'Futsal Boys utökar cupäventyret med två prestigefyllda turneringar i januari: Ytterby Cup i Kungälv och klassiska Tössecupen i Åmål.',
+    date: '31 OKT 2026',
+    readTime: '2 MIN LÄSNING',
+    author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
+    image: '/images/players/Lagfoto.JPG',
+    paragraphs: [
+      'Det står nu klart att Futsal Boys kliver in i ytterligare två cuper under vintersäsongen 2026/2027. Utöver Färgelanda cup den 19 december har klubben säkrat deltagande i Ytterby Cup och Tössecupen i januari 2027!',
+      'Ytterby Cup avgörs den 2–3 januari 2027 i Ytterby/Kungälv, där Futsal Boys deltar i seniorklassen under söndagen den 3 januari. Turneringen administreras via ProCup och lockar högklassigt futsalmotstånd.',
+      'I slutet av januari väntar sedan traditionsenliga Tössecupen i Karlbergs idrottshall i Åmål (30–31 januari 2027). Herrseniorklassen avgörs söndagen den 31 januari enligt SvFF:s officiella futsalregler.',
+      'Med tre cuper, två träningsmatcher och intensiva träningspass i Trollhättan går grabbarna en fullspäckad och fantastisk futsalvinter till mötes!',
+    ],
+    quote: 'Vi vill möta de bästa lagen och utmana oss själva i varje cup. Laget är otroligt taggat!',
+  },
   {
     id: 'vinterschema-2026',
     category: 'SCHEMA & NYHET',

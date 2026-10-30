@@ -229,10 +229,10 @@ export const MatchAndNewsSection: React.FC = () => {
                 VINTERPROGRAM 2026
               </span>
               <h3 className="winter-schedule-strip__title">
-                SCHEMAT FÖR <span className="text-neon">NOVEMBER & DECEMBER</span>
+                SPELPROGRAM <span className="text-neon">2026 / 2027</span>
               </h3>
               <p className="winter-schedule-strip__subtitle">
-                Schemat för Futsal Boys sträcker sig över november och december och innehåller tre träningar, två träningsmatcher och en cup.
+                Följ Futsal Boys genom vintern: tre träningar, två träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen).
               </p>
             </div>
 

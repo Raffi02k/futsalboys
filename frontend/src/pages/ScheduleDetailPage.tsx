@@ -151,14 +151,26 @@ export const ScheduleDetailPage: React.FC = () => {
               <span>HITTA HIT (GOOGLE MAPS)</span>
             </a>
 
-            {event.type === 'CUP' && (
+            {event.proCupUrl && (
               <a
-                href="https://www.procup.se/cup/40774.htm"
+                href={event.proCupUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn--outline"
               >
-                <span>SE CUPEN PÅ PROCUP</span>
+                <span>SE PÅ PROCUP</span>
+                <ExternalLink size={16} />
+              </a>
+            )}
+
+            {event.externalUrl && (
+              <a
+                href={event.externalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn--outline"
+              >
+                <span>OFFICIELL CUPSIDA</span>
                 <ExternalLink size={16} />
               </a>
             )}
@@ -233,8 +245,8 @@ export const ScheduleDetailPage: React.FC = () => {
               </div>
             )}
 
-            {/* For Cup: Display Uttagen Cuptrupp */}
-            {event.type === 'CUP' && (
+            {/* For Färgelanda Cup: Display Uttagen Cuptrupp */}
+            {event.slug === 'fargelanda-cup' && (
               <div className="schedule-info-box">
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
                   <div>
@@ -318,6 +330,35 @@ export const ScheduleDetailPage: React.FC = () => {
                       </span>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* For Other Cups: Display Class & Tournament Info */}
+            {event.classes && event.slug !== 'fargelanda-cup' && (
+              <div className="schedule-info-box">
+                <h2 className="schedule-info-box__title">
+                  KLASSER & <span className="text-neon">TURNERINGSINFO</span>
+                </h2>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', color: 'var(--silver)', fontSize: '14.5px' }}>
+                  <div>
+                    <strong style={{ color: '#fff', display: 'block', marginBottom: '4px' }}>Spelklasser:</strong>
+                    <span>{event.classes}</span>
+                  </div>
+                  {event.organizer && (
+                    <div>
+                      <strong style={{ color: '#fff', display: 'block', marginBottom: '4px' }}>Arrangör:</strong>
+                      <span>{event.organizer}</span>
+                    </div>
+                  )}
+                  {event.proCupUrl && (
+                    <div style={{ marginTop: '8px' }}>
+                      <a href={event.proCupUrl} target="_blank" rel="noopener noreferrer" className="btn btn--neon btn--sm">
+                        <span>LOTTNING & SPELSCHEMA PÅ PROCUP</span>
+                        <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  )}
                 </div>
               </div>
             )}

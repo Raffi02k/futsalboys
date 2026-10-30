@@ -1,13 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Clock, ChevronRight, ExternalLink, ShieldCheck, Flame, Trophy } from 'lucide-react';
+import {
+  Calendar,
+  MapPin,
+  Clock,
+  ChevronRight,
+  ChevronLeft,
+  ExternalLink,
+  ShieldCheck,
+  Flame,
+  Trophy,
+  Users,
+} from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { upcomingMatch, clubNewsList, winterSchedule } from '../content/futsalData';
 import { siteConfig } from '../content/siteContent';
 
 // ============================================================================
 // CUPTRUPPEN TILL FÄRGELANDA FUTSAL CUP 2026:
-// 12 spelare uttagna (Kasper ersätter Mentor, Hugo ersätter John, Ashraf ersätter Tro)
+// 12 spelare uttagna (Kasper ersätter Mentor, Hugo ersätter John, Stefan ersätter Hüsnücan, Tro ersätter Ashraf, Marcelo ersätter Kemal)
 // Endast förnamn visas enligt önskemål.
 // ============================================================================
 export interface CupPlayer {
@@ -33,10 +44,101 @@ export const fargelandaCupSquad: CupPlayer[] = [
   { id: 'c12', number: 22, name: 'Tro', position: 'FÖRSVAR', status: 'UTTAGEN' },
 ];
 
+// ============================================================================
+// FEATURED CUPS FOR TOP CAROUSEL & DYNAMIC COUNTDOWN
+// ============================================================================
+export interface FeaturedCup {
+  id: string;
+  slug: string;
+  shortName: string;
+  badge: string;
+  titlePrimary: string;
+  titleHighlight: string;
+  targetDate: string; // ISO format
+  description: string;
+  dateLabel: string;
+  venueLabel: string;
+  organizerLabel: string;
+  countdownHeader: string;
+  countdownSubtext: string;
+  detailUrl: string;
+  proCupUrl?: string;
+  externalUrl?: string;
+  externalBtnLabel?: string;
+}
+
+export const featuredCups: FeaturedCup[] = [
+  {
+    id: 'fargelanda',
+    slug: 'fargelanda-cup',
+    shortName: 'Färgelanda Cup',
+    badge: 'VINTERNS STORA CUPÄVENTYR • CUP 1 AV 3',
+    titlePrimary: 'FÄRGELANDA',
+    titleHighlight: 'FUTSAL CUP',
+    targetDate: '2026-12-19T08:00:00',
+    description: 'Futsal Boys kliver in i prestigefyllda Färgelanda Futsal Cup lördagen den 19 december. En intensiv heldag med full fart på parketten, gruppspel, slutspel och jakt på cupguldet!',
+    dateLabel: '19 December 2026 (Heldag)',
+    venueLabel: 'Färgelanda Sporthall, Färgelanda',
+    organizerLabel: 'Arrangör: Färgelanda IF • Officiell ProCup-turnering',
+    countdownHeader: 'NEDRÄKNING TILL CUPSTART (19 DEC)',
+    countdownSubtext: 'Följ med och heja fram Futsal Boys på plats i Färgelanda Sporthall den 19 december!',
+    detailUrl: '/schema/fargelanda-cup',
+    proCupUrl: 'https://www.procup.se/cup/40774.htm',
+  },
+  {
+    id: 'ytterby',
+    slug: 'ytterby-cup',
+    shortName: 'Ytterby Cup',
+    badge: 'NYÅRSCUPEN I KUNGÄLV • CUP 2 AV 3',
+    titlePrimary: 'YTTERBY CUP',
+    titleHighlight: 'FUTSAL 2027',
+    targetDate: '2027-01-03T08:00:00',
+    description: 'Ytterby IS arrangerar populära Ytterby Cup i Kastellegårdshallen i Ytterby/Kungälv. Seniorklassen avgörs söndagen den 3 januari 2027 där Futsal Boys siktar på topplacering!',
+    dateLabel: '2–3 Januari 2027 (Senior: Söndag 3 jan)',
+    venueLabel: 'Kastellegårdshallen, Ytterby / Kungälv',
+    organizerLabel: 'Arrangör: Ytterby IS • Officiell ProCup • Sista anmälan 9 dec 2026',
+    countdownHeader: 'NEDRÄKNING TILL YTTERBY CUP (3 JAN)',
+    countdownSubtext: 'Räkna ner till avspark i Kastellegårdshallen söndag 3 januari 2027!',
+    detailUrl: '/schema/ytterby-cup',
+    proCupUrl: 'https://www.procup.se/cup/40601.htm',
+    externalUrl: 'https://www.ytterbyis.nu/nyheter/?ID=40598&NID=1359459',
+    externalBtnLabel: 'YTTERBY IS INFO',
+  },
+  {
+    id: 'tosse',
+    slug: 'tossecupen',
+    shortName: 'Tössecupen',
+    badge: 'TRADITIONSCUPEN I ÅMÅL • CUP 3 AV 3',
+    titlePrimary: 'TÖSSECUPEN',
+    titleHighlight: '2027',
+    targetDate: '2027-01-31T08:00:00',
+    description: 'Traditionsenliga Tössecupen arrangeras av Tösse IF i Karlbergs idrottshall i Åmål under sista helgen i januari. Herrseniorklassen avgörs söndagen den 31 januari!',
+    dateLabel: '30–31 Januari 2027 (Herrsenior: Söndag 31 jan)',
+    venueLabel: 'Karlbergs idrottshall, Åmål',
+    organizerLabel: 'Arrangör: Tösse IF • Spelas enligt SvFF futsalregler',
+    countdownHeader: 'NEDRÄKNING TILL TÖSSECUPEN (31 JAN)',
+    countdownSubtext: 'Räkna ner till heta drabbningar i Karlbergs idrottshall den 31 januari 2027!',
+    detailUrl: '/schema/tossecupen',
+    externalUrl: 'https://www.tosseif.com/Page/398307',
+    externalBtnLabel: 'TÖSSE IF HEMSIDA',
+  },
+];
+
 export const MatchesPage: React.FC = () => {
   const [scheduleFilter, setScheduleFilter] = useState<'ALL' | 'TRÄNING' | 'MATCH' | 'CUP'>('ALL');
+  const [currentCupIndex, setCurrentCupIndex] = useState(0);
 
-  // Live Countdown timer to Färgelanda Futsal Cup (19 Dec 2026 Heldag, 08:00:00)
+  const currentCup = featuredCups[currentCupIndex];
+
+  const handlePrevCup = () => {
+    setCurrentCupIndex((prev) => (prev === 0 ? featuredCups.length - 1 : prev - 1));
+  };
+
+  const handleNextCup = () => {
+    setCurrentCupIndex((prev) => (prev === featuredCups.length - 1 ? 0 : prev + 1));
+  };
+
+  // Live Countdown timer dynamically calculating for the currently selected cup
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
     days: 0,
     hours: 0,
@@ -45,8 +147,7 @@ export const MatchesPage: React.FC = () => {
   });
 
   useEffect(() => {
-    // Cup starts 19 December 2026
-    const cupDate = new Date('2026-12-19T08:00:00').getTime();
+    const cupDate = new Date(currentCup.targetDate).getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -66,7 +167,7 @@ export const MatchesPage: React.FC = () => {
     updateTimer();
     const interval = setInterval(updateTimer, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentCup.targetDate]);
 
   const filteredSchedule = winterSchedule.filter(
     (item) => scheduleFilter === 'ALL' || item.type === scheduleFilter
@@ -109,7 +210,7 @@ export const MatchesPage: React.FC = () => {
     <div className="matches-page" style={{ paddingTop: 'calc(var(--header-height) + 24px)', paddingBottom: '80px' }}>
       <PageMeta
         title={`Vinterschema & Matcher | ${siteConfig.projectName} - Trollhättan`}
-        description="Schemat för Futsal Boys sträcker sig över november och december och innehåller tre träningar, två träningsmatcher och Färgelanda cup."
+        description="Följ Futsal Boys genom vintersäsongen 2026/2027: tre träningar, två träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen)."
         canonicalPath="/matcher"
       />
 
@@ -120,14 +221,62 @@ export const MatchesPage: React.FC = () => {
             SCHEMA & <span className="text-neon">MATCHER</span>
           </h1>
           <p className="section-desc" style={{ margin: '0 auto', fontSize: '17px', lineHeight: 1.6 }}>
-            Schemat för Futsal Boys sträcker sig över november och december och innehåller tre träningar, två träningsmatcher och en cup. Här hittar du alla datum, tider, arenor och den officiella cuptruppen.
+            Följ Futsal Boys genom vintersäsongen 2026/2027! Schemat innehåller tre träningar, två träningsmatcher och tre prestigefyllda cuper: Färgelanda cup, Ytterby cup och Tössecupen.
           </p>
         </div>
 
         {/* ==================================================================
             1. FEATURED UPCOMING CUP: FÄRGELANDA FUTSAL CUP 2026 (LÄNGST UPP)
            ================================================================== */}
-        <section className="cup-featured-card">
+        <section className="cup-featured-card" aria-label="Kommande cuper">
+          {/* Top Carousel Navigation Bar: Pills & Next/Prev Controls */}
+          <div className="cup-carousel-nav">
+            <div className="cup-carousel-pills" role="tablist" aria-label="Välj cup att visa">
+              {featuredCups.map((cup, idx) => (
+                <button
+                  key={cup.id}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === currentCupIndex}
+                  className={`cup-carousel-pill ${idx === currentCupIndex ? 'is-active' : ''}`}
+                  onClick={() => setCurrentCupIndex(idx)}
+                >
+                  <span className="cup-carousel-pill-num">{idx + 1}</span>
+                  <span>{cup.shortName}</span>
+                </button>
+              ))}
+            </div>
+
+            <div className="cup-carousel-arrows">
+              <button
+                type="button"
+                className="cup-carousel-btn"
+                onClick={handlePrevCup}
+                aria-label="Föregående cup"
+                title="Föregående cup"
+              >
+                <ChevronLeft size={16} />
+                <span>FÖREGÅENDE</span>
+              </button>
+
+              <span className="cup-carousel-counter">
+                {currentCupIndex + 1} / {featuredCups.length}
+              </span>
+
+              <button
+                type="button"
+                className="cup-carousel-btn"
+                onClick={handleNextCup}
+                aria-label="Nästa cup"
+                title="Nästa cup"
+              >
+                <span>NÄSTA</span>
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+
+          {/* Main Cup Details & Dynamic Live Countdown */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center' }}>
             {/* Cup Info */}
             <div>
@@ -149,7 +298,7 @@ export const MatchesPage: React.FC = () => {
                 }}
               >
                 <Trophy size={13} />
-                <span>VINTERNS STORA CUPÄVENTYR</span>
+                <span>{currentCup.badge}</span>
               </div>
 
               <h2
@@ -162,47 +311,62 @@ export const MatchesPage: React.FC = () => {
                   letterSpacing: '0.02em',
                 }}
               >
-                FÄRGELANDA <span className="text-neon">FUTSAL CUP</span>
+                {currentCup.titlePrimary} <span className="text-neon">{currentCup.titleHighlight}</span>
               </h2>
 
               <p style={{ color: 'var(--silver)', fontSize: '15px', lineHeight: 1.6, marginBottom: '24px' }}>
-                Futsal Boys kliver in i prestigefyllda Färgelanda Futsal Cup lördagen den 19 december. En intensiv heldag med full fart på parketten, gruppspel, slutspel och jakt på cupguldet!
+                {currentCup.description}
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '28px' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
                   <Calendar size={18} className="text-neon" />
-                  <strong>19 December 2026 (Heldag)</strong>
+                  <strong>{currentCup.dateLabel}</strong>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: '#fff', fontSize: '15px' }}>
                   <MapPin size={18} className="text-neon" />
-                  <span>Färgelanda Sporthall, Färgelanda</span>
+                  <span>{currentCup.venueLabel}</span>
                 </div>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--silver-dim)', fontSize: '14px' }}>
                   <ShieldCheck size={18} className="text-neon" />
-                  <span>Arrangör: Färgelanda IF • Officiell ProCup-turnering</span>
+                  <span>{currentCup.organizerLabel}</span>
                 </div>
               </div>
 
-              {/* Direct ProCup Link Button & Detail Link */}
+              {/* Dynamic Action Buttons */}
               <div className="cup-action-btns" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-                <Link to="/schema/fargelanda-cup" className="btn btn--neon">
+                <Link to={currentCup.detailUrl} className="btn btn--neon">
                   <span>LÄS MER OM CUPEN</span>
                   <ChevronRight size={16} />
                 </Link>
 
-                <a
-                  href="https://www.procup.se/cup/40774.htm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn btn--outline"
-                  title="Öppna Färgelanda Futsal Cup på ProCup"
-                >
-                  <span>SE PÅ PROCUP</span>
-                  <ExternalLink size={15} />
-                </a>
+                {currentCup.proCupUrl && (
+                  <a
+                    href={currentCup.proCupUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn--outline"
+                    title={`Öppna ${currentCup.titlePrimary} på ProCup`}
+                  >
+                    <span>SE PÅ PROCUP</span>
+                    <ExternalLink size={15} />
+                  </a>
+                )}
+
+                {currentCup.externalUrl && (
+                  <a
+                    href={currentCup.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn btn--outline"
+                    title={`Öppna ${currentCup.externalBtnLabel || 'extern info'}`}
+                  >
+                    <span>{currentCup.externalBtnLabel || 'INFO'}</span>
+                    <ExternalLink size={15} />
+                  </a>
+                )}
 
                 <a
                   href={siteConfig.instagramUrl}
@@ -228,7 +392,7 @@ export const MatchesPage: React.FC = () => {
                   marginBottom: '16px',
                 }}
               >
-                NEDRÄKNING TILL CUPSTART (19 DEC)
+                {currentCup.countdownHeader}
               </span>
 
               <div className="cup-countdown-grid">
@@ -254,114 +418,293 @@ export const MatchesPage: React.FC = () => {
               </div>
 
               <span style={{ fontSize: '12px', color: 'var(--silver-dim)', lineHeight: 1.5, display: 'block' }}>
-                Följ med och heja fram Futsal Boys på plats i Färgelanda Sporthall den 19 december!
+                {currentCup.countdownSubtext}
               </span>
             </div>
           </div>
 
           {/* ================================================================
-              CUPTRUPP: UTTAGNA SPELARE TILL FÄRGELANDA CUP
-              Visar endast spelarnas förnamn enligt direktiv.
+              CUPTRUPP (FÄRGELANDA) ELLER TURNERINGSINFO (YTTERBY & TÖSSE)
              ================================================================ */}
-          <div style={{ marginTop: '40px', borderTop: '1px solid var(--border-subtle)', paddingTop: '32px' }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
-              <div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
-                  UTTAGEN <span className="text-neon">CUPTRUPP</span> ({fargelandaCupSquad.length} SPELARE)
-                </h3>
-                <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
-                  Officiellt uttagna spelare som representerar Futsal Boys i Färgelanda Futsal Cup.
-                </span>
+          {currentCup.slug === 'fargelanda-cup' && (
+            <div style={{ marginTop: '36px', borderTop: '1px solid var(--border-subtle)', paddingTop: '28px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+                <div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
+                    UTTAGEN <span className="text-neon">CUPTRUPP</span> ({fargelandaCupSquad.length} SPELARE)
+                  </h3>
+                  <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                    Officiellt uttagna spelare som representerar Futsal Boys i Färgelanda Futsal Cup.
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(16,255,96,0.15)',
+                      color: 'var(--neon-green)',
+                      border: '1px solid var(--neon-green-glow)',
+                    }}
+                  >
+                    ● {fargelandaCupSquad.length} UTTAGNA
+                  </span>
+                </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '8px' }}>
+              {/* Grid of Cup Players (Just names as requested) */}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                  gap: '12px',
+                }}
+              >
+                {fargelandaCupSquad.map((player) => (
+                  <div
+                    key={player.id}
+                    style={{
+                      background: 'rgba(18, 22, 28, 0.85)',
+                      border: '1px solid rgba(16, 255, 96, 0.3)',
+                      borderRadius: '12px',
+                      padding: '14px 16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '12px',
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          fontSize: '20px',
+                          color: 'var(--neon-green)',
+                          background: 'rgba(7, 9, 11, 0.9)',
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '8px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          border: '1px solid var(--border-subtle)',
+                          lineHeight: 1,
+                        }}
+                      >
+                        #{player.number}
+                      </div>
+
+                      <div>
+                        <strong style={{ color: '#fff', fontSize: '16px', display: 'block', lineHeight: 1.2 }}>
+                          {player.name}
+                        </strong>
+                      </div>
+                    </div>
+
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 800,
+                        letterSpacing: '0.08em',
+                        padding: '3px 8px',
+                        borderRadius: '4px',
+                        background: 'rgba(16,255,96,0.15)',
+                        color: 'var(--neon-green)',
+                      }}
+                    >
+                      UTTAGEN
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {currentCup.slug === 'ytterby-cup' && (
+            <div style={{ marginTop: '36px', borderTop: '1px solid var(--border-subtle)', paddingTop: '28px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+                <div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
+                    TURNERINGSINFO & <span className="text-neon">KLASSER</span>
+                  </h3>
+                  <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                    Ytterby IS inbjuder till intensiv futsal i Kastellegårdshallen – seniorer spelar söndag 3 januari.
+                  </span>
+                </div>
+
                 <span
                   style={{
                     fontSize: '11px',
                     fontWeight: 800,
                     padding: '4px 10px',
                     borderRadius: '6px',
-                    background: 'rgba(16,255,96,0.15)',
-                    color: 'var(--neon-green)',
-                    border: '1px solid var(--neon-green-glow)',
+                    background: 'rgba(255, 215, 0, 0.15)',
+                    color: '#ffd700',
+                    border: '1px solid rgba(255, 215, 0, 0.4)',
                   }}
                 >
-                  ● {fargelandaCupSquad.length} UTTAGNA
+                  ★ SENIORKLASS SÖN 3 JAN
                 </span>
               </div>
-            </div>
 
-            {/* Grid of Cup Players (Just names as requested) */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
-                gap: '12px',
-              }}
-            >
-              {fargelandaCupSquad.map((player) => (
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
                 <div
-                  key={player.id}
                   style={{
                     background: 'rgba(18, 22, 28, 0.85)',
                     border: '1px solid rgba(16, 255, 96, 0.3)',
-                    borderRadius: '12px',
-                    padding: '14px 16px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '12px',
-                    transition: 'all 0.2s ease',
+                    borderRadius: '14px',
+                    padding: '18px 20px',
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                    <div
-                      style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: '20px',
-                        color: 'var(--neon-green)',
-                        background: 'rgba(7, 9, 11, 0.9)',
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        border: '1px solid var(--border-subtle)',
-                        lineHeight: 1,
-                      }}
-                    >
-                      #{player.number}
-                    </div>
-
-                    <div>
-                      <strong style={{ color: '#fff', fontSize: '16px', display: 'block', lineHeight: 1.2 }}>
-                        {player.name}
-                      </strong>
-                    </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <Trophy size={18} className="text-neon" />
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Seniorklass (Futsal Boys)</h4>
                   </div>
+                  <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
+                    Söndagen den 3 januari 2027 i Kastellegårdshallen. Gruppspel följt av A- och B-slutspel med medaljer till topplagen.
+                  </p>
+                </div>
 
-                  <span
-                    style={{
-                      fontSize: '10px',
-                      fontWeight: 800,
-                      letterSpacing: '0.08em',
-                      padding: '3px 8px',
-                      borderRadius: '4px',
-                      background: 'rgba(16,255,96,0.15)',
-                      color: 'var(--neon-green)',
-                    }}
-                  >
-                    UTTAGEN
+                <div
+                  style={{
+                    background: 'rgba(18, 22, 28, 0.85)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '14px',
+                    padding: '18px 20px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <Calendar size={18} className="text-neon" />
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Klasser & Anmälan</h4>
+                  </div>
+                  <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
+                    Juniorer (födda 2008 el senare) spelar lördag 2 jan. Sista anmälningsdag är 9 december 2026 via ProCup.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(18, 22, 28, 0.85)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '14px',
+                    padding: '18px 20px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <Users size={18} className="text-neon" />
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Trupputtagning</h4>
+                  </div>
+                  <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
+                    Matchtrupp och ledarstab för Ytterby Cup fastställs och publiceras i mellandagarna efter juluppehållet.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {currentCup.slug === 'tossecupen' && (
+            <div style={{ marginTop: '36px', borderTop: '1px solid var(--border-subtle)', paddingTop: '28px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
+                <div>
+                  <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
+                    TURNERINGSINFO & <span className="text-neon">TÖSSE IF</span>
+                  </h3>
+                  <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                    Traditionsenliga Tössecupen i Karlbergs idrottshall i Åmål – herrseniorer spelar söndag 31 januari.
                   </span>
                 </div>
-              ))}
+
+                <span
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 800,
+                    padding: '4px 10px',
+                    borderRadius: '6px',
+                    background: 'rgba(255, 215, 0, 0.15)',
+                    color: '#ffd700',
+                    border: '1px solid rgba(255, 215, 0, 0.4)',
+                  }}
+                >
+                  ★ HERRSENIORER SÖN 31 JAN
+                </span>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
+                <div
+                  style={{
+                    background: 'rgba(18, 22, 28, 0.85)',
+                    border: '1px solid rgba(16, 255, 96, 0.3)',
+                    borderRadius: '14px',
+                    padding: '18px 20px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <Trophy size={18} className="text-neon" />
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Herrseniorklass (Söndag)</h4>
+                  </div>
+                  <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
+                    Spelas söndagen den 31 januari 2027 i Karlbergs idrottshall, uppdelat på lägre och högre divisioner/futsallag.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(18, 22, 28, 0.85)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '14px',
+                    padding: '18px 20px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <ShieldCheck size={18} className="text-neon" />
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>SvFF Futsalregler</h4>
+                  </div>
+                  <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
+                    Turneringen spelas helt enligt Svenska Fotbollförbundets futsalregler. Lördagen vigs åt juniorer och damer.
+                  </p>
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(18, 22, 28, 0.85)',
+                    border: '1px solid var(--border-subtle)',
+                    borderRadius: '14px',
+                    padding: '18px 20px',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
+                    <Users size={18} className="text-neon" />
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Trupp & Uttagning</h4>
+                  </div>
+                  <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
+                    Truppen till Tössecupen tas ut och kungörs i mitten av januari efter att de inledande januari-aktiviteterna summerats.
+                  </p>
+                </div>
+              </div>
             </div>
+          )}
+
+          {/* Dots Indicator at Bottom */}
+          <div className="cup-carousel-dots" aria-label="Indikator för cuper">
+            {featuredCups.map((cup, idx) => (
+              <button
+                key={cup.id}
+                type="button"
+                className={`cup-carousel-dot ${idx === currentCupIndex ? 'is-active' : ''}`}
+                onClick={() => setCurrentCupIndex(idx)}
+                aria-label={`Visa ${cup.shortName}`}
+                title={cup.shortName}
+              />
+            ))}
           </div>
         </section>
 
         {/* ==================================================================
-            2. VINTERSCHEMA: NOVEMBER & DECEMBER 2026
+            2. VINTERSCHEMA & SPELPROGRAM: NOV, DEC & JAN
            ================================================================== */}
         <section className="schedule-section">
           <div style={{ marginBottom: '24px' }}>
@@ -381,10 +724,10 @@ export const MatchesPage: React.FC = () => {
                   }}
                 >
                   <Calendar size={15} />
-                  <span>OFFICIELLT PROGRAM • 6 AKTIVITETER</span>
+                  <span>OFFICIELLT SPELPROGRAM • {winterSchedule.length} AKTIVITETER</span>
                 </div>
                 <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 44px)', color: '#fff', margin: 0 }}>
-                  VINTERSCHEMA <span className="text-neon">NOV & DEC</span>
+                  VINTERSÄSONGEN <span className="text-neon">2026 / 2027</span>
                 </h2>
               </div>
 
@@ -416,13 +759,13 @@ export const MatchesPage: React.FC = () => {
                   onClick={() => setScheduleFilter('CUP')}
                   className={`schedule-tab ${scheduleFilter === 'CUP' ? 'is-active' : ''}`}
                 >
-                  Cup ({winterSchedule.filter((e) => e.type === 'CUP').length})
+                  Cuper ({winterSchedule.filter((e) => e.type === 'CUP').length})
                 </button>
               </div>
             </div>
 
             <p style={{ color: 'var(--silver-dim)', fontSize: '15px', margin: '0 0 16px', lineHeight: 1.6 }}>
-              Futsal Boys förbereder sig intensivt inför cupsäsongen med kvalitativa träningspass i Trollhättans hallar och två formstarka träningsmatcher. Klicka på en aktivitet för fullständiga detaljer.
+              Futsal Boys förbereder sig intensivt inför cupsäsongen med kvalitativa träningspass i Trollhättan, två formstarka träningsmatcher och tre cuper. Klicka på valfri aktivitet för fullständiga detaljer.
             </p>
 
             {/* Quick Summary Pill Bar */}
@@ -437,7 +780,7 @@ export const MatchesPage: React.FC = () => {
               </div>
               <div className="schedule-summary-item">
                 <Trophy size={17} style={{ color: '#ffd700' }} />
-                <span><strong>1 Cup:</strong> 19 dec (Färgelanda cup, Heldag)</span>
+                <span><strong>3 Cuper:</strong> 19 dec (Färgelanda), 2–3 jan (Ytterby), 30–31 jan (Tösse)</span>
               </div>
             </div>
           </div>

@@ -2810,11 +2810,147 @@ button {
   background: linear-gradient(145deg, #0d1217 0%, #151d26 50%, #0d1512 100%);
   border: 2px solid var(--neon-green);
   border-radius: 24px;
-  padding: 40px 32px;
+  padding: 36px 32px;
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(16, 255, 96, 0.22);
   margin-bottom: 64px;
   position: relative;
   overflow: hidden;
+}
+
+/* CUP CAROUSEL CONTROLS */
+.cup-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cup-carousel-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cup-carousel-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  color: var(--silver);
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.cup-carousel-pill:hover {
+  background: rgba(16, 255, 96, 0.1);
+  color: #fff;
+  border-color: rgba(16, 255, 96, 0.4);
+}
+
+.cup-carousel-pill.is-active {
+  background: linear-gradient(135deg, rgba(16, 255, 96, 0.22) 0%, rgba(16, 255, 96, 0.08) 100%);
+  color: var(--neon-green);
+  border-color: var(--neon-green);
+  box-shadow: 0 0 16px rgba(16, 255, 96, 0.25);
+}
+
+.cup-carousel-pill-num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.cup-carousel-pill.is-active .cup-carousel-pill-num {
+  background: var(--neon-green);
+  color: #000;
+  font-weight: 900;
+}
+
+.cup-carousel-arrows {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cup-carousel-btn {
+  background: rgba(7, 9, 11, 0.85);
+  border: 1px solid var(--border-neon);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 8px 14px;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.cup-carousel-btn:hover {
+  background: var(--neon-green);
+  color: #000000;
+  border-color: var(--neon-green);
+  box-shadow: 0 0 20px rgba(16, 255, 96, 0.4);
+  transform: translateY(-1px);
+}
+
+.cup-carousel-btn:active {
+  transform: translateY(0);
+}
+
+.cup-carousel-counter {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--silver-dim);
+  letter-spacing: 0.1em;
+  padding: 0 6px;
+}
+
+.cup-carousel-dots {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.cup-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.cup-carousel-dot.is-active {
+  width: 28px;
+  border-radius: 10px;
+  background: var(--neon-green);
+  box-shadow: 0 0 12px var(--neon-green);
 }
 
 .cup-countdown-card {
@@ -2863,10 +2999,40 @@ button {
 
 @media (max-width: 767px) {
   .cup-featured-card {
-    padding: 22px 14px;
+    padding: 20px 14px;
     border-radius: 18px;
     margin-bottom: 40px;
     border-width: 1.5px;
+  }
+
+  .cup-carousel-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+  }
+
+  .cup-carousel-pills {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .cup-carousel-pill {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+
+  .cup-carousel-arrows {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .cup-carousel-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 8px 10px;
+    font-size: 11.5px;
   }
   
   .cup-countdown-card {
