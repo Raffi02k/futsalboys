@@ -140,7 +140,7 @@ export const ScheduleDetailPage: React.FC = () => {
           </div>
 
           {/* Action Row */}
-          <div style={{ display: 'flex', gap: '12px', marginTop: '28px', flexWrap: 'wrap' }}>
+          <div className="match-action-btns" style={{ marginTop: '28px' }}>
             {event.type === 'MATCH' && (
               <Link
                 to={`/matcher/${event.slug}`}

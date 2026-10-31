@@ -440,9 +440,9 @@ export const futsalMatches: FutsalMatch[] = [
   {
     id: 'ev-5',
     slug: 'match-tif-polhem',
-    homeTeam: 'TIF Polhem',
-    awayTeam: 'Futsal Boys',
-    isHome: false,
+    homeTeam: 'Futsal Boys',
+    awayTeam: 'TIF Polhem',
+    isHome: true,
     competition: 'Officiell Träningsmatch',
     stage: 'Genrep inför Färgelanda Futsal Cup',
     date: '06 DEC 2026',
@@ -469,7 +469,7 @@ export const futsalMatches: FutsalMatch[] = [
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:15 Samling i omklädningsrummet' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:30 Taktikgenomgång & cuproller' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:45 Matchuppvärmning' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark TIF Polhem vs Futsal Boys' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs TIF Polhem' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 21:30 Matchslut och analys' },
     ],
     stats: {

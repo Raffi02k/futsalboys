@@ -875,18 +875,7 @@ export const MatchesPage: React.FC = () => {
         {/* ==================================================================
             3. KOMMANDE TRÄNINGSMATCH: FUTSAL BOYS VS FUNK
            ================================================================== */}
-        <div
-          style={{
-            background: 'linear-gradient(135deg, #12161c 0%, #1a222c 100%)',
-            border: '1px solid var(--border-neon)',
-            borderRadius: '20px',
-            padding: '36px 32px',
-            boxShadow: '0 20px 50px rgba(0,0,0,0.7), 0 0 30px rgba(16, 255, 96, 0.15)',
-            marginBottom: '64px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="matchup-banner-card">
           <div
             style={{
               display: 'inline-flex',
@@ -907,23 +896,16 @@ export const MatchesPage: React.FC = () => {
             <span>KOMMANDE TRÄNINGSMATCH</span>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '32px',
-              alignItems: 'center',
-            }}
-          >
+          <div className="matchup-banner-grid">
             {/* Teams Matchup */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
-              <div style={{ textAlign: 'center', flex: 1 }}>
+            <div className="matchup-banner-teams">
+              <div style={{ textAlign: 'center', flex: 1, minWidth: 0 }}>
                 <img
                   src={siteConfig.logoUrl}
                   alt={upcomingMatch.homeTeam}
-                  style={{ width: '80px', height: '80px', objectFit: 'contain', margin: '0 auto 12px' }}
+                  style={{ width: '70px', height: '70px', objectFit: 'contain', margin: '0 auto 10px', filter: 'drop-shadow(0 0 12px rgba(16,255,96,0.3))' }}
                 />
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: 0 }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px, 3.5vw, 26px)', color: '#fff', margin: 0 }}>
                   {upcomingMatch.homeTeam}
                 </h3>
                 <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 700, letterSpacing: '0.1em' }}>
@@ -931,33 +913,33 @@ export const MatchesPage: React.FC = () => {
                 </span>
               </div>
 
-              <div style={{ textAlign: 'center' }}>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '36px', color: 'var(--silver-dim)' }}>
+              <div style={{ textAlign: 'center', padding: '0 8px' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '32px', color: 'var(--silver-dim)' }}>
                   VS
                 </span>
               </div>
 
-              <div style={{ textAlign: 'center', flex: 1 }}>
+              <div style={{ textAlign: 'center', flex: 1, minWidth: 0 }}>
                 <div
                   style={{
-                    width: '80px',
-                    height: '80px',
+                    width: '70px',
+                    height: '70px',
                     borderRadius: '50%',
                     background: 'rgba(255,255,255,0.06)',
                     border: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    margin: '0 auto 12px',
+                    margin: '0 auto 10px',
                     fontFamily: 'var(--font-display)',
-                    fontSize: '26px',
+                    fontSize: '22px',
                     color: 'var(--silver)',
                     fontWeight: 700,
                   }}
                 >
                   FUNK
                 </div>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '26px', color: '#fff', margin: 0 }}>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px, 3.5vw, 26px)', color: '#fff', margin: 0 }}>
                   {upcomingMatch.awayTeam}
                 </h3>
                 <span style={{ fontSize: '11px', color: 'var(--silver-dim)', fontWeight: 700, letterSpacing: '0.1em' }}>
@@ -967,19 +949,11 @@ export const MatchesPage: React.FC = () => {
             </div>
 
             {/* Date, Time & Venue */}
-            <div
-              style={{
-                borderLeft: '1px solid var(--border-subtle)',
-                paddingLeft: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '14px',
-              }}
-            >
+            <div className="matchup-banner-meta">
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <Calendar size={20} className="text-neon" />
                 <div>
-                  <strong style={{ color: '#fff', display: 'block', fontSize: '16px' }}>{upcomingMatch.date}</strong>
+                  <strong style={{ color: '#fff', display: 'block', fontSize: '15px' }}>{upcomingMatch.date}</strong>
                   <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Matchtid: {upcomingMatch.time}</span>
                 </div>
               </div>
@@ -987,7 +961,7 @@ export const MatchesPage: React.FC = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                 <MapPin size={20} className="text-neon" />
                 <div>
-                  <strong style={{ color: '#fff', display: 'block', fontSize: '16px' }}>{upcomingMatch.venue}</strong>
+                  <strong style={{ color: '#fff', display: 'block', fontSize: '15px' }}>{upcomingMatch.venue}</strong>
                   <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Fri entré • Kom och heja fram Futsal Boys!</span>
                 </div>
               </div>
@@ -997,7 +971,7 @@ export const MatchesPage: React.FC = () => {
                 <span>Nästa träningsmatch: vs TIF Polhem (6 dec, 20:00–22:00)</span>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', marginTop: '6px' }}>
+              <div className="match-action-btns" style={{ marginTop: '6px' }}>
                 <Link
                   to="/matcher/match-funk"
                   className="btn btn--neon btn--sm"

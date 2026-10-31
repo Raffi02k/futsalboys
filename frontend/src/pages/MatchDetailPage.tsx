@@ -104,22 +104,11 @@ export const MatchDetailPage: React.FC = () => {
         </div>
 
         {/* ==================================================================
-            HERO SCOREBOARD CARD
+            HERO SCOREBOARD CARD (FULLY RESPONSIVE)
            ================================================================== */}
-        <div
-          style={{
-            background: 'linear-gradient(145deg, #0b0f14 0%, #151d26 50%, #0d1613 100%)',
-            border: '2px solid var(--neon-green)',
-            borderRadius: '24px',
-            padding: '40px 32px',
-            boxShadow: '0 24px 60px rgba(0,0,0,0.85), 0 0 35px rgba(16, 255, 96, 0.2)',
-            marginBottom: '40px',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
+        <div className="match-detail-hero">
           {/* Header Badges */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '28px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
               <span
                 style={{
@@ -144,10 +133,10 @@ export const MatchDetailPage: React.FC = () => {
 
             <span
               style={{
-                fontSize: '11.5px',
+                fontSize: '11px',
                 fontWeight: 900,
-                letterSpacing: '0.1em',
-                padding: '6px 14px',
+                letterSpacing: '0.08em',
+                padding: '5px 12px',
                 borderRadius: '8px',
                 textTransform: 'uppercase',
                 background:
@@ -166,15 +155,15 @@ export const MatchDetailPage: React.FC = () => {
                     : '1px solid var(--border-subtle)',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '8px',
+                gap: '6px',
               }}
             >
               {match.status === 'KOMMANDE' ? (
                 <>
                   <span
                     style={{
-                      width: '8px',
-                      height: '8px',
+                      width: '7px',
+                      height: '7px',
                       borderRadius: '50%',
                       background: 'var(--neon-green)',
                       boxShadow: '0 0 10px var(--neon-green)',
@@ -191,94 +180,60 @@ export const MatchDetailPage: React.FC = () => {
           </div>
 
           {/* Main Scoreboard Layout */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto 1fr',
-              alignItems: 'center',
-              gap: '24px',
-              margin: '20px 0 32px',
-            }}
-          >
+          <div className="match-scoreboard-grid">
             {/* Home Team */}
-            <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <img
-                src={siteConfig.logoUrl}
-                alt={match.homeTeam}
-                style={{
-                  width: '90px',
-                  height: '90px',
-                  objectFit: 'contain',
-                  marginBottom: '14px',
-                  filter: 'drop-shadow(0 0 15px rgba(16, 255, 96, 0.35))',
-                }}
-              />
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 3.5vw, 36px)', color: '#fff', margin: '0 0 4px', lineHeight: 1.1 }}>
-                {match.homeTeam}
-              </h2>
-              <span style={{ fontSize: '12px', color: 'var(--neon-green)', fontWeight: 800, letterSpacing: '0.12em' }}>
+            <div className="match-scoreboard-team">
+              {match.homeTeam.toLowerCase().includes('futsal boys') ? (
+                <img
+                  src={siteConfig.logoUrl}
+                  alt={match.homeTeam}
+                  className="match-scoreboard-logo"
+                />
+              ) : (
+                <div className="match-scoreboard-circle">
+                  {match.homeTeam.substring(0, 4).toUpperCase()}
+                </div>
+              )}
+              <h2 className="match-scoreboard-name">{match.homeTeam}</h2>
+              <span className="match-scoreboard-tag" style={{ color: 'var(--neon-green)' }}>
                 HEMMALAG
               </span>
             </div>
 
             {/* Score Center Box */}
-            <div style={{ textAlign: 'center', padding: '0 16px' }}>
-              <div
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 'clamp(44px, 7vw, 76px)',
-                  color: match.status === 'KOMMANDE' ? '#ffffff' : 'var(--neon-green)',
-                  lineHeight: 1,
-                  background: 'rgba(0, 0, 0, 0.45)',
-                  padding: '12px 28px',
-                  borderRadius: '16px',
-                  border: '1px solid rgba(16, 255, 96, 0.35)',
-                  boxShadow: 'inset 0 0 25px rgba(16, 255, 96, 0.1)',
-                  letterSpacing: '0.04em',
-                  display: 'inline-block',
-                }}
-              >
+            <div className="match-scoreboard-score-box">
+              <div className="match-scoreboard-score-num">
                 {match.result}
               </div>
 
               {match.status === 'SLUTRESULTAT' && match.halftimeResult && (
-                <div style={{ marginTop: '8px', fontSize: '13px', color: 'var(--silver-dim)', fontWeight: 700 }}>
+                <div style={{ marginTop: '6px', fontSize: '12px', color: 'var(--silver-dim)', fontWeight: 700 }}>
                   (Halvtid: {match.halftimeResult})
                 </div>
               )}
 
               {match.status === 'KOMMANDE' && (
-                <div style={{ marginTop: '8px', fontSize: '13px', color: 'var(--neon-green)', fontWeight: 800 }}>
+                <div style={{ marginTop: '6px', fontSize: '11.5px', color: 'var(--neon-green)', fontWeight: 800 }}>
                   Avspark {match.time}
                 </div>
               )}
             </div>
 
             {/* Away Team */}
-            <div style={{ textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-              <div
-                style={{
-                  width: '90px',
-                  height: '90px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '2px solid rgba(255, 255, 255, 0.15)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '14px',
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '26px',
-                  color: 'var(--silver)',
-                  boxShadow: '0 10px 25px rgba(0,0,0,0.4)',
-                }}
-              >
-                {match.awayTeam.substring(0, 4).toUpperCase()}
-              </div>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 3.5vw, 36px)', color: '#fff', margin: '0 0 4px', lineHeight: 1.1 }}>
-                {match.awayTeam}
-              </h2>
-              <span style={{ fontSize: '12px', color: 'var(--silver-dim)', fontWeight: 800, letterSpacing: '0.12em' }}>
+            <div className="match-scoreboard-team">
+              {match.awayTeam.toLowerCase().includes('futsal boys') ? (
+                <img
+                  src={siteConfig.logoUrl}
+                  alt={match.awayTeam}
+                  className="match-scoreboard-logo"
+                />
+              ) : (
+                <div className="match-scoreboard-circle">
+                  {match.awayTeam.substring(0, 4).toUpperCase()}
+                </div>
+              )}
+              <h2 className="match-scoreboard-name">{match.awayTeam}</h2>
+              <span className="match-scoreboard-tag" style={{ color: 'var(--silver-dim)' }}>
                 BORTALAG
               </span>
             </div>
@@ -289,29 +244,29 @@ export const MatchDetailPage: React.FC = () => {
             style={{
               background: 'rgba(0, 0, 0, 0.35)',
               borderRadius: '12px',
-              padding: '12px 18px',
+              padding: '10px 14px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '12px',
+              gap: '10px',
               border: '1px solid var(--border-subtle)',
-              marginBottom: '24px',
+              marginBottom: '20px',
               flexWrap: 'wrap',
               textAlign: 'center',
             }}
           >
-            <span style={{ fontSize: '12px', color: 'var(--neon-green)', fontWeight: 800, letterSpacing: '0.08em' }}>
+            <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 800, letterSpacing: '0.08em' }}>
               {match.status === 'KOMMANDE' ? 'STATUS:' : 'MÅLSKYTTAR:'}
             </span>
-            <span style={{ fontSize: '14px', color: '#ffffff', fontWeight: 600 }}>
+            <span style={{ fontSize: '13.5px', color: '#ffffff', fontWeight: 600 }}>
               {match.scorersSummary}
             </span>
           </div>
 
           {/* Match Metadata Row */}
-          <div className="schedule-meta-grid" style={{ marginBottom: '24px' }}>
+          <div className="schedule-meta-grid" style={{ marginBottom: '20px' }}>
             <div className="schedule-meta-pill">
-              <Calendar size={18} className="text-neon" />
+              <Calendar size={17} className="text-neon" />
               <div>
                 <span className="schedule-meta-label">DATUM</span>
                 <strong className="schedule-meta-value">{match.fullDate}</strong>
@@ -319,7 +274,7 @@ export const MatchDetailPage: React.FC = () => {
             </div>
 
             <div className="schedule-meta-pill">
-              <Clock size={18} className="text-neon" />
+              <Clock size={17} className="text-neon" />
               <div>
                 <span className="schedule-meta-label">MATCHTID</span>
                 <strong className="schedule-meta-value">{match.time}</strong>
@@ -327,7 +282,7 @@ export const MatchDetailPage: React.FC = () => {
             </div>
 
             <div className="schedule-meta-pill">
-              <MapPin size={18} className="text-neon" />
+              <MapPin size={17} className="text-neon" />
               <div>
                 <span className="schedule-meta-label">ARENA</span>
                 <strong className="schedule-meta-value">{match.venue}, {match.city}</strong>
@@ -335,7 +290,7 @@ export const MatchDetailPage: React.FC = () => {
             </div>
 
             <div className="schedule-meta-pill">
-              <Users size={18} className="text-neon" />
+              <Users size={17} className="text-neon" />
               <div>
                 <span className="schedule-meta-label">PUBLIK</span>
                 <strong className="schedule-meta-value">{match.spectators || 'Öppen publik'}</strong>
@@ -344,7 +299,7 @@ export const MatchDetailPage: React.FC = () => {
           </div>
 
           {/* Quick Action Buttons */}
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <div className="match-action-btns">
             {match.mapsUrl && (
               <a
                 href={match.mapsUrl}
@@ -372,27 +327,15 @@ export const MatchDetailPage: React.FC = () => {
         {/* ==================================================================
             MATCH DETAIL TABS
            ================================================================== */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            overflowX: 'auto',
-            paddingBottom: '8px',
-            marginBottom: '32px',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-          }}
-          role="tablist"
-        >
+        <div className="match-tabs-bar" role="tablist">
           <button
             type="button"
             role="tab"
             aria-selected={activeTab === 'EVENTS'}
             onClick={() => setActiveTab('EVENTS')}
-            className={`btn btn--sm ${activeTab === 'EVENTS' ? 'btn--neon' : 'btn--outline'}`}
-            style={{ borderRadius: '25px', padding: '8px 18px', gap: '8px' }}
+            className={`btn match-tabs-btn ${activeTab === 'EVENTS' ? 'btn--neon' : 'btn--outline'}`}
           >
-            <ListOrdered size={15} />
+            <ListOrdered size={14} />
             <span>HÄNDELSER & MÅL</span>
           </button>
 
@@ -401,10 +344,9 @@ export const MatchDetailPage: React.FC = () => {
             role="tab"
             aria-selected={activeTab === 'STATS'}
             onClick={() => setActiveTab('STATS')}
-            className={`btn btn--sm ${activeTab === 'STATS' ? 'btn--neon' : 'btn--outline'}`}
-            style={{ borderRadius: '25px', padding: '8px 18px', gap: '8px' }}
+            className={`btn match-tabs-btn ${activeTab === 'STATS' ? 'btn--neon' : 'btn--outline'}`}
           >
-            <BarChart3 size={15} />
+            <BarChart3 size={14} />
             <span>STATISTIK</span>
           </button>
 
@@ -413,10 +355,9 @@ export const MatchDetailPage: React.FC = () => {
             role="tab"
             aria-selected={activeTab === 'LINEUP'}
             onClick={() => setActiveTab('LINEUP')}
-            className={`btn btn--sm ${activeTab === 'LINEUP' ? 'btn--neon' : 'btn--outline'}`}
-            style={{ borderRadius: '25px', padding: '8px 18px', gap: '8px' }}
+            className={`btn match-tabs-btn ${activeTab === 'LINEUP' ? 'btn--neon' : 'btn--outline'}`}
           >
-            <Users size={15} />
+            <Users size={14} />
             <span>TRUPP & LIRARE</span>
           </button>
 
@@ -425,10 +366,9 @@ export const MatchDetailPage: React.FC = () => {
             role="tab"
             aria-selected={activeTab === 'REPORT'}
             onClick={() => setActiveTab('REPORT')}
-            className={`btn btn--sm ${activeTab === 'REPORT' ? 'btn--neon' : 'btn--outline'}`}
-            style={{ borderRadius: '25px', padding: '8px 18px', gap: '8px' }}
+            className={`btn match-tabs-btn ${activeTab === 'REPORT' ? 'btn--neon' : 'btn--outline'}`}
           >
-            <FileText size={15} />
+            <FileText size={14} />
             <span>MATCHREFERAT</span>
           </button>
 
@@ -438,10 +378,9 @@ export const MatchDetailPage: React.FC = () => {
               role="tab"
               aria-selected={activeTab === 'LIVE'}
               onClick={() => setActiveTab('LIVE')}
-              className={`btn btn--sm ${activeTab === 'LIVE' ? 'btn--neon' : 'btn--outline'}`}
-              style={{ borderRadius: '25px', padding: '8px 18px', gap: '8px' }}
+              className={`btn match-tabs-btn ${activeTab === 'LIVE' ? 'btn--neon' : 'btn--outline'}`}
             >
-              <Radio size={15} />
+              <Radio size={14} />
               <span>LIVE-RAPPORTERING</span>
             </button>
           )}
@@ -451,7 +390,7 @@ export const MatchDetailPage: React.FC = () => {
             TAB 1: HÄNDELSER & MÅL
            ================================================================== */}
         {activeTab === 'EVENTS' && (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '28px' }}>
+          <div className="match-two-column-grid">
             {/* Left: Goals Breakdown */}
             <div className="schedule-info-box">
               <h3 className="schedule-info-box__title">

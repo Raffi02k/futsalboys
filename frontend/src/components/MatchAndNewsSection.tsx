@@ -54,22 +54,7 @@ export const MatchAndNewsSection: React.FC = () => {
                 <div className="match-vs">VS</div>
 
                 <div className="match-team">
-                  <div
-                    style={{
-                      width: '72px',
-                      height: '72px',
-                      borderRadius: '50%',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: '2px solid rgba(255, 255, 255, 0.15)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '22px',
-                      color: 'var(--silver)',
-                      fontWeight: 700,
-                    }}
-                  >
+                  <div className="match-team__circle">
                     FUNK
                   </div>
                   <span className="match-team__name">{upcomingMatch.awayTeam}</span>
