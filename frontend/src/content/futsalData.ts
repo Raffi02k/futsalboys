@@ -154,6 +154,8 @@ export interface ScheduleEvent {
   organizer?: string;
   classes?: string;
   isUpcoming?: boolean;
+  image?: string;
+  blogUrl?: string;
 }
 
 export const winterSchedule: ScheduleEvent[] = [
@@ -428,6 +430,8 @@ export const winterSchedule: ScheduleEvent[] = [
     proCupUrl: 'https://www.procup.se/cup/40774.htm',
     organizer: 'Färgelanda IF',
     classes: 'Herrsenior / Futsal (Heldag lördag 19 dec)',
+    image: '/images/fergelanda_cup.JPG',
+    blogUrl: '/blogg/fargelanda-cup-2026',
     isUpcoming: true,
   },
   {
@@ -477,6 +481,8 @@ export const winterSchedule: ScheduleEvent[] = [
     externalUrl: 'https://www.ytterbyis.nu/nyheter/?ID=40598&NID=1359459',
     organizer: 'Ytterby IS',
     classes: 'Senior: Söndag 3 jan 2027 • Juniorer: Lördag 2 jan 2027',
+    image: '/images/ytterby_cup.JPG',
+    blogUrl: '/blogg/ytterby-cup-2027',
     isUpcoming: true,
   },
   {
@@ -525,6 +531,8 @@ export const winterSchedule: ScheduleEvent[] = [
     externalUrl: 'https://www.tosseif.com/Page/398307',
     organizer: 'Tösse IF',
     classes: 'Herrseniorer: Söndag 31 jan 2027 • Juniorer & Damer: Lördag 30 jan',
+    image: '/images/tosse_cup.JPG',
+    blogUrl: '/blogg/tossecupen-2027',
     isUpcoming: true,
   },
 ];
@@ -562,9 +570,64 @@ export interface ClubNews {
   author: string;
   paragraphs: string[];
   quote?: string;
+  cupSlug?: string;
 }
 
 export const clubNewsList: ClubNews[] = [
+  {
+    id: 'fargelanda-cup-2026',
+    category: 'CUPNYHET',
+    title: 'Färgelanda Futsal Cup: Truppen, spelschemat och cupäventyret!',
+    summary: 'Lördagen den 19 december kliver Futsal Boys in i prestigefyllda Färgelanda Futsal Cup med 12 uttagna spelare redo att slåss om cupguldet!',
+    date: '31 OKT 2026',
+    readTime: '3 MIN LÄSNING',
+    author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
+    image: '/images/fergelanda_cup.JPG',
+    cupSlug: 'fargelanda-cup',
+    paragraphs: [
+      'Vintersäsongens första stora cupäventyr närmar sig med stormsteg! Lördagen den 19 december åker Futsal Boys till Färgelanda Sporthall för att delta i anrika Färgelanda Futsal Cup.',
+      'Ledarstaben har nu officiellt fastställt cuptruppen som består av 12 uttagna krigare: Elvis (#1, målvakt), Marcelo (#3, försvar), Raffi (#7, mittfält), Mehdi (#11, mittfält), Wael (#6, forward), Wictor (#24, försvar), Hugo (#4, forward), Stefan (#9, forward), Kasper (#10, mittfält), Lucas (#14, försvar), Emin (#18, forward) och Tro (#22, försvar).',
+      'Turneringen är en officiell ProCup-turnering och spelas som en intensiv heldag med gruppspelsmatcher på förmiddagen följt av nervkittlande slutspel under eftermiddagen och kvällen.',
+      'Förberedelserna har inletts med träningspass i Sylte, Torsbohallen och Nevshallen samt två träningsmatcher mot Funk (20 nov) och TIF Polhem (6 dec). På cupdagen kan supportrar följa varje mål och match live via vår officiella Instagram (@grabbarna.futsal) och spelschemat på ProCup!',
+    ],
+    quote: 'Färgelanda blir första stora testet för vår sammansvetsade trupp. Vi reser dit med en enda målsättning – att ge allt och gå för guldet!',
+  },
+  {
+    id: 'ytterby-cup-2027',
+    category: 'CUPNYHET',
+    title: 'Klart: Futsal Boys kliver in i Ytterby Cup 2027 i Kungälv',
+    summary: 'Nyårsturneringen i Kastellegårdshallen: Söndagen den 3 januari 2027 spelar Futsal Boys seniorklassen i populära Ytterby Cup.',
+    date: '31 OKT 2026',
+    readTime: '2 MIN LÄSNING',
+    author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
+    image: '/images/ytterby_cup.JPG',
+    cupSlug: 'ytterby-cup',
+    paragraphs: [
+      'Direkt efter nyårsfirandet rivstartar Futsal Boys 2027 med deltagande i Ytterby Cup – Futsal, som arrangeras av Ytterby IS i Kastellegårdshallen i Ytterby/Kungälv.',
+      'Turneringen avgörs den 2–3 januari 2027, där juniorklasserna spelas under lördagen och herrseniorklassen avgörs under söndagen den 3 januari. Det innebär högklassigt motstånd mot flera av de bästa lagen från Göteborg och Bohuslän.',
+      'Turneringen administreras via ProCup och sista anmälningsdag är 9 december 2026. Lottning och detaljerat matchschema publiceras så fort spelschemat spikats.',
+      'Vi ser fram emot att ta med oss Trollhätte-andan till Kungälv och inleda det nya året med fartfylld futsal och kompromisslös energi!',
+    ],
+    quote: 'Ytterby Cup blir en perfekt start på 2027. Vi vill mäta oss med starka lag och fortsätta bygga vår vinnarmentalitet.',
+  },
+  {
+    id: 'tossecupen-2027',
+    category: 'CUPNYHET',
+    title: 'Klart: Futsal Boys intar traditionsenliga Tössecupen 2027 i Åmål',
+    summary: 'Klassiska Tössecupen i Karlbergs idrottshall väntar helgen 30–31 januari 2027. Futsal Boys gör upp i herrseniorklassen under cupens sista dag.',
+    date: '31 OKT 2026',
+    readTime: '2 MIN LÄSNING',
+    author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
+    image: '/images/tosse_cup.JPG',
+    cupSlug: 'tossecupen',
+    paragraphs: [
+      'Under den sista helgen i januari 2027 åker Futsal Boys norrut till Åmål för anrika Tössecupen, som arrangeras av Tösse IF i Karlbergs idrottshall (30–31 januari 2027).',
+      'Turneringen spelas enligt SvFF:s officiella futsalregler. Lördagen vigs åt juniorer och damer, medan herrseniorerna gör upp under söndagen den 31 januari.',
+      'Tössecupen har en stolt historia och är känd för sin fantastiska cupstämning, fullsatta läktare och kompromisslösa närkamper på parketten.',
+      'Med tre spikade cuper i vinter – Färgelanda den 19 dec, Ytterby den 3 jan och Tössecupen den 31 jan – får klubben en komplett och fantastisk säsong fylld med utmaningar.',
+    ],
+    quote: 'Tössecupen är en sann klassiker. Vi åker dit med full energi, teknisk futsal och siktet inställt på toppen!',
+  },
   {
     id: 'nya-cuper-2027',
     category: 'CUPNYHET',
@@ -573,7 +636,7 @@ export const clubNewsList: ClubNews[] = [
     date: '31 OKT 2026',
     readTime: '2 MIN LÄSNING',
     author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
-    image: '/images/players/Lagfoto.JPG',
+    image: '/images/ytterby_cup.JPG',
     paragraphs: [
       'Det står nu klart att Futsal Boys kliver in i ytterligare två cuper under vintersäsongen 2026/2027. Utöver Färgelanda cup den 19 december har klubben säkrat deltagande i Ytterby Cup och Tössecupen i januari 2027!',
       'Ytterby Cup avgörs den 2–3 januari 2027 i Ytterby/Kungälv, där Futsal Boys deltar i seniorklassen under söndagen den 3 januari. Turneringen administreras via ProCup och lockar högklassigt futsalmotstånd.',

@@ -409,6 +409,41 @@ export const BlogPostPage: React.FC = () => {
           )}
         </div>
 
+        {/* Quick Cup Links if related to a cup */}
+        {article.cupSlug && (
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(16, 255, 96, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%)',
+              border: '1px solid var(--border-neon)',
+              borderRadius: '16px',
+              padding: '20px 24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '16px',
+              marginBottom: '32px',
+            }}
+          >
+            <div>
+              <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 800, letterSpacing: '0.1em' }}>
+                SPELSCHEMA & CUPINFORMATION
+              </span>
+              <h4 style={{ color: '#fff', fontSize: '18px', margin: '4px 0 0' }}>
+                Se komplett information & tidslinje för denna cup
+              </h4>
+            </div>
+
+            <Link
+              to={`/schema/${article.cupSlug}`}
+              className="btn btn--neon btn--sm"
+            >
+              <span>VISA CUPEN I SPELSCHEMAT</span>
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        )}
+
         {/* Club Author Card */}
         <div className="blog-author-card">
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>

@@ -104,6 +104,26 @@ export const ScheduleDetailPage: React.FC = () => {
             {event.description}
           </p>
 
+          {/* Event Poster / Cup Image */}
+          {event.image && (
+            <div
+              style={{
+                margin: '24px 0 20px',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                border: '1px solid var(--border-neon)',
+                boxShadow: '0 12px 32px rgba(0,0,0,0.6)',
+                maxHeight: '380px',
+              }}
+            >
+              <img
+                src={event.image}
+                alt={event.title}
+                style={{ width: '100%', height: '100%', maxHeight: '380px', objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+          )}
+
           {/* Quick Meta Pills */}
           <div className="schedule-meta-grid">
             <div className="schedule-meta-pill">
@@ -160,6 +180,17 @@ export const ScheduleDetailPage: React.FC = () => {
               <Navigation size={16} />
               <span>HITTA HIT (GOOGLE MAPS)</span>
             </a>
+
+            {event.blogUrl && (
+              <Link
+                to={event.blogUrl}
+                className="btn btn--outline"
+                title="Läs om cupen i klubbens blogg"
+              >
+                <span>LÄS OM CUPEN I BLOGGEN</span>
+                <ExternalLink size={16} />
+              </Link>
+            )}
 
             {event.proCupUrl && (
               <a
@@ -361,7 +392,18 @@ export const ScheduleDetailPage: React.FC = () => {
                       <span>{event.organizer}</span>
                     </div>
                   )}
-                  {event.proCupUrl && (
+                  {event.blogUrl && (
+              <Link
+                to={event.blogUrl}
+                className="btn btn--outline"
+                title="Läs om cupen i klubbens blogg"
+              >
+                <span>LÄS OM CUPEN I BLOGGEN</span>
+                <ExternalLink size={16} />
+              </Link>
+            )}
+
+            {event.proCupUrl && (
                     <div style={{ marginTop: '8px' }}>
                       <a href={event.proCupUrl} target="_blank" rel="noopener noreferrer" className="btn btn--neon btn--sm">
                         <span>LOTTNING & SPELSCHEMA PÅ PROCUP</span>

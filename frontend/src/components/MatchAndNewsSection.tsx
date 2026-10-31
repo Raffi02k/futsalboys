@@ -105,7 +105,7 @@ export const MatchAndNewsSection: React.FC = () => {
 
             <div style={{ display: 'flex', flexDirection: 'column', flex: 1, justifyContent: 'space-between' }}>
               <div>
-                {clubNewsList.slice(0, 2).map((news) => (
+                {clubNewsList.slice(0, 3).map((news) => (
                   <Link
                     key={news.id}
                     to={`/blogg/${news.id}`}

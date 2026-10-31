@@ -51,7 +51,8 @@ export interface FeaturedCup {
   id: string;
   slug: string;
   shortName: string;
-  badge: string;
+  image?: string;
+  blogUrl?: string;
   titlePrimary: string;
   titleHighlight: string;
   targetDate: string; // ISO format
@@ -72,7 +73,8 @@ export const featuredCups: FeaturedCup[] = [
     id: 'fargelanda',
     slug: 'fargelanda-cup',
     shortName: 'Färgelanda Cup',
-    badge: 'VINTERNS STORA CUPÄVENTYR • CUP 1 AV 3',
+    image: '/images/fergelanda_cup.JPG',
+    blogUrl: '/blogg/fargelanda-cup-2026',
     titlePrimary: 'FÄRGELANDA',
     titleHighlight: 'FUTSAL CUP',
     targetDate: '2026-12-19T08:00:00',
@@ -89,7 +91,8 @@ export const featuredCups: FeaturedCup[] = [
     id: 'ytterby',
     slug: 'ytterby-cup',
     shortName: 'Ytterby Cup',
-    badge: 'NYÅRSCUPEN I KUNGÄLV • CUP 2 AV 3',
+    image: '/images/ytterby_cup.JPG',
+    blogUrl: '/blogg/ytterby-cup-2027',
     titlePrimary: 'YTTERBY CUP',
     titleHighlight: 'FUTSAL 2027',
     targetDate: '2027-01-03T08:00:00',
@@ -108,7 +111,8 @@ export const featuredCups: FeaturedCup[] = [
     id: 'tosse',
     slug: 'tossecupen',
     shortName: 'Tössecupen',
-    badge: 'TRADITIONSCUPEN I ÅMÅL • CUP 3 AV 3',
+    image: '/images/tosse_cup.JPG',
+    blogUrl: '/blogg/tossecupen-2027',
     titlePrimary: 'TÖSSECUPEN',
     titleHighlight: '2027',
     targetDate: '2027-01-31T08:00:00',
@@ -324,6 +328,17 @@ export const MatchesPage: React.FC = () => {
                   <ChevronRight size={16} />
                 </Link>
 
+                {currentCup.blogUrl && (
+                  <Link
+                    to={currentCup.blogUrl}
+                    className="btn btn--outline"
+                    title={`Läs bloggartikel om ${currentCup.shortName}`}
+                  >
+                    <span>LÄS CUPBLOGGEN</span>
+                    <ExternalLink size={15} />
+                  </Link>
+                )}
+
                 {currentCup.proCupUrl && (
                   <a
                     href={currentCup.proCupUrl}
@@ -363,6 +378,24 @@ export const MatchesPage: React.FC = () => {
 
             {/* Countdown Clock Display */}
             <div className="cup-countdown-card">
+              {currentCup.image && (
+                <div
+                  style={{
+                    marginBottom: '16px',
+                    borderRadius: '12px',
+                    overflow: 'hidden',
+                    border: '1px solid rgba(16, 255, 96, 0.25)',
+                    boxShadow: '0 8px 24px rgba(0,0,0,0.5)',
+                    maxHeight: '160px',
+                  }}
+                >
+                  <img
+                    src={currentCup.image}
+                    alt={currentCup.shortName}
+                    style={{ width: '100%', height: '160px', objectFit: 'cover', display: 'block' }}
+                  />
+                </div>
+              )}
               <span
                 style={{
                   fontSize: '11px',
