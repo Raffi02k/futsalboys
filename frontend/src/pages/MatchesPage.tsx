@@ -283,27 +283,6 @@ export const MatchesPage: React.FC = () => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '32px', alignItems: 'center' }}>
             {/* Cup Info */}
             <div>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '4px 12px',
-                  borderRadius: '30px',
-                  background: 'rgba(255, 215, 0, 0.15)',
-                  color: '#ffd700',
-                  border: '1px solid rgba(255, 215, 0, 0.4)',
-                  fontSize: '11px',
-                  fontWeight: 800,
-                  letterSpacing: '0.1em',
-                  marginBottom: '16px',
-                  textTransform: 'uppercase',
-                }}
-              >
-                <Trophy size={13} />
-                <span>{currentCup.badge}</span>
-              </div>
-
               <h2
                 style={{
                   fontFamily: 'var(--font-display)',
