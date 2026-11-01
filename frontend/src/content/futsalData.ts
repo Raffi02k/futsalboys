@@ -746,22 +746,6 @@ export const clubNewsList: ClubNews[] = [
     quote: 'Detta är bara början på resan. Vi spelar med hjärta, fart och stolthet för Trollhättan.',
   },
   {
-    id: '1',
-    category: 'MATCHRAPPORT',
-    title: 'Futsal Boys säkrar dramatisk seger i cupkvartsfinalen',
-    summary: 'En heroisk laginsats med intensiv press och snabba kontringar säkrade avancemang inför en jublande publik.',
-    date: '12 OKT 2026',
-    readTime: '3 MIN LÄSNING',
-    author: 'Raffi Medz & Elvis Mesic',
-    image: '/images/players/Lagfoto.JPG',
-    paragraphs: [
-      'Det var upplagt för en riktig rysare i kvartsfinalen när Futsal Boys klev in på parketten i ett fullsatt Arena Älvhögsborg. Med hög intensitet från första sekunden och en aggressiv press över hela banan visade laget direkt vem som bestämde takten.',
-      'Efter en mållös och taktisk första period klev Elvis Mesic fram och dundrade in ledningsmålet via ribban efter en blixtsnabb kombination med Marcelo Villa. Motståndarna kvitterade visserligen kort därefter, men med blott två minuter kvar på matchklockan avgjordes matchen i en dramatisk kontring där hela laget exploderade i glädje.',
-      'Stämningen i hallen var fullständigt elektrisk och vinsten säkrar nu en välförtjänt plats i semifinalen nästa vecka. Lagets sammanhållning, försvarsdisciplin och fysiska status fällde det slutgiltiga avgörandet.',
-    ],
-    quote: 'Vi visade ett enormt hjärta och höll oss till matchplanen i 40 minuter. Publiken bar oss framåt idag!',
-  },
-  {
     id: '2',
     category: 'KLUBBNYTT',
     title: 'Officiella matchtröjan för säsongen presenterad',
