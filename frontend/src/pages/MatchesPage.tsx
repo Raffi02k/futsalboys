@@ -853,6 +853,26 @@ export const MatchesPage: React.FC = () => {
                     </div>
 
                     <p className="schedule-card__desc">{ev.description}</p>
+
+                    {ev.importantNotice && (
+                      <div
+                        style={{
+                          marginTop: '10px',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '6px',
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          background: 'rgba(255, 180, 0, 0.12)',
+                          border: '1px solid rgba(255, 180, 0, 0.35)',
+                          color: '#ffb400',
+                          fontSize: '12px',
+                          fontWeight: 700,
+                        }}
+                      >
+                        <span>⚠️ OBS: Insläpp endast med tagg – kom i god tid!</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Side action/status */}

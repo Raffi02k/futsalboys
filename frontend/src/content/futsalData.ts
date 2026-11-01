@@ -156,7 +156,62 @@ export interface ScheduleEvent {
   isUpcoming?: boolean;
   image?: string;
   blogUrl?: string;
+  importantNotice?: string;
+  trainingPhases?: TrainingPhase[];
 }
+
+export interface TrainingPhase {
+  step: number;
+  icon: string;
+  title: string;
+  subtitle: string;
+  description: string;
+}
+
+export const standardTrainingStructure: TrainingPhase[] = [
+  {
+    step: 1,
+    icon: 'ℹ️',
+    title: 'Information',
+    subtitle: 'Genomgång av passet',
+    description: 'Vi startar med lite kort info om dagens träning och annat viktigt.',
+  },
+  {
+    step: 2,
+    icon: '🏃‍♂️',
+    title: 'Uppvärmning: Kvadden (Kvadraten)',
+    subtitle: 'Fötter och huvud igång direkt',
+    description: 'Vi sätter igång fötterna och huvudet direkt med lite klassisk kvadrat.',
+  },
+  {
+    step: 3,
+    icon: '⚽️',
+    title: 'Passningar & Sula (Surling)',
+    subtitle: 'Futsal-teknik & sulkontroll',
+    description: 'Fokus på enkla passningsövningar och att träna på att "sula" bollen – viktigt på futsalgolvet!',
+  },
+  {
+    step: 4,
+    icon: '🔄',
+    title: 'Rörelse & Utsparksvariant',
+    subtitle: 'Rörelsemönster & fasta situationer',
+    description: 'Två olika övningar där vi nöter rörelsemönster och tränar på en specifik variant vid utsparkar.',
+  },
+  {
+    step: 5,
+    icon: '🏆',
+    title: 'Match: Tre-lags-turnering (Kvicken)',
+    subtitle: 'Sista 60 min intensiv match',
+    description: 'Sista 60 minuterna blir det match! Vi delar upp oss i tre lag och kör intensivt.',
+  },
+  {
+    step: 6,
+    icon: '🧘‍♂️',
+    title: 'Avslutning: Stretching',
+    subtitle: 'Nedvarvning & återhämtning',
+    description: 'Vi rundar av passet tillsammans med en ordentlig stretching för att återhämta oss.',
+  },
+];
 
 export const winterSchedule: ScheduleEvent[] = [
   {
@@ -172,26 +227,31 @@ export const winterSchedule: ScheduleEvent[] = [
     city: 'Sylte, Trollhättan',
     address: 'Klockarevägen 4, 461 54 Trollhättan',
     gatheringTime: '14:30 (30 minuter innan)',
-    description: 'Uppstartsträning med fokus på teknik, kondition och passningsspel på snabb parkett.',
+    description: 'Se till att komma i god tid! Insläpp i Syltehallen kräver tagg. Träningen drar igång kl 15:00 prick!',
+    importantNotice: 'Se till att komma i god tid! Man kommer bara in i Syltehallen med tagg, så det är jätteviktigt att alla är på plats i tid. Träningen drar igång klockan 15:00 prick!',
     longDescription: [
-      'Välkomna till uppstartsträningen för Futsal Boys i Syltehallen! Detta pass inleder vår fokuserade satsning under november och december.',
-      'Fokus för passet ligger på att hitta tillbaka till rätt bolltempo på parketten, trimma flåset och bygga in grundläggande rörelsemönster i anfallsspelet.',
-      'Alla spelare förväntas vara ombytta och redo för gemensam uppvärmning kl 14:45. Glöm inte benskydd och inomhusskor!',
+      'Se till att komma i god tid! Man kommer bara in i Syltehallen med tagg, så det är jätteviktigt att alla är på plats i tid. Träningen drar igång klockan 15:00 prick!',
+      'Passet genomförs enligt Futsal Boys standard träningsupplägg med 6 fokuserade moment: genomgång & info, uppvärmning med Kvadden (kvadraten), passningar och att "sula" bollen (surling), rörelsemönster och utsparksvarianter, följt av 60 minuters tre-lags-turnering (Kvicken) och avslutande ordentlig stretching.',
+      'Nu ser vi till att hålla fokus, ge allt och ha riktigt roligt! Nu taggar vi till, FUTSAL BOYS!',
     ],
     focusAreas: [
-      'Högintensiv uppvärmning & intervallöpning',
-      'Bollbehandling och snabba väggspel på små ytor',
-      'Speluppbyggnad från egen målvakt',
-      'Internmatchspel med högt tävlingstempo',
+      '1. Info & genomgång av dagens pass',
+      '2. Kvadden (Kvadraten – fötter och huvud igång direkt)',
+      '3. Passningar & Sula bollen (Surling på futsalgolvet)',
+      '4. Rörelsemönster & utsparksvariant',
+      '5. Match: Tre-lags-turnering (Kvicken – sista 60 min)',
+      '6. Avslutning: Stretching & återhämtning',
     ],
     scheduleTimeline: [
-      { time: '14:30', text: 'Samling i omklädningsrummet och genomgång av passet' },
-      { time: '14:45', text: 'Gemensam rörlighet, löpning och aktivering' },
-      { time: '15:00', text: 'Passningsövningar, bollkontroll och snabba fötter' },
-      { time: '15:40', text: 'Taktiska moment: anfallsmönster & försvarsformation' },
-      { time: '16:15', text: 'Internmatch på helplan (hög intensitet)' },
-      { time: '16:55', text: 'Nedjogg och kort samling inför nästa träning' },
+      { time: '14:30', text: 'Samling utanför Syltehallen (Obs: Insläpp endast med tagg!)' },
+      { time: '15:00', text: '1. Information – Kort info om dagens träning och annat viktigt' },
+      { time: '15:10', text: '2. Uppvärmning: Kvadden (Kvadraten – igång med fötter och huvud)' },
+      { time: '15:25', text: '3. Passningar & Sula (Surling – träna på att sula bollen)' },
+      { time: '15:45', text: '4. Rörelse & Utsparksvariant (Nöta rörelsemönster & utspark)' },
+      { time: '16:00', text: '5. Match: Tre-lags-turnering / Kvicken (Sista 60 min intensiv match)' },
+      { time: '16:55', text: '6. Avslutning: Stretching & gemensam återhämtning' },
     ],
+    trainingPhases: standardTrainingStructure,
     equipment: [
       'Futsalskor för inomhusbruk (non-marking)',
       'Benskydd (obligatoriskt)',
@@ -245,6 +305,7 @@ export const winterSchedule: ScheduleEvent[] = [
     leaders: ['Elvis Mesic', 'Marcelo Villa', 'Raffi Medz'],
     spectatorInfo: 'Öppen träning, välkomna att titta.',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Torsbohallen+Trollhättan',
+    trainingPhases: standardTrainingStructure,
     isUpcoming: true,
   },
   {
@@ -263,8 +324,8 @@ export const winterSchedule: ScheduleEvent[] = [
     description: 'Helgträning med fokus på samspel, fasta situationer och snabba omställningar.',
     longDescription: [
       'Lördagsträning i Nevshallen som fungerar som direkt förberedelse inför träningsmatchen mot Funk den 20 november.',
-      'Här höjer vi intensiteten ytterligare, slipar på de sista detaljerna i matchtempot och genomför tävlingsinriktade avslutningsmoment.',
-      'Efter träningen fastställs matchtruppen och taktiken inför Funk-drabbningen.',
+      'Passet följer Futsal Boys standard träningsupplägg med genomgång, kvadraten, sulkontroll, fasta varianter, intensiv 3-lags-match i 60 minuter samt avslutande stretching.',
+      'Nu ser vi till att hålla fokus, ge allt och ha riktigt roligt! Nu taggar vi till, FUTSAL BOYS!',
     ],
     focusAreas: [
       'Formtoppning inför träningsmatchen mot Funk',
@@ -274,11 +335,12 @@ export const winterSchedule: ScheduleEvent[] = [
     ],
     scheduleTimeline: [
       { time: '13:30', text: 'Samling och genomgång av dagens upplägg' },
-      { time: '13:45', text: 'Uppvärmning med boll i högt tempo' },
-      { time: '14:00', text: 'Spelvändningar och snabba kontringsövningar' },
-      { time: '14:40', text: 'Skott- och avslutsträning från olika vinklar' },
-      { time: '15:15', text: 'Matchspel med skarpa domarregler och klocka' },
-      { time: '15:55', text: 'Kort samling och matchuttagning inför Funk' },
+      { time: '14:00', text: '1. Information – Matchfokus och genomgång' },
+      { time: '14:10', text: '2. Uppvärmning: Kvadden (Kvadraten)' },
+      { time: '14:25', text: '3. Passningar & Sula (Surling)' },
+      { time: '14:45', text: '4. Rörelse & Utsparksvariant (Slipning inför Funk-matchen)' },
+      { time: '15:00', text: '5. Match: Tre-lags-turnering / Kvicken (60 min matchtempo)' },
+      { time: '15:55', text: '6. Avslutning: Stretching & matchuttagning' },
     ],
     equipment: [
       'Inomhusskor (futsal)',
@@ -289,6 +351,7 @@ export const winterSchedule: ScheduleEvent[] = [
     leaders: ['Raffi Medz', 'Elvis Mesic'],
     spectatorInfo: 'Välkomna att kika på träningen från läktarplats.',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Nevshallen+Trollhättan',
+    trainingPhases: standardTrainingStructure,
     isUpcoming: true,
   },
   {

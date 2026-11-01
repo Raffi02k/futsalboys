@@ -15,9 +15,10 @@ import {
   Users,
   Navigation,
   Info,
+  AlertTriangle,
 } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
-import { winterSchedule, ScheduleEvent } from '../content/futsalData';
+import { winterSchedule, ScheduleEvent, standardTrainingStructure } from '../content/futsalData';
 import { fargelandaCupSquad } from './MatchesPage';
 import { siteConfig } from '../content/siteContent';
 
@@ -103,6 +104,33 @@ export const ScheduleDetailPage: React.FC = () => {
           <p className="schedule-detail-hero__desc">
             {event.description}
           </p>
+
+          {/* Important Notice / Alert (t.ex. tagg till Syltehallen) */}
+          {event.importantNotice && (
+            <div
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 180, 0, 0.18) 0%, rgba(0, 0, 0, 0.7) 100%)',
+                border: '1.5px solid #ffb400',
+                borderRadius: '14px',
+                padding: '16px 20px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '14px',
+                margin: '20px 0 24px',
+                boxShadow: '0 8px 24px rgba(255, 180, 0, 0.2)',
+              }}
+            >
+              <AlertTriangle size={24} style={{ color: '#ffb400', flexShrink: 0, marginTop: '2px' }} />
+              <div>
+                <strong style={{ color: '#ffb400', fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase', display: 'block', marginBottom: '4px' }}>
+                  VIKTIG INFORMATION TILL TRUPPEN
+                </strong>
+                <p style={{ margin: 0, color: '#ffffff', fontSize: '15px', lineHeight: 1.5, fontWeight: 600 }}>
+                  {event.importantNotice}
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Event Poster / Cup Image */}
           {event.image && (
@@ -244,6 +272,101 @@ export const ScheduleDetailPage: React.FC = () => {
                 ))}
               </div>
             </div>
+
+            {/* Standard Träningsupplägg (6 moment) */}
+            {event.type === 'TRÄNING' && (
+              <div className="schedule-info-box">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px', marginBottom: '20px' }}>
+                  <div>
+                    <h2 className="schedule-info-box__title" style={{ margin: 0 }}>
+                      STANDARD <span className="text-neon">TRÄNINGSUPPLÄGG</span>
+                    </h2>
+                    <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                      Futsal Boys officiella struktur för dagens träningspass.
+                    </span>
+                  </div>
+
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(16,255,96,0.15)',
+                      color: 'var(--neon-green)',
+                      border: '1px solid var(--neon-green-glow)',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    6 FOKUSMOMENT
+                  </span>
+                </div>
+
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {(event.trainingPhases || standardTrainingStructure).map((phase) => (
+                    <div
+                      key={phase.step}
+                      style={{
+                        background: 'rgba(18, 22, 28, 0.85)',
+                        border: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderRadius: '12px',
+                        padding: '16px 18px',
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '14px',
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: '42px',
+                          height: '42px',
+                          borderRadius: '10px',
+                          background: 'rgba(16, 255, 96, 0.1)',
+                          border: '1px solid rgba(16, 255, 96, 0.3)',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '20px',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {phase.icon}
+                      </div>
+
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '6px', marginBottom: '4px' }}>
+                          <h3 style={{ margin: 0, fontSize: '16px', color: '#fff', fontWeight: 700 }}>
+                            {phase.step}. {phase.title}
+                          </h3>
+                          <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 800, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+                            {phase.subtitle}
+                          </span>
+                        </div>
+                        <p style={{ margin: 0, fontSize: '14px', color: 'var(--silver)', lineHeight: 1.5 }}>
+                          {phase.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Team Tagga Till Quote */}
+                <div
+                  style={{
+                    marginTop: '20px',
+                    padding: '16px 20px',
+                    background: 'linear-gradient(135deg, rgba(16, 255, 96, 0.12) 0%, rgba(0, 0, 0, 0.5) 100%)',
+                    borderRadius: '12px',
+                    border: '1px dashed rgba(16, 255, 96, 0.4)',
+                    textAlign: 'center',
+                  }}
+                >
+                  <p style={{ margin: 0, fontSize: '15px', color: '#fff', fontWeight: 600 }}>
+                    🔥 <em>"Nu ser vi till att hålla fokus, ge allt och ha riktigt roligt! Nu taggar vi till, FUTSAL BOYS!"</em>
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Focus Areas */}
             {event.focusAreas && event.focusAreas.length > 0 && (
