@@ -189,6 +189,13 @@ export const MatchDetailPage: React.FC = () => {
                   alt={match.homeTeam}
                   className="match-scoreboard-logo"
                 />
+              ) : match.homeLogo || match.homeTeam.toLowerCase() === 'tif' ? (
+                <img
+                  src={match.homeLogo || '/brand/tif.png'}
+                  alt={match.homeTeam}
+                  className="match-scoreboard-logo"
+                  style={{ objectFit: 'contain' }}
+                />
               ) : (
                 <div className="match-scoreboard-circle">
                   {match.homeTeam.substring(0, 4).toUpperCase()}
@@ -226,6 +233,13 @@ export const MatchDetailPage: React.FC = () => {
                   src={siteConfig.logoUrl}
                   alt={match.awayTeam}
                   className="match-scoreboard-logo"
+                />
+              ) : match.awayLogo || match.awayTeam.toLowerCase() === 'tif' ? (
+                <img
+                  src={match.awayLogo || '/brand/tif.png'}
+                  alt={match.awayTeam}
+                  className="match-scoreboard-logo"
+                  style={{ objectFit: 'contain' }}
                 />
               ) : (
                 <div className="match-scoreboard-circle">

@@ -42,6 +42,8 @@ export interface FutsalMatch {
   slug: string;
   homeTeam: string;
   awayTeam: string;
+  homeLogo?: string;
+  awayLogo?: string;
   isHome: boolean;
   competition: string;
   stage?: string;
@@ -435,23 +437,24 @@ export const futsalMatches: FutsalMatch[] = [
   },
 
   // ==========================================================================
-  // MATCH 5: KOMMANDE MATCH MOT TIF POLHEM (GENREP INFÖR FÄRGELANDA CUP)
+  // MATCH 5: KOMMANDE MATCH MOT TIF (GENREP INFÖR FÄRGELANDA CUP)
   // ==========================================================================
   {
     id: 'ev-5',
     slug: 'match-tif-polhem',
     homeTeam: 'Futsal Boys',
-    awayTeam: 'TIF Polhem',
+    awayTeam: 'TIF',
+    awayLogo: '/brand/tif.png',
     isHome: true,
     competition: 'Officiell Träningsmatch',
     stage: 'Genrep inför Färgelanda Futsal Cup',
     date: '06 DEC 2026',
     fullDate: 'Söndag 6 december 2026',
     time: '20:00–22:00',
-    venue: 'TIF Polhem',
+    venue: 'Polhem',
     city: 'Trollhättan',
     address: 'Polhemsgatan, Trollhättan',
-    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=TIF+Polhem+Trollhättan',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Polhem+Trollhättan',
     status: 'KOMMANDE',
     outcome: 'KOMMANDE',
     result: 'VS',
@@ -461,7 +464,7 @@ export const futsalMatches: FutsalMatch[] = [
     referees: 'Officiell Futsaldomare',
     summary: [
       'Säsongens andra träningsmatch och det officiella genrepet inför Färgelanda cup den 19 december!',
-      'Här testas hela cuptaktiken och formationerna under skarpa matchförhållanden mot starka TIF Polhem.',
+      'Här testas hela cuptaktiken och formationerna under skarpa matchförhållanden mot starka TIF.',
       'Följ genrepet och resultatet live här på matchdagen samt via Futsal Boys officiella Instagram!',
     ],
     goals: [],
@@ -469,7 +472,7 @@ export const futsalMatches: FutsalMatch[] = [
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:15 Samling i omklädningsrummet' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:30 Taktikgenomgång & cuproller' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:45 Matchuppvärmning' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs TIF Polhem' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs TIF' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 21:30 Matchslut och analys' },
     ],
     stats: {
@@ -503,12 +506,17 @@ export const futsalMatches: FutsalMatch[] = [
       {
         time: 'GENREP',
         title: 'Sista testet innan Färgelanda cup',
-        text: 'Matchen mot TIF Polhem är det slutgiltiga genrepet där cuptruppen slipar på detaljer, fasta situationer och samspel inför cuphelgen.',
+        text: 'Matchen mot TIF är det slutgiltiga genrepet där cuptruppen slipar på detaljer, fasta situationer och samspel inför cuphelgen.',
       },
     ],
   },
 ];
 
 export const getMatchById = (idOrSlug: string): FutsalMatch | undefined => {
-  return futsalMatches.find((m) => m.id === idOrSlug || m.slug === idOrSlug);
+  return futsalMatches.find(
+    (m) =>
+      m.id === idOrSlug ||
+      m.slug === idOrSlug ||
+      (m.slug === 'match-tif-polhem' && (idOrSlug === 'match-tif' || idOrSlug === 'tif'))
+  );
 };

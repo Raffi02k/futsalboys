@@ -791,7 +791,7 @@ export const MatchesPage: React.FC = () => {
               </div>
               <div className="schedule-summary-item">
                 <ShieldCheck size={17} className="text-neon" />
-                <span><strong>2 Träningsmatcher:</strong> 20 nov (vs Funk i Torsbohallen), 6 dec (vs TIF Polhem)</span>
+                <span><strong>2 Träningsmatcher:</strong> 20 nov (vs Funk i Torsbohallen), 6 dec (vs TIF i Polhem)</span>
               </div>
               <div className="schedule-summary-item">
                 <Trophy size={17} style={{ color: '#ffd700' }} />
@@ -1000,7 +1000,7 @@ export const MatchesPage: React.FC = () => {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--silver-dim)', fontSize: '12.5px', marginTop: '2px' }}>
                 <ShieldCheck size={16} className="text-neon" />
-                <span>Nästa träningsmatch: vs TIF Polhem (6 dec, 20:00–22:00)</span>
+                <span>Nästa träningsmatch: vs TIF (6 dec, 20:00–22:00 i Polhem)</span>
               </div>
 
               <div className="match-action-btns" style={{ marginTop: '6px' }}>

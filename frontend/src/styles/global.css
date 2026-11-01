@@ -4603,7 +4603,7 @@ video:-ms-fullscreen,
   gap: 8px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 10px;
+  padding: 6px 4px 14px;
   margin-bottom: 28px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   scrollbar-width: none;
@@ -4620,9 +4620,45 @@ video:-ms-fullscreen,
   white-space: nowrap;
   flex-shrink: 0;
   font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  border: 1.5px solid var(--border-subtle);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--silver);
+  transition: all 0.2s ease;
+  transform: none !important;
+}
+
+.match-tabs-btn.btn--outline:hover,
+.match-tabs-btn:hover {
+  background: linear-gradient(135deg, rgba(16, 255, 96, 0.22) 0%, rgba(16, 255, 96, 0.1) 100%) !important;
+  border-color: var(--neon-green) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px rgba(16, 255, 96, 0.25) !important;
+  transform: none !important;
+}
+
+.match-tabs-btn.btn--outline:hover svg,
+.match-tabs-btn:hover svg {
+  color: var(--neon-green) !important;
+}
+
+.match-tabs-btn.btn--neon,
+.match-tabs-btn.is-active {
+  background: var(--neon-green) !important;
+  border-color: var(--neon-green) !important;
+  color: #050708 !important;
+  box-shadow: 0 0 20px var(--neon-green-glow) !important;
+  font-weight: 800;
+  transform: none !important;
+}
+
+.match-tabs-btn.btn--neon:hover {
+  background-color: #39ff7b !important;
+  box-shadow: 0 0 24px rgba(16, 255, 96, 0.6) !important;
+  transform: none !important;
 }
 
 .match-two-column-grid {
@@ -4721,7 +4757,7 @@ video:-ms-fullscreen,
   .match-tabs-bar {
     gap: 6px;
     margin-bottom: 18px;
-    padding-bottom: 6px;
+    padding: 6px 2px 10px;
   }
 
   .match-tabs-btn {
