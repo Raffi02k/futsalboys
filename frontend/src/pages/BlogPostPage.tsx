@@ -380,11 +380,31 @@ export const BlogPostPage: React.FC = () => {
             </div>
           </div>
         ) : (
-          <div className="blog-single-media-wrap" style={{ borderRadius: '18px', overflow: 'hidden', marginBottom: '36px', maxHeight: '480px', border: '1px solid var(--border-subtle)' }}>
+          <div 
+            className="blog-single-media-wrap" 
+            style={{ 
+              borderRadius: '18px', 
+              overflow: 'hidden', 
+              marginBottom: '36px', 
+              maxHeight: '520px', 
+              border: '1px solid var(--border-subtle)',
+              background: '#07090b',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
             <img
               src={article.image}
               alt={article.title}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              style={{ 
+                width: '100%', 
+                height: '100%', 
+                maxHeight: '520px', 
+                objectFit: 'cover', 
+                objectPosition: 'center 20%', 
+                display: 'block' 
+              }}
             />
           </div>
         )}
@@ -397,7 +417,7 @@ export const BlogPostPage: React.FC = () => {
         {/* Main Article Content */}
         <div className="blog-single-content">
           {article.paragraphs.map((p, idx) => (
-            <p key={idx} style={{ marginBottom: '22px', lineHeight: 1.8, fontSize: '17px', color: '#cbd5e1' }}>
+            <p key={idx} style={{ marginBottom: '22px', lineHeight: 1.8, fontSize: '17px', color: '#cbd5e1', whiteSpace: 'pre-line' }}>
               {p}
             </p>
           ))}
@@ -408,6 +428,57 @@ export const BlogPostPage: React.FC = () => {
             </blockquote>
           )}
         </div>
+
+        {/* Quick Instagram Post Link */}
+        {article.instagramUrl && (
+          <div style={{ marginBottom: '32px' }}>
+            <a
+              href={article.instagramUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn--outline"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '14px' }}
+            >
+              <Instagram size={17} className="text-neon" />
+              <span>VISA ORIGINALINLÄGGET PÅ INSTAGRAM (@grabbarna.futsal)</span>
+            </a>
+          </div>
+        )}
+
+        {/* Quick Schedule Links if related to a schedule event */}
+        {article.scheduleSlug && (
+          <div
+            style={{
+              background: 'linear-gradient(135deg, rgba(16, 255, 96, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%)',
+              border: '1px solid var(--border-neon)',
+              borderRadius: '16px',
+              padding: '20px 24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '16px',
+              marginBottom: '32px',
+            }}
+          >
+            <div>
+              <span style={{ fontSize: '11px', color: 'var(--neon-green)', fontWeight: 800, letterSpacing: '0.1em' }}>
+                SPELSCHEMA & TRÄNINGSINFO
+              </span>
+              <h4 style={{ color: '#fff', fontSize: '18px', margin: '4px 0 0' }}>
+                Se komplett information & tidslinje för träningen i Syltehallen
+              </h4>
+            </div>
+
+            <Link
+              to={`/schema/${article.scheduleSlug}`}
+              className="btn btn--neon btn--sm"
+            >
+              <span>VISA TRÄNINGEN I SCHEMAT</span>
+              <ArrowRight size={15} />
+            </Link>
+          </div>
+        )}
 
         {/* Quick Cup Links if related to a cup */}
         {article.cupSlug && (

@@ -640,9 +640,30 @@ export interface ClubNews {
   paragraphs: string[];
   quote?: string;
   cupSlug?: string;
+  scheduleSlug?: string;
+  instagramUrl?: string;
 }
 
 export const clubNewsList: ClubNews[] = [
+  {
+    id: 'historisk-premiar-forsta-traningen',
+    category: 'HISTORISK PREMIÄR',
+    title: 'HISTORISK PREMIÄR: Allra första träningen med Trollhättan Futsal Boys!',
+    summary: 'Äntligen är det dags för vår allra första träning med Trollhättan Futsal Boys i Syltehallen. Första kapitlet skrivs idag – NU KÖR VI! 💚⚽️🔥',
+    date: '01 NOV 2026',
+    readTime: '2 MIN LÄSNING',
+    author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
+    image: '/images/blogg/forstatraning.jpeg',
+    scheduleSlug: 'traning-sylte',
+    instagramUrl: 'https://www.instagram.com/p/DfNgKC8NTd9/',
+    paragraphs: [
+      'HISTORISK PREMIÄR! ⚽️🔥 Äntligen är det dags för vår allra första träning med Trollhättan Futsal Boys. Första kapitlet i klubbens historia skrivs idag när grabbarna samlas på parketten i Syltehallen för att kicka igång säsongen på allvar. NU KÖR VI! 💚',
+      '📍 Plats: Syltehallen, Trollhättan\n🕒 Tid: 15:00–17:00 (Kom i god tid!)\nℹ️ VIKTIGT: Du behöver tagg för att komma in i hallen. Var på plats i god tid så att ingen blir utelåst – vi blåser igång träningen exakt klockan 15:00! ⏳⚠️',
+      '🏃‍♂️ DAGENS SCHEMA I SYLTEHALLEN:\n💬 15:00 | Samling & Info – Kort info om dagens träning och annat viktigt.\n⚽️ 15:05 | Uppvärmning: Kvadden (Kvadraten) – Fötter och huvuden igång direkt med klassisk kvadrat.\n👟 15:20 | Passningar & Sula (Surling) – Fokus på passningsövningar och att sula bollen på futsalgolvet.\n🔄 15:35 | Rörelse & Utsparksvariant – Nöta rörelsemönster och specifik variant vid utsparkar.\n🏆 15:55 | Tre-lags-turnering ”Kvicken” – Sista 60 minuterna kör vi intensiv match med tre lag!\n🧘‍♂️ 16:55 | Avslutning & Stretch – Vi rundar av passet tillsammans med ordentlig stretching för bra återhämtning.',
+      'Första kapitlet skrivs idag. Låt oss hålla 100% fokus, ge allt för varandra och ha riktigt roligt på planen! 🙌 Kommentera ”🔥” om du är taggad och ”🟢” om vi ses där på vår officiella Instagram (@grabbarna.futsal)! 👇\n\n#TrollhättanFutsalBoys #FutsalSverige #Futsal #Trollhättan #Syltehallen',
+    ],
+    quote: 'Första kapitlet skrivs idag. Låt oss hålla 100% fokus, ge allt för varandra och ha riktigt roligt på planen! NU TAGGAR VI TILL, FUTSAL BOYS! 💚⚽️',
+  },
   {
     id: 'fargelanda-cup-2026',
     category: 'CUPNYHET',
@@ -783,7 +804,7 @@ export interface InstagramProfile {
 export const instagramData: InstagramProfile = {
   handle: 'grabbarna.futsal',
   displayName: 'FutsalBoys',
-  postsCount: 18,
+  postsCount: 19,
   followersCount: '1.4k',
   followingCount: 86,
   bioLines: [
@@ -793,6 +814,12 @@ export const instagramData: InstagramProfile = {
   ],
   avatar: '/images/futsalboys-logo.png',
   posts: [
+    {
+      id: 'p-premiar',
+      image: '/images/blogg/forstatraning.jpeg',
+      likes: 242,
+      caption: 'HISTORISK PREMIÄR! ⚽️🔥 Äntligen är det dags för vår allra första träning med Trollhättan Futsal Boys. NU KÖR VI! 💚📍 Syltehallen',
+    },
     {
       id: 'p1',
       image: '/images/players/Lagfoto.JPG',
