@@ -423,7 +423,17 @@ export const BlogPostPage: React.FC = () => {
           ))}
 
           {article.quote && (
-            <blockquote className="blog-quote" style={{ margin: '36px 0', padding: '20px 24px', fontSize: '18px' }}>
+            <blockquote
+              className="blog-quote"
+              style={{
+                margin: '32px 0',
+                padding: '18px 24px',
+                fontSize: '17px',
+                lineHeight: 1.6,
+                whiteSpace: 'normal',
+                overflowWrap: 'break-word',
+              }}
+            >
               "{article.quote}"
             </blockquote>
           )}
