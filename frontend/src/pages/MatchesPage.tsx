@@ -787,7 +787,7 @@ export const MatchesPage: React.FC = () => {
             <div className="schedule-summary-bar">
               <div className="schedule-summary-item">
                 <Flame size={17} className="text-neon" />
-                <span><strong>3 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbohallen), 14 nov (Nevshallen)</span>
+                <span><strong>4 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbohallen), 14 nov & 28 nov (Nevshallen)</span>
               </div>
               <div className="schedule-summary-item">
                 <ShieldCheck size={17} className="text-neon" />
