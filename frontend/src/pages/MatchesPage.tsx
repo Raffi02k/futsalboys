@@ -45,6 +45,33 @@ export const fargelandaCupSquad: CupPlayer[] = [
 ];
 
 // ============================================================================
+// ANMÄLDA TILL YTTERBY CUP 2027:
+// 12 spelare har hittills röstat "Jag kan"
+// ============================================================================
+export interface RegisteredCupPlayer {
+  id: string;
+  number?: number;
+  name: string;
+  fullName: string;
+  status: 'ANMÄLD';
+}
+
+export const ytterbyCupRegistered: RegisteredCupPlayer[] = [
+  { id: 'y1', number: 4, name: 'Hugo', fullName: 'Hugo Dörrich', status: 'ANMÄLD' },
+  { id: 'y2', number: 14, name: 'Lucas', fullName: 'Lucas Hadén Fogsgaard', status: 'ANMÄLD' },
+  { id: 'y3', number: 6, name: 'Wael', fullName: 'Wael Braham', status: 'ANMÄLD' },
+  { id: 'y4', number: 11, name: 'Mehdi', fullName: 'Mehdi Syed Hussain', status: 'ANMÄLD' },
+  { id: 'y5', number: 9, name: 'Stefan', fullName: 'Flavio Estefan Valeria Rojo', status: 'ANMÄLD' },
+  { id: 'y6', name: 'Lareb', fullName: 'Lareb Hamid', status: 'ANMÄLD' },
+  { id: 'y7', name: 'Ashraf', fullName: 'Ashraf Alchafey', status: 'ANMÄLD' },
+  { id: 'y8', number: 22, name: 'Tro', fullName: 'Tro Kara', status: 'ANMÄLD' },
+  { id: 'y9', number: 10, name: 'Kasper', fullName: 'Kasper Nilmad', status: 'ANMÄLD' },
+  { id: 'y10', number: 24, name: 'Wictor', fullName: 'Wictor Dörrich', status: 'ANMÄLD' },
+  { id: 'y11', number: 3, name: 'Marcelo', fullName: 'Juan Marcelo Villa', status: 'ANMÄLD' },
+  { id: 'y12', number: 7, name: 'Raffi', fullName: 'Raffi Medz', status: 'ANMÄLD' },
+];
+
+// ============================================================================
 // FEATURED CUPS FOR TOP CAROUSEL & DYNAMIC COUNTDOWN
 // ============================================================================
 export interface FeaturedCup {
@@ -544,28 +571,102 @@ export const MatchesPage: React.FC = () => {
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px', marginBottom: '20px' }}>
                 <div>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '28px', color: '#fff', margin: 0 }}>
-                    TURNERINGSINFO & <span className="text-neon">KLASSER</span>
+                    ANMÄLDA SPELARE HITTILLS ({ytterbyCupRegistered.length} SPELARE)
                   </h3>
                   <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
-                    Ytterby IS inbjuder till intensiv futsal i Kastellegårdshallen – seniorer spelar söndag 3 januari.
+                    Spelare som hittills anmält sig (”Jag kan”) till Ytterby Cup Futsal 2027.
                   </span>
                 </div>
 
-                <span
-                  style={{
-                    fontSize: '11px',
-                    fontWeight: 800,
-                    padding: '4px 10px',
-                    borderRadius: '6px',
-                    background: 'rgba(255, 215, 0, 0.15)',
-                    color: '#ffd700',
-                    border: '1px solid rgba(255, 215, 0, 0.4)',
-                  }}
-                >
-                  ★ SENIORKLASS SÖN 3 JAN
-                </span>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(16,255,96,0.15)',
+                      color: 'var(--neon-green)',
+                      border: '1px solid var(--neon-green-glow)',
+                    }}
+                  >
+                    ● {ytterbyCupRegistered.length} ANMÄLDA
+                  </span>
+                </div>
               </div>
 
+              {/* Grid of Registered Players */}
+              <div
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+                  gap: '12px',
+                  marginBottom: '28px',
+                }}
+              >
+                {ytterbyCupRegistered.map((player) => (
+                  <div
+                    key={player.id}
+                    style={{
+                      background: 'rgba(18, 22, 28, 0.85)',
+                      border: '1px solid rgba(16, 255, 96, 0.3)',
+                      borderRadius: '12px',
+                      padding: '14px 16px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      gap: '12px',
+                      transition: 'all 0.2s ease',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <div
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          fontSize: '18px',
+                          color: 'var(--neon-green)',
+                          background: 'rgba(7, 9, 11, 0.9)',
+                          width: '40px',
+                          height: '40px',
+                          borderRadius: '8px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          border: '1px solid var(--border-subtle)',
+                          lineHeight: 1,
+                        }}
+                      >
+                        {player.number ? `#${player.number}` : '⚽️'}
+                      </div>
+
+                      <div>
+                        <strong style={{ color: '#fff', fontSize: '16px', display: 'block', lineHeight: 1.2 }}>
+                          {player.name}
+                        </strong>
+                        <span style={{ fontSize: '11.5px', color: 'var(--silver-dim)' }}>
+                          {player.fullName}
+                        </span>
+                      </div>
+                    </div>
+
+                    <span
+                      style={{
+                        fontSize: '10px',
+                        fontWeight: 800,
+                        letterSpacing: '0.08em',
+                        padding: '3px 8px',
+                        borderRadius: '4px',
+                        background: 'rgba(16,255,96,0.15)',
+                        color: 'var(--neon-green)',
+                      }}
+                    >
+                      ANMÄLD
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Tournament info cards below the player list */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '14px' }}>
                 <div
                   style={{
@@ -611,10 +712,10 @@ export const MatchesPage: React.FC = () => {
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
                     <Users size={18} className="text-neon" />
-                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Trupputtagning</h4>
+                    <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Truppstatus</h4>
                   </div>
                   <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
-                    Matchtrupp och ledarstab för Ytterby Cup fastställs och publiceras i mellandagarna efter juluppehållet.
+                    12 spelare har hittills bekräftat deltagande (”Jag kan”). Definitiv cuptrupp spikas inför cuphelgen.
                   </p>
                 </div>
               </div>
@@ -787,7 +888,7 @@ export const MatchesPage: React.FC = () => {
             <div className="schedule-summary-bar">
               <div className="schedule-summary-item">
                 <Flame size={17} className="text-neon" />
-                <span><strong>4 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbohallen), 14 nov & 28 nov (Nevshallen)</span>
+                <span><strong>5 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbo), 14 & 28 nov (Nevs), 4 dec (Polhem)</span>
               </div>
               <div className="schedule-summary-item">
                 <ShieldCheck size={17} className="text-neon" />

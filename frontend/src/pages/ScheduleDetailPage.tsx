@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { winterSchedule, ScheduleEvent, standardTrainingStructure } from '../content/futsalData';
-import { fargelandaCupSquad } from './MatchesPage';
+import { fargelandaCupSquad, ytterbyCupRegistered } from './MatchesPage';
 import { siteConfig } from '../content/siteContent';
 
 export const ScheduleDetailPage: React.FC = () => {
@@ -491,6 +491,101 @@ export const ScheduleDetailPage: React.FC = () => {
                         }}
                       >
                         UTTAGEN
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* For Ytterby Cup: Display Anmälda Spelare */}
+            {event.slug === 'ytterby-cup' && (
+              <div className="schedule-info-box">
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', marginBottom: '20px' }}>
+                  <div>
+                    <h2 className="schedule-info-box__title" style={{ margin: 0 }}>
+                      ANMÄLDA SPELARE HITTILLS ({ytterbyCupRegistered.length} SPELARE)
+                    </h2>
+                    <span style={{ fontSize: '13px', color: 'var(--silver-dim)' }}>
+                      Spelare som hittills anmält sig (”Jag kan”) till Ytterby Cup Futsal 2027.
+                    </span>
+                  </div>
+
+                  <span
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      padding: '4px 10px',
+                      borderRadius: '6px',
+                      background: 'rgba(16,255,96,0.15)',
+                      color: 'var(--neon-green)',
+                      border: '1px solid var(--neon-green-glow)',
+                    }}
+                  >
+                    ● {ytterbyCupRegistered.length} ANMÄLDA
+                  </span>
+                </div>
+
+                <div
+                  style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                    gap: '12px',
+                  }}
+                >
+                  {ytterbyCupRegistered.map((player) => (
+                    <div
+                      key={player.id}
+                      style={{
+                        background: 'rgba(7, 9, 11, 0.7)',
+                        border: '1px solid var(--border-subtle)',
+                        borderRadius: '10px',
+                        padding: '12px 14px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                      }}
+                    >
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <div
+                          style={{
+                            fontFamily: 'var(--font-display)',
+                            fontSize: '18px',
+                            color: 'var(--neon-green)',
+                            background: 'rgba(16, 255, 96, 0.08)',
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '6px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            border: '1px solid var(--border-subtle)',
+                            lineHeight: 1,
+                          }}
+                        >
+                          {player.number ? `#${player.number}` : '⚽️'}
+                        </div>
+                        <div>
+                          <strong style={{ color: '#fff', fontSize: '15px', display: 'block', lineHeight: 1.2 }}>
+                            {player.name}
+                          </strong>
+                          <span style={{ fontSize: '11.5px', color: 'var(--silver-dim)' }}>
+                            {player.fullName}
+                          </span>
+                        </div>
+                      </div>
+
+                      <span
+                        style={{
+                          fontSize: '9.5px',
+                          fontWeight: 800,
+                          padding: '2px 6px',
+                          borderRadius: '4px',
+                          background: 'rgba(16,255,96,0.15)',
+                          color: 'var(--neon-green)',
+                        }}
+                      >
+                        ANMÄLD
                       </span>
                     </div>
                   ))}

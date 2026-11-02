@@ -215,7 +215,7 @@ export const MatchAndNewsSection: React.FC = () => {
                 SPELPROGRAM <span className="text-neon">2026 / 2027</span>
               </h3>
               <p className="winter-schedule-strip__subtitle">
-                Följ Futsal Boys genom vintern: fyra träningar, två träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen).
+                Följ Futsal Boys genom vintern: fem träningar, två träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen).
               </p>
             </div>
 
