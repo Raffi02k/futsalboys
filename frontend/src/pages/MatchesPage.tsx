@@ -61,9 +61,8 @@ export const ytterbyCupRegistered: RegisteredCupPlayer[] = [
   { id: 'y2', number: 14, name: 'Lucas', fullName: 'Lucas Hadén Fogsgaard', status: 'ANMÄLD' },
   { id: 'y3', number: 6, name: 'Wael', fullName: 'Wael Braham', status: 'ANMÄLD' },
   { id: 'y4', number: 11, name: 'Mehdi', fullName: 'Mehdi Syed Hussain', status: 'ANMÄLD' },
-  { id: 'y5', number: 9, name: 'Stefan', fullName: 'Flavio Estefan Valeria Rojo', status: 'ANMÄLD' },
   { id: 'y6', name: 'Lareb', fullName: 'Lareb Hamid', status: 'ANMÄLD' },
-  { id: 'y7', name: 'Ashraf', fullName: 'Ashraf Alchafey', status: 'ANMÄLD' },
+  { id: 'y7', name: 'Emil', fullName: 'Emil', status: 'ANMÄLD' },
   { id: 'y8', number: 22, name: 'Tro', fullName: 'Tro Kara', status: 'ANMÄLD' },
   { id: 'y9', number: 10, name: 'Kasper', fullName: 'Kasper Nilmad', status: 'ANMÄLD' },
   { id: 'y10', number: 24, name: 'Wictor', fullName: 'Wictor Dörrich', status: 'ANMÄLD' },
@@ -715,7 +714,7 @@ export const MatchesPage: React.FC = () => {
                     <h4 style={{ color: '#fff', margin: 0, fontSize: '16px', fontWeight: 800 }}>Truppstatus</h4>
                   </div>
                   <p style={{ color: 'var(--silver)', fontSize: '13.5px', lineHeight: 1.5, margin: 0 }}>
-                    12 spelare har hittills bekräftat deltagande (”Jag kan”). Definitiv cuptrupp spikas inför cuphelgen.
+                    {ytterbyCupRegistered.length} spelare har hittills bekräftat deltagande (”Jag kan”). Definitiv cuptrupp spikas inför cuphelgen.
                   </p>
                 </div>
               </div>
