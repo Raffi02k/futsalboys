@@ -54,7 +54,7 @@ export const MatchAndNewsSection: React.FC = () => {
                 <div className="match-vs">VS</div>
 
                 <div className="match-team">
-                  <div className="match-team__circle">
+                  <div className="match-team__circle" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
                     FUNK
                   </div>
                   <span className="match-team__name">{upcomingMatch.awayTeam}</span>
@@ -215,7 +215,7 @@ export const MatchAndNewsSection: React.FC = () => {
                 SPELPROGRAM <span className="text-neon">2026 / 2027</span>
               </h3>
               <p className="winter-schedule-strip__subtitle">
-                Följ Futsal Boys genom vintern: fem träningar, två träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen).
+                Följ Futsal Boys genom vintern: fyra träningar, fem träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen).
               </p>
             </div>
 

@@ -353,13 +353,13 @@ export const futsalMatches: FutsalMatch[] = [
   },
 
   // ==========================================================================
-  // MATCH 4: KOMMANDE MATCH MOT FUNK (LIVE TRACKER)
+  // MATCH 4: KOMMANDE MATCH MOT FUNKGRABBARNA (LIVE TRACKER)
   // ==========================================================================
   {
     id: 'ev-4',
     slug: 'match-funk',
     homeTeam: 'Futsal Boys',
-    awayTeam: 'Funk',
+    awayTeam: 'Funkgrabbarna',
     isHome: true,
     competition: 'Officiell Träningsmatch',
     stage: 'Säsongens Första Träningsmatch',
@@ -378,7 +378,7 @@ export const futsalMatches: FutsalMatch[] = [
     spectators: 'Fri entré för alla supportrar i Torsbohallen',
     referees: 'Officiell Futsaldomare',
     summary: [
-      'Vintersäsongens första träningsmatch ställer Futsal Boys mot spelskickliga Funk i ett efterlängtat möte på hemmaplan i Torsbohallen!',
+      'Vintersäsongens första träningsmatch ställer Futsal Boys mot spelskickliga Funkgrabbarna i ett efterlängtat möte på hemmaplan i Torsbohallen!',
       'Matchen fungerar som ett första skarpt formtest och ger ledarstaben möjlighet att testa matchformationer, pressystem och fasta situationer i tävlingslikt matchtempo.',
       'Följ liverapporteringen och alla matchhändelser i realtid direkt på denna sida och på lagets Instagram (@grabbarna.futsal) under fredagskvällen den 20 november!',
     ],
@@ -387,7 +387,7 @@ export const futsalMatches: FutsalMatch[] = [
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:15 Truppsamling i Torsbohallen' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:30 Taktiskt matchsnack med ledarstaben' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:40 Gemensam matchuppvärmning' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs Funk' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs Funkgrabbarna' },
       { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 21:35 Slutsignal och sammanfattning' },
     ],
     stats: {
@@ -420,8 +420,8 @@ export const futsalMatches: FutsalMatch[] = [
     liveUpdates: [
       {
         time: 'INFO INFÖR MATCHEN',
-        title: 'Uppladdning inför Funk',
-        text: 'Laget har genomfört tre intensiva träningspass i Sylte, Torsbohallen och Nevshallen. Samtliga spelare i truppen är skadefria och redo!',
+        title: 'Uppladdning inför Funkgrabbarna',
+        text: 'Laget har genomfört intensiva träningspass i Sylte, Torsbohallen och Nevshallen. Samtliga spelare i truppen är skadefria och redo!',
       },
       {
         time: 'FÖLJ PÅ PLATS',
@@ -432,6 +432,229 @@ export const futsalMatches: FutsalMatch[] = [
         time: 'LIVERAPPORTERING',
         title: 'Liveresultat under matchen',
         text: 'Resultat, målskyttar och händelser uppdateras löpande här på sajten och via Instagram Stories under matchen.',
+      },
+    ],
+  },
+
+  // ==========================================================================
+  // MATCH 5: KOMMANDE MATCH MOT FÄRGELANDA (BORTAMATCH)
+  // ==========================================================================
+  {
+    id: 'ev-match-fargelanda',
+    slug: 'match-fargelanda',
+    homeTeam: 'Färgelanda',
+    awayTeam: 'Futsal Boys',
+    isHome: false,
+    competition: 'Officiell Träningsmatch',
+    stage: 'Träningsmatch (Bortamatch)',
+    date: '24 NOV 2026',
+    fullDate: 'Tisdag 24 november 2026',
+    time: '19:00–21:00',
+    venue: 'Färgelanda Sporthall',
+    city: 'Färgelanda',
+    address: 'Allévägen / Håvesten, 458 30 Färgelanda',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Färgelanda+Sporthall',
+    status: 'KOMMANDE',
+    outcome: 'KOMMANDE',
+    result: 'VS',
+    halftimeResult: 'Ej startad',
+    scorersSummary: 'Avspark kl 19:00 (Bortamatch) – Följ live här!',
+    spectators: 'Öppen publik i Färgelanda Sporthall',
+    referees: 'Officiell Futsaldomare',
+    summary: [
+      'Tisdagen den 24 november reser Futsal Boys till Färgelanda Sporthall för bortamatch mot Färgelanda IF kl 19:00–21:00.',
+      'Detta är säsongens första bortamatch och ett utmärkt tillfälle att bekanta sig med sporthallen och parketten inför Färgelanda Futsal Cup i december.',
+      'Följ matchen och liveresultatet direkt här på sajten och på Instagram (@grabbarna.futsal)!',
+    ],
+    goals: [],
+    timeline: [
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:00 Samling i Trollhättan för samåkning' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:15 Ankomst Färgelanda Sporthall & ombyte' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:30 Taktiksnack inför bortamatchen' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:40 Gemensam matchuppvärmning' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:00 Avspark Färgelanda vs Futsal Boys' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:45 Slutsignal och eftersnack' },
+    ],
+    stats: {
+      shotsOnGoal: [0, 0],
+      totalShots: [0, 0],
+      corners: [0, 0],
+      fouls: [0, 0],
+      possession: [50, 50],
+      saves: [0, 0],
+    },
+    lineup: {
+      startingFive: [
+        { number: 1, name: 'Elvis', position: 'MÅLVAKT', isStarter: true },
+        { number: 3, name: 'Marcelo', position: 'FÖRSVAR', isStarter: true },
+        { number: 7, name: 'Raffi', position: 'MITTFÄLT', isStarter: true, isCaptain: true },
+        { number: 11, name: 'Mehdi', position: 'MITTFÄLT', isStarter: true },
+        { number: 6, name: 'Wael', position: 'FORWARD', isStarter: true },
+      ],
+      bench: [
+        { number: 24, name: 'Wictor', position: 'FÖRSVAR' },
+        { number: 4, name: 'Hugo', position: 'FORWARD' },
+        { number: 9, name: 'Stefan', position: 'FORWARD' },
+        { number: 10, name: 'Kasper', position: 'MITTFÄLT' },
+        { number: 14, name: 'Lucas', position: 'FÖRSVAR' },
+        { number: 18, name: 'Emin', position: 'FORWARD' },
+        { number: 22, name: 'Tro', position: 'FÖRSVAR' },
+      ],
+      coaches: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
+    },
+    liveUpdates: [
+      {
+        time: 'BORTAMATCH',
+        title: 'Formtest i cuparenan',
+        text: 'En tuff och lärorik bortamatch där Futsal Boys får känna på Färgelanda Sporthall innan vinterns cupäventyr.',
+      },
+    ],
+  },
+
+  // ==========================================================================
+  // MATCH 6: KOMMANDE MATCH MOT FRÄMSTAD (NEVSHALLEN)
+  // ==========================================================================
+  {
+    id: 'ev-match-framstad',
+    slug: 'match-framstad',
+    homeTeam: 'Futsal Boys',
+    awayTeam: 'Främstad',
+    isHome: true,
+    competition: 'Officiell Träningsmatch',
+    stage: 'Träningsmatch',
+    date: '28 NOV 2026',
+    fullDate: 'Lördag 28 november 2026',
+    time: '20:00–22:00',
+    venue: 'Nevshallen',
+    city: 'Trollhättan',
+    address: 'Flygfältsvägen, Saab-området, 461 38 Trollhättan',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Nevshallen+Trollhättan',
+    status: 'KOMMANDE',
+    outcome: 'KOMMANDE',
+    result: 'VS',
+    halftimeResult: 'Ej startad',
+    scorersSummary: 'Avspark kl 20:00 i Nevshallen – Följ live här!',
+    spectators: 'Fri entré för alla supportrar i Nevshallen',
+    referees: 'Officiell Futsaldomare',
+    summary: [
+      'Lördagen den 28 november tar Futsal Boys emot Främstad i Nevshallen kl 20:00–22:00.',
+      'En intensiv lördagsdrabbning mot ett fysiskt och strukturerat Främstad där lagets press- och djupledsspel sätts på prov.',
+      'Fri entré för alla supportrar – kom och skapa tryck på läktaren!',
+    ],
+    goals: [],
+    timeline: [
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:15 Samling i omklädningsrummet i Nevshallen' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:30 Genomgång av matchplan och roller' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:40 Matchuppvärmning' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs Främstad' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 21:35 Slutsignal och utvärdering' },
+    ],
+    stats: {
+      shotsOnGoal: [0, 0],
+      totalShots: [0, 0],
+      corners: [0, 0],
+      fouls: [0, 0],
+      possession: [50, 50],
+      saves: [0, 0],
+    },
+    lineup: {
+      startingFive: [
+        { number: 1, name: 'Elvis', position: 'MÅLVAKT', isStarter: true },
+        { number: 3, name: 'Marcelo', position: 'FÖRSVAR', isStarter: true },
+        { number: 7, name: 'Raffi', position: 'MITTFÄLT', isStarter: true, isCaptain: true },
+        { number: 11, name: 'Mehdi', position: 'MITTFÄLT', isStarter: true },
+        { number: 6, name: 'Wael', position: 'FORWARD', isStarter: true },
+      ],
+      bench: [
+        { number: 24, name: 'Wictor', position: 'FÖRSVAR' },
+        { number: 4, name: 'Hugo', position: 'FORWARD' },
+        { number: 9, name: 'Stefan', position: 'FORWARD' },
+        { number: 10, name: 'Kasper', position: 'MITTFÄLT' },
+        { number: 14, name: 'Lucas', position: 'FÖRSVAR' },
+        { number: 18, name: 'Emin', position: 'FORWARD' },
+        { number: 22, name: 'Tro', position: 'FÖRSVAR' },
+      ],
+      coaches: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
+    },
+    liveUpdates: [
+      {
+        time: 'LÖRDAGSKVÄLL',
+        title: 'Hett möte i Nevshallen',
+        text: 'Futsal Boys laddar för fullt inför lördagsmatchen mot Främstad. Avspark sker kl 20:00!',
+      },
+    ],
+  },
+
+  // ==========================================================================
+  // MATCH 7: KOMMANDE MATCH MOT FRÄNDEFORS (SYLTEHALLEN)
+  // ==========================================================================
+  {
+    id: 'ev-match-frandefors',
+    slug: 'match-frandefors',
+    homeTeam: 'Futsal Boys',
+    awayTeam: 'Frändefors',
+    isHome: true,
+    competition: 'Officiell Träningsmatch',
+    stage: 'Träningsmatch',
+    date: '29 NOV 2026',
+    fullDate: 'Söndag 29 november 2026',
+    time: '19:00–21:00',
+    venue: 'Syltehallen',
+    city: 'Trollhättan',
+    address: 'Klockarevägen 4, 461 54 Trollhättan',
+    mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Syltehallen+Trollhättan',
+    status: 'KOMMANDE',
+    outcome: 'KOMMANDE',
+    result: 'VS',
+    halftimeResult: 'Ej startad',
+    scorersSummary: 'Avspark kl 19:00 i Syltehallen – Följ live här!',
+    spectators: 'Fri entré för alla supportrar i Syltehallen',
+    referees: 'Officiell Futsaldomare',
+    summary: [
+      'Helgen avslutas med ytterligare en högintressant träningsmatch! Söndagen den 29 november tar Futsal Boys emot Frändefors i Syltehallen kl 19:00–21:00.',
+      'Helgens andra match blir ett perfekt tillfälle att testa lagets fysiska uthållighet och förmåga att hålla hög nivå under täta matchperioder.',
+      'Fri entré för alla supportrar – kom och heja fram laget!',
+    ],
+    goals: [],
+    timeline: [
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:15 Samling i Syltehallen' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:30 Taktikgenomgång inför söndagsmatchen' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 18:40 Matchuppvärmning' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:00 Avspark Futsal Boys vs Frändefors' },
+      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:45 Slutsignal och helgutvärdering' },
+    ],
+    stats: {
+      shotsOnGoal: [0, 0],
+      totalShots: [0, 0],
+      corners: [0, 0],
+      fouls: [0, 0],
+      possession: [50, 50],
+      saves: [0, 0],
+    },
+    lineup: {
+      startingFive: [
+        { number: 1, name: 'Elvis', position: 'MÅLVAKT', isStarter: true },
+        { number: 3, name: 'Marcelo', position: 'FÖRSVAR', isStarter: true },
+        { number: 7, name: 'Raffi', position: 'MITTFÄLT', isStarter: true, isCaptain: true },
+        { number: 11, name: 'Mehdi', position: 'MITTFÄLT', isStarter: true },
+        { number: 6, name: 'Wael', position: 'FORWARD', isStarter: true },
+      ],
+      bench: [
+        { number: 24, name: 'Wictor', position: 'FÖRSVAR' },
+        { number: 4, name: 'Hugo', position: 'FORWARD' },
+        { number: 9, name: 'Stefan', position: 'FORWARD' },
+        { number: 10, name: 'Kasper', position: 'MITTFÄLT' },
+        { number: 14, name: 'Lucas', position: 'FÖRSVAR' },
+        { number: 18, name: 'Emin', position: 'FORWARD' },
+        { number: 22, name: 'Tro', position: 'FÖRSVAR' },
+      ],
+      coaches: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
+    },
+    liveUpdates: [
+      {
+        time: 'DUBBELMATCH',
+        title: 'Andra matchen på samma helg',
+        text: 'Futsal Boys ställs inför en intensiv helg med matcher både lördag och söndag för att bygga maxat matchtempo!',
       },
     ],
   },
@@ -517,6 +740,10 @@ export const getMatchById = (idOrSlug: string): FutsalMatch | undefined => {
     (m) =>
       m.id === idOrSlug ||
       m.slug === idOrSlug ||
-      (m.slug === 'match-tif-polhem' && (idOrSlug === 'match-tif' || idOrSlug === 'tif'))
+      (m.slug === 'match-tif-polhem' && (idOrSlug === 'match-tif' || idOrSlug === 'tif')) ||
+      (m.slug === 'match-funk' && (idOrSlug === 'funk' || idOrSlug === 'funkgrabbarna')) ||
+      (m.slug === 'match-fargelanda' && idOrSlug === 'fargelanda') ||
+      (m.slug === 'match-framstad' && idOrSlug === 'framstad') ||
+      (m.slug === 'match-frandefors' && idOrSlug === 'frandefors')
   );
 };

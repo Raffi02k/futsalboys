@@ -243,7 +243,7 @@ export const MatchesPage: React.FC = () => {
     <div className="matches-page" style={{ paddingTop: 'calc(var(--header-height) + 24px)', paddingBottom: '80px' }}>
       <PageMeta
         title={`Vinterschema & Matcher | ${siteConfig.projectName} - Trollhättan`}
-        description="Följ Futsal Boys genom vintersäsongen 2026/2027: tre träningar, två träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen)."
+        description="Följ Futsal Boys genom vintersäsongen 2026/2027: fyra träningar, fem träningsmatcher och tre cuper (Färgelanda cup, Ytterby cup och Tössecupen)."
         canonicalPath="/matcher"
       />
 
@@ -254,7 +254,7 @@ export const MatchesPage: React.FC = () => {
             SCHEMA & <span className="text-neon">MATCHER</span>
           </h1>
           <p className="section-desc" style={{ margin: '0 auto', fontSize: '17px', lineHeight: 1.6 }}>
-            Följ Futsal Boys genom vintersäsongen 2026/2027! Schemat innehåller tre träningar, två träningsmatcher och tre prestigefyllda cuper: Färgelanda cup, Ytterby cup och Tössecupen.
+            Följ Futsal Boys genom vintersäsongen 2026/2027! Schemat innehåller fyra träningar, fem träningsmatcher och tre prestigefyllda cuper: Färgelanda cup, Ytterby cup och Tössecupen.
           </p>
         </div>
 
@@ -880,22 +880,22 @@ export const MatchesPage: React.FC = () => {
             </div>
 
             <p style={{ color: 'var(--silver-dim)', fontSize: '15px', margin: '0 0 16px', lineHeight: 1.6 }}>
-              Futsal Boys förbereder sig intensivt inför cupsäsongen med kvalitativa träningspass i Trollhättan, två formstarka träningsmatcher och tre cuper. Klicka på valfri aktivitet för fullständiga detaljer.
+              Futsal Boys förbereder sig intensivt inför cupsäsongen med kvalitativa träningspass i Trollhättan, fem formstarka träningsmatcher och tre cuper. Klicka på valfri aktivitet för fullständiga detaljer.
             </p>
 
             {/* Quick Summary Pill Bar */}
             <div className="schedule-summary-bar">
               <div className="schedule-summary-item">
                 <Flame size={17} className="text-neon" />
-                <span><strong>5 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbo), 14 & 28 nov (Nevs), 4 dec (Polhem)</span>
+                <span><strong>4 Träningar:</strong> 1 nov (Sylte), 6 nov (Torsbo), 14 nov (Nevs), 4 dec (Polhem)</span>
               </div>
               <div className="schedule-summary-item">
                 <ShieldCheck size={17} className="text-neon" />
-                <span><strong>2 Träningsmatcher:</strong> 20 nov (vs Funk i Torsbohallen), 6 dec (vs TIF i Polhem)</span>
+                <span><strong>5 Träningsmatcher:</strong> 20 nov (Funkgrabbarna), 24 nov (Färgelanda borta), 28 nov (Främstad), 29 nov (Frändefors), 6 dec (TIF)</span>
               </div>
               <div className="schedule-summary-item">
                 <Trophy size={17} style={{ color: '#ffd700' }} />
-                <span><strong>3 Cuper:</strong> 19 dec (Färgelanda), 2–3 jan (Ytterby), 30–31 jan (Tösse)</span>
+                <span><strong>3 Cuper:</strong> 19 dec (Färgelanda), 3 jan (Ytterby), 31 jan (Tösse)</span>
               </div>
             </div>
           </div>
@@ -1064,7 +1064,7 @@ export const MatchesPage: React.FC = () => {
                     justifyContent: 'center',
                     margin: '0 auto 10px',
                     fontFamily: 'var(--font-display)',
-                    fontSize: '22px',
+                    fontSize: '18px',
                     color: 'var(--silver)',
                     fontWeight: 700,
                   }}
@@ -1100,7 +1100,7 @@ export const MatchesPage: React.FC = () => {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--silver-dim)', fontSize: '12.5px', marginTop: '2px' }}>
                 <ShieldCheck size={16} className="text-neon" />
-                <span>Nästa träningsmatch: vs TIF (6 dec, 20:00–22:00 i Polhem)</span>
+                <span>Kommande matcher: Färgelanda borta (24 nov), Främstad (28 nov), Frändefors (29 nov), TIF (6 dec)</span>
               </div>
 
               <div className="match-action-btns" style={{ marginTop: '6px' }}>
