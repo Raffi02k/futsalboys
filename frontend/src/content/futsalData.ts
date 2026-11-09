@@ -948,22 +948,6 @@ export const clubNewsList: ClubNews[] = [
     ],
     quote: 'Detta är bara början på resan. Vi spelar med hjärta, fart och stolthet för Trollhättan.',
   },
-  {
-    id: '2',
-    category: 'KLUBBNYTT',
-    title: 'Officiella matchtröjan för säsongen presenterad',
-    summary: 'Designad i exklusivt kolfibersvart med elektriska neongröna accenter. Snart tillgänglig för beställning!',
-    date: '08 OKT 2026',
-    readTime: '2 MIN LÄSNING',
-    author: 'Futsal Boys Media',
-    image: '/images/futsalboys-ledare-breden.JPG',
-    paragraphs: [
-      'Efter veckor av förberedelser och noggrann design är Futsal Boys officiella matchställ äntligen här. Matchstället kombinerar en djup kolfibersvart bas med elektriska neongröna fartlinjer som speglar klubbens fartfyllda och kompromisslösa spelstil på futsalplanen.',
-      'Tröjan är tillverkad i ett ultralätt funktionsmaterial optimerat för det snabba inomhusspelet med maximal ventilation, slitstyrka och rörelsefrihet. Det stilrena klubbemblemet i krom och neon pryder bröstet med stolthet.',
-      'Supportrar och sponsorer kan nu förhandsbeställa tröjan samt den officiella klubbmerchen genom att skicka ett DM till oss direkt på Instagram (@grabbarna.futsal).',
-    ],
-    quote: 'Matchtröjan representerar vår identitet: mod, snabbhet och gemenskap i Trollhättan.',
-  },
 ];
 
 export interface InstagramProfile {
