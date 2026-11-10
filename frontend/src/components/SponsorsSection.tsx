@@ -175,21 +175,7 @@ export const SponsorsSection: React.FC = () => {
                   </div>
                 </div>
 
-                <div
-                  className="sponsor-visit-btn"
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '10px',
-                    background: 'rgba(255, 255, 255, 0.05)',
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    color: sponsor.accentColor,
-                    flexShrink: 0,
-                  }}
-                >
+                <div className="sponsor-visit-btn" aria-hidden="true">
                   <ExternalLink size={18} />
                 </div>
               </div>
@@ -242,23 +228,9 @@ export const SponsorsSection: React.FC = () => {
                   {sponsor.displayUrl}
                 </span>
 
-                <span
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '12px',
-                    fontWeight: 700,
-                    color: '#ffffff',
-                    background: 'rgba(255, 255, 255, 0.08)',
-                    padding: '5px 12px',
-                    borderRadius: '6px',
-                    transition: 'all 0.2s ease',
-                  }}
-                  className="sponsor-cta-pill"
-                >
+                <span className="sponsor-cta-pill">
                   <span>BESÖK HEMSIDA</span>
-                  <ExternalLink size={12} />
+                  <ExternalLink size={12} style={{ color: sponsor.accentColor }} />
                 </span>
               </div>
             </a>
