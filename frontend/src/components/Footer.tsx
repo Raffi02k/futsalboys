@@ -102,6 +102,106 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
+        {/* Official Sponsors Strip in Footer */}
+        <div
+          style={{
+            padding: '20px 0',
+            borderTop: '1px solid var(--border-subtle)',
+            borderBottom: '1px solid var(--border-subtle)',
+            margin: '36px 0 20px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '16px',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span
+              style={{
+                fontSize: '11px',
+                fontWeight: 800,
+                letterSpacing: '0.12em',
+                color: 'var(--neon-green)',
+                textTransform: 'uppercase',
+              }}
+            >
+              OFFICIELLA SPONSORER:
+            </span>
+          </div>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', flexWrap: 'wrap' }}>
+            <a
+              href="https://drinkabnormal.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#ffffff',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '13px',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                transition: 'opacity 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            >
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00e5ff' }} />
+              <span>ABNORMAL</span>
+              <span style={{ color: 'var(--silver-dim)', fontSize: '11px', fontWeight: 500 }}>(drinkabnormal.com)</span>
+            </a>
+
+            <a
+              href="https://wildchips.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#ffffff',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '13px',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                transition: 'opacity 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            >
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff9900' }} />
+              <span>WILD CHIPS</span>
+              <span style={{ color: 'var(--silver-dim)', fontSize: '11px', fontWeight: 500 }}>(wildchips.com)</span>
+            </a>
+
+            <a
+              href="https://adamaswear.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: '#ffffff',
+                textDecoration: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                fontSize: '13px',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                transition: 'opacity 0.2s ease',
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.8')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            >
+              <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10ff60' }} />
+              <span>ADAMAS</span>
+              <span style={{ color: 'var(--silver-dim)', fontSize: '11px', fontWeight: 500 }}>(adamswear.com)</span>
+            </a>
+          </div>
+        </div>
+
         {/* Bottom bar */}
         <div className="footer__bottom">
           <div>

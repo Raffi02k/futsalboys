@@ -828,6 +828,188 @@ button {
 }
 
 /* ==========================================================================
+   SPONSORS SECTION & TICKER (OFFICIELLA SPONSORER & PARTNERS)
+   ========================================================================== */
+.sponsors-section {
+  padding: 60px 0 70px;
+  background: linear-gradient(180deg, #07090b 0%, #0c1117 50%, #07090b 100%);
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sponsors-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 250px;
+  background: radial-gradient(ellipse at center, rgba(16, 255, 96, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.sponsors-ticker-wrap {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 0;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.sponsors-ticker-track {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: max-content;
+  animation: sponsors-infinite-scroll 32s linear infinite;
+}
+
+.sponsors-ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes sponsors-infinite-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsor-ticker-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 22px;
+  background: rgba(14, 19, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  min-width: 320px;
+  backdrop-filter: blur(10px);
+}
+
+.sponsor-ticker-card:hover {
+  background: rgba(20, 28, 38, 0.95);
+  border-color: var(--neon-green) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 255, 96, 0.25);
+}
+
+.sponsor-ticker-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.sponsor-category-pill {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  line-height: 1.2;
+}
+
+.sponsor-ticker-name-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sponsor-ticker-name {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.sponsor-ticker-ext-icon {
+  color: var(--silver-dim);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sponsor-ticker-card:hover .sponsor-ticker-ext-icon {
+  color: var(--neon-green);
+  transform: translate(2px, -2px);
+}
+
+.sponsor-ticker-url {
+  font-size: 12px;
+  color: var(--silver-dim);
+  font-family: monospace;
+}
+
+/* Featured 3-Sponsor Grid */
+.sponsors-featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.sponsor-feature-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(14, 19, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 26px 24px 20px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+}
+
+.sponsor-feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--sponsor-accent, var(--neon-green)), transparent);
+  opacity: 0.4;
+  transition: opacity 0.3s ease;
+}
+
+.sponsor-feature-card:hover {
+  background: rgba(18, 25, 35, 0.95);
+  border-color: var(--sponsor-accent, var(--neon-green));
+  transform: translateY(-5px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px var(--sponsor-glow, rgba(16, 255, 96, 0.2));
+}
+
+.sponsor-feature-card:hover::before {
+  opacity: 1;
+}
+
+.sponsor-feature-card:hover .sponsor-visit-btn {
+  background: var(--sponsor-accent, var(--neon-green));
+  color: #07090b !important;
+  border-color: var(--sponsor-accent, var(--neon-green));
+  transform: scale(1.08);
+}
+
+.sponsor-feature-card:hover .sponsor-cta-pill {
+  background: var(--sponsor-accent, var(--neon-green));
+  color: #07090b !important;
+}
+
+/* ==========================================================================
    INTERACTIVE PLAYER CAROUSEL (image_140650.png Chelsea style)
    ========================================================================== */
 .squad-section {

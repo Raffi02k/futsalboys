@@ -2,6 +2,7 @@ import React from 'react';
 import { PageMeta } from '../components/PageMeta';
 import { HeroSection } from '../components/HeroSection';
 import { StatsBar } from '../components/StatsBar';
+import { SponsorsSection } from '../components/SponsorsSection';
 import { PlayerCarousel } from '../components/PlayerCarousel';
 import { MatchAndNewsSection } from '../components/MatchAndNewsSection';
 import { GallerySection } from '../components/GallerySection';
@@ -23,16 +24,19 @@ export const HomePage: React.FC = () => {
       {/* 2. STATS COUNTER BAR (Victory United inspired) */}
       <StatsBar />
 
-      {/* 3. INTERACTIVE SQUAD CAROUSEL (image_140650.png Chelsea style) */}
+      {/* 3. VÅRA SPONSORER (Rullande ticker & partners) */}
+      <SponsorsSection />
+
+      {/* 4. INTERACTIVE SQUAD CAROUSEL (image_140650.png Chelsea style) */}
       <PlayerCarousel />
 
-      {/* 4. UPCOMING MATCH & CLUB NEWS (image_13b2de.png style) */}
+      {/* 5. UPCOMING MATCH & CLUB NEWS (image_13b2de.png style) */}
       <MatchAndNewsSection />
 
-      {/* 5. GALLERY & MEDIA HIGHLIGHTS */}
+      {/* 6. GALLERY & MEDIA HIGHLIGHTS */}
       <GallerySection />
 
-      {/* 6. INSTAGRAM PROFILE & GRID (IMG_1064.PNG inspired) */}
+      {/* 7. INSTAGRAM PROFILE & GRID (IMG_1064.PNG inspired) */}
       <InstagramSection />
     </>
   );
