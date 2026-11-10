@@ -907,7 +907,9 @@ button {
 .sponsor-ticker-info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-width: 0;
+  gap: 4px;
 }
 
 .sponsor-category-pill {

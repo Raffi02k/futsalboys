@@ -7,102 +7,38 @@ export const SponsorsSection: React.FC = () => {
   const marqueeSponsors = [...sponsorsList, ...sponsorsList, ...sponsorsList, ...sponsorsList];
 
   const renderSponsorLogo = (sponsor: Sponsor) => {
-    switch (sponsor.id) {
-      case 'abnormal':
-        return (
-          <div
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, #061822 0%, #030a0f 100%)',
-              border: `2px solid ${sponsor.accentColor}`,
-              boxShadow: `0 0 20px ${sponsor.glowColor}`,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-display)',
-              lineHeight: 0.9,
-              letterSpacing: '0.08em',
-              fontWeight: 900,
-              flexShrink: 0,
-            }}
-          >
-            <span style={{ fontSize: '15px', color: '#ffffff' }}>ABNO</span>
-            <span style={{ fontSize: '15px', color: sponsor.accentColor }}>RMAL</span>
-          </div>
-        );
-
-      case 'wildchips':
-        return (
-          <div
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, #221406 0%, #0f0903 100%)',
-              border: `2px solid ${sponsor.accentColor}`,
-              boxShadow: `0 0 20px ${sponsor.glowColor}`,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-display)',
-              lineHeight: 1,
-              letterSpacing: '0.04em',
-              flexShrink: 0,
-              padding: '4px',
-              textAlign: 'center',
-            }}
-          >
-            <span style={{ fontSize: '18px', color: sponsor.accentColor, fontWeight: 900 }}>WILD</span>
-            <span style={{ fontSize: '13px', color: '#ffffff', fontWeight: 800, letterSpacing: '0.12em' }}>CHIPS</span>
-          </div>
-        );
-
-      case 'adamas':
-      default:
-        return (
-          <div
-            style={{
-              width: '64px',
-              height: '64px',
-              borderRadius: '16px',
-              background: 'linear-gradient(135deg, #0a140d 0%, #050a06 100%)',
-              border: `2px solid ${sponsor.accentColor}`,
-              boxShadow: `0 0 20px ${sponsor.glowColor}`,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-display)',
-              lineHeight: 1,
-              flexShrink: 0,
-            }}
-          >
-            {/* Diamond polygon icon */}
-            <svg
-              width="26"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke={sponsor.accentColor}
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              style={{ filter: `drop-shadow(0 0 8px ${sponsor.accentColor})`, marginBottom: '2px' }}
-            >
-              <path d="M6 3h12l4 7-10 11L2 10l4-7z" />
-              <path d="M10 3l-2 7 4 11 4-11-2-7" />
-              <path d="M2 10h20" />
-            </svg>
-            <span style={{ fontSize: '12px', color: '#ffffff', fontWeight: 900, letterSpacing: '0.14em' }}>
-              ADAMAS
-            </span>
-          </div>
-        );
-    }
+    return (
+      <div
+        className="sponsor-logo-box"
+        style={{
+          width: '64px',
+          height: '64px',
+          borderRadius: '14px',
+          background: sponsor.logoBg || '#070a0e',
+          border: `2px solid ${sponsor.accentColor}`,
+          boxShadow: `0 0 16px ${sponsor.glowColor}`,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          flexShrink: 0,
+          padding: '4px',
+        }}
+      >
+        <img
+          src={sponsor.image}
+          alt={sponsor.name}
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: sponsor.logoFit || 'contain',
+            borderRadius: '8px',
+            display: 'block',
+          }}
+          loading="lazy"
+        />
+      </div>
+    );
   };
 
   return (
@@ -176,19 +112,6 @@ export const SponsorsSection: React.FC = () => {
               {renderSponsorLogo(sponsor)}
 
               <div className="sponsor-ticker-info">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '3px' }}>
-                  <span
-                    className="sponsor-category-pill"
-                    style={{
-                      background: `rgba(${sponsor.id === 'abnormal' ? '0, 229, 255' : sponsor.id === 'wildchips' ? '255, 153, 0' : '16, 255, 96'}, 0.15)`,
-                      color: sponsor.accentColor,
-                      border: `1px solid ${sponsor.accentColor}`,
-                    }}
-                  >
-                    {sponsor.badge}
-                  </span>
-                </div>
-
                 <div className="sponsor-ticker-name-row">
                   <span className="sponsor-ticker-name">{sponsor.name}</span>
                   <ExternalLink size={14} className="sponsor-ticker-ext-icon" />
