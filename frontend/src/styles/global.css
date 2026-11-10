@@ -1021,6 +1021,28 @@ button {
   transform: scale(1.1);
 }
 
+.sponsor-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
+  width: 100%;
+}
+
+.sponsor-card-footer-url {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+}
+
 .sponsor-cta-pill {
   display: inline-flex;
   align-items: center;
@@ -1033,6 +1055,8 @@ button {
   padding: 6px 14px;
   border-radius: 8px;
   transition: all 0.25s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .sponsor-feature-card:hover .sponsor-cta-pill {
@@ -1040,6 +1064,29 @@ button {
   color: #ffffff !important;
   border-color: var(--sponsor-accent, var(--neon-green)) !important;
   box-shadow: 0 0 16px var(--sponsor-glow, rgba(16, 255, 96, 0.35));
+}
+
+@media (max-width: 480px) {
+  .sponsor-feature-card {
+    padding: 20px 18px 16px;
+    border-radius: 16px;
+  }
+
+  .sponsor-card-footer {
+    gap: 8px;
+    padding-top: 12px;
+  }
+
+  .sponsor-card-footer-url {
+    font-size: 13.5px;
+  }
+
+  .sponsor-cta-pill {
+    padding: 5px 10px;
+    font-size: 11px;
+    gap: 5px;
+    border-radius: 6px;
+  }
 }
 
 /* ==========================================================================

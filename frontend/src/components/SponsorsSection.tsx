@@ -207,22 +207,11 @@ export const SponsorsSection: React.FC = () => {
               </p>
 
               {/* Card Footer with Website link button */}
-              <div
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  paddingTop: '14px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                  marginTop: 'auto',
-                }}
-              >
+              <div className="sponsor-card-footer">
                 <span
+                  className="sponsor-card-footer-url"
                   style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '16px',
                     color: sponsor.accentColor,
-                    letterSpacing: '0.06em',
                   }}
                 >
                   {sponsor.displayUrl}
