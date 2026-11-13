@@ -116,3 +116,4 @@ export const merchList: MerchItem[] = [
     dmMessage: 'Tjena! Jag vill beställa Full Package Set (499 kr). Tröjstorlek: ',
   },
 ];
+

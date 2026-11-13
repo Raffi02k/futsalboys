@@ -91,7 +91,14 @@ export const Footer: React.FC = () => {
               </li>
               <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <Mail size={16} className="text-neon" />
-                <span>{siteConfig.email}</span>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  style={{ color: 'inherit', textDecoration: 'none' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--neon-green)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'inherit')}
+                >
+                  {siteConfig.email}
+                </a>
               </li>
               <li style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
                 <Instagram size={16} className="text-neon" />

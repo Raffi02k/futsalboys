@@ -448,3 +448,4 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
     </div>
   );
 };
+

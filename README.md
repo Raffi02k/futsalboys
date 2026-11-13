@@ -15,7 +15,7 @@ Hemsidan samlar allt som rör Futsal Boys på ett och samma ställe:
 - **Möt Spelartruppen**: En interaktiv truppkarusell där besökare kan bläddra bland spelarna, filtrera på positioner (*Forward*, *Mittfält*, *Försvar*, *Målvakt*) och se spelarprofiler med nummer, citat och statistik.
 - **Matchcenter & Klubbnyheter**: Nedräkning till nästa match i Arena Älvhögsborg samt interaktiva artiklar och matchanalyser.
 - **Instagram-sektion**: Direktlänk och koppling till lagets officiella Instagramkonto ([@grabbarna.futsal](https://www.instagram.com/grabbarna.futsal/)) med de senaste matchbilderna och troféerna.
-- **Kontakt**: Snabb kontaktväg till klubben via [raffi9998@gmail.com](mailto:raffi9998@gmail.com).
+- **Kontakt**: Snabb kontaktväg till klubben via [futsalboys2026@gmail.com](mailto:futsalboys2026@gmail.com).
 
 ---
 
@@ -44,7 +44,7 @@ För att starta projektet lokalt på datorn:
 ## 📍 Kontakt & Länkar
 
 - **Instagram**: [@grabbarna.futsal](https://www.instagram.com/grabbarna.futsal/)
-- **E-post**: [raffi9998@gmail.com](mailto:raffi9998@gmail.com)
+- **E-post**: [futsalboys2026@gmail.com](mailto:futsalboys2026@gmail.com)
 - **Hemmaarena**: Arena Älvhögsborg, Trollhättan
 
 ---

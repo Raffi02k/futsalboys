@@ -18,3 +18,4 @@ export const MerchPage: React.FC = () => {
     </>
   );
 };
+

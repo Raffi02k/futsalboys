@@ -70,7 +70,7 @@ export const siteConfig: SiteConfig = {
   city: "Trollhättan",
   region: "Västra Götaland",
   arena: "Arena Älvhögsborg",
-  email: "raffi9998@gmail.com",
+  email: "futsalboys2026@gmail.com",
   instagramHandle: "@grabbarna.futsal",
   instagramUrl: "https://www.instagram.com/grabbarna.futsal/",
 
