@@ -52,6 +52,16 @@ export interface SiteConfig {
     label: string;
     path: string;
   }>;
+  navItems?: Array<{
+    label: string;
+    path?: string;
+    children?: Array<{
+      label: string;
+      path: string;
+      description?: string;
+      badge?: string;
+    }>;
+  }>;
 
   // Social
   socialLinks: {
@@ -111,6 +121,28 @@ export const siteConfig: SiteConfig = {
     { label: "GALLERI", path: "/galleri" },
     { label: "BLOGG", path: "/blogg" },
     { label: "INSTAGRAM", path: "/instagram" },
+  ],
+
+  navItems: [
+    { label: "HEM", path: "/" },
+    {
+      label: "KLUBBEN",
+      children: [
+        { label: "Ledarna", path: "/ledarna", description: "Ledartrion bakom klubben" },
+        { label: "Spelartruppen", path: "/truppen", description: "Spelarna och profilerna" },
+        { label: "Våra Sponsorer", path: "/#sponsorer", description: "Abnormal, Wild Chips & Adamas" },
+      ],
+    },
+    { label: "MATCHER", path: "/matcher" },
+    { label: "MERCH", path: "/merch" },
+    {
+      label: "MEDIA",
+      children: [
+        { label: "Galleri & Video", path: "/galleri", description: "Matchbilder & höjdpunkter" },
+        { label: "Klubbnyheter", path: "/blogg", description: "Artiklar, matchrapporter & cuper" },
+        { label: "Instagram Feed", path: "/instagram", description: "Följ @grabbarna.futsal live" },
+      ],
+    },
   ],
 
   socialLinks: {
