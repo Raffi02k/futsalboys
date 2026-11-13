@@ -5606,6 +5606,43 @@ video:-ms-fullscreen,
   }
 }
 
+/* Merch Modal Card Responsiveness & Custom Scrollbar */
+@media (max-width: 768px) {
+  .merch-modal-card {
+    grid-template-columns: 1fr !important;
+    max-height: 94vh !important;
+    overflow-y: auto !important;
+  }
+
+  .merch-modal-left {
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 16px !important;
+  }
+
+  .merch-modal-right {
+    padding: 18px 18px 24px !important;
+  }
+}
+
+.merch-modal-right::-webkit-scrollbar {
+  width: 6px;
+}
+
+.merch-modal-right::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.merch-modal-right::-webkit-scrollbar-thumb {
+  background: rgba(16, 255, 96, 0.3);
+  border-radius: 999px;
+}
+
+.merch-modal-right::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-green);
+}
+
+
 
 
 

@@ -40,8 +40,9 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: 'rgba(5, 7, 10, 0.88)',
-        backdropFilter: 'blur(10px)',
+        background: 'rgba(5, 7, 10, 0.9)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -53,62 +54,67 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
         className="merch-modal-card"
         onClick={(e) => e.stopPropagation()}
         style={{
-          background: '#0d1218',
-          border: '1px solid rgba(16, 255, 96, 0.3)',
-          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(16, 255, 96, 0.2)',
-          borderRadius: '24px',
-          maxWidth: '860px',
+          background: '#0c1016',
+          border: '1px solid rgba(16, 255, 96, 0.35)',
+          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(16, 255, 96, 0.18)',
+          borderRadius: '22px',
+          maxWidth: '880px',
           width: '100%',
-          overflow: 'hidden',
           position: 'relative',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-          maxHeight: '92vh',
+          gridTemplateColumns: 'minmax(280px, 1fr) minmax(320px, 1.25fr)',
+          maxHeight: 'min(92vh, 740px)',
+          overflow: 'hidden',
         }}
       >
         {/* Close Button */}
         <button
           onClick={onClose}
-          aria-label="Stäng"
+          aria-label="Stäng modal"
           style={{
             position: 'absolute',
-            top: '16px',
-            right: '16px',
-            width: '40px',
-            height: '40px',
+            top: '14px',
+            right: '14px',
+            width: '38px',
+            height: '38px',
             borderRadius: '50%',
-            background: 'rgba(0, 0, 0, 0.65)',
-            border: '1px solid rgba(255, 255, 255, 0.15)',
+            background: 'rgba(0, 0, 0, 0.75)',
+            border: '1px solid rgba(255, 255, 255, 0.18)',
             color: '#ffffff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            zIndex: 10,
+            zIndex: 20,
             transition: 'all 0.2s ease',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'var(--neon-green)';
             e.currentTarget.style.color = '#000000';
+            e.currentTarget.style.borderColor = 'var(--neon-green)';
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(0, 0, 0, 0.65)';
+            e.currentTarget.style.background = 'rgba(0, 0, 0, 0.75)';
             e.currentTarget.style.color = '#ffffff';
+            e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.18)';
           }}
         >
-          <X size={20} />
+          <X size={18} />
         </button>
 
         {/* Left Column: Image Gallery */}
         <div
+          className="merch-modal-left"
           style={{
-            background: '#05070a',
+            background: '#070a0e',
             position: 'relative',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'space-between',
-            padding: '24px',
+            justifyContent: 'center',
+            padding: '20px',
             borderRight: '1px solid rgba(255, 255, 255, 0.08)',
+            minHeight: 0,
+            overflowY: 'auto',
           }}
         >
           {/* Main Photo View */}
@@ -116,13 +122,16 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
             style={{
               position: 'relative',
               width: '100%',
+              maxWidth: '360px',
               aspectRatio: '1 / 1',
+              margin: '0 auto',
               borderRadius: '16px',
               overflow: 'hidden',
-              background: '#0a0e14',
+              background: '#ffffff',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
             }}
           >
             <img
@@ -131,7 +140,7 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'cover',
+                objectFit: 'contain',
                 display: 'block',
               }}
             />
@@ -140,16 +149,17 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               <span
                 style={{
                   position: 'absolute',
-                  top: '14px',
-                  left: '14px',
+                  top: '12px',
+                  left: '12px',
                   background: item.badgeType === 'value' ? '#ff9900' : 'var(--neon-green)',
                   color: '#07090b',
-                  fontSize: '11px',
+                  fontSize: '10.5px',
                   fontWeight: 900,
-                  letterSpacing: '0.1em',
-                  padding: '4px 10px',
+                  letterSpacing: '0.08em',
+                  padding: '4px 9px',
                   borderRadius: '6px',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.4)',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.35)',
+                  zIndex: 2,
                 }}
               >
                 {item.badge}
@@ -164,22 +174,23 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
                   aria-label="Föregående bild"
                   style={{
                     position: 'absolute',
-                    left: '10px',
+                    left: '8px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    width: '36px',
-                    height: '36px',
+                    width: '32px',
+                    height: '32px',
                     borderRadius: '50%',
                     background: 'rgba(0, 0, 0, 0.65)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     color: '#ffffff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
+                    zIndex: 2,
                   }}
                 >
-                  <ChevronLeft size={20} />
+                  <ChevronLeft size={18} />
                 </button>
 
                 <button
@@ -187,22 +198,23 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
                   aria-label="Nästa bild"
                   style={{
                     position: 'absolute',
-                    right: '10px',
+                    right: '8px',
                     top: '50%',
                     transform: 'translateY(-50%)',
-                    width: '36px',
-                    height: '36px',
+                    width: '32px',
+                    height: '32px',
                     borderRadius: '50%',
                     background: 'rgba(0, 0, 0, 0.65)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     color: '#ffffff',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
                     cursor: 'pointer',
+                    zIndex: 2,
                   }}
                 >
-                  <ChevronRight size={20} />
+                  <ChevronRight size={18} />
                 </button>
               </>
             )}
@@ -213,9 +225,10 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
             <div
               style={{
                 display: 'flex',
-                gap: '10px',
-                marginTop: '16px',
+                gap: '8px',
+                marginTop: '14px',
                 justifyContent: 'center',
+                flexWrap: 'wrap',
               }}
             >
               {item.gallery.map((img, idx) => (
@@ -223,19 +236,26 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
                   key={idx}
                   onClick={() => setActiveImageIdx(idx)}
                   style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '10px',
+                    width: '50px',
+                    height: '50px',
+                    borderRadius: '8px',
                     overflow: 'hidden',
-                    border: activeImageIdx === idx ? '2px solid var(--neon-green)' : '1px solid rgba(255, 255, 255, 0.15)',
-                    background: '#0a0d11',
+                    border:
+                      activeImageIdx === idx
+                        ? '2px solid var(--neon-green)'
+                        : '1px solid rgba(255, 255, 255, 0.15)',
+                    background: '#ffffff',
                     cursor: 'pointer',
                     padding: 0,
                     opacity: activeImageIdx === idx ? 1 : 0.6,
-                    transition: 'all 0.2s ease',
+                    transition: 'all 0.15s ease',
                   }}
                 >
-                  <img src={img} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img
+                    src={img}
+                    alt=""
+                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                  />
                 </button>
               ))}
             </div>
@@ -244,64 +264,77 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
 
         {/* Right Column: Info, Sizes & Order via DM CTA */}
         <div
+          className="merch-modal-right"
           style={{
-            padding: '32px 28px',
+            padding: '22px 24px 24px',
             display: 'flex',
             flexDirection: 'column',
+            minHeight: 0,
+            maxHeight: '100%',
             overflowY: 'auto',
           }}
         >
+          {/* Top Tag */}
           <span
             style={{
               fontSize: '11px',
               fontWeight: 800,
-              letterSpacing: '0.15em',
+              letterSpacing: '0.12em',
               color: 'var(--neon-green)',
               textTransform: 'uppercase',
-              marginBottom: '6px',
+              marginBottom: '4px',
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
             }}
           >
-            <Sparkles size={14} />
+            <Sparkles size={13} />
             <span>OFFICIELL KLUBBMERCH</span>
           </span>
 
+          {/* Title */}
           <h2
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: '32px',
+              fontSize: '25px',
               color: '#ffffff',
-              margin: '0 0 6px',
-              lineHeight: 1.1,
+              margin: '0 0 3px',
+              lineHeight: 1.15,
               letterSpacing: '0.04em',
             }}
           >
             {item.title}
           </h2>
 
-          <p style={{ color: 'var(--silver-dim)', fontSize: '14px', margin: '0 0 18px', lineHeight: 1.4 }}>
+          {/* Subtitle */}
+          <p
+            style={{
+              color: 'var(--silver-dim)',
+              fontSize: '13px',
+              margin: '0 0 12px',
+              lineHeight: 1.35,
+            }}
+          >
             {item.subtitle}
           </p>
 
-          {/* Price display */}
+          {/* Price display row */}
           <div
             style={{
               display: 'flex',
               alignItems: 'baseline',
-              gap: '12px',
-              padding: '12px 18px',
+              gap: '10px',
+              padding: '8px 14px',
               background: 'rgba(255, 255, 255, 0.04)',
-              borderRadius: '12px',
+              borderRadius: '10px',
               border: '1px solid rgba(255, 255, 255, 0.08)',
-              marginBottom: '20px',
+              marginBottom: '14px',
             }}
           >
             <span
               style={{
                 fontFamily: 'var(--font-display)',
-                fontSize: '34px',
+                fontSize: '28px',
                 fontWeight: 900,
                 color: 'var(--neon-green)',
                 letterSpacing: '0.02em',
@@ -314,7 +347,7 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
             {item.originalPrice && (
               <span
                 style={{
-                  fontSize: '16px',
+                  fontSize: '14px',
                   color: 'var(--silver-dim)',
                   textDecoration: 'line-through',
                   fontWeight: 600,
@@ -329,41 +362,50 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
           <p
             style={{
               color: '#d0d8e0',
-              fontSize: '14px',
-              lineHeight: 1.6,
-              margin: '0 0 20px',
+              fontSize: '13px',
+              lineHeight: 1.5,
+              margin: '0 0 14px',
             }}
           >
             {item.description}
           </p>
 
           {/* Features list */}
-          <div style={{ marginBottom: '22px' }}>
+          <div style={{ marginBottom: '14px' }}>
             <h4
               style={{
                 fontSize: '11px',
                 fontWeight: 800,
-                letterSpacing: '0.12em',
+                letterSpacing: '0.1em',
                 color: '#ffffff',
                 textTransform: 'uppercase',
-                marginBottom: '10px',
+                margin: '0 0 6px',
               }}
             >
               PRODUKTDETALJER:
             </h4>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <ul
+              style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: 0,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+              }}
+            >
               {item.features.map((feat, i) => (
                 <li
                   key={i}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '10px',
-                    fontSize: '13px',
+                    gap: '8px',
+                    fontSize: '12.5px',
                     color: 'var(--silver-dim)',
                   }}
                 >
-                  <Check size={14} color="var(--neon-green)" style={{ flexShrink: 0 }} />
+                  <Check size={13} color="var(--neon-green)" style={{ flexShrink: 0 }} />
                   <span>{feat}</span>
                 </li>
               ))}
@@ -372,25 +414,41 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
 
           {/* Size Selector if clothing */}
           {item.sizes && item.sizes.length > 0 && (
-            <div style={{ marginBottom: '24px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-                <span style={{ fontSize: '12px', fontWeight: 700, color: '#ffffff' }}>VÄLJ STORLEK:</span>
-                <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>Unisex standard</span>
+            <div style={{ marginBottom: '14px' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  marginBottom: '6px',
+                }}
+              >
+                <span style={{ fontSize: '11.5px', fontWeight: 700, color: '#ffffff' }}>
+                  VÄLJ STORLEK:
+                </span>
+                <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>
+                  Unisex standard
+                </span>
               </div>
-              <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                 {item.sizes.map((s) => (
                   <button
                     key={s}
                     onClick={() => setSelectedSize(s)}
                     style={{
-                      width: '46px',
-                      height: '42px',
+                      width: '42px',
+                      height: '36px',
                       borderRadius: '8px',
-                      border: selectedSize === s ? '2px solid var(--neon-green)' : '1px solid rgba(255, 255, 255, 0.15)',
-                      background: selectedSize === s ? 'rgba(16, 255, 96, 0.15)' : 'rgba(255, 255, 255, 0.04)',
+                      border:
+                        selectedSize === s
+                          ? '2px solid var(--neon-green)'
+                          : '1px solid rgba(255, 255, 255, 0.15)',
+                      background:
+                        selectedSize === s
+                          ? 'rgba(16, 255, 96, 0.16)'
+                          : 'rgba(255, 255, 255, 0.04)',
                       color: selectedSize === s ? 'var(--neon-green)' : '#ffffff',
                       fontWeight: 800,
-                      fontSize: '13px',
+                      fontSize: '12.5px',
                       cursor: 'pointer',
                       transition: 'all 0.15s ease',
                     }}
@@ -405,20 +463,20 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
           {/* Instructions Box */}
           <div
             style={{
-              padding: '12px 14px',
-              borderRadius: '10px',
+              padding: '10px 12px',
+              borderRadius: '9px',
               background: 'rgba(16, 255, 96, 0.08)',
               border: '1px solid rgba(16, 255, 96, 0.25)',
-              marginBottom: '20px',
-              fontSize: '12.5px',
-              lineHeight: 1.5,
+              marginBottom: '16px',
+              fontSize: '12px',
+              lineHeight: 1.45,
               color: '#dfffe8',
             }}
           >
-            💬 <strong>Hur köper jag?</strong> Klicka på knappen nedan för att öppna ett direktmeddelande (DM) till oss på Instagram (<strong>{siteConfig.instagramHandle}</strong>) så sköter vi betalning och leverans direkt!
+            💬 <strong>Hur köper jag?</strong> Klicka på knappen nedan så öppnas direkt ett DM till oss på Instagram (<strong>{siteConfig.instagramHandle}</strong>) med din beställning förifylld!
           </div>
 
-          {/* BUY VIA INSTAGRAM DM BUTTON */}
+          {/* BUY VIA INSTAGRAM DM BUTTON (Always clearly visible!) */}
           <a
             href={instagramDmUrl}
             target="_blank"
@@ -429,19 +487,20 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '10px',
-              padding: '14px 20px',
-              fontSize: '15px',
-              fontWeight: 800,
+              gap: '8px',
+              padding: '13px 18px',
+              fontSize: '14px',
+              fontWeight: 850,
               textDecoration: 'none',
-              borderRadius: '12px',
+              borderRadius: '10px',
               marginTop: 'auto',
-              boxShadow: '0 8px 24px rgba(16, 255, 96, 0.35)',
+              boxShadow: '0 8px 22px rgba(16, 255, 96, 0.35)',
+              flexShrink: 0,
             }}
           >
-            <Instagram size={18} />
+            <Instagram size={17} />
             <span>BESTÄLL VIA DM PÅ INSTAGRAM</span>
-            <ExternalLink size={15} />
+            <ExternalLink size={14} />
           </a>
         </div>
       </div>
