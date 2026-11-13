@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink, Handshake, Sparkles, Mail, Instagram, ShieldCheck, Flame, Zap } from 'lucide-react';
+import { ExternalLink, Sparkles, Mail, Instagram, ShieldCheck, Flame, Zap } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { sponsorsList, Sponsor } from '../content/sponsorsData';
 import { siteConfig } from '../content/siteContent';
@@ -59,51 +59,66 @@ export const SponsorsPage: React.FC = () => {
       />
 
       <div className="container">
-        {/* Header Section */}
-        <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 18px',
-              borderRadius: '999px',
-              background: 'rgba(16, 255, 96, 0.12)',
-              border: '1px solid var(--border-neon)',
-              color: 'var(--neon-green)',
-              fontSize: '12px',
-              fontWeight: 800,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              marginBottom: '18px',
-            }}
-          >
-            <Handshake size={16} />
-            <span>OFFICIELLA KLUBBPARTNERS</span>
+        {/* H1 Hero Banner with Team Image and Text Over It */}
+        <div className="sponsors-hero-banner">
+          <img
+            src="/images/players/Lagfoto.JPG"
+            alt="Futsal Boys Lagfoto & Sponsorer"
+            className="sponsors-hero-bg"
+            loading="eager"
+          />
+          <div className="sponsors-hero-overlay" />
+
+          <div className="sponsors-hero-content">
+            <p className="sponsors-hero-sub">
+              OFFICIELLA KLUBBPARTNERS • TROLLHÄTTAN
+            </p>
+
+            <h1 className="sponsors-hero-h1">
+              VÅRA <span className="text-neon">SPONSORER</span> & SAMARBETEN
+            </h1>
+
+            <p className="sponsors-hero-desc">
+              Framgång på futsalplanen bygger på hårt arbete, passion och starka samarbeten. Vi är otroligt stolta över att representera och backas upp av ledande svenska varumärken inom energi, nutrition och sportutrustning.
+            </p>
+
+            {/* Quick action strip */}
+            <div
+              style={{
+                marginTop: '20px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '8px 18px',
+                borderRadius: '999px',
+                background: 'rgba(0, 0, 0, 0.65)',
+                border: '1px solid rgba(16, 255, 96, 0.4)',
+                fontSize: '12.5px',
+                color: '#ffffff',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
+              <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>PARTNERSKAP</span>
+              <span style={{ opacity: 0.4 }}>•</span>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                style={{
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontWeight: 700,
+                }}
+              >
+                <Mail size={13} color="var(--neon-green)" />
+                <span>{siteConfig.email}</span>
+              </a>
+            </div>
           </div>
-
-          <h1
-            className="section-title"
-            style={{
-              fontSize: 'clamp(36px, 6vw, 60px)',
-              marginBottom: '16px',
-              lineHeight: 1.1,
-            }}
-          >
-            VÅRA <span className="text-neon">SPONSORER</span> & SAMARBETEN
-          </h1>
-
-          <p
-            className="section-desc"
-            style={{
-              margin: '0 auto',
-              fontSize: '16px',
-              lineHeight: 1.65,
-              color: 'var(--silver-dim)',
-            }}
-          >
-            Framgång på futsalplanen bygger på hårt arbete, passion och starka samarbeten. Vi är otroligt stolta över att representera och backas upp av ledande svenska varumärken inom energi, nutrition och sportutrustning.
-          </p>
         </div>
       </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
-import { ExternalLink, Handshake } from 'lucide-react';
+import { ExternalLink, Mail } from 'lucide-react';
 import { sponsorsList, Sponsor } from '../content/sponsorsData';
+import { siteConfig } from '../content/siteContent';
 
 export const SponsorsSection: React.FC = () => {
   // Duplicate for smooth infinite CSS marquee loop
@@ -44,50 +45,66 @@ export const SponsorsSection: React.FC = () => {
   return (
     <section className="sponsors-section" id="sponsorer" aria-label="Våra sponsorer">
       <div className="container">
-        {/* Section Header */}
-        <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 36px' }}>
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '6px 16px',
-              borderRadius: '999px',
-              background: 'rgba(16, 255, 96, 0.1)',
-              border: '1px solid var(--border-neon)',
-              color: 'var(--neon-green)',
-              fontSize: '12px',
-              fontWeight: 800,
-              letterSpacing: '0.12em',
-              textTransform: 'uppercase',
-              marginBottom: '16px',
-            }}
-          >
-            <Handshake size={15} />
-            <span>OFFICIELLA SPONSORER & PARTNERS</span>
+        {/* H1 Hero Banner with Team Image and Text Over It */}
+        <div className="sponsors-hero-banner">
+          <img
+            src="/images/players/Lagfoto.JPG"
+            alt="Futsal Boys Lagfoto & Sponsorer"
+            className="sponsors-hero-bg"
+            loading="lazy"
+          />
+          <div className="sponsors-hero-overlay" />
+
+          <div className="sponsors-hero-content">
+            <p className="sponsors-hero-sub">
+              OFFICIELLA KLUBBPARTNERS & SPONSORER
+            </p>
+
+            <h2 className="sponsors-hero-h1">
+              VÅRA <span className="text-neon">SPONSORER</span>
+            </h2>
+
+            <p className="sponsors-hero-desc">
+              Vi är stolta över att samarbeta med ledande varumärken som delar vår ambition, energi och passion för futsal. Klicka på en sponsor för att besöka deras officiella sida!
+            </p>
+
+            {/* Quick action strip */}
+            <div
+              style={{
+                marginTop: '20px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '8px 18px',
+                borderRadius: '999px',
+                background: 'rgba(0, 0, 0, 0.65)',
+                border: '1px solid rgba(16, 255, 96, 0.4)',
+                fontSize: '12.5px',
+                color: '#ffffff',
+                backdropFilter: 'blur(8px)',
+                WebkitBackdropFilter: 'blur(8px)',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
+              <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>PARTNERSKAP</span>
+              <span style={{ opacity: 0.4 }}>•</span>
+              <a
+                href={`mailto:${siteConfig.email}`}
+                style={{
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  fontWeight: 700,
+                }}
+              >
+                <Mail size={13} color="var(--neon-green)" />
+                <span>{siteConfig.email}</span>
+              </a>
+            </div>
           </div>
-
-          <h2
-            className="section-title"
-            style={{
-              fontSize: 'clamp(32px, 5vw, 52px)',
-              marginBottom: '12px',
-            }}
-          >
-            VÅRA <span className="text-neon">SPONSORER</span>
-          </h2>
-
-          <p
-            className="section-desc"
-            style={{
-              margin: '0 auto',
-              fontSize: '15.5px',
-              lineHeight: 1.6,
-              color: 'var(--silver-dim)',
-            }}
-          >
-            Vi är stolta över att samarbeta med ledande varumärken som delar vår ambition, energi och passion för futsal. Klicka på en sponsor för att besöka deras officiella sida!
-          </p>
         </div>
       </div>
 
