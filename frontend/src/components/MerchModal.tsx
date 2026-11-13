@@ -44,6 +44,8 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
   if (!item) return null;
 
   const currentImage = item.gallery[activeImageIdx] || item.image;
+  const isComboImage =
+    currentImage.includes('full-package') || currentImage.includes('Set-troja-keps');
   const totalPrice = item.price * quantity;
   const sizeText = item.sizes ? selectedSize : 'One Size (Justerbar)';
 
@@ -228,7 +230,7 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               margin: '0 auto',
               borderRadius: '16px',
               overflow: 'hidden',
-              background: '#ffffff',
+              background: isComboImage ? '#ffffff' : '#0a0e14',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -241,7 +243,8 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               style={{
                 width: '100%',
                 height: '100%',
-                objectFit: 'contain',
+                objectFit: isComboImage ? 'contain' : 'cover',
+                padding: isComboImage ? '10px' : '0',
                 display: 'block',
               }}
             />
@@ -332,33 +335,42 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
                 flexWrap: 'wrap',
               }}
             >
-              {item.gallery.map((img, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveImageIdx(idx)}
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '8px',
-                    overflow: 'hidden',
-                    border:
-                      activeImageIdx === idx
-                        ? '2px solid var(--neon-green)'
-                        : '1px solid rgba(255, 255, 255, 0.15)',
-                    background: '#ffffff',
-                    cursor: 'pointer',
-                    padding: 0,
-                    opacity: activeImageIdx === idx ? 1 : 0.6,
-                    transition: 'all 0.15s ease',
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt=""
-                    style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                  />
-                </button>
-              ))}
+              {item.gallery.map((img, idx) => {
+                const isThumbCombo =
+                  img.includes('full-package') || img.includes('Set-troja-keps');
+                return (
+                  <button
+                    key={idx}
+                    onClick={() => setActiveImageIdx(idx)}
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '8px',
+                      overflow: 'hidden',
+                      border:
+                        activeImageIdx === idx
+                          ? '2px solid var(--neon-green)'
+                          : '1px solid rgba(255, 255, 255, 0.15)',
+                      background: isThumbCombo ? '#ffffff' : '#0a0e14',
+                      cursor: 'pointer',
+                      padding: 0,
+                      opacity: activeImageIdx === idx ? 1 : 0.6,
+                      transition: 'all 0.15s ease',
+                    }}
+                  >
+                    <img
+                      src={img}
+                      alt=""
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: isThumbCombo ? 'contain' : 'cover',
+                        padding: isThumbCombo ? '2px' : '0',
+                      }}
+                    />
+                  </button>
+                );
+              })}
             </div>
           )}
 
