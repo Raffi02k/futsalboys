@@ -68,23 +68,24 @@ export const SponsorsSection: React.FC = () => {
               Vi är stolta över att samarbeta med ledande varumärken som delar vår ambition, energi och passion för futsal. Klicka på en sponsor för att besöka deras officiella sida!
             </p>
 
-            {/* Quick action strip */}
+            {/* Quick action strip (Always on one line) */}
             <div
               style={{
                 marginTop: '20px',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '12px',
-                padding: '8px 18px',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '7px 16px',
                 borderRadius: '999px',
                 background: 'rgba(0, 0, 0, 0.65)',
                 border: '1px solid rgba(16, 255, 96, 0.4)',
-                fontSize: '12.5px',
+                fontSize: 'clamp(10.5px, 2.8vw, 12.5px)',
                 color: '#ffffff',
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
-                flexWrap: 'wrap',
-                justifyContent: 'center',
+                whiteSpace: 'nowrap',
+                maxWidth: 'calc(100% - 16px)',
               }}
             >
               <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>PARTNERSKAP</span>
@@ -96,11 +97,12 @@ export const SponsorsSection: React.FC = () => {
                   textDecoration: 'none',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '6px',
+                  gap: '5px',
                   fontWeight: 700,
+                  whiteSpace: 'nowrap',
                 }}
               >
-                <Mail size={13} color="var(--neon-green)" />
+                <Mail size={12} color="var(--neon-green)" style={{ flexShrink: 0 }} />
                 <span>{siteConfig.email}</span>
               </a>
             </div>

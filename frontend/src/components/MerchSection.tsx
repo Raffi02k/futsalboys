@@ -33,21 +33,24 @@ export const MerchSection: React.FC = () => {
               Representera Futsal Boys på läktaren, i hallen och på stan. Välj ditt plagg, välj storlek och beställ direkt med Swish till <strong>0762287601</strong>!
             </p>
 
-            {/* Quick action strip */}
+            {/* Quick action strip (Always on one line) */}
             <div
               style={{
                 marginTop: '20px',
                 display: 'inline-flex',
                 alignItems: 'center',
-                gap: '12px',
-                padding: '8px 18px',
+                justifyContent: 'center',
+                gap: '8px',
+                padding: '7px 16px',
                 borderRadius: '999px',
                 background: 'rgba(0, 0, 0, 0.65)',
                 border: '1px solid rgba(16, 255, 96, 0.4)',
-                fontSize: '12.5px',
+                fontSize: 'clamp(10.5px, 2.8vw, 12.5px)',
                 color: '#ffffff',
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
+                whiteSpace: 'nowrap',
+                maxWidth: 'calc(100% - 16px)',
               }}
             >
               <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>SWISH: 0762287601</span>
@@ -63,11 +66,12 @@ export const MerchSection: React.FC = () => {
                   alignItems: 'center',
                   gap: '4px',
                   fontWeight: 700,
+                  whiteSpace: 'nowrap',
                 }}
               >
-                <Instagram size={13} color="var(--neon-green)" />
+                <Instagram size={13} color="var(--neon-green)" style={{ flexShrink: 0 }} />
                 <span>DM @grabbarna.futsal</span>
-                <ArrowRight size={12} />
+                <ArrowRight size={12} style={{ flexShrink: 0 }} />
               </a>
             </div>
           </div>
