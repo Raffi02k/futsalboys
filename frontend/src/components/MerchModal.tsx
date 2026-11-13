@@ -1048,25 +1048,37 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               </button>
 
               {/* Alternative: Order via Instagram DM */}
-              <div style={{ textAlign: 'center' }}>
+              <div
+                style={{
+                  textAlign: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '100%',
+                }}
+              >
                 <a
                   href={instagramDmUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
-                    fontSize: '11.5px',
+                    fontSize: 'clamp(10.5px, 2.7vw, 12px)',
                     color: 'var(--silver-dim)',
                     textDecoration: 'none',
                     display: 'inline-flex',
                     alignItems: 'center',
+                    justifyContent: 'center',
                     gap: '5px',
+                    whiteSpace: 'nowrap',
                     transition: 'color 0.2s ease',
+                    maxWidth: '100%',
+                    lineHeight: 1.2,
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--neon-green)')}
                   onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--silver-dim)')}
                 >
-                  <Instagram size={13} />
-                  <span>Föredrar du att beställa direkt via Instagram DM? Klicka här</span>
+                  <Instagram size={13} style={{ flexShrink: 0 }} />
+                  <span>Beställ via Instagram DM? Klicka här</span>
                 </a>
               </div>
             </form>

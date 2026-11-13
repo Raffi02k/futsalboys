@@ -5,6 +5,7 @@ import { siteConfig } from '../content/siteContent';
 
 export const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileAccordion, setMobileAccordion] = useState<{ [key: string]: boolean }>({
@@ -17,18 +18,49 @@ export const Header: React.FC = () => {
   const closeTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
+    let lastScrollY = window.scrollY;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 40);
+
+      // Don't hide header if mobile drawer menu is currently open
+      if (mobileMenuOpen) {
+        setHeaderVisible(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      // Always show header near the top of the page
+      if (currentScrollY < 50) {
+        setHeaderVisible(true);
+        lastScrollY = currentScrollY;
+        return;
+      }
+
+      const diff = currentScrollY - lastScrollY;
+      // 6px threshold to ignore micro scroll jitters
+      if (Math.abs(diff) > 6) {
+        if (diff > 0 && currentScrollY > 70) {
+          // Scrolling down -> hide header
+          setHeaderVisible(false);
+        } else if (diff < 0) {
+          // Scrolling up -> show header
+          setHeaderVisible(true);
+        }
+        lastScrollY = currentScrollY;
+      }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [mobileMenuOpen]);
 
-  // Close dropdown on route change
+  // Reset visibility and close menus on route change
   useEffect(() => {
     setOpenDropdown(null);
     setMobileMenuOpen(false);
+    setHeaderVisible(true);
   }, [location.pathname, location.hash]);
 
   const handleMouseEnter = (label: string) => {
@@ -115,7 +147,11 @@ export const Header: React.FC = () => {
 
   return (
     <>
-      <header className={`header ${scrolled ? 'header--scrolled' : ''}`}>
+      <header
+        className={`header ${scrolled ? 'header--scrolled' : ''} ${
+          !headerVisible && !mobileMenuOpen ? 'header--hidden' : ''
+        }`}
+      >
         <div className="container header__inner">
           {/* Logo & Club Name */}
           <a
