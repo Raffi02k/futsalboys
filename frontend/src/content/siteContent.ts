@@ -107,6 +107,7 @@ export const siteConfig: SiteConfig = {
     { label: "LEDARNA", path: "/ledarna" },
     { label: "TRUPPEN", path: "/truppen" },
     { label: "MATCHER", path: "/matcher" },
+    { label: "MERCH", path: "/merch" },
     { label: "GALLERI", path: "/galleri" },
     { label: "BLOGG", path: "/blogg" },
     { label: "INSTAGRAM", path: "/instagram" },

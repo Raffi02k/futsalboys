@@ -25,6 +25,7 @@ const routes = [
   'instagram',
   '404',
   'sponsorer',
+  'merch',
 ];
 
 // Match detail routes
@@ -94,3 +95,4 @@ if (!fs.existsSync(fallback404)) {
 }
 
 console.log(`[generate-spa-fallbacks] Successfully generated all static fallbacks in dist/!`);
+

@@ -7,6 +7,7 @@ import { SquadPage } from './pages/SquadPage';
 import { MatchesPage } from './pages/MatchesPage';
 import { GalleryPage } from './pages/GalleryPage';
 import { InstagramPage } from './pages/InstagramPage';
+import { MerchPage } from './pages/MerchPage';
 import { BlogPage } from './pages/BlogPage';
 import { BlogPostPage } from './pages/BlogPostPage';
 import { ScheduleDetailPage } from './pages/ScheduleDetailPage';
@@ -23,6 +24,7 @@ export const App: React.FC = () => {
         <Route path="/matcher" element={<MatchesPage />} />
         <Route path="/matcher/:id" element={<MatchDetailPage />} />
         <Route path="/matcher/resultat/:id" element={<MatchDetailPage />} />
+        <Route path="/merch" element={<MerchPage />} />
         <Route path="/schema" element={<MatchesPage />} />
         <Route path="/schema/:id" element={<ScheduleDetailPage />} />
         <Route path="/galleri" element={<GalleryPage />} />
