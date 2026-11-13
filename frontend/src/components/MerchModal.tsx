@@ -1,7 +1,24 @@
 import React, { useState } from 'react';
-import { X, Instagram, Check, Sparkles, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react';
+import {
+  X,
+  Instagram,
+  Check,
+  Sparkles,
+  ChevronLeft,
+  ChevronRight,
+  ShoppingBag,
+  CreditCard,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
+  Plus,
+  Minus,
+  Phone,
+  Mail,
+  User,
+  MapPin,
+} from 'lucide-react';
 import { MerchItem } from '../content/merchData';
-import { siteConfig } from '../content/siteContent';
 
 interface MerchModalProps {
   item: MerchItem | null;
@@ -11,14 +28,28 @@ interface MerchModalProps {
 export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
   const [activeImageIdx, setActiveImageIdx] = useState(0);
   const [selectedSize, setSelectedSize] = useState<string>('L');
+  const [quantity, setQuantity] = useState<number>(1);
+
+  // Form State
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  // Submission State
+  const [submitting, setSubmitting] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   if (!item) return null;
 
   const currentImage = item.gallery[activeImageIdx] || item.image;
+  const totalPrice = item.price * quantity;
+  const sizeText = item.sizes ? selectedSize : 'One Size (Justerbar)';
 
-  // Instagram direct message link
+  // Instagram direct message fallback link
   const dmText = encodeURIComponent(
-    `${item.dmMessage}${item.sizes ? selectedSize : ''}`
+    `Tjena! Jag vill beställa: ${quantity}x ${item.title} (${sizeText}) - Totalt: ${totalPrice} kr. Mitt namn: ${name || '[Ange namn]'}`
   );
   const instagramDmUrl = `https://ig.me/m/grabbarna.futsal?text=${dmText}`;
 
@@ -32,6 +63,76 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
     setActiveImageIdx((prev) => (prev < item.gallery.length - 1 ? prev + 1 : 0));
   };
 
+  const handleQuantityChange = (delta: number) => {
+    setQuantity((prev) => Math.max(1, Math.min(10, prev + delta)));
+  };
+
+  const handleOrderSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMessage(null);
+
+    if (!name.trim() || !phone.trim() || !email.trim()) {
+      setErrorMessage('Vänligen fyll i namn, telefonnummer och e-postadress.');
+      return;
+    }
+
+    setSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('access_key', '2af91ffb-65f5-4e9a-99cf-f1653c3a6ed0');
+      formData.append(
+        'subject',
+        `Ny Merchbeställning: ${quantity}x ${item.title} (${sizeText}) - ${totalPrice} kr [${name.trim()}]`
+      );
+      formData.append('from_name', 'Futsal Boys Klubbshop');
+      formData.append('name', name.trim());
+      formData.append('phone', phone.trim());
+      formData.append('email', email.trim());
+      formData.append('product', item.title);
+      formData.append('size', sizeText);
+      formData.append('quantity', String(quantity));
+      formData.append('unit_price', `${item.price} kr`);
+      formData.append('total_amount', `${totalPrice} kr`);
+      formData.append('payment_method', 'Swish till 0762287601');
+      formData.append(
+        'delivery_or_message',
+        message.trim() ? message.trim() : 'Överlämning i Trollhättan / standard'
+      );
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setOrderSuccess(true);
+      } else {
+        setErrorMessage(
+          data.message || 'Kunde inte skicka beställningen. Prova igen eller skriv på Instagram DM.'
+        );
+      }
+    } catch (err) {
+      setErrorMessage(
+        'Ett nätverksfel uppstod. Kontrollera din uppkoppling eller beställ via Instagram DM.'
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const resetForm = () => {
+    setOrderSuccess(false);
+    setErrorMessage(null);
+    setName('');
+    setPhone('');
+    setEmail('');
+    setMessage('');
+    setQuantity(1);
+  };
+
   return (
     <div
       className="modal-overlay"
@@ -40,7 +141,7 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
         position: 'fixed',
         inset: 0,
         zIndex: 9999,
-        background: 'rgba(5, 7, 10, 0.9)',
+        background: 'rgba(5, 7, 10, 0.92)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         display: 'flex',
@@ -56,14 +157,14 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
         style={{
           background: '#0c1016',
           border: '1px solid rgba(16, 255, 96, 0.35)',
-          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(16, 255, 96, 0.18)',
+          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.95), 0 0 40px rgba(16, 255, 96, 0.2)',
           borderRadius: '22px',
-          maxWidth: '880px',
+          maxWidth: '890px',
           width: '100%',
           position: 'relative',
           display: 'grid',
           gridTemplateColumns: 'minmax(280px, 1fr) minmax(320px, 1.25fr)',
-          maxHeight: 'min(92vh, 740px)',
+          maxHeight: 'min(93vh, 760px)',
           overflow: 'hidden',
         }}
       >
@@ -85,7 +186,7 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            zIndex: 20,
+            zIndex: 30,
             transition: 'all 0.2s ease',
           }}
           onMouseEnter={(e) => {
@@ -102,7 +203,7 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
           <X size={18} />
         </button>
 
-        {/* Left Column: Image Gallery */}
+        {/* Left Column: Image Gallery & Product Highlights */}
         <div
           className="merch-modal-left"
           style={{
@@ -236,8 +337,8 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
                   key={idx}
                   onClick={() => setActiveImageIdx(idx)}
                   style={{
-                    width: '50px',
-                    height: '50px',
+                    width: '48px',
+                    height: '48px',
                     borderRadius: '8px',
                     overflow: 'hidden',
                     border:
@@ -260,130 +361,9 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
               ))}
             </div>
           )}
-        </div>
 
-        {/* Right Column: Info, Sizes & Order via DM CTA */}
-        <div
-          className="merch-modal-right"
-          style={{
-            padding: '22px 24px 24px',
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: 0,
-            maxHeight: '100%',
-            overflowY: 'auto',
-          }}
-        >
-          {/* Top Tag */}
-          <span
-            style={{
-              fontSize: '11px',
-              fontWeight: 800,
-              letterSpacing: '0.12em',
-              color: 'var(--neon-green)',
-              textTransform: 'uppercase',
-              marginBottom: '4px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-            }}
-          >
-            <Sparkles size={13} />
-            <span>OFFICIELL KLUBBMERCH</span>
-          </span>
-
-          {/* Title */}
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '25px',
-              color: '#ffffff',
-              margin: '0 0 3px',
-              lineHeight: 1.15,
-              letterSpacing: '0.04em',
-            }}
-          >
-            {item.title}
-          </h2>
-
-          {/* Subtitle */}
-          <p
-            style={{
-              color: 'var(--silver-dim)',
-              fontSize: '13px',
-              margin: '0 0 12px',
-              lineHeight: 1.35,
-            }}
-          >
-            {item.subtitle}
-          </p>
-
-          {/* Price display row */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'baseline',
-              gap: '10px',
-              padding: '8px 14px',
-              background: 'rgba(255, 255, 255, 0.04)',
-              borderRadius: '10px',
-              border: '1px solid rgba(255, 255, 255, 0.08)',
-              marginBottom: '14px',
-            }}
-          >
-            <span
-              style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: '28px',
-                fontWeight: 900,
-                color: 'var(--neon-green)',
-                letterSpacing: '0.02em',
-                lineHeight: 1,
-              }}
-            >
-              {item.price} kr
-            </span>
-
-            {item.originalPrice && (
-              <span
-                style={{
-                  fontSize: '14px',
-                  color: 'var(--silver-dim)',
-                  textDecoration: 'line-through',
-                  fontWeight: 600,
-                }}
-              >
-                {item.originalPrice} kr
-              </span>
-            )}
-          </div>
-
-          {/* Description */}
-          <p
-            style={{
-              color: '#d0d8e0',
-              fontSize: '13px',
-              lineHeight: 1.5,
-              margin: '0 0 14px',
-            }}
-          >
-            {item.description}
-          </p>
-
-          {/* Features list */}
-          <div style={{ marginBottom: '14px' }}>
-            <h4
-              style={{
-                fontSize: '11px',
-                fontWeight: 800,
-                letterSpacing: '0.1em',
-                color: '#ffffff',
-                textTransform: 'uppercase',
-                margin: '0 0 6px',
-              }}
-            >
-              PRODUKTDETALJER:
-            </h4>
+          {/* Product Bullet highlights on left */}
+          <div style={{ marginTop: '16px', padding: '0 8px' }}>
             <ul
               style={{
                 listStyle: 'none',
@@ -391,120 +371,696 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
                 margin: 0,
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '5px',
+                gap: '6px',
               }}
             >
-              {item.features.map((feat, i) => (
+              {item.features.slice(0, 3).map((feat, i) => (
                 <li
                   key={i}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '8px',
-                    fontSize: '12.5px',
+                    gap: '7px',
+                    fontSize: '11.5px',
                     color: 'var(--silver-dim)',
                   }}
                 >
-                  <Check size={13} color="var(--neon-green)" style={{ flexShrink: 0 }} />
+                  <Check size={12} color="var(--neon-green)" style={{ flexShrink: 0 }} />
                   <span>{feat}</span>
                 </li>
               ))}
             </ul>
           </div>
+        </div>
 
-          {/* Size Selector if clothing */}
-          {item.sizes && item.sizes.length > 0 && (
-            <div style={{ marginBottom: '14px' }}>
+        {/* Right Column: Order Form or Success Screen */}
+        <div
+          className="merch-modal-right"
+          style={{
+            padding: '24px 26px',
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0,
+            maxHeight: '100%',
+            overflowY: 'auto',
+          }}
+        >
+          {orderSuccess ? (
+            /* ==========================================================
+               SUCCESS SCREEN AFTER ORDER IS SENT VIA WEB3FORMS
+               ========================================================== */
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                textAlign: 'center',
+                padding: '20px 8px',
+                margin: 'auto 0',
+              }}
+            >
               <div
                 style={{
+                  width: '68px',
+                  height: '68px',
+                  borderRadius: '50%',
+                  background: 'rgba(16, 255, 96, 0.15)',
+                  border: '2px solid var(--neon-green)',
                   display: 'flex',
-                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'var(--neon-green)',
+                  marginBottom: '16px',
+                  boxShadow: '0 0 25px rgba(16, 255, 96, 0.35)',
+                }}
+              >
+                <CheckCircle2 size={38} />
+              </div>
+
+              <span
+                style={{
+                  fontSize: '11px',
+                  fontWeight: 800,
+                  letterSpacing: '0.12em',
+                  color: 'var(--neon-green)',
+                  textTransform: 'uppercase',
                   marginBottom: '6px',
                 }}
               >
-                <span style={{ fontSize: '11.5px', fontWeight: 700, color: '#ffffff' }}>
-                  VÄLJ STORLEK:
-                </span>
-                <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>
-                  Unisex standard
-                </span>
-              </div>
-              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                {item.sizes.map((s) => (
-                  <button
-                    key={s}
-                    onClick={() => setSelectedSize(s)}
+                BESTÄLLNING MOTTAGEN!
+              </span>
+
+              <h3
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '28px',
+                  color: '#ffffff',
+                  margin: '0 0 8px',
+                  lineHeight: 1.15,
+                }}
+              >
+                TACK FÖR DITT KÖP, {name.toUpperCase()}! 🎉
+              </h3>
+
+              <p
+                style={{
+                  color: 'var(--silver-dim)',
+                  fontSize: '13.5px',
+                  lineHeight: 1.5,
+                  maxWidth: '440px',
+                  margin: '0 0 20px',
+                }}
+              >
+                Din beställning på{' '}
+                <strong style={{ color: '#fff' }}>
+                  {quantity} st {item.title} ({sizeText})
+                </strong>{' '}
+                har skickats direkt till klubbledningen på e-post!
+              </p>
+
+              {/* Swish Payment Card */}
+              <div
+                style={{
+                  background: 'linear-gradient(135deg, rgba(16, 255, 96, 0.12) 0%, rgba(13, 19, 27, 0.95) 100%)',
+                  border: '1.5px solid var(--neon-green)',
+                  borderRadius: '16px',
+                  padding: '18px 20px',
+                  width: '100%',
+                  maxWidth: '440px',
+                  marginBottom: '22px',
+                  textAlign: 'left',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    marginBottom: '10px',
+                  }}
+                >
+                  <CreditCard size={20} color="var(--neon-green)" />
+                  <span
                     style={{
-                      width: '42px',
-                      height: '36px',
-                      borderRadius: '8px',
-                      border:
-                        selectedSize === s
-                          ? '2px solid var(--neon-green)'
-                          : '1px solid rgba(255, 255, 255, 0.15)',
-                      background:
-                        selectedSize === s
-                          ? 'rgba(16, 255, 96, 0.16)'
-                          : 'rgba(255, 255, 255, 0.04)',
-                      color: selectedSize === s ? 'var(--neon-green)' : '#ffffff',
+                      fontSize: '13px',
                       fontWeight: 800,
-                      fontSize: '12.5px',
-                      cursor: 'pointer',
-                      transition: 'all 0.15s ease',
+                      color: '#ffffff',
+                      letterSpacing: '0.06em',
+                      textTransform: 'uppercase',
                     }}
                   >
-                    {s}
-                  </button>
-                ))}
+                    SLUTFÖR MED SWISH:
+                  </span>
+                </div>
+
+                <div style={{ fontSize: '13px', color: '#e0e6ed', lineHeight: 1.6 }}>
+                  <div>
+                    1. Öppna Swish och swisha beloppet:{' '}
+                    <strong style={{ color: 'var(--neon-green)', fontSize: '17px' }}>
+                      {totalPrice} kr
+                    </strong>
+                  </div>
+                  <div>
+                    2. Swishnummer:{' '}
+                    <strong
+                      style={{
+                        color: '#ffffff',
+                        fontSize: '16px',
+                        letterSpacing: '0.04em',
+                        userSelect: 'all',
+                      }}
+                    >
+                      0762287601
+                    </strong>{' '}
+                    (Raffi / Futsal Boys)
+                  </div>
+                  <div>
+                    3. Meddelande:{' '}
+                    <strong style={{ color: '#ffffff' }}>
+                      {name || 'Ditt namn'} – {item.title}
+                    </strong>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '440px' }}>
+                <button
+                  type="button"
+                  onClick={resetForm}
+                  className="btn btn--outline"
+                  style={{ flex: 1, padding: '11px', fontSize: '13px' }}
+                >
+                  Gör en ny beställning
+                </button>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="btn btn--neon"
+                  style={{ flex: 1, padding: '11px', fontSize: '13px' }}
+                >
+                  Klart & Stäng
+                </button>
               </div>
             </div>
+          ) : (
+            /* ==========================================================
+               MERCH ORDER FORM (WEB3FORMS + SWISH)
+               ========================================================== */
+            <form onSubmit={handleOrderSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+              {/* Product Header */}
+              <div style={{ marginBottom: '14px' }}>
+                <span
+                  style={{
+                    fontSize: '10.5px',
+                    fontWeight: 800,
+                    letterSpacing: '0.12em',
+                    color: 'var(--neon-green)',
+                    textTransform: 'uppercase',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    marginBottom: '3px',
+                  }}
+                >
+                  <Sparkles size={12} />
+                  <span>OFFICIELL KLUBBSHOP</span>
+                </span>
+
+                <h2
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: '24px',
+                    color: '#ffffff',
+                    margin: '0 0 2px',
+                    lineHeight: 1.15,
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  {item.title}
+                </h2>
+
+                <p
+                  style={{
+                    color: 'var(--silver-dim)',
+                    fontSize: '12.5px',
+                    margin: 0,
+                    lineHeight: 1.3,
+                  }}
+                >
+                  {item.subtitle}
+                </p>
+              </div>
+
+              {/* Price & Quantity Bar */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  padding: '10px 14px',
+                  background: 'rgba(255, 255, 255, 0.04)',
+                  borderRadius: '12px',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  marginBottom: '14px',
+                }}
+              >
+                <div>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '26px',
+                      fontWeight: 900,
+                      color: 'var(--neon-green)',
+                      letterSpacing: '0.02em',
+                      lineHeight: 1,
+                    }}
+                  >
+                    {totalPrice} kr
+                  </span>
+                  {quantity > 1 && (
+                    <span
+                      style={{
+                        fontSize: '11px',
+                        color: 'var(--silver-dim)',
+                        marginLeft: '8px',
+                      }}
+                    >
+                      ({item.price} kr/st)
+                    </span>
+                  )}
+                </div>
+
+                {/* Quantity Controls */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ fontSize: '11.5px', color: 'var(--silver-dim)', fontWeight: 700 }}>
+                    ANTAL:
+                  </span>
+                  <div
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      background: 'rgba(0, 0, 0, 0.4)',
+                      borderRadius: '8px',
+                      border: '1px solid rgba(255, 255, 255, 0.12)',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange(-1)}
+                      disabled={quantity <= 1}
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'none',
+                        border: 'none',
+                        color: quantity <= 1 ? 'rgba(255,255,255,0.2)' : '#ffffff',
+                        cursor: quantity <= 1 ? 'not-allowed' : 'pointer',
+                      }}
+                    >
+                      <Minus size={14} />
+                    </button>
+                    <span
+                      style={{
+                        width: '26px',
+                        textAlign: 'center',
+                        fontWeight: 900,
+                        fontSize: '14px',
+                        color: '#ffffff',
+                      }}
+                    >
+                      {quantity}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => handleQuantityChange(1)}
+                      disabled={quantity >= 10}
+                      style={{
+                        width: '30px',
+                        height: '30px',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        background: 'none',
+                        border: 'none',
+                        color: '#ffffff',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <Plus size={14} />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Size Selector if clothing */}
+              {item.sizes && item.sizes.length > 0 && (
+                <div style={{ marginBottom: '14px' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      marginBottom: '6px',
+                    }}
+                  >
+                    <span style={{ fontSize: '11.5px', fontWeight: 800, color: '#ffffff' }}>
+                      VÄLJ STORLEK:
+                    </span>
+                    <span style={{ fontSize: '11px', color: 'var(--silver-dim)' }}>
+                      Unisex standard
+                    </span>
+                  </div>
+                  <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                    {item.sizes.map((s) => (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => setSelectedSize(s)}
+                        style={{
+                          width: '42px',
+                          height: '36px',
+                          borderRadius: '8px',
+                          border:
+                            selectedSize === s
+                              ? '2px solid var(--neon-green)'
+                              : '1px solid rgba(255, 255, 255, 0.15)',
+                          background:
+                            selectedSize === s
+                              ? 'rgba(16, 255, 96, 0.18)'
+                              : 'rgba(255, 255, 255, 0.04)',
+                          color: selectedSize === s ? 'var(--neon-green)' : '#ffffff',
+                          fontWeight: 800,
+                          fontSize: '12.5px',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        {s}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Customer Input Fields */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '10px',
+                  marginBottom: '14px',
+                }}
+              >
+                {/* Name */}
+                <div>
+                  <label
+                    style={{
+                      display: 'block',
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      color: '#ffffff',
+                      marginBottom: '4px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    DITT FÖR- OCH EFTERNAMN <span style={{ color: 'var(--neon-green)' }}>*</span>
+                  </label>
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="t.ex. Alex Lindberg"
+                      style={{
+                        width: '100%',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        borderRadius: '8px',
+                        padding: '9px 12px 9px 34px',
+                        color: '#ffffff',
+                        fontSize: '13px',
+                        outline: 'none',
+                        transition: 'border-color 0.2s ease',
+                      }}
+                      onFocus={(e) => (e.target.style.borderColor = 'var(--neon-green)')}
+                      onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)')}
+                    />
+                    <User
+                      size={14}
+                      color="var(--silver-dim)"
+                      style={{ position: 'absolute', left: '11px', top: '50%', transform: 'translateY(-50%)' }}
+                    />
+                  </div>
+                </div>
+
+                {/* Phone & Email side-by-side */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  {/* Phone */}
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        marginBottom: '4px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                      }}
+                    >
+                      TELEFON (SWISH) <span style={{ color: 'var(--neon-green)' }}>*</span>
+                    </label>
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="07X-XXXXXXX"
+                        style={{
+                          width: '100%',
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          border: '1px solid rgba(255, 255, 255, 0.15)',
+                          borderRadius: '8px',
+                          padding: '9px 10px 9px 32px',
+                          color: '#ffffff',
+                          fontSize: '13px',
+                          outline: 'none',
+                          transition: 'border-color 0.2s ease',
+                        }}
+                        onFocus={(e) => (e.target.style.borderColor = 'var(--neon-green)')}
+                        onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)')}
+                      />
+                      <Phone
+                        size={14}
+                        color="var(--silver-dim)"
+                        style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label
+                      style={{
+                        display: 'block',
+                        fontSize: '11px',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        marginBottom: '4px',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.04em',
+                      }}
+                    >
+                      E-POSTADRESS <span style={{ color: 'var(--neon-green)' }}>*</span>
+                    </label>
+                    <div style={{ position: 'relative' }}>
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="din@epost.se"
+                        style={{
+                          width: '100%',
+                          background: 'rgba(255, 255, 255, 0.05)',
+                          border: '1px solid rgba(255, 255, 255, 0.15)',
+                          borderRadius: '8px',
+                          padding: '9px 10px 9px 32px',
+                          color: '#ffffff',
+                          fontSize: '13px',
+                          outline: 'none',
+                          transition: 'border-color 0.2s ease',
+                        }}
+                        onFocus={(e) => (e.target.style.borderColor = 'var(--neon-green)')}
+                        onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)')}
+                      />
+                      <Mail
+                        size={14}
+                        color="var(--silver-dim)"
+                        style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)' }}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {/* Delivery / Address / Note */}
+                <div>
+                  <label
+                    style={{
+                      display: 'block',
+                      fontSize: '11px',
+                      fontWeight: 800,
+                      color: '#ffffff',
+                      marginBottom: '4px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.04em',
+                    }}
+                  >
+                    LEVERANSADRESS / MEDDELANDE (VALFRITT)
+                  </label>
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      type="text"
+                      name="message"
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="t.ex. Gatuadress, eller möts i hallen / Trollhättan"
+                      style={{
+                        width: '100%',
+                        background: 'rgba(255, 255, 255, 0.05)',
+                        border: '1px solid rgba(255, 255, 255, 0.15)',
+                        borderRadius: '8px',
+                        padding: '9px 12px 9px 34px',
+                        color: '#ffffff',
+                        fontSize: '13px',
+                        outline: 'none',
+                        transition: 'border-color 0.2s ease',
+                      }}
+                      onFocus={(e) => (e.target.style.borderColor = 'var(--neon-green)')}
+                      onBlur={(e) => (e.target.style.borderColor = 'rgba(255, 255, 255, 0.15)')}
+                    />
+                    <MapPin
+                      size={14}
+                      color="var(--silver-dim)"
+                      style={{ position: 'absolute', left: '11px', top: '50%', transform: 'translateY(-50%)' }}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Swish Notice Card */}
+              <div
+                style={{
+                  padding: '10px 14px',
+                  borderRadius: '10px',
+                  background: 'linear-gradient(135deg, rgba(16, 255, 96, 0.1) 0%, rgba(20, 26, 36, 0.85) 100%)',
+                  border: '1px solid rgba(16, 255, 96, 0.35)',
+                  marginBottom: '14px',
+                  fontSize: '12px',
+                  lineHeight: 1.45,
+                  color: '#e4f9ec',
+                }}
+              >
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 800, color: 'var(--neon-green)', marginBottom: '2px' }}>
+                  <CreditCard size={15} />
+                  <span>BETALNING VIA SWISH:</span>
+                </div>
+                <div>
+                  Swisha <strong style={{ color: 'var(--neon-green)' }}>{totalPrice} kr</strong> till{' '}
+                  <strong style={{ color: '#ffffff', userSelect: 'all' }}>0762287601</strong> (Raffi Medz / Futsal Boys). Märk betalningen med ditt namn!
+                </div>
+              </div>
+
+              {/* Error Message */}
+              {errorMessage && (
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    background: 'rgba(255, 60, 60, 0.12)',
+                    border: '1px solid rgba(255, 60, 60, 0.4)',
+                    color: '#ff8080',
+                    padding: '8px 12px',
+                    borderRadius: '8px',
+                    fontSize: '12px',
+                    marginBottom: '12px',
+                  }}
+                >
+                  <AlertCircle size={15} style={{ flexShrink: 0 }} />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
+              {/* SUBMIT BUTTON */}
+              <button
+                type="submit"
+                disabled={submitting}
+                className="btn btn--neon"
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: '8px',
+                  padding: '13px 18px',
+                  fontSize: '14px',
+                  fontWeight: 900,
+                  borderRadius: '10px',
+                  boxShadow: '0 8px 24px rgba(16, 255, 96, 0.35)',
+                  cursor: submitting ? 'wait' : 'pointer',
+                  opacity: submitting ? 0.7 : 1,
+                  marginBottom: '10px',
+                }}
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 size={16} className="spin-animation" />
+                    <span>SKICKAR BESTÄLLNING...</span>
+                  </>
+                ) : (
+                  <>
+                    <ShoppingBag size={17} />
+                    <span>SKICKA BESTÄLLNING ({totalPrice} KR)</span>
+                  </>
+                )}
+              </button>
+
+              {/* Alternative: Order via Instagram DM */}
+              <div style={{ textAlign: 'center' }}>
+                <a
+                  href={instagramDmUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    fontSize: '11.5px',
+                    color: 'var(--silver-dim)',
+                    textDecoration: 'none',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '5px',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--neon-green)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--silver-dim)')}
+                >
+                  <Instagram size={13} />
+                  <span>Föredrar du att beställa direkt via Instagram DM? Klicka här</span>
+                </a>
+              </div>
+            </form>
           )}
-
-          {/* Instructions Box */}
-          <div
-            style={{
-              padding: '10px 12px',
-              borderRadius: '9px',
-              background: 'rgba(16, 255, 96, 0.08)',
-              border: '1px solid rgba(16, 255, 96, 0.25)',
-              marginBottom: '16px',
-              fontSize: '12px',
-              lineHeight: 1.45,
-              color: '#dfffe8',
-            }}
-          >
-            💬 <strong>Hur köper jag?</strong> Klicka på knappen nedan så öppnas direkt ett DM till oss på Instagram (<strong>{siteConfig.instagramHandle}</strong>) med din beställning förifylld!
-          </div>
-
-          {/* BUY VIA INSTAGRAM DM BUTTON (Always clearly visible!) */}
-          <a
-            href={instagramDmUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn--neon"
-            style={{
-              width: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '8px',
-              padding: '13px 18px',
-              fontSize: '14px',
-              fontWeight: 850,
-              textDecoration: 'none',
-              borderRadius: '10px',
-              marginTop: 'auto',
-              boxShadow: '0 8px 22px rgba(16, 255, 96, 0.35)',
-              flexShrink: 0,
-            }}
-          >
-            <Instagram size={17} />
-            <span>BESTÄLL VIA DM PÅ INSTAGRAM</span>
-            <ExternalLink size={14} />
-          </a>
         </div>
       </div>
     </div>
   );
 };
-

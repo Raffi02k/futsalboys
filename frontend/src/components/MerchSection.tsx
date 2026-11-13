@@ -7,11 +7,6 @@ import { MerchModal } from './MerchModal';
 export const MerchSection: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<MerchItem | null>(null);
 
-  const getInstagramDmUrl = (item: MerchItem) => {
-    const text = encodeURIComponent(item.dmMessage);
-    return `https://ig.me/m/grabbarna.futsal?text=${text}`;
-  };
-
   return (
     <section className="merch-section" id="merch" aria-label="Officiell klubbmerch">
       <div className="container">
@@ -57,10 +52,10 @@ export const MerchSection: React.FC = () => {
               color: 'var(--silver-dim)',
             }}
           >
-            Representera Futsal Boys i hallen och på stan! Klicka på ett plagg för att se fler bilder eller beställ direkt via DM på Instagram.
+            Representera Futsal Boys i hallen och på stan! Klicka på ett plagg för att välja storlek och beställa direkt med Swish till 0762287601.
           </p>
 
-          {/* DM Ordering Instructions Banner */}
+          {/* Ordering Instructions Banner */}
           <div
             className="merch-dm-banner"
             style={{
@@ -72,35 +67,39 @@ export const MerchSection: React.FC = () => {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '12px',
+              gap: '14px',
               flexWrap: 'wrap',
               textAlign: 'center',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--neon-green)', fontWeight: 800, fontSize: '13.5px' }}>
-              <Instagram size={18} />
+              <ShoppingBag size={17} />
               <span>SÅ BESTÄLLER DU:</span>
             </div>
             <span style={{ fontSize: '13.5px', color: '#ffffff' }}>
-              Skicka ett <strong>DM på Instagram</strong> ({siteConfig.instagramHandle}) med önskat plagg och storlek så fixar vi din beställning direkt!
+              Klicka på valfri merch, välj storlek & fyll i dina uppgifter! Betalning sker smidigt via <strong>Swish till 0762287601</strong>.
             </span>
-            <a
-              href={siteConfig.instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: 'var(--neon-green)',
-                fontWeight: 800,
-                fontSize: '13px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '4px',
-                textDecoration: 'underline',
-              }}
-            >
-              <span>Öppna DM</span>
-              <ArrowRight size={13} />
-            </a>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: 'var(--silver-dim)', fontSize: '12px' }}>eller</span>
+              <a
+                href={siteConfig.instagramUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: 'var(--neon-green)',
+                  fontWeight: 800,
+                  fontSize: '13px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '4px',
+                  textDecoration: 'underline',
+                }}
+              >
+                <Instagram size={14} />
+                <span>DM på Instagram</span>
+                <ArrowRight size={13} />
+              </a>
+            </div>
           </div>
         </div>
 
@@ -128,20 +127,19 @@ export const MerchSection: React.FC = () => {
                   </span>
                 )}
 
-                {/* Floating Bag / DM quick button */}
-                <a
-                  href={getInstagramDmUrl(item)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                {/* Floating Bag quick order button */}
+                <button
+                  type="button"
                   className="merch-floating-btn"
-                  title="Beställ via Instagram DM"
-                  aria-label={`Beställ ${item.title} via Instagram DM`}
+                  title="Beställ direkt"
+                  aria-label={`Beställ ${item.title}`}
                   onClick={(e) => {
                     e.stopPropagation();
+                    setSelectedProduct(item);
                   }}
                 >
                   <ShoppingBag size={18} />
-                </a>
+                </button>
               </div>
 
               {/* Product Info Block */}
@@ -157,27 +155,29 @@ export const MerchSection: React.FC = () => {
                   )}
                 </div>
 
-                {/* Direct Order Button */}
+                {/* Direct Order Actions */}
                 <div className="merch-card-actions">
-                  <a
-                    href={getInstagramDmUrl(item)}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <button
+                    type="button"
                     className="merch-dm-cta-btn"
                     onClick={(e) => {
                       e.stopPropagation();
+                      setSelectedProduct(item);
                     }}
                   >
-                    <Instagram size={14} />
-                    <span>BESTÄLL I DM</span>
-                  </a>
+                    <ShoppingBag size={14} />
+                    <span>BESTÄLL HÄR</span>
+                  </button>
 
                   <button
                     type="button"
                     className="merch-view-btn"
-                    onClick={() => setSelectedProduct(item)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedProduct(item);
+                    }}
                   >
-                    <span>SE BILDER</span>
+                    <span>INFO / BILDER</span>
                   </button>
                 </div>
               </div>

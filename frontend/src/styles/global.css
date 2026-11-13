@@ -5642,6 +5642,20 @@ video:-ms-fullscreen,
   background: var(--neon-green);
 }
 
+@keyframes spinLoader {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-animation {
+  animation: spinLoader 1s linear infinite;
+}
+
+
 
 
 
