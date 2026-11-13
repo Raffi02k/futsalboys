@@ -85,20 +85,22 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
       formData.append('access_key', '2af91ffb-65f5-4e9a-99cf-f1653c3a6ed0');
       formData.append(
         'subject',
-        `Ny Merchbeställning: ${quantity}x ${item.title} (${sizeText}) - ${totalPrice} kr [${name.trim()}]`
+        `🛍️ Beställning: ${quantity}x ${item.title} (${sizeText}) - ${totalPrice} kr [${name.trim()}]`
       );
       formData.append('from_name', 'Futsal Boys Klubbshop');
-      formData.append('name', name.trim());
-      formData.append('phone', phone.trim());
-      formData.append('email', email.trim());
-      formData.append('product', item.title);
-      formData.append('size', sizeText);
-      formData.append('quantity', String(quantity));
-      formData.append('unit_price', `${item.price} kr`);
-      formData.append('total_amount', `${totalPrice} kr`);
-      formData.append('payment_method', 'Swish till 0762287601');
+      formData.append('replyto', email.trim());
+
+      // Snyggt formaterade fält på svenska som visas prydligt i mailet
+      formData.append('👤 Kundens Namn', name.trim());
+      formData.append('📱 Telefonnummer (Swish)', phone.trim());
+      formData.append('📧 E-postadress', email.trim());
+      formData.append('🛍️ Beställd Merch', `${quantity} st ${item.title}`);
+      formData.append('📏 Vald Storlek', sizeText);
+      formData.append('💵 Styckpris', `${item.price} kr`);
+      formData.append('💰 TOTALT ATT BETALA', `${totalPrice} kr`);
+      formData.append('💳 Betalningsmetod', 'Swish till 0762287601 (Märkt med kundens namn)');
       formData.append(
-        'delivery_or_message',
+        '📍 Leveransadress / Meddelande',
         message.trim() ? message.trim() : 'Överlämning i Trollhättan / standard'
       );
 
