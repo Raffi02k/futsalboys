@@ -36,25 +36,28 @@ export const MerchSection: React.FC = () => {
             {/* Quick action strip (Always on one line) */}
             <div
               style={{
-                marginTop: '20px',
+                marginTop: '18px',
                 display: 'inline-flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px',
-                padding: '7px 16px',
+                gap: '6px',
+                padding: '6px 12px',
                 borderRadius: '999px',
-                background: 'rgba(0, 0, 0, 0.65)',
+                background: 'rgba(0, 0, 0, 0.72)',
                 border: '1px solid rgba(16, 255, 96, 0.4)',
-                fontSize: 'clamp(10.5px, 2.8vw, 12.5px)',
+                fontSize: 'clamp(9.5px, 2.5vw, 12px)',
                 color: '#ffffff',
                 backdropFilter: 'blur(8px)',
                 WebkitBackdropFilter: 'blur(8px)',
                 whiteSpace: 'nowrap',
-                maxWidth: 'calc(100% - 16px)',
+                maxWidth: '100%',
+                boxSizing: 'border-box',
               }}
             >
-              <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>SWISH: 0762287601</span>
-              <span style={{ opacity: 0.4 }}>•</span>
+              <span style={{ color: 'var(--neon-green)', fontWeight: 800, whiteSpace: 'nowrap' }}>
+                SWISH: 0762287601
+              </span>
+              <span style={{ opacity: 0.4, flexShrink: 0 }}>•</span>
               <a
                 href={siteConfig.instagramUrl}
                 target="_blank"
@@ -69,9 +72,9 @@ export const MerchSection: React.FC = () => {
                   whiteSpace: 'nowrap',
                 }}
               >
-                <Instagram size={13} color="var(--neon-green)" style={{ flexShrink: 0 }} />
+                <Instagram size={12} color="var(--neon-green)" style={{ flexShrink: 0 }} />
                 <span>DM @grabbarna.futsal</span>
-                <ArrowRight size={12} style={{ flexShrink: 0 }} />
+                <ArrowRight size={11} style={{ flexShrink: 0 }} />
               </a>
             </div>
           </div>
