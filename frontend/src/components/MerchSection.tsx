@@ -50,7 +50,7 @@ export const MerchSection: React.FC = () => {
                 WebkitBackdropFilter: 'blur(8px)',
               }}
             >
-              <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>⚡️ SWISH: 0762287601</span>
+              <span style={{ color: 'var(--neon-green)', fontWeight: 800 }}>SWISH: 0762287601</span>
               <span style={{ opacity: 0.4 }}>•</span>
               <a
                 href={siteConfig.instagramUrl}
