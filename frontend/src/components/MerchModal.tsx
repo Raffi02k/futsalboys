@@ -81,27 +81,55 @@ export const MerchModal: React.FC<MerchModalProps> = ({ item, onClose }) => {
     setSubmitting(true);
 
     try {
+      // 1. Försök först med Resend via vår /api/order backend för ett 100% designat HTML-kvitto
+      const orderPayload = {
+        name: name.trim(),
+        phone: phone.trim(),
+        email: email.trim(),
+        product: item.title,
+        size: sizeText,
+        quantity,
+        unit_price: `${item.price} kr`,
+        total_price: `${totalPrice} kr`,
+        message: message.trim() || 'Överlämning i Trollhättan / standard',
+      };
+
+      try {
+        const apiRes = await fetch('/api/order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload),
+        });
+        const apiData = await apiRes.json();
+        if (apiRes.ok && apiData.success) {
+          setOrderSuccess(true);
+          return;
+        }
+      } catch (apiErr) {
+        console.warn('Resend /api/order svarade inte, provar Web3Forms fallback:', apiErr);
+      }
+
+      // 2. Säker fallback via Web3Forms (utan emojis i nycklar för att undvika encoding-fel)
       const formData = new FormData();
       formData.append('access_key', '2af91ffb-65f5-4e9a-99cf-f1653c3a6ed0');
       formData.append(
         'subject',
-        `🛍️ Beställning: ${quantity}x ${item.title} (${sizeText}) - ${totalPrice} kr [${name.trim()}]`
+        `Bestallning: ${quantity}x ${item.title} (${sizeText}) - ${totalPrice} kr [${name.trim()}]`
       );
       formData.append('from_name', 'Futsal Boys Klubbshop');
       formData.append('replyto', email.trim());
 
-      // Snyggt formaterade fält på svenska som visas prydligt i mailet
-      formData.append('👤 Kundens Namn', name.trim());
-      formData.append('📱 Telefonnummer (Swish)', phone.trim());
-      formData.append('📧 E-postadress', email.trim());
-      formData.append('🛍️ Beställd Merch', `${quantity} st ${item.title}`);
-      formData.append('📏 Vald Storlek', sizeText);
-      formData.append('💵 Styckpris', `${item.price} kr`);
-      formData.append('💰 TOTALT ATT BETALA', `${totalPrice} kr`);
-      formData.append('💳 Betalningsmetod', 'Swish till 0762287601 (Märkt med kundens namn)');
+      formData.append('Kund', name.trim());
+      formData.append('Telefon', phone.trim());
+      formData.append('E-post', email.trim());
+      formData.append('Vara', `${quantity} st ${item.title}`);
+      formData.append('Storlek', sizeText);
+      formData.append('Styckpris', `${item.price} kr`);
+      formData.append('Totalt att betala', `${totalPrice} kr`);
+      formData.append('Betalning', 'Swish till 0762287601 (Mark med ditt namn)');
       formData.append(
-        '📍 Leveransadress / Meddelande',
-        message.trim() ? message.trim() : 'Överlämning i Trollhättan / standard'
+        'Leverans eller meddelande',
+        message.trim() ? message.trim() : 'Overlamning i Trollhattan / standard'
       );
 
       const response = await fetch('https://api.web3forms.com/submit', {

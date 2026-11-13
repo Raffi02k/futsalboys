@@ -1,10 +1,24 @@
 from __future__ import annotations
 
 import os
+import sys
 import urllib.request
+from pathlib import Path
 from http.server import BaseHTTPRequestHandler
-from .health import handler as HealthHandler
-from .contact import handler as ContactHandler
+
+# Ensure current dir is in sys.path for robust imports in Vercel
+_current_dir = Path(__file__).resolve().parent
+if str(_current_dir) not in sys.path:
+    sys.path.insert(0, str(_current_dir))
+
+try:
+    from health import handler as HealthHandler
+    from contact import handler as ContactHandler
+    from order import handle_order_post
+except ImportError:
+    from .health import handler as HealthHandler
+    from .contact import handler as ContactHandler
+    from .order import handle_order_post
 
 
 class handler(BaseHTTPRequestHandler):
@@ -38,7 +52,10 @@ class handler(BaseHTTPRequestHandler):
         HealthHandler.do_GET(self)
 
     def do_POST(self) -> None:
-        ContactHandler.do_POST(self)
+        if "/order" in self.path:
+            handle_order_post(self)
+        else:
+            ContactHandler.do_POST(self)
 
 
 __all__ = ["handler"]
