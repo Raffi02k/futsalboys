@@ -76,6 +76,7 @@ export const Footer: React.FC = () => {
               <li><Link to="/truppen">Spelartruppen</Link></li>
               <li><Link to="/matcher">Schema & Matcher</Link></li>
               <li><Link to="/merch">Officiell Merch</Link></li>
+              <li><Link to="/sponsorer">Våra Sponsorer</Link></li>
               <li><Link to="/galleri">Galleri & Video</Link></li>
               <li><Link to="/instagram">Instagram Feed</Link></li>
             </ul>

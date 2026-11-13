@@ -130,7 +130,7 @@ export const siteConfig: SiteConfig = {
       children: [
         { label: "Ledarna", path: "/ledarna", description: "Ledartrion bakom klubben" },
         { label: "Spelartruppen", path: "/truppen", description: "Spelarna och profilerna" },
-        { label: "Våra Sponsorer", path: "/#sponsorer", description: "Abnormal, Wild Chips & Adamas" },
+        { label: "Våra Sponsorer", path: "/sponsorer", description: "Abnormal, Wild Chips & Adamas" },
       ],
     },
     { label: "MATCHER", path: "/matcher" },
