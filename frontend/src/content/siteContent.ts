@@ -108,7 +108,7 @@ export const siteConfig: SiteConfig = {
 
   logoUrl: "/images/futsalboys-logo.png",
   wordmarkUrl: "/images/futsalboys-logo.png",
-  heroPosterUrl: "/images/futsalboys-ledare.JPG",
+  heroPosterUrl: "/images/startsida.JPG",
   introVideoUrl: "/media/introvideo.mp4",
   introVideoFullUrl: "/media/introvideo.mp4",
 

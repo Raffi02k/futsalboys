@@ -6,11 +6,11 @@ import { siteConfig } from '../content/siteContent';
 export const HeroSection: React.FC = () => {
   return (
     <section className="hero" id="ledarna">
-      {/* Background with futsalboys-ledare.JPG */}
+      {/* Background with startsida.JPG */}
       <div className="hero__bg" aria-hidden="true">
         <img
           src={siteConfig.heroPosterUrl}
-          alt="Futsal Boys Ledarna - Raffi Medz, Elvis Mesic, Marcelo Villa"
+          alt="Futsal Boys"
           className="hero__image"
         />
       </div>
