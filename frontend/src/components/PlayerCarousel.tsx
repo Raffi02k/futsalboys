@@ -189,7 +189,7 @@ export const PlayerCarousel: React.FC = () => {
                     {/* Number & Badge */}
                     <div className="card-shield__number">#{player.number}</div>
                     <div className="card-shield__badge">
-                      {player.isLeader ? 'LEDARE' : player.position}
+                      {player.position}
                     </div>
 
                     {/* Player Image */}

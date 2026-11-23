@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Award, Eye } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import { PageMeta } from '../components/PageMeta';
 import { PlayerModal } from '../components/PlayerModal';
 import { SquadIntroVideo } from '../components/SquadIntroVideo';
@@ -132,31 +132,6 @@ export const SquadPage: React.FC = () => {
                 >
                   #{player.number}
                 </div>
-
-                {/* Leader badge */}
-                {player.isLeader && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: '16px',
-                      left: '16px',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '5px',
-                      padding: '4px 10px',
-                      borderRadius: '6px',
-                      background: 'rgba(16, 255, 96, 0.2)',
-                      border: '1px solid var(--neon-green-glow)',
-                      color: 'var(--neon-green)',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      letterSpacing: '0.08em',
-                    }}
-                  >
-                    <Award size={12} />
-                    <span>LEDARE</span>
-                  </div>
-                )}
 
                 {/* Name & Position in bottom of image */}
                 <div style={{ position: 'absolute', bottom: '16px', left: '20px', right: '20px' }}>

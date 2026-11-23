@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, ChevronLeft, ChevronRight, Award } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Player } from '../content/futsalData';
 
 interface PlayerModalProps {
@@ -124,12 +124,6 @@ export const PlayerModal: React.FC<PlayerModalProps> = ({
             <div className="player-modal-details">
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexWrap: 'wrap', marginBottom: '8px' }}>
                 <span className="player-modal-position">{player.position}</span>
-                {player.isLeader && (
-                  <span className="player-modal-leader-badge">
-                    <Award size={13} />
-                    LEDARE
-                  </span>
-                )}
               </div>
 
               <h2 className="player-modal-name">{player.name}</h2>
