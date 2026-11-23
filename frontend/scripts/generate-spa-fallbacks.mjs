@@ -16,7 +16,6 @@ const indexHtml = fs.readFileSync(indexPath, 'utf-8');
 
 // Core routes
 const routes = [
-  'ledarna',
   'truppen',
   'matcher',
   'schema',

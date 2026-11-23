@@ -5,7 +5,7 @@ import { siteConfig } from '../content/siteContent';
 
 export const HeroSection: React.FC = () => {
   return (
-    <section className="hero" id="ledarna">
+    <section className="hero" id="hero">
       {/* Background with startsida.JPG */}
       <div className="hero__bg" aria-hidden="true">
         <img

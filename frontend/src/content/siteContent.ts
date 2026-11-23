@@ -114,7 +114,6 @@ export const siteConfig: SiteConfig = {
 
   navLinks: [
     { label: "HEM", path: "/" },
-    { label: "LEDARNA", path: "/ledarna" },
     { label: "TRUPPEN", path: "/truppen" },
     { label: "MATCHER", path: "/matcher" },
     { label: "MERCH", path: "/merch" },
@@ -128,7 +127,6 @@ export const siteConfig: SiteConfig = {
     {
       label: "KLUBBEN",
       children: [
-        { label: "Ledarna", path: "/ledarna", description: "Ledartrion bakom klubben" },
         { label: "Spelartruppen", path: "/truppen", description: "Spelarna och profilerna" },
         { label: "Våra Sponsorer", path: "/sponsorer", description: "Abnormal, Wild Chips & Adamas" },
       ],

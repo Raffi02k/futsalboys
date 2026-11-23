@@ -72,7 +72,6 @@ export const Footer: React.FC = () => {
             <h4>NAVIGERING</h4>
             <ul className="footer__links">
               <li><Link to="/">Hem</Link></li>
-              <li><Link to="/ledarna">Ledarna</Link></li>
               <li><Link to="/truppen">Spelartruppen</Link></li>
               <li><Link to="/matcher">Schema & Matcher</Link></li>
               <li><Link to="/merch">Officiell Merch</Link></li>

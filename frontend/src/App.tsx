@@ -2,7 +2,6 @@ import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { HomePage } from './pages/HomePage';
-import { LeadersPage } from './pages/LeadersPage';
 import { SquadPage } from './pages/SquadPage';
 import { MatchesPage } from './pages/MatchesPage';
 import { GalleryPage } from './pages/GalleryPage';
@@ -20,7 +19,6 @@ export const App: React.FC = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/ledarna" element={<LeadersPage />} />
         <Route path="/truppen" element={<SquadPage />} />
         <Route path="/matcher" element={<MatchesPage />} />
         <Route path="/matcher/:id" element={<MatchDetailPage />} />
