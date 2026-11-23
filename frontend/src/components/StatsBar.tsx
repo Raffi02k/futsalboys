@@ -3,7 +3,7 @@ import React from 'react';
 export const StatsBar: React.FC = () => {
   const tickerPhrases = [
     'FUTSAL BOYS TROLLHÄTTAN',
-    'LEADERS OF THE CLUB: RAFFI MEDZ • ELVIS MESIC • MARCELO VILLA',
+    'OFFENSIV FUTSAL, PASSION & VINNARKULTUR',
     'HEMMAARENA: ARENA ÄLVHÖGSBORG',
     '100% PASSION & VINNARKULTUR',
     'FÖLJ RESAN PÅ @GRABBARNA.FUTSAL',

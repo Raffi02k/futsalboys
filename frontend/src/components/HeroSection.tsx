@@ -23,12 +23,12 @@ export const HeroSection: React.FC = () => {
         <div className="hero__content">
 
           <h1 className="hero__title">
-            LEADERS OF <br />
-            <span className="text-neon">THE CLUB</span>
+            FUTSAL BOYS <br />
+            <span className="text-neon">TROLLHÄTTAN</span>
           </h1>
 
           <div className="hero__leaders-tag">
-            <span>RAFFI MEDZ</span> • <span>ELVIS MESIC</span> • <span>MARCELO VILLA</span>
+            <span>OFFENSIV FUTSAL</span> • <span>PASSION</span> • <span>GEMENSKAP</span>
           </div>
 
           <p className="hero__desc">

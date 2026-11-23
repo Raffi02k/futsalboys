@@ -74,9 +74,9 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   projectName: "Futsal Boys",
   clubName: "Futsal Boys Trollhättan",
-  tagline: "LEADERS OF THE CLUB",
+  tagline: "FUTSAL BOYS TROLLHÄTTAN",
   subTagline: "Tillsammans mot toppen. Cuper, matcher & passion för futsal i Trollhättan.",
-  description: "Officiella hemsidan för Trollhättan Futsal Boys. Följ våra ledare, se truppen, matchresultat och den unika gemenskapen i hallen.",
+  description: "Officiella hemsidan för Futsal Boys Trollhättan. Se truppen, matchresultat, cuper och den unika gemenskapen i hallen.",
   city: "Trollhättan",
   region: "Västra Götaland",
   arena: "Arena Älvhögsborg",
