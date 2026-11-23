@@ -43,20 +43,34 @@ export const MatchAndNewsSection: React.FC = () => {
               {/* Match Fixture Teams */}
               <div className="match-fixture-box">
                 <div className="match-team">
-                  <img
-                    src={siteConfig.logoUrl}
-                    alt={upcomingMatch.homeTeam}
-                    className="match-team__logo"
-                  />
+                  {upcomingMatch.homeTeam.includes('FUTSAL BOYS') ? (
+                    <img
+                      src={siteConfig.logoUrl}
+                      alt={upcomingMatch.homeTeam}
+                      className="match-team__logo"
+                    />
+                  ) : (
+                    <div className="match-team__circle" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+                      {upcomingMatch.homeTeam.substring(0, 4)}
+                    </div>
+                  )}
                   <span className="match-team__name">{upcomingMatch.homeTeam}</span>
                 </div>
 
                 <div className="match-vs">VS</div>
 
                 <div className="match-team">
-                  <div className="match-team__circle" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
-                    FUNK
-                  </div>
+                  {upcomingMatch.awayTeam.includes('FUTSAL BOYS') ? (
+                    <img
+                      src={siteConfig.logoUrl}
+                      alt={upcomingMatch.awayTeam}
+                      className="match-team__logo"
+                    />
+                  ) : (
+                    <div className="match-team__circle" style={{ fontSize: '11px', letterSpacing: '0.05em' }}>
+                      {upcomingMatch.awayTeam.substring(0, 4)}
+                    </div>
+                  )}
                   <span className="match-team__name">{upcomingMatch.awayTeam}</span>
                 </div>
               </div>
@@ -79,7 +93,7 @@ export const MatchAndNewsSection: React.FC = () => {
 
               <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '400px', flexWrap: 'wrap', margin: '0 auto' }}>
                 <Link
-                  to="/matcher/match-funk"
+                  to="/matcher/match-fargelanda"
                   className="btn btn--neon"
                   style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
                 >

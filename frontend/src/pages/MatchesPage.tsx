@@ -1032,11 +1032,33 @@ export const MatchesPage: React.FC = () => {
             {/* Teams Matchup */}
             <div className="matchup-banner-teams">
               <div style={{ textAlign: 'center', flex: 1, minWidth: 0 }}>
-                <img
-                  src={siteConfig.logoUrl}
-                  alt={upcomingMatch.homeTeam}
-                  style={{ width: '70px', height: '70px', objectFit: 'contain', margin: '0 auto 10px', filter: 'drop-shadow(0 0 12px rgba(16,255,96,0.3))' }}
-                />
+                {upcomingMatch.homeTeam.includes('FUTSAL BOYS') ? (
+                  <img
+                    src={siteConfig.logoUrl}
+                    alt={upcomingMatch.homeTeam}
+                    style={{ width: '70px', height: '70px', objectFit: 'contain', margin: '0 auto 10px', filter: 'drop-shadow(0 0 12px rgba(16,255,96,0.3))' }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '70px',
+                      height: '70px',
+                      borderRadius: '50%',
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid var(--border-subtle)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 10px',
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '18px',
+                      color: 'var(--silver)',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {upcomingMatch.homeTeam.substring(0, 4)}
+                  </div>
+                )}
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px, 3.5vw, 26px)', color: '#fff', margin: 0 }}>
                   {upcomingMatch.homeTeam}
                 </h3>
@@ -1052,25 +1074,33 @@ export const MatchesPage: React.FC = () => {
               </div>
 
               <div style={{ textAlign: 'center', flex: 1, minWidth: 0 }}>
-                <div
-                  style={{
-                    width: '70px',
-                    height: '70px',
-                    borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid var(--border-subtle)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 10px',
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '18px',
-                    color: 'var(--silver)',
-                    fontWeight: 700,
-                  }}
-                >
-                  FUNK
-                </div>
+                {upcomingMatch.awayTeam.includes('FUTSAL BOYS') ? (
+                  <img
+                    src={siteConfig.logoUrl}
+                    alt={upcomingMatch.awayTeam}
+                    style={{ width: '70px', height: '70px', objectFit: 'contain', margin: '0 auto 10px', filter: 'drop-shadow(0 0 12px rgba(16,255,96,0.3))' }}
+                  />
+                ) : (
+                  <div
+                    style={{
+                      width: '70px',
+                      height: '70px',
+                      borderRadius: '50%',
+                      background: 'rgba(255,255,255,0.06)',
+                      border: '1px solid var(--border-subtle)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 10px',
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '18px',
+                      color: 'var(--silver)',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {upcomingMatch.awayTeam.substring(0, 4)}
+                  </div>
+                )}
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(20px, 3.5vw, 26px)', color: '#fff', margin: 0 }}>
                   {upcomingMatch.awayTeam}
                 </h3>
@@ -1094,18 +1124,18 @@ export const MatchesPage: React.FC = () => {
                 <MapPin size={20} className="text-neon" />
                 <div>
                   <strong style={{ color: '#fff', display: 'block', fontSize: '15px' }}>{upcomingMatch.venue}</strong>
-                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Fri entré • Kom och heja fram Futsal Boys!</span>
+                  <span style={{ color: 'var(--silver-dim)', fontSize: '13px' }}>Viktigt genrep inför Färgelanda Cup!</span>
                 </div>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--silver-dim)', fontSize: '12.5px', marginTop: '2px' }}>
                 <ShieldCheck size={16} className="text-neon" />
-                <span>Kommande matcher: Färgelanda borta (24 nov), Främstad (28 nov), Frändefors (29 nov), TIF (6 dec)</span>
+                <span>Kommande matcher: Främstad (28 nov), Frändefors (29 nov), TIF (6 dec)</span>
               </div>
 
               <div className="match-action-btns" style={{ marginTop: '6px' }}>
                 <Link
-                  to="/matcher/match-funk"
+                  to="/matcher/match-fargelanda"
                   className="btn btn--neon btn--sm"
                 >
                   <span>FÖLJ RESULTAT & LIVE TRACKER</span>
@@ -1113,7 +1143,7 @@ export const MatchesPage: React.FC = () => {
                 </Link>
 
                 <Link
-                  to="/schema/match-funk"
+                  to="/schema/match-fargelanda"
                   className="btn btn--outline btn--sm"
                 >
                   <span>MATCHSCHEMA & TIDER</span>

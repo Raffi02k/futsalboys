@@ -353,7 +353,7 @@ export const futsalMatches: FutsalMatch[] = [
   },
 
   // ==========================================================================
-  // MATCH 4: KOMMANDE MATCH MOT FUNKGRABBARNA (LIVE TRACKER)
+  // MATCH 4: TRÄNINGSMATCH MOT FUNKGRABBARNA (SLUTRESULTAT: 0 - 3)
   // ==========================================================================
   {
     id: 'ev-4',
@@ -370,33 +370,43 @@ export const futsalMatches: FutsalMatch[] = [
     city: 'Trollhättan',
     address: 'Torsbovägen 2, 461 44 Trollhättan',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Torsbohallen+Trollhättan',
-    status: 'KOMMANDE',
-    outcome: 'KOMMANDE',
-    result: 'VS',
-    halftimeResult: 'Ej startad',
-    scorersSummary: 'Avspark kl 20:00 – Följ live här!',
-    spectators: 'Fri entré för alla supportrar i Torsbohallen',
+    status: 'SLUTRESULTAT',
+    outcome: 'FÖRLUST',
+    result: '0 - 3',
+    homeScore: 0,
+    awayScore: 3,
+    halftimeResult: '0 - 1',
+    scorersSummary: 'Mål: Funkgrabbarna (3)',
+    spectators: '~110 åskådare i Torsbohallen',
     referees: 'Officiell Futsaldomare',
     summary: [
-      'Vintersäsongens första träningsmatch ställer Futsal Boys mot spelskickliga Funkgrabbarna i ett efterlängtat möte på hemmaplan i Torsbohallen!',
-      'Matchen fungerar som ett första skarpt formtest och ger ledarstaben möjlighet att testa matchformationer, pressystem och fasta situationer i tävlingslikt matchtempo.',
-      'Följ liverapporteringen och alla matchhändelser i realtid direkt på denna sida och på lagets Instagram (@grabbarna.futsal) under fredagskvällen den 20 november!',
+      'Träningsmatchen mot Funkgrabbarna i Torsbohallen slutade 0–3 till gästerna efter en fartfylld och fysisk kamp på parketten.',
+      'Funkgrabbarna tog ledningen med 0–1 i första halvlek efter en snabb omställning. Futsal Boys svarade med bra presspel och skapade flera farliga kvitteringslägen, men lyckades inte spräcka nollan.',
+      'I andra halvlek utökade Funkgrabbarna till 0–2. Futsal Boys satsade offensivt med jokerspel i jakten på reducering, men motståndarna utnyttjade en brytning och fastställde slutresultatet till 0–3 i tom bur.',
+      'Ett lärorikt och nyttigt formtest som ger truppen viktiga insikter inför kommande matcher och vinterns cupspel.',
     ],
-    goals: [],
+    goals: [
+      { minute: 14, team: 'Funkgrabbarna', scorer: 'Funkgrabbarna', currentScore: '0 - 1', description: 'Avslut vid bortre stolpen efter snabb omställning.' },
+      { minute: 28, team: 'Funkgrabbarna', scorer: 'Funkgrabbarna', currentScore: '0 - 2', description: 'Placerat skott intill stolproten efter kombination.' },
+      { minute: 38, team: 'Funkgrabbarna', scorer: 'Funkgrabbarna', currentScore: '0 - 3', description: 'Mål i öppen kasse när Futsal Boys satsade med jokerspel.' },
+    ],
     timeline: [
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:15 Truppsamling i Torsbohallen' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:30 Taktiskt matchsnack med ledarstaben' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 19:40 Gemensam matchuppvärmning' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 20:00 Avspark Futsal Boys vs Funkgrabbarna' },
-      { minute: 0, type: 'PERIOD_START', description: 'Tidsplan: 21:35 Slutsignal och sammanfattning' },
+      { minute: 0, type: 'PERIOD_START', description: 'Avspark i Torsbohallen! Futsal Boys vs Funkgrabbarna.' },
+      { minute: 14, type: 'GOAL', team: 'Funkgrabbarna', player: 'Funkgrabbarna', score: '0 - 1', description: '0–1 till Funkgrabbarna efter snabb spelvändning.' },
+      { minute: 20, type: 'HALFTIME', score: '0 - 1', description: 'Halvtidsvila i Torsbohallen. Underläge 0–1 för Futsal Boys.' },
+      { minute: 21, type: 'PERIOD_START', description: 'Andra halvlek startar!' },
+      { minute: 28, type: 'GOAL', team: 'Funkgrabbarna', player: 'Funkgrabbarna', score: '0 - 2', description: '0–2 till Funkgrabbarna efter distansskott.' },
+      { minute: 34, type: 'TIMEOUT', team: 'Futsal Boys', description: 'Timeout Futsal Boys för taktisk genomgång och jokerspel.' },
+      { minute: 38, type: 'GOAL', team: 'Funkgrabbarna', player: 'Funkgrabbarna', score: '0 - 3', description: '0–3 i tom bur när Futsal Boys forcerade framåt.' },
+      { minute: 40, type: 'FULLTIME', score: '0 - 3', description: 'Slutsignal i Torsbohallen! Matchen slutar 0–3 till Funkgrabbarna.' },
     ],
     stats: {
-      shotsOnGoal: [0, 0],
-      totalShots: [0, 0],
-      corners: [0, 0],
-      fouls: [0, 0],
-      possession: [50, 50],
-      saves: [0, 0],
+      shotsOnGoal: [9, 12],
+      totalShots: [18, 17],
+      corners: [6, 4],
+      fouls: [3, 4],
+      possession: [51, 49],
+      saves: [9, 9],
     },
     lineup: {
       startingFive: [
