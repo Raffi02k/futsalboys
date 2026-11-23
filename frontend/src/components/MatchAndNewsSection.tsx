@@ -91,20 +91,20 @@ export const MatchAndNewsSection: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '400px', flexWrap: 'wrap', margin: '0 auto' }}>
+              <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '440px', flexWrap: 'wrap', margin: '0 auto' }}>
                 <Link
                   to="/matcher/match-fargelanda"
                   className="btn btn--neon"
-                  style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
+                  style={{ flex: 1, minWidth: '160px', justifyContent: 'center' }}
                 >
-                  FÖLJ MATCHEN (LIVE)
+                  MATCHCENTER (FÄRGELANDA)
                 </Link>
                 <Link
-                  to="/matcher"
+                  to="/matcher/match-funk"
                   className="btn btn--outline"
-                  style={{ flex: 1, minWidth: '150px', justifyContent: 'center' }}
+                  style={{ flex: 1, minWidth: '160px', justifyContent: 'center' }}
                 >
-                  SE SPELSCHEMA
+                  SENASTE RESULTAT (0–3)
                 </Link>
               </div>
             </div>

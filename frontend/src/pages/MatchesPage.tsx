@@ -205,6 +205,17 @@ export const MatchesPage: React.FC = () => {
 
   const pastMatches = [
     {
+      id: 'ev-4',
+      slug: 'match-funk',
+      opponent: 'Funkgrabbarna',
+      result: '0 - 3',
+      outcome: 'FÖRLUST',
+      date: '20 NOV 2026',
+      tournament: 'Träningsmatch (Torsbohallen)',
+      arena: 'Torsbohallen',
+      scorers: 'Mål: Funkgrabbarna (3)',
+    },
+    {
       id: 'm1',
       slug: 'fc-vanersborg',
       opponent: 'FC Vänersborg Futsal',
@@ -1138,8 +1149,17 @@ export const MatchesPage: React.FC = () => {
                   to="/matcher/match-fargelanda"
                   className="btn btn--neon btn--sm"
                 >
-                  <span>FÖLJ RESULTAT & LIVE TRACKER</span>
+                  <span>MATCHCENTER & LIVE TRACKER</span>
                   <ChevronRight size={16} />
+                </Link>
+
+                <Link
+                  to="/matcher/match-funk"
+                  className="btn btn--outline btn--sm"
+                  style={{ borderColor: 'rgba(255,255,255,0.2)' }}
+                >
+                  <span>SENASTE RESULTAT (0–3 MOT FUNK)</span>
+                  <ChevronRight size={14} />
                 </Link>
 
                 <Link
@@ -1189,7 +1209,7 @@ export const MatchesPage: React.FC = () => {
                     style={{
                       fontFamily: 'var(--font-display)',
                       fontSize: '28px',
-                      color: m.outcome === 'VINST' ? 'var(--neon-green)' : '#fff',
+                      color: m.outcome === 'VINST' ? 'var(--neon-green)' : m.outcome === 'FÖRLUST' ? '#ff6b6b' : '#fff',
                       background: 'rgba(0,0,0,0.3)',
                       padding: '6px 14px',
                       borderRadius: '8px',
@@ -1224,9 +1244,9 @@ export const MatchesPage: React.FC = () => {
                       fontSize: '12px',
                       fontWeight: 800,
                       letterSpacing: '0.08em',
-                      background: m.outcome === 'VINST' ? 'rgba(16,255,96,0.15)' : 'rgba(255,255,255,0.08)',
-                      color: m.outcome === 'VINST' ? 'var(--neon-green)' : 'var(--silver)',
-                      border: m.outcome === 'VINST' ? '1px solid var(--neon-green-glow)' : '1px solid var(--border-subtle)',
+                      background: m.outcome === 'VINST' ? 'rgba(16,255,96,0.15)' : m.outcome === 'FÖRLUST' ? 'rgba(255,107,107,0.15)' : 'rgba(255,255,255,0.08)',
+                      color: m.outcome === 'VINST' ? 'var(--neon-green)' : m.outcome === 'FÖRLUST' ? '#ff6b6b' : 'var(--silver)',
+                      border: m.outcome === 'VINST' ? '1px solid var(--neon-green-glow)' : m.outcome === 'FÖRLUST' ? '1px solid rgba(255,107,107,0.4)' : '1px solid var(--border-subtle)',
                     }}
                   >
                     {m.outcome}

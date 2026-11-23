@@ -277,6 +277,39 @@ export const MatchDetailPage: React.FC = () => {
             </span>
           </div>
 
+          {/* Banner for upcoming match explaining status and linking to previous result */}
+          {match.status === 'KOMMANDE' && (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                flexWrap: 'wrap',
+                gap: '12px',
+                padding: '12px 18px',
+                borderRadius: '12px',
+                background: 'rgba(16, 255, 96, 0.05)',
+                border: '1px solid rgba(16, 255, 96, 0.25)',
+                marginBottom: '20px',
+                fontSize: '13px',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: '#ffffff' }}>
+                <Clock size={16} className="text-neon" />
+                <span>
+                  Detta är en <strong>kommande match</strong> som spelas {match.fullDate} kl {match.time}. Resultat och mål uppdateras vid matchstart.
+                </span>
+              </div>
+              <Link
+                to="/matcher/match-funk"
+                className="btn btn--outline btn--sm"
+                style={{ padding: '6px 14px', fontSize: '12px', borderColor: 'rgba(255,255,255,0.25)' }}
+              >
+                <span>SE SENASTE RESULTAT (0–3 MOT FUNK) →</span>
+              </Link>
+            </div>
+          )}
+
           {/* Match Metadata Row */}
           <div className="schedule-meta-grid" style={{ marginBottom: '20px' }}>
             <div className="schedule-meta-pill">
