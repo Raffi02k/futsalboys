@@ -825,6 +825,25 @@ export interface ClubNews {
 
 export const clubNewsList: ClubNews[] = [
   {
+    id: 'p4-vast-julinsamling',
+    category: 'JULINSAMLING & P4 VÄST',
+    title: 'Futsal Boys gästade P4 Väst live: Julinsamling för unga och människor i nöd',
+    summary: 'I morse gästade vi P4 Väst live för att berätta om Futsal Boys julinsamling. Vi samlar in julklappar till unga och stöttar familjer i nöd i Trollhättan. Läs mer om hur du kan hjälpa till eller söka anonymt stöd.',
+    date: '24 NOV 2026',
+    readTime: '3 MIN LÄSNING',
+    author: 'Futsal Boys Trollhättan',
+    image: '/images/blogg/radiobild.JPG',
+    instagramUrl: 'https://www.instagram.com/p/DgH6Bxat46d/',
+    paragraphs: [
+      'I morse klockan 09:00 gästade Futsal Boys direktsändningen hos Sveriges Radio P4 Väst live tillsammans med @rgyllin! I studion fick vi berätta om det allra viktigaste vi gör just nu vid sidan av planen: Futsal Boys stora julinsamling för unga och människor i nöd i Trollhättan med omnejd.',
+      'Julen ska vara en tid för glädje, trygghet och gemenskap – men för alltför många barn och familjer innebär december en tung ekonomisk och psykisk stress. Ingen ska behöva känna sig bortglömd eller lämnad utanför i jul. Som lag och förening vill vi ta ett genuint samhällsansvar och ge tillbaka till människorna i staden som stöttar oss.',
+      '✨ KAN DU HJÄLPA TILL MED PRESENTER OCH GÅVOR?\nVi tar tacksamt emot leksaker, sportprylar, böcker, presentkort och oöppnade julklappar som kan sätta ett leende på ett barns läppar. Vill du eller ditt företag vara med och bidra? Hör av dig till oss via DM på Instagram (@grabbarna.futsal) eller via mail på futsalboys2026@gmail.com så ordnar vi överlämning!',
+      '💌 BEHÖVER DU ELLER DIN FAMILJ HJÄLP INFÖR JULEN?\nAtt be om hjälp kan kännas svårt, men vi finns här för dig helt utan dömande. Skriv privat till oss i DM på Instagram (@grabbarna.futsal). All kontakt hanteras 100% anonymt, diskret och med full respekt och omtanke.',
+      'Hela radiointervjun finns tillgänglig i vår Instagram-story och via länk i bion. Tack till P4 Väst för att ni uppmärksammar initiativet! Dela gärna inlägget och sprid ordet – tillsammans gör vi en verklig skillnad! 💚❤️🎁\n\n#FutsalBoys #P4Väst #Julinsamling #Trollhättan #TillsammansÄrViStarka',
+    ],
+    quote: 'Fotboll och futsal förenar oss på planen – men det största vi kan göra är att finnas där för varandra utanför den när det verkligen behövs. Tillsammans gör vi skillnad i Trollhättan.',
+  },
+  {
     id: 'historisk-premiar-forsta-traningen',
     category: 'HISTORISK PREMIÄR',
     title: 'HISTORISK PREMIÄR: Allra första träningen med Trollhättan Futsal Boys!',
@@ -977,6 +996,12 @@ export const instagramData: InstagramProfile = {
   ],
   avatar: '/images/futsalboys-logo.png',
   posts: [
+    {
+      id: 'p-p4vast',
+      image: '/images/blogg/radiobild.JPG',
+      likes: 215,
+      caption: 'I morse kl. 09:00 gästade vi P4 Väst live tillsammans med @rgyllin ! 🎙️ Vi pratade om det viktigaste vi gör just nu: Futsal Boys julinsamling för unga och människor i nöd. 🎁❤️',
+    },
     {
       id: 'p-premiar',
       image: '/images/blogg/forstatraning.jpeg',

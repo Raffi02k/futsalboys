@@ -78,6 +78,7 @@ const allIdentifiers = new Set([
   'nya-cuper-2027',
   'vinterschema-2026',
   'intro-video',
+  'p4-vast-julinsamling',
 ]);
 
 const regex = /(?:id|slug|cupSlug|scheduleSlug):\s*['"]([^'"]+)['"]/g;
