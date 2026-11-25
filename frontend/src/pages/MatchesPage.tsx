@@ -205,6 +205,17 @@ export const MatchesPage: React.FC = () => {
 
   const pastMatches = [
     {
+      id: 'ev-match-fargelanda',
+      slug: 'match-fargelanda',
+      opponent: 'Färgelanda IF (Borta)',
+      result: '11 - 3',
+      outcome: 'FÖRLUST',
+      date: '24 NOV 2026',
+      tournament: 'Träningsmatch (Borta)',
+      arena: 'Färgelanda Sporthall',
+      scorers: 'John (1), Estefan (1), Emin (1)',
+    },
+    {
       id: 'ev-4',
       slug: 'match-funk',
       opponent: 'Funkgrabbarna',
@@ -1141,12 +1152,12 @@ export const MatchesPage: React.FC = () => {
 
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--silver-dim)', fontSize: '12.5px', marginTop: '2px' }}>
                 <ShieldCheck size={16} className="text-neon" />
-                <span>Kommande matcher: Främstad (28 nov), Frändefors (29 nov), TIF (6 dec)</span>
+                <span>Kommande matcher: Frändefors (29 nov), TIF (6 dec)</span>
               </div>
 
               <div className="match-action-btns" style={{ marginTop: '6px' }}>
                 <Link
-                  to="/matcher/match-fargelanda"
+                  to="/matcher/match-framstad"
                   className="btn btn--neon btn--sm"
                 >
                   <span>MATCHCENTER & LIVE TRACKER</span>
@@ -1154,16 +1165,16 @@ export const MatchesPage: React.FC = () => {
                 </Link>
 
                 <Link
-                  to="/matcher/match-funk"
+                  to="/matcher/match-fargelanda"
                   className="btn btn--outline btn--sm"
                   style={{ borderColor: 'rgba(255,255,255,0.2)' }}
                 >
-                  <span>SENASTE RESULTAT (0–3 MOT FUNK)</span>
+                  <span>SENASTE RESULTAT (11–3 MOT FÄRGELANDA)</span>
                   <ChevronRight size={14} />
                 </Link>
 
                 <Link
-                  to="/schema/match-fargelanda"
+                  to="/schema/match-framstad"
                   className="btn btn--outline btn--sm"
                 >
                   <span>MATCHSCHEMA & TIDER</span>

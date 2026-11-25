@@ -93,18 +93,18 @@ export const MatchAndNewsSection: React.FC = () => {
 
               <div style={{ display: 'flex', gap: '10px', width: '100%', maxWidth: '440px', flexWrap: 'wrap', margin: '0 auto' }}>
                 <Link
-                  to="/matcher/match-fargelanda"
+                  to="/matcher/match-framstad"
                   className="btn btn--neon"
                   style={{ flex: 1, minWidth: '160px', justifyContent: 'center' }}
                 >
-                  MATCHCENTER (FÄRGELANDA)
+                  MATCHCENTER (FRÄMSTAD)
                 </Link>
                 <Link
-                  to="/matcher/match-funk"
+                  to="/matcher/match-fargelanda"
                   className="btn btn--outline"
                   style={{ flex: 1, minWidth: '160px', justifyContent: 'center' }}
                 >
-                  SENASTE RESULTAT (0–3)
+                  SENASTE RESULTAT (11–3)
                 </Link>
               </div>
             </div>

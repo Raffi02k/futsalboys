@@ -79,6 +79,7 @@ const allIdentifiers = new Set([
   'vinterschema-2026',
   'intro-video',
   'p4-vast-julinsamling',
+  'matchrapport-fargelanda-11-3',
 ]);
 
 const regex = /(?:id|slug|cupSlug|scheduleSlug):\s*['"]([^'"]+)['"]/g;

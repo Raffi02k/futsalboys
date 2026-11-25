@@ -407,7 +407,7 @@ export const winterSchedule: ScheduleEvent[] = [
     id: 'ev-match-fargelanda',
     slug: 'match-fargelanda',
     type: 'MATCH',
-    title: 'Träningsmatch mot Färgelanda (Borta)',
+    title: 'Träningsmatch mot Färgelanda (Slut: 11–3)',
     dayOfWeek: 'Tisdag',
     date: '24 NOV',
     fullDate: '24 november 2026',
@@ -416,12 +416,12 @@ export const winterSchedule: ScheduleEvent[] = [
     city: 'Färgelanda',
     address: 'Allévägen / Håvesten, 458 30 Färgelanda',
     gatheringTime: '18:00 (avresa Trollhättan) / 18:15 på plats',
-    opponent: 'Färgelanda',
-    description: 'Bortamatch mot Färgelanda i Färgelanda Sporthall kl 19:00–21:00 – viktigt genrep och test av cuparenan!',
+    opponent: 'Färgelanda IF',
+    description: 'Bortamatch i Färgelanda Sporthall. Slutresultat: 11–3 efter ett tufft och lärorikt formtest mot starkt motstånd. Mål: John, Estefan, Emin.',
     longDescription: [
-      'Futsal Boys reser till Färgelanda för en tuff och spännande träningsmatch tisdagen den 24 november kl 19:00–21:00.',
-      'Matchen spelas i Färgelanda Sporthall vilket ger truppen en utmärkt chans att bekanta sig med arenan där Färgelanda Futsal Cup avgörs i december.',
-      'Ett högintressant bortamöte där fokus ligger på snabba omställningar och samspel under matchlika förhållanden!',
+      'Tisdagen den 24 november reste Futsal Boys till Färgelanda Sporthall för en tuff bortadrabbning mot starka Färgelanda IF.',
+      'Matchen slutade 11–3 till hemmalaget efter en intensiv kamp i högt tempo. Futsal Boys mål gjordes av John, Estefan och Emin, med Estefan som matchens lirare (MVP).',
+      'Ett oerhört lärorikt formtest som gav laget värdefull erfarenhet inför Färgelanda Futsal Cup i december!',
     ],
     focusAreas: [
       'Bekanta sig med hallen och golvet inför Färgelanda cup',
@@ -435,7 +435,7 @@ export const winterSchedule: ScheduleEvent[] = [
       { time: '18:30', text: 'Taktiksnack inför bortamatchen' },
       { time: '18:40', text: 'Gemensam matchuppvärmning' },
       { time: '19:00', text: 'Avspark: Färgelanda vs Futsal Boys' },
-      { time: '20:45', text: 'Slutsignal och eftersnack' },
+      { time: '20:45', text: 'Slutsignal: 11–3 till Färgelanda IF' },
     ],
     equipment: [
       'Officiellt matchställ Futsal Boys',
@@ -446,7 +446,7 @@ export const winterSchedule: ScheduleEvent[] = [
     leaders: ['Raffi Medz', 'Elvis Mesic', 'Marcelo Villa'],
     spectatorInfo: 'Öppen publik i Färgelanda Sporthall. Välkomna att heja fram grabbarna!',
     mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Färgelanda+Sporthall',
-    isUpcoming: true,
+    isUpcoming: false,
   },
   {
     id: 'ev-match-framstad',
@@ -798,12 +798,12 @@ export interface UpcomingMatch {
 }
 
 export const upcomingMatch: UpcomingMatch = {
-  homeTeam: 'FÄRGELANDA',
-  awayTeam: 'FUTSAL BOYS',
-  date: 'TISDAG, 24 NOVEMBER 2026',
-  time: '19:00–21:00',
-  venue: 'FÄRGELANDA SPORTHALL',
-  competition: 'TRÄNINGSMATCH (BORTA)',
+  homeTeam: 'FUTSAL BOYS',
+  awayTeam: 'FRÄMSTAD',
+  date: 'LÖRDAG, 28 NOVEMBER 2026',
+  time: '20:00–22:00',
+  venue: 'NEVSHALLEN, TROLLHÄTTAN',
+  competition: 'TRÄNINGSMATCH (HEMMA)',
   status: 'KOMMANDE MATCH',
 };
 
@@ -824,6 +824,25 @@ export interface ClubNews {
 }
 
 export const clubNewsList: ClubNews[] = [
+  {
+    id: 'matchrapport-fargelanda-11-3',
+    category: 'MATCHRAPPORT',
+    title: 'Matchrapport: Tuff och lärorik drabbning mot Färgelanda IF (11–3)',
+    summary: 'Futsal Boys testade krafterna mot ett mycket starkt Färgelanda IF. Matchen slutade 11–3 efter mål av John, Estefan och Emin – med Estefan som matchens lirare!',
+    date: '25 NOV 2026',
+    readTime: '3 MIN LÄSNING',
+    author: 'Ledarstaben (Raffi, Elvis & Marcelo)',
+    image: '/images/blogg/fergelandamatchen.jpg',
+    instagramUrl: 'https://www.instagram.com/p/Dgl-FE_Ny4c/',
+    paragraphs: [
+      'Stort tack till Färgelanda IF för en riktigt grym match ikväll! ⚽️🔥 Vi ville testa oss mot det bästa motståndet och det var precis vad vi fick. Resultatet skrevs till 11–3 till hemmalaget efter en fartfylld och intensiv match i Färgelanda Sporthall.',
+      'Men det är exakt den här typen av tuffa matcher vi behöver för att starta igång laget på riktigt, lära av våra misstag och växa inför vinterns cupäventyr. Inställningen fanns där hela vägen och killarna kämpade för varandra i varje duell.',
+      '⚽️ Dagens målskyttar för Futsal Boys:\n• John – kyligt avslut efter snabb spelvändning\n• Estefan – stark genombrytning och säkert mål\n• Emin – distinkt skott i krysset',
+      '⭐️ Matchens lirare (MVP): Estefan! 🔥 Slet kopiöst över hela parketten, skapade ständig oreda i offensiven och krönte sin fina insats med ett välförtjänt mål.',
+      'Viktigast av allt: kärleken till sporten är alltid där! ❤️ Sjukt kul också att se så många på läktaren som kom och stöttade oss på plats i Färgelanda. Vi ses snart igen Färgelanda – alltid kärlek och respekt! Nu laddar vi om inför lördagens hemmadrabbning mot Främstad i Nevshallen kl 20:00! 💪\n\n#FutsalBoys #FärgelandaIF #Träningsmatch #FutsalSverige #Respekt',
+    ],
+    quote: 'Vi ville testa oss mot det bästa motståndet och det var precis vad vi fick. Resultatet skrevs till 11–3 till Färgelanda, men det är exakt den här typen av tuffa matcher vi behöver för att starta igång laget, lära av våra misstag och växa. Kärleken till sporten är alltid där!',
+  },
   {
     id: 'p4-vast-julinsamling',
     category: 'JULINSAMLING & P4 VÄST',
@@ -996,6 +1015,12 @@ export const instagramData: InstagramProfile = {
   ],
   avatar: '/images/futsalboys-logo.png',
   posts: [
+    {
+      id: 'p-fargelanda',
+      image: '/images/blogg/fergelandamatchen.jpg',
+      likes: 248,
+      caption: 'Stort tack till Färgelanda IF för en riktigt grym match ikväll! ⚽️🔥 Resultatet skrevs till 11–3, men det är exakt den här typen av tuffa matcher vi behöver för att växa. Mål: John, Estefan, Emin. MVP: Estefan ⭐️',
+    },
     {
       id: 'p-p4vast',
       image: '/images/blogg/radiobild.JPG',
